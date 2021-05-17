@@ -1,0 +1,159 @@
+.logo {
+    font-size: 35px;
+    color: #181818;
+}
+#icon {
+    width: 35px;
+    height: 35px;
+    margin-top: 5px;
+    margin-left: 30px;
+    margin-right: 20px;
+}
+.sq {
+    float: right;
+    margin-right: -10px;
+}
+
+.join {
+    float: left;
+    margin-right: 25px;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.logout {
+    float: left;
+    margin-right: 25px;
+    margin-top: 20px;
+    font-size: 18px;
+}
+.login {
+    float: left;
+    margin-right: 25px;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.mypage {
+    display: inline-flex;
+}
+
+.title {
+    font-weight: bolder;
+    font-size: 38px;
+}
+
+.searchbox {
+    display: inline-flex; 
+}
+
+#icon {
+    width: 35px;
+    height: 35px;
+    margin-top: 5px;
+    margin-left: 30px;
+    margin-right: 20px;
+}
+.searchpoint {
+    display: block;
+    width: 495px;
+    margin-top: 1px;
+    border: none;
+}
+a {text-decoration: none; color: black;}
+/*==========헤더============================*/
+/*======푸터=============================*/
+#footlim{width: 1650px;float: left; }
+html, body{
+    margin:0; 
+    padding:0; 
+    font-size: 100%;
+    width:100%; 
+    height:100%; 
+    background-color: #fff; 
+    font-family: 'NSG R' !important; 
+    margin:0; 
+    color: #333333;
+} 
+
+body{
+  font: inherit;	
+  vertical-align: baseline;
+  line-height: 0.85; 
+}
+footer{
+    font-size: 100%;
+    font-size: 19px;
+    height: 21%;
+}
+/*-================================--*/
+.imagePreview{
+    width: 100px;
+    height: 100px;
+    background-position: center center;
+    background-size: 130%;
+    display: inline-block;
+}
+textarea{
+    width:550px; height:250px; 
+    resize: none;
+}
+.reviewsec{
+    align-items: center;
+
+}
+.emoji{
+    width:80px;
+    height:100px;
+}   
+#emotion{  
+    margin:10px 0px 10px 0px;
+}  
+.btn {
+    width:200px;
+    height: 50px;
+    background-color:#ffcc00;
+    border: 0;
+    cursor: pointer;
+    color: black;
+    font-size: 30px;
+    border-radius: 30px;
+    font-weight: 600;
+}
+.btn:hover{
+    background: #181818; 
+    color: #ffffff;
+}
+
+#insert{
+    margin:30px 0px 30px 0px;
+}  
+
+input[type='file']{
+    display: none
+}
+.file_input label {
+    cursor:pointer;
+    display:inline-block;
+    vertical-align:middle;
+    overflow:hidden;
+    width:100px;
+    height:100px;
+}
+.file_input label input {
+    position:absolute;
+    width:0;
+    height:0;
+    overflow:hidden;
+}
+.file_input input[type=text] {
+    vertical-align:middle;
+    display:inline-block;
+    width:600px;
+    height:28px;
+    line-height:28px;
+    font-size:11px;
+    padding:0;
+    border:0;
+    border:1px solid #777;
+}

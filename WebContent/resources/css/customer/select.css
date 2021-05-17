@@ -1,0 +1,83 @@
+@charset "utf-8";
+body {min-width: 1650px;}
+body,html {margin: 0 auto;}
+
+/* ----------------------------------- */
+                            
+#selectwrap #main {width: 1650px; height:auto; background-color: white; margin: 0 auto;}
+ 
+#selectwrap .eatselect {width: 1440px; height: 50px; display: flex ; flex-direction: row; position: relative;
+     left: 50px; top: 30px; margin: 0 auto;}
+ 
+#selectwrap .bp {display: none; width: 120px; height: 30px; border-radius: 30px; background-color: aquamarine;
+     font-size: 15px; font-weight: 600; color: white; text-align: center; line-height: 2;}
+ 
+#selectwrap .or {display: none; width : 120px; height: 30px; border-radius: 30px; background-color: red;
+     font-size: 15px; font-weight: 600; color: white; text-align: center; line-height: 2;
+     margin-left: 10px;}
+ 
+ /* ----------------------------------- */
+     
+#selectwrap .page { margin: 0 auto; bottom: 100;}
+     
+#selectwrap .section1 { width: 1440px; display: flex; justify-content: space-between; margin: 0 auto; padding-top: 50px;}
+ 
+#selectwrap .wrap {width: 1440px; height: auto; margin: 0 auto;}
+ 
+#selectwrap .pic { width: 320px; height: 250px; background-color: burlywood; }
+
+/* ================================     */
+ 
+#selectwrap .section2 {width: 1440px; height: auto;  margin:0 auto; margin-top: 50px;}
+     
+#selectwrap .section3 {position: relative; width: 700px; height: 705px; display: flex; flex-flow: column wrap;float: left;}
+
+#selectwrap .house { width: 655px; height: 60px;}
+ 
+#selectwrap .house .name{float: left; font-size: 40px;}
+ 
+#selectwrap .house .score{float: left; margin-left: 30px; font-size: 40px;}
+ 
+#selectwrap .pic1 { width: 600px; height: 30px; margin-top: 20px;}
+     
+#selectwrap .pic2 { width : 500px; height: 45px; font-size: 25px;}
+ 
+ 
+#selectwrap #map {width: 600px; height: 605px; background-color: lightblue; float: right; }
+
+#selectwrap .buttonwrap {clear: both; width: 1440px; height: auto; margin: 0 auto; position: relative; margin-bottom: 150px; margin-left: 200px;}
+
+#selectwrap .button1 {position: absolute; left: 35%; margin-left: 250px; width: 250px; height: 60px; border: 1px solid black; margin-left: 0px; margin-top: 50px;
+     text-align: center; line-height: 1.6; font-size: 25px; border-radius: 30px;  color: black; font-weight: bold; background-color : #ffcc00; opacity: 88%;}
+  
+ 
+ /* ------------------------------------------------- */
+#selectwrap .emot {clear: both; position: relative; width: 1440px; height: 50px; margin: 0 auto; clear: both;}
+#selectwrap .emoticon { display: flex; align-items: center; justify-content: center; margin-left: 20px; }
+
+#selectwrap img:nth-child(1) {margin-left: -10px;}
+#selectwrap img:nth-child(2) {margin-left: 45px;}
+#selectwrap img:nth-child(3) {margin-left: 45px;padding-bottom: 5px;}
+
+#selectwrap .emot img {float: left;}
+#selectwrap .emodesc{ width: 1440px; margin: 0 auto; text-align: center; padding-top: 10px; }
+#selectwrap .icon { display: none; position: absolute; right: 0px; top: 60px;  width: 60px; height: 60px; background-color: #FFCC00;}
+ 
+ /* ------------------------------------- */
+
+#selectwrap .section4 {clear: both; width: 1440px; height: auto; margin: 0px auto 0 auto; padding-top: 100px;}
+ 
+#selectwrap .review {width : 1200px; height: 300px; background-color: white; margin: 0px auto 0 auto;}
+     
+#selectwrap .profile {float: left; width: 200px; height: auto;  margin-top: 50px;}
+ 
+#selectwrap .user {width: 100px; height: 100px; border: 1px solid black; margin: 30px auto 0 auto; }
+ 
+#selectwrap .uname { width: 100px; height: 30px; /* background: #000; */ margin: 5px auto 0 auto; text-align: center;}
+ 
+#selectwrap .desc {/* float: left; */ width: 600px; height: auto; margin: 80px auto 0 auto; font-size: 22px; padding-right: 50px;}
+ 
+#selectwrap .preview {width: 200px; height: 200px; float: right; background:seagreen; margin-top: -90px;}
+
+#selectwrap .line {margin: 0 auto; width: 1200px ; height: 1px; background-color: black; opacity: 50%;}
+    

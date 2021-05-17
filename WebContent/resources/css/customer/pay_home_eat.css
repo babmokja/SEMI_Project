@@ -1,0 +1,277 @@
+@charset "utf-8";
+
+input[type=text] {
+    vertical-align: baseline;
+}
+
+.first {
+    display: flex;
+    justify-content: center;
+}
+
+.payment {
+    margin-right: 50px;
+    margin-top: 50px;
+}
+
+.payment_title {
+    border: 1px solid black;
+    width: 500px;
+    font-size: 35px;
+    font-weight: bolder;
+    background: #fffae4;
+}
+
+input.payment_title_title {
+    margin-top: 15px;
+    margin-right: -165px;
+    background: #fffae4;
+}
+
+.customer_info_total {
+    border: 1px solid black;
+    font-size: 20px;
+}
+
+.customer_address_number {
+    width: 500px;
+    margin-top: 10px;
+}
+
+input.customer_info_address_number {
+    border: 1px solid black;
+    height: auto;
+    font-size: 25px;
+    margin-top: 8px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+}
+
+#icon_adderss_search {
+    height: 25px;
+    margin-right: 10px;
+    margin-bottom: -1px;
+}
+
+.customer_address {
+    width: 500px;
+    margin-top: 10px;
+}
+
+input.customer_info_address_default {
+    border: 1px solid black;
+    height: auto;
+    font-size: 25px;
+    margin: 8px 15px 10px 10px;
+}
+
+.customer_address_detail {
+    width: 500px;
+    margin-top: 10px;
+}
+
+input.customer_info_address_default_detail {
+    border: 1px solid black;
+    height: auto;
+    font-size: 25px;
+    margin: 8px 15px 10px 10px;
+}
+
+.customer_tel_number {
+    width: 500px;
+    margin-top: 10px;
+}
+
+input.customer_info_tel_number_default {
+    border: 1px solid black;
+    height: auto;
+    font-size: 25px;
+    margin: 8px 15px 10px 10px;
+}
+
+input.customer_info_check {
+    background: #FFCC00;
+    color: white;
+    font-size: 20px;
+    font-weight: bolder;
+    border-radius: 30px;
+    padding: 6px 18px;
+    margin-bottom: 10px;
+}
+
+.customer_request_info_title {
+    border: 1px solid black;
+    width: 500px;
+    font-size: 35px;
+    font-weight: bolder;
+    margin-top: 36px;
+    background: #fffae4;
+}
+
+input.customer_request_info_title_title {
+    margin-top: 15px;
+    margin-right: -165px;
+    background: #fffae4;
+}
+
+.customer_request_info_input {
+    border: 1px solid black;
+    width: 500px;
+    font-size: 35px;
+    font-weight: bolder;
+}
+
+.method_of_payment {
+    border: 1px solid black;
+    width: 500px;
+    font-size: 35px;
+    font-weight: bolder;
+    background: #fffae4;
+    margin-top: 50px;
+}
+
+input.method_of_payment_title {
+    margin-top: 15px;
+    margin-right: -165px;
+    background: #fffae4;
+}
+
+.method_of_payment_choice {
+    border: 1px solid black;
+    width: 500px;
+    padding: 20px 0;
+}
+
+.method_of_payment_kakao {
+    background: #FFCC00;
+    color: white;
+    font-size: 20px;
+    font-weight: bolder;
+    border-radius: 30px;
+    padding: 6px 18px;
+    margin-right: 100px;
+}
+
+.method_of_payment_money {
+    background: #FFCC00;
+    color: white;
+    font-size: 20px;
+    font-weight: bolder;
+    border-radius: 30px;
+    padding: 6px 18px;
+}
+
+.order_list {
+    margin-top: 50px;
+}
+
+.order_list_title {
+    border: 1px solid black;
+    width: 300px;
+    font-size: 35px;
+    font-weight: bolder;
+    background: #fffae4;
+}
+
+input.order_list_title_title {
+    margin-top: 15px;
+    margin-right: -165px;
+    background: #fffae4;
+}
+
+.order_info {
+    border: 1px solid black;
+    height: 450px;
+}
+
+.restaurant_name {
+    padding: 20px 10px;
+}
+
+.restaurant_name_title {
+    font-size: 20px;
+    font-weight: bolder;
+    margin-right: 140px;
+    margin-bottom: 15px;
+}
+
+.order_list_detail {
+    padding: 20px 10px;
+    margin-bottom: 150px;
+}
+
+.order_list_detail_title {
+    font-size: 20px;
+    font-weight: bolder;
+    margin-right: 160px;
+    margin-bottom: 15px;
+}
+
+.order_total_pay {
+    padding: 20px 10px;
+}
+
+.order_total_pay_title {
+    font-size: 20px;
+    font-weight: bolder;
+    margin-right: 180px;
+    margin-bottom: 15px;
+}
+
+.order_final_btn_choice {
+    background: red;
+    color: white;
+    font-size: 35px;
+    font-weight: bolder;
+    padding: 10px 75px;
+    margin-top: 15px;
+}
+
+.point_use {
+    border: 1px solid black;
+    margin-right: 345px;
+    width: 500px;
+    margin-top: 50px;
+    font-size: 35px;
+    font-weight: bolder;
+    background: #fffae4;
+}
+
+input.point_use_title {
+    margin-top: 15px;
+    margin-right: -165px;
+    background: #fffae4;
+}
+
+.point_isUse_choice {
+    border: 1px solid black;
+    width: 500px;
+    margin-right: 346px;
+    padding: 36px 0;
+}
+
+.point_info {
+    font-size: 20px;
+    font-weight: bolder;
+    float: left;
+    margin-left: 70px;
+    position: relative;
+    top: -10px;
+}
+
+.point_explanation {
+    font-size: 20px;
+    font-weight: bolder;
+    float: left;
+    margin-left: 120px;
+    position: relative;
+    top: -10px;
+}
+
+.point_use_choice {
+    float: left;
+    zoom: 2.0;
+    margin-left: 10px;
+    position: relative;
+    top: -8px;
+}

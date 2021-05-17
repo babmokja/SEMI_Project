@@ -1,0 +1,37 @@
+*{margin: 0 auto; padding: 0;}
+
+
+.aside{width: 340px; height: 1080px; background: #FFCC00;float: left;}
+.aside2{width: 50px; height: 1080px; background: #ffffff;float: left;}
+.aside_top{width: 340px; height: 90px; background: #EF9309; text-align: center; line-height: 90px; font-size: 40px; font-weight: 700;}
+
+.button01{width: 250px; height: 55px; background: #FFCC00; border : 1px solid #FFCC00; border-radius : 50px; text-align: center; line-height: 55px; font-size: 30px; font-weight: 700; float: left;}
+.button02{width: 250px; height: 55px; background: #C4C4C4; border : 1px solid #C4C4C4; border-radius : 50px; text-align: center; line-height: 55px; font-size: 30px; font-weight: 700; float: left; }
+.button02:hover {background: #FFCC00; border : 1px solid #FFCC00;}
+
+.top{display: inline-block;}
+.category{width: 150px; height: 50px; text-align: center; margin-left: 190px;}
+#userid{width: 300px; height: 45px;}
+.space{height: 150px;}
+
+.contest_top{width: 1500px; height: 68px;}
+
+.section_contest{height: 68px; text-align: center; line-height: 68px; font-size: 25px; font-weight: 500; float: left; border-top : 3px solid #EF9309; border-bottom : 2px solid #FFCC00;}
+.section_contest_1{width: 150px;}
+.section_contest_2{width: 150px;}
+.section_contest_3{width: 400px;}
+.section_contest_4{width: 150px;}
+.section_contest_5{width: 300px;}
+
+.section_contest_first { height: 58px; text-align: center; line-height: 58px; font-size: 18px; font-weight: 700; float: left; border-bottom : 1px solid #333333;}
+.section_contest_two { height: 58px; text-align: center; line-height: 58px; font-size: 18px; font-weight: 400; float: left; border-bottom : 1px solid #333333;}
+
+.button{width: 50px; height: 50px; background: #FFCC00; border-radius : 50px; text-align: center; line-height: 50px; font-weight: 600; float: left; }
+.button:hover{background: #181818; color: #ffffff;}
+.button_space{vertical-align: auto; margin-right: 30px;}
+
+.center{text-align: center; width: 400px;}
+
+.button2{width: 100px; height: 30px;  text-align: center; border: 1px solid green; border-width: 4px;  float:right; margin-right: 260px; line-height: 30px;}
+
+.footer {width:100%;height:auto;position:fixed;bottom:0px;background:#ffcc00;text-align: left;color: black; text-align: right;}

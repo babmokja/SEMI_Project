@@ -1,0 +1,29 @@
+@charset "utf-8";
+
+input[type=text] { vertical-align: baseline; }
+
+#eating_people { width: 210px; height: 220px; margin-top: 150px; border-radius: 10%; border: 10px solid #ffcc00; }
+
+.result { background: #ffcc00; width: 500px; height: 400px; border: 3px solid black; margin-bottom: 150px; margin-top: -40px; }
+
+.id { margin-top: 45px; }
+
+input.id { font-weight: bolder; border: 1px solid black; font-size: 30px; width: 374px; }
+
+.pwd { margin-top: 10px; }
+
+input.pwd { font-weight: bolder; border: 1px solid black; font-size: 30px; width: 374px; }
+
+.btn { margin-top: 20px; }
+
+.login_btn { background: #EF9309; color: white; width: 356px; font-size: 30px; font-weight: bolder; box-shadow: 2px 2px 1px gray; padding: 10px; }
+
+.login_btn:hover { opacity: 60%; }
+
+.owner { margin-top: 20px; }
+
+.owner_login { background: rgb(119, 8, 192); color: white; width: 356px; font-size: 30px; font-weight: bolder; box-shadow: 2px 2px 1px gray; padding: 10px; }
+
+.owner_login:hover { opacity: 60%; }
+
+.manager_login { float: right; border: 1px solid black; padding: 5px; font-size: 20px; margin-right: 30px; }

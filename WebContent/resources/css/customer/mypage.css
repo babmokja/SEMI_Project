@@ -1,0 +1,503 @@
+.logo {
+    font-size: 35px;
+    color: #181818;
+}
+#icon {
+    width: 35px;
+    height: 35px;
+    margin-top: 5px;
+    margin-left: 30px;
+    margin-right: 20px;
+}
+.sq {
+    float: right;
+    margin-right: -10px;
+}
+
+.join {
+    float: left;
+    margin-right: 25px;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.logout {
+    float: left;
+    margin-right: 25px;
+    margin-top: 20px;
+    font-size: 18px;
+}
+.login {
+    float: left;
+    margin-right: 25px;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.mypage {
+    display: inline-flex;
+}
+
+.title {
+    font-weight: bolder;
+    font-size: 38px;
+}
+
+.searchbox {
+    display: inline-flex; 
+}
+
+.searchpoint {
+    display: block;
+    width: 495px;
+    margin-top: 1px;
+    border: none;
+}
+a {text-decoration: none; color: black;}
+/*==========헤더============================*/
+/*======푸터=============================*/
+#footlim{width: 1650px;float: left; }
+html, body{
+    margin:0; 
+    padding:0; 
+    font-size: 100%;
+    width:100%; 
+    height:100%; 
+    background-color: #fff; 
+    font-family: 'NSG R' !important; 
+    margin:0; 
+    color: #333333;
+} 
+
+body{
+  font: inherit;	
+  vertical-align: baseline;
+  line-height: 0.9; 
+}
+footer{
+    font-size: 100%;
+    font-size: 19px;
+    height: 22.5%;
+}
+/*-================================--*/
+
+.page{
+    margin: 30px 0px 10px 300px;
+    font-size: 45px;
+    font-weight: 800;
+}
+
+#section1{
+    margin: 0px 50px 50px 300px;
+    width: 1000px;
+    height: 400px;
+}
+
+.myinformation {
+    float : left;
+    width: 350px; 
+    height: 300px;
+    margin-left: 100px;  
+}
+#c-name {
+    color :#ffcc00;
+}
+.name{
+    font-size: 27px;
+}
+.smallbtn {
+    width:120px;
+    height: 30px;
+    background-color:#ffcc00;
+    border: 0;
+    cursor: pointer;
+    color: black;
+    font-size: 20px;
+    border-radius: 20px;
+    font-weight: 800;
+    margin: 15px; 
+} 
+.ownersignin {
+  width:140px;
+  height: 40px;
+  background-color:#EF9309;
+  border: 0;
+  cursor: pointer;
+  color: black;
+  font-size: 20px;
+  border-radius: 10px;
+  font-weight: 800;
+  
+}
+.smallbtn:hover{
+    background: #181818; 
+    color: #ffffff;
+}  
+.question{
+    position: absolute;
+    border: 1px solid lightgray;
+    margin-top: 100px;
+    margin-left: 120px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    width:120px;
+    height: 30px;
+    cursor: pointer;
+    background-color: gainsboro; 
+}
+.question:hover{
+    background: #181818; 
+    color: #ffffff;
+}
+.latest_name{
+    padding-left: 10px;
+    font-size: 30px;
+    font-weight: 800;
+}
+.order{
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.order thead{
+    height: 60px; 
+    text-align:center;
+    line-height: 82px; 
+    font-size: 35px; 
+    font-weight: 600; 
+    float: left; 
+    border-top : 3px solid #EF9309; 
+    border-bottom : 5px solid #FFCC00;
+    display: block;
+}
+.order tbody{
+    display:block;
+    overflow:auto;
+    margin-top: 69px;
+    height: 400px;
+}
+
+.order th, .order td { 
+    height: 70px;
+    width: 300px;
+    text-align: left;
+    line-height: 58px; 
+    font-size: 18px; 
+    font-weight: 700; 
+
+}
+
+/*-------------------모달3------*/
+/*----------모달33333333333-------------*/  
+.modal3 {
+    position:relative;
+    width:1%;
+    height: 1%;
+    z-index:1;
+    display: none;
+
+
+  }
+  .modal3 .btn_float{
+      float: left;
+      padding: 15px;
+      margin-left: 70px;
+
+  }
+ .modal_open_btn3{
+    width:100px;
+    height: 30px;
+    background-color:#EF9309;
+    border: 0;
+    cursor: pointer;
+    color: black;
+    font-size: 20px;
+    border-radius: 20px;
+    font-weight: 800;
+ }
+ .modal_open_btn3:hover{
+  background: #181818; 
+  color: #ffffff;
+}  
+  
+  .modal3 .modal_yes {
+    display:inline-block;
+    width:60px;
+    height: 30px;
+    background-color:#EF9309;
+    border: 0;
+    cursor: pointer;
+    color: black;
+    font-size: 20px;
+    border-radius: 20px;
+    font-weight: 800;
+
+
+
+  }
+  .modal3 .modal_no {
+    display:inline-block;
+    width:60px;
+    height: 30px;
+    background-color:lightgray;
+    border: 0;
+    cursor: pointer;
+    color: black;
+    font-size: 20px;
+    border-radius: 20px;
+    font-weight: 800;
+
+
+  }
+  
+  .modal3 .modal_content3 {
+    display:inline-block;
+    font-size: 20px;
+    font-weight: 800;
+    text-align: center;
+    width:300px;
+    margin:50px; 
+    padding:20px 10px;
+    background:#fff;
+    border:2px solid #666;
+    position:unset;
+    vertical-align: middle;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+  
+  .modal3 .modal_layer3 {
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0, 0, 0, 0.5);
+    z-index:-1;
+  }   
+/*-------------------모달3------*/
+
+/*----------모달2222222222-------------*/
+  
+.modal2 {
+    position:relative;
+    width:1%;
+    height: 1%;
+    z-index:1;
+    display: none;
+
+
+  }
+  
+  .modal2 button {
+    display:inline-block;
+    width:120px;
+    height: 30px;
+    background-color:#ffcc00;
+    border: 0;
+    cursor: pointer;
+    color: black;
+    font-size: 20px;
+    border-radius: 20px;
+    font-weight: 800;
+    margin-left:calc(100% - 100px - 20px);
+    margin-top: 5px;
+  
+  }
+  .modal2 button:hover{
+    background: #181818; 
+    color: #ffffff;
+  }  
+  
+  .modal2 .modal_content2 {
+    display:inline-block;
+    font-size: 20px;
+    font-weight: 800;
+    text-align: center;
+    width:400px;
+    margin:50px; 
+    padding:20px 10px;
+    background:#fff;
+    border:2px solid #666;
+    position:unset;
+    vertical-align: middle;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+  .modal_open_btn2{
+    width:100px;
+    height: 30px;
+    background-color:#ffcc00;
+    border: 0;
+    cursor: pointer;
+    color: black;
+    font-size: 20px;
+    border-radius: 20px;
+    font-weight: 800;
+    margin-left: 110px;
+
+  }
+  .modal_open_btn2:hover{
+    background: #181818; 
+    color: #ffffff;
+  }  
+  .btn_review{
+    width:100px;
+    height: 30px;
+    background-color:#ffcc00;
+    border: 0;
+    cursor: pointer;
+    color: black;
+    font-size: 20px;
+    border-radius: 20px;
+    font-weight: 800;
+    margin-left: 30px;
+
+
+  }
+.btn_review:hover{
+    background: #181818; 
+    color: #ffffff;
+  }  
+  
+
+  
+.modal2 .modal_layer2 {
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0, 0, 0, 0.5);
+    z-index:-1;
+  } 
+  /*-----모달222222-----------*/
+  /*모달11111111111111111*/
+  #modal {
+    position:relative;
+    width:1%;
+    height: 1%;
+    z-index:1;
+    display: none;
+
+
+  }
+  ƒ
+ 
+  #modal button {
+    display:inline-block;
+    width:120px;
+    height: 30px;
+    background-color:#ffcc00;
+    border: 0;
+    cursor: pointer;
+    color: black;
+    font-size: 20px;
+    border-radius: 20px;
+    font-weight: 800;
+    margin-left:calc(100% - 100px - 20px);
+    margin-top: 5px;
+  
+  }
+  #modal button:hover{
+    background: #181818; 
+    color: #ffffff;
+  }  
+  
+  #modal .modal_content {
+    display:inline-block;
+    width:400px;
+    margin:50px; 
+    padding:20px 10px;
+    background:#fff;
+    border:2px solid #666;
+    position:unset;
+    vertical-align: middle;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+  
+  #modal .modal_layer {
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0, 0, 0, 0.5);
+    z-index:-1;
+  }   
+  /*=======모달11111===============*/
+  /*======스크롤테이블========*/
+  .scrolltable{
+    table-layout: fixed;
+    border-collapse: collapse;
+    box-sizing: border-box;
+}
+
+.scrolltable th, .scrolltable td {
+  padding: 15px;
+
+  float:left;
+  width: 100px;
+  text-align: center;
+  font-size: 0.875em;
+}
+.scrolltable thead {
+    border-top : 3px solid #EF9309; 
+    border-bottom : 2px solid #FFCC00;
+    text-align: left;
+    color:black;
+    font-weight: 600;
+    display: block;
+    
+}
+.scrolltable tbody{
+    text-align: left;
+    display:block;
+    overflow:auto;
+    height:300px;
+    width: 104%;
+}
+/*=================================*/
+
+#nowpoint{
+    font-size: 20px;
+    font-weight: 800;
+    margin: 50px 80px 0px 120px;
+    width: 100%;
+    
+}
+#section2{
+    width: 1200px; 
+    height: 400px;
+    float: left; 
+    margin:0 50px 50px 300px ;
+    padding-bottom: 100px;
+    padding-top: 10px;
+
+}
+table{
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+

@@ -1,0 +1,123 @@
+.header{
+    height: 200px;
+    width: 100%;
+    background-color: #ffcc00;
+}
+
+.header>span{
+    font-size: 50px;
+    font-weight: 900;
+    margin-left: 200px;
+    margin-top: 30px
+}
+
+.header>#qus_btn{
+    border: 1.5px solid black;
+    float: right;
+    margin:40px 100px;
+    padding: 10px 10px 10px 10px;
+    font-weight: bolder;
+}
+
+.header>p{
+    font-size: 36px;
+    /* font-weight: bold; */
+    margin: 30px 0 0 280px;
+}
+.header>#info_enroll{
+    font-size: 30px;
+    font-weight: bold;
+    float: right;
+    margin: 120px -230px;
+}
+.wrap{
+    margin-left: 150px;
+    margin-right: 150px;
+    width: 1232px;
+    height: 500px;
+    padding: 50px 0 0 100px;
+    /* width: 1300px; */
+    /* width: calc(100% - 250px); */
+    /* border: 2px solid turquoise; */
+}
+.main_menu>li{
+    height: 200px;
+    width: 200px;
+    border: 1px solid lightgray;
+    float: left;
+    background-color: white;
+    text-align: center;
+    font-size: 25px;
+}
+
+.main_menu>li:hover{
+    background-color: rgb(231, 231, 231);
+}
+
+img{
+    height: 100px;
+    width: 100px;
+    /* padding-left: 30px; */
+    padding: 40px 50px 10px 50px;
+}
+
+.side_word{
+    float: left;
+    width: 500px;
+    height: auto;
+    padding-top: 35px;
+    padding-left: 5px;
+    /* border:1px solid #ffcc00 */
+}
+.side_word >.word1{
+    font-size: 35px;
+    color: #EF9309;
+
+}
+
+.side_word >.word2{
+    padding-top: 12px;
+    font-size: 40px;
+    color:black;
+    font-weight: bolder;
+
+}
+
+.side_word >.word3{
+    font-size: 75px;
+    color: #ffcc00;
+    padding-top: 20px;
+    font-weight: bolder;
+}
+
+.login{
+     /* border:1px solid #ffcc00; */
+     float: right;
+     width: 450px;
+     height: auto;
+     padding-top: 35px;
+     padding-left: 5px;
+     margin-right: 50px;
+}
+.login>input{
+    border: 1px solid rgb(66, 66, 66);
+    border-radius: 4px;
+    width: 220px;
+    height: 40px;
+    /* background-color: lightgray; */
+}
+
+.login>#login_btn{
+    width: 230px;
+    height: 55px;
+    margin-top: 30px;
+    background-color:#ffcc00 ;
+    font-size: 20px;
+    border-radius: 20px;
+    border: 5px solid #EF9309;
+    cursor: pointer;
+}
+.login>#login_btn:hover{
+    background-color: #e4c95c;
+    
+}
