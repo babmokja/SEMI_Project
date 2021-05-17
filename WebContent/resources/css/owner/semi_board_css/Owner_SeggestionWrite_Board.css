@@ -1,0 +1,44 @@
+**{ padding: 0;}
+*{text-decoration-line: none;}
+body{margin:0;width:100%;}
+
+.clearfix::after {content:'';display:block;clear:both;}
+.under-line {width:100%;background-color: rgb(206, 201, 201);height:2px;}
+.line-gap {margin-bottom:100px;}
+.row span{margin-top: 17px; width: 180px; font-size: 15px;}
+
+.img-fluid{width: 49px; height: 49px;}
+
+
+.aside{width: 20%; height: 1200px; background: #FFCC00;float: left;}
+.aside_top{width: 340px; height: 90px; background: #EF9309; text-align: center; line-height: 90px; font-size: 30px; font-weight: 700;}
+.aside_top2{width: 340px; height: 80px; text-align: center; line-height: 90px; font-size: 35px; font-weight: 800;}
+
+#section {width:79.6%;float: left;}
+#section .wrap {width:100%;}
+#section .wrap .gap {width:80%;margin:0 auto;}
+#section .wrap .gap .content {width:100%;}
+#section .wrap .gap .content .title {width:100%;}
+
+#section .wrap .gap .content .small-title {width:100%;}
+#section .wrap .gap .content .small-title > p {color:#000; font-size:14px; font-weight: 700; }
+#section .wrap .gap .content .small-title > p > span{color:rgba(0, 0, 0, .2);}
+
+#section .wrap .gap .content .container {width:100%;height:300px;}
+#section .wrap .gap .content .coment-count {width:100%;}
+#section .wrap .gap .content .coment-count > p {color:#000;font-weight: 700;font-size: 15px;}
+
+#section .wrap .gap .content .coment {width:100%;}
+#section .wrap .gap .content .coment .name {width:20%;float: left; line-height: 40px;color:#000;font-weight: 700;}
+#section .wrap .gap .content .coment .text-wrap {width:60%;float: left;line-height: 40px; color:rgba(0,0,0,.7); font-weight: 500;}
+#section .wrap .gap .content .coment .date-wrap {width:20%;float: left;line-height: 40px; color:rgba(0,0,0 , .2);font-weight: 500;}
+
+#section .wrap .gap .content form {width:100%;}
+#section .wrap .gap .content form > .name {width:10%;font-size:14px;float:left;margin-lefT:10px; margin-top:10px;}
+#section .wrap .gap .content form textarea {width:65%;font-size:14px;float:left; margin:10px 0;height:130px;}
+#section .wrap .gap .content form button {width:10%;font-size:14px;float:left;margin:70px 0 70px 20px;}
+
+button a{text-decoration-line: none; color: black;}
+button a:hover{text-decoration-line: none; color: blue;}
+
+.footer {width:100%;height:auto;position:fixed;bottom:0px;background:#EF9309;text-align: left;color: black; text-align: right;margin-bottom: 0px;}
