@@ -1,0 +1,44 @@
+*{ padding: 0;}
+*{text-decoration-line: none;}
+body{margin:0;}
+.clearfix::after {content:'';display:block;clear:both;}
+.row a{text-decoration-line: none;}
+
+.row span{margin-top: 17px;}
+
+.aside{width: 270px; height: 1080px; background: #FFCC00;float: left;}
+.aside_top{width: 270px; height: 90px; background: #EF9309; text-align: center; line-height: 90px; font-size: 40px; font-weight: 700;}
+.aside_top2{width: 270px; height: 80px; text-align: center; line-height: 90px; font-size: 35px; font-weight: 800;}
+
+.button01{text-decoration-line: none; width: 250px; height: 55px; background: #FFCC00; border : 1px solid #FFCC00; border-radius : 50px; text-align: center; line-height: 55px; font-size: 30px; font-weight: 700; float: left; margin-left: 10px; margin-top: 20px;}
+.button02{width: 250px; height: 55px; background: #C4C4C4; border : 1px solid #C4C4C4; border-radius : 50px; text-align: center; line-height: 55px; font-size: 30px; font-weight: 700; float: left; margin-left: 10px; margin-top: 20px;}
+.button02:hover {background: #FFCC00; border : 1px solid #FFCC00;}
+.button02 a{text-decoration-line: none;color: #000;}
+
+.top{display: inline-block; margin-right: 10px;}
+.top-1{margin-left: 500px; margin-bottom: 10px;}
+
+.space{height: 150px;}
+
+.contest_top{width: 1500px; height: 68px;}
+
+/* .table_box{width:800px;  margin-left:600px; border: 2px solid #FFCC00; border-radius: 30px;} */
+table{margin-left:430px; border: 2px solid #FFCC00; border-radius: 300px;}
+.section_contest{height: 80px; text-align: center; line-height: 68px; font-size: 30px; font-weight: 500; float: left; border-bottom: 1px solid black;}
+.section_contest_1{width: 250px;}
+.section_contest_2{width: 250px;}
+.section_contest_3{width: 400px;}
+.section_contest_4{width: 250px;}
+
+.section_contest_first { height: 58px; text-align: center; line-height: 58px; font-size: 18px; font-weight: 700; float: left; border-bottom : 1px solid #333333;}
+/* .section_contest_two { height: 58px; text-align: center; line-height: 58px; font-size: 18px; font-weight: 400; float: left; border-bottom : 1px solid #333333;} */
+
+.center{width:1153px; margin-left: 750px;}
+
+.button{width: 50px; height: 50px; background: #FFCC00; border-radius : 50px; text-align: center; line-height: 50px; font-weight: 600; float: left; transition: all .3s; cursor: pointer; margin-top: 80px;}
+.button:hover{background: #181818; color: #ffffff;}
+.button_space{vertical-align: auto; margin-right: 30px;}
+
+.total{font-size: 35px; margin-left: 510px; font-weight: 700;}
+
+.footer {width:100%;height:auto;position:fixed;bottom:0px;background:#EF9309;text-align: left;color: black; text-align: right;margin-bottom: 0px;}

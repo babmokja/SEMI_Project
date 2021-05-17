@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="insertOwner">
+	INSERT
+	  INTO USER_TABLE U
+	  VALUES
+	  (  
+	  INDEX???
+	  , ?
+	  , ?
+	  , ?
+	  , ?
+	  , ?
+	  , DEFAULT
+	  , ?
+	  , 'N'
+	  , '2'
+	  , 'N'
+	  , NULL
+	  , ?
+	  )
+	</entry>
+	<entry key="insertStore">
+	INSERT
+	  INTO
+	
+	</entry>
+</properties>

@@ -1,0 +1,153 @@
+.bg-yellow {
+     background: #FFCC00;
+   }
+  
+   *{
+     
+     
+     font-family: Roboto;
+     
+     
+     color: #000000;
+     
+   }
+   .logo {
+     text-align: center;
+     
+     font-size: 36px;
+     font-style: italic;
+     font-weight: 500;
+     
+     
+   }
+   
+   .title {
+     font-style: normal;
+     font-weight: bold;
+     font-size: 20px; 
+     
+   }
+   .menu-item {
+    color:black;
+     text-align : center;
+     font-size: 18px;
+     font-weight: bold;
+   }
+
+   .menu-item-selected {
+    
+     color: rgb(160, 153, 153);
+   } 
+
+   html, body {
+     height:100%;
+     overflow: hidden;
+   }
+   .root {
+     height: 100%;
+     padding: 0;
+   }
+   .main {
+     height: 97%;
+   }
+   .footer {
+     height: 3%;
+     padding: 0;
+     text-align: right;
+   }
+   .sidebar-bapmakja {
+     padding: 0
+   }
+   .footer-text {
+     
+     font-family: Roboto;
+     font-style: italic;
+     font-weight: 500;
+     font-size: 22px;
+     
+     
+     
+     color: #000000;
+     
+   }
+   .page-item {
+     width: 49px;
+     height: 45px;
+     background: #FFCC00;
+     display:inline-block;
+     border-radius : 50px;
+     line-height: 50px;
+   }
+   .page-item:hover {
+     background: #181818; 
+     color: #ffffff;
+   }
+
+
+   .recipe-item {
+     margin-left: 30px;
+     font-size: 24px;
+   }
+   .recipe-sub-item {
+     margin-left: 30px;
+     color: #747474;
+     font-size: 18px;
+   }
+   
+   .list-item {
+     
+     font-size: 24px;
+   }
+   .main-scroll {
+     overflow-y: scroll;
+     height: 100%;
+   }
+
+   .start-line {
+    border-top: 3px solid #EF9309;
+   }
+
+   .end-line {
+     border-top: 3px solid #FFCC00;
+   }
+   .big-font {
+     font-weight: 600;
+     font-size: 28px;
+   }
+
+   .mid-font {
+     font-weight: 600;
+     font-size: 20px;
+   }
+   .row {margin:30px 0;;}
+   .col-2 {margin:0, 20, 0, 0;}
+
+
+@font-face {  font-family: 'Roboto';  font-style: normal;  font-weight: 100;
+    src: url(../font/Roboto-Thin.woff2) format('woff2'),
+         url(../font/Roboto-Thin.woff) format('woff'),
+         url(../font/Roboto-Thin.otf) format('opentype');}
+  @font-face {  font-family: 'Roboto';  font-style: normal;  font-weight: 300;
+    src: url(../font/Roboto-Light.woff2) format('woff2'),
+         url(../font/Roboto-Light.woff) format('woff'),
+         url(../font/Roboto-Light.otf) format('opentype');}
+  @font-face {   font-family: 'Roboto';   font-style: normal;   font-weight: 400;
+     src: url(../font/Roboto-Regular.woff2) format('woff2'),
+          url(../font/Roboto-Regular.woff) format('woff'),
+          url(../font/Roboto-Regular.otf) format('opentype'); }
+  @font-face {   font-family: 'Roboto';   font-style: normal;   font-weight: 500;
+     src: url(../font/Roboto-Medium.woff2) format('woff2'),
+          url(../font/Roboto-Medium.woff) format('woff'),
+          url(../font/Roboto-Medium.otf) format('opentype'); }
+  @font-face {   font-family: 'Roboto';   font-style: normal;   font-weight: 700;
+     src: url(../font/Roboto-Bold.woff2) format('woff2'),
+          url(../font/Roboto-Bold.woff) format('woff'),
+          url(../font/Roboto-Bold.otf) format('opentype'); }
+
+.logo {
+    float: left;
+    margin-left: 50px;
+    margin-top: 15px;
+    font-size: 35px;
+    font-weight: bolder;
+ }          

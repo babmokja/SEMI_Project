@@ -5,10 +5,12 @@
 <head>
 <meta charset="UTF-8">
     <title>사장님 메인 사이트</title>
+
     <link rel="stylesheet" href="resources/css/semi_store_css/reset.css">
     <link rel="stylesheet" href="resources/css/semi_store_css/common.css">
     <link rel="stylesheet" href="resources/css/semi_store_css/button.css">
     <link rel="stylesheet" href="resources/css/semi_store_css/main_store_jh.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
@@ -16,18 +18,20 @@
 
 	<div class="header">
             <span>babmokja</span>
-            <li id="qus_btn"><a href="../../semi_board/company/Owner_Seggestion_Board.html">1대1 문의하기</a></li>
+            <li id="qus_btn"><a href="${ pageContext.servletContext.contextPath }/owner/move/suggest">1대1 문의하기</a></li>
             <li id="info_enroll"><a href="../../semi_board/company/sign_up_info.html"> 입점 안내</a></li>
             <p>사장님 사이트</p>
-        </div>
+    </div>
 
         <div class="wrap">
             <div class="main_menu">
-                <li><a href="#;"><img src="resources/images/semi_store_image/주문확인.png" alt="주문확인">주문확인</a></li>
-                <li><a href="../../semi_board/company/modifyInfo_owner.html"><img src="resources/images/semi_store_image/내정보관리.png" alt="내정보관리">내 정보관리</a></li>
-                <li><a href="../../semi_board_sales/company/Owner_Sales_day_Board.html"><img src="resources/images/semi_store_image/내업소관리.png" alt="내업소관리">내 업소관리</a></li>
-                <li><a href="${ pageContext.servletContext.contextPath }/delivery"><img src="resources/images/semi_store_image/PC주문관리.png" alt="PC주문관리">PC 주문관리</a></li>
-                <li><a href="../../semi_board/company/Owner_Comment_Board.html"><img src="resources/images/semi_store_image/리뷰관리.png" alt="리뷰관리">리뷰관리</a></li>
+
+                <li><a href="#"><img src="resources/image/semi_store/주문확인.png" alt="주문확인">주문확인</a></li>
+                <li><a href="../../semi_board/company/modifyInf o_owner.html"><img src="resources/image/owner/semi_store/내정보관리.png" alt="내정보관리">내 정보관리</a></li>
+                <li><a href="../../semi_board_sales/company/Owner_Sales_day_Board.html"><img src="resources/image/owner/semi_store/내업소관리.png" alt="내업소관리">내 업소관리</a></li>
+                <li><a href="./delivery.html"><img src="resources/image/owner/semi_store/PC주문관리.png" alt="PC주문관리">PC 주문관리</a></li>
+                <li><a href="${ pageContext.servletContext.contextPath }/owner/move/comment"><img src="resources/image/owner/semi_store/리뷰관리.png" alt="리뷰관리">리뷰관리</a></li>
+
             </div>
 
             <div class="side_word">
