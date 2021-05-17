@@ -7,9 +7,10 @@ public class MemberDTO {
 	private String memberPwd;
 	private String name;
 	private String phone;
-	private String storeName;
-	private int storeNum;
-	private String address;
-	private String kind;
+	
+	
+	private String email;
+	private String residentNum;
+	
 
 }

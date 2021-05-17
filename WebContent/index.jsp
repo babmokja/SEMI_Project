@@ -10,8 +10,8 @@
 
 	<!-- 고객 -->
 	<!-- 고객 메인 페이지 -->
-	<jsp:forward page="/WEB-INF/views/customer/CustomerMain.jsp"/>
-
+<%-- 	<jsp:forward page="/WEB-INF/views/customer/CustomerMain.jsp"/>
+ --%>
 	<!-- 카테고리 선택시 나오는 가게 리스트 페이지 -->
 	<%-- <jsp:forward page="/WEB-INF/views/customer/StoreList.jsp"/> --%>
 	<!-- 가게 선택시 나오는 페이지 -->
@@ -36,7 +36,7 @@
 	<!-- 업주 -->
 	<!-- 업체 메인 페이지 -->
 
-	<jsp:forward page="/WEB-INF/views/owner/OwnerMain.jsp"/>
+	<jsp:forward page="/WEB-INF/views/owner/main_store.jsp"/>
 	
 	
 	<!-- 관리자 -->
