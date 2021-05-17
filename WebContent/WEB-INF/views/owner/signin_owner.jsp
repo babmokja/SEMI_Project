@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script type="text/javascript" src="resources/js/semi_store_js/join_check.js?v=<%=new java.util.Date().getTime()%>"></script>
+    <script type="text/javascript" src="resources/js/owner/semi_store_js/join_check.js?v=<%=new java.util.Date().getTime()%>"></script>
     <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript">   
@@ -14,8 +14,8 @@
             $("#footer").load("footer.html");
             });
     </script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/semi_board_css/main.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/semi_board_css/signin_owner.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owner/semi_board_css/main.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owner/semi_board_css/signin_owner.css">
 
 <title>Insert title here</title>
 </head>
@@ -62,11 +62,11 @@
         <label class="bigbtn" >밥묵자 사장님 회원가입</label>
         <center>
       <div id='signin'>
-    <form id="joinForm" action="${ pageContext.servletContext.contextPath }/owner/regist" method="post">
+    <form id="joinForm" action="${ pageContext.servletContext.contextPath }/member/owner/regist" method="post">
         <table cellpadding="10" cellspacing="15" style="margin-left: 180px;" >
            <tr >
              <td>아이디 </td>
-             <td><input type="text" size = "25"style="padding:4px;font-size:13px;border-radius: 10px;">
+             <td><input type="text" size = "25"style="padding:4px;font-size:13px;border-radius: 10px;" name="memberId">
                  <input type="button" id="overlap" style="display:none;" >
                  <label for="overlap">중복확인</label>
              </td>
@@ -85,22 +85,22 @@
           </tr>
           <tr>
             <td>이 름</td>
-            <td><input type="text"size="25" style="padding:4px;font-size:13px;border-radius: 10px;" required> </td>
+            <td><input type="text"size="25" style="padding:4px;font-size:13px;border-radius: 10px;" name="" required> </td>
           </tr>
           <tr> 
             <td>휴대전화</td>
             <td><input type="text" size="25"
-                       maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" required></td>
+                       maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" name="phone" required></td>
           </tr> 
           <tr> 
             <td>상호명</td>
             <td><input type="text" size="25"
-                       maxlength="13" style="padding:4px;font-size:13px;border-radius: 10px;" required></td>
+                       maxlength="13" style="padding:4px;font-size:13px;border-radius: 10px;" name="storeName" required></td>
           </tr> 
           <tr> 
           <td>음식점번호</td>
             <td><input type="text" size="25"
-                       maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" required></td>
+                       maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" name="storeNum" required></td>
           </tr> 
 
           <tr>
@@ -129,7 +129,7 @@
             
             </script>
          <td>업종카테고리</td>
-         <td><select style="font-size: larger; border-radius: 8px;">
+         <td><select style="font-size: larger; border-radius: 8px;" name="kind">
                <option value="한식">한식</option>
                <option value="프랜차이즈">프랜차이즈</option>
                <option value="중식">중식</option>
@@ -141,7 +141,7 @@
           <tr>
             <td>사업자번호</td>
             <td><input type="text" size="25"
-                       maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;">
+                       maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" name="bussinessNum" required>
                     
                        <input type="file" name="filebox" id="filebox" onchange="javascript:document.getElementById('upload-name').value=this.value">
                        <label for = "filebox" class="upload-hidden" >파일 </label>

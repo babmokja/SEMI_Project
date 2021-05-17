@@ -7,7 +7,9 @@ public class MemberDTO {
 	private String memberPwd;
 	private String name;
 	private String phone;
+	private String storeName;
+	private int storeNum;
 	private String address;
-	/*여기서 부터 작업중*/
+	private String kind;
 
 }

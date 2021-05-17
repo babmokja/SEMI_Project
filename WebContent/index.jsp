@@ -31,11 +31,11 @@
     <!-- 고객 가입 페이지 -->
     <%-- <jsp:forward page="/WEB-INF/views/customer/SigninUser.jsp"/> --%>
     <!-- 고객 마이페이지 -->
-    <jsp:forward page="/WEB-INF/views/customer/Mypage.jsp"/>
+    <%-- <jsp:forward page="/WEB-INF/views/customer/Mypage.jsp"/ --%>>
 	
 	<!-- 업주 -->
 	<!-- 업체 메인 페이지 -->
-<%-- 	<jsp:forward page="/WEB-INF/views/owner/OwnerMain.jsp"/> --%>
+	<jsp:forward page="/WEB-INF/views/owner/OwnerMain.jsp"/>
 	
 	
 	<!-- 관리자 -->
