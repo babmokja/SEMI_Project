@@ -15,7 +15,6 @@
 <link href="resources/css/customer/customer_main.css" type="text/css"
 	rel="stylesheet">
 </head>
-
 <body>
 	<center>
 
@@ -63,5 +62,4 @@
 	</center>
 
 </body>
-
 </html>
