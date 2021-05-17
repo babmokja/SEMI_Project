@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>babmokja</title>
 </head>
 <body>
 
@@ -31,12 +31,17 @@
     <!-- 고객 가입 페이지 -->
     <%-- <jsp:forward page="/WEB-INF/views/customer/SigninUser.jsp"/> --%>
     <!-- 고객 마이페이지 -->
-    <jsp:forward page="/WEB-INF/views/customer/Mypage.jsp"/>
+   <%--  <jsp:forward page="/WEB-INF/views/customer/Mypage.jsp"/> --%>
 	
 	<!-- 업주 -->
 	<!-- 업체 메인 페이지 -->
-	<jsp:forward page="/WEB-INF/views/owner/OwnerMain.jsp"/> 
+	<%-- <jsp:forward page="/WEB-INF/views/owner/main_store.jsp"/> --%>
+	<!-- PC 주문 페이지 -->
+<%-- 	<jsp:forward page="/WEB-INF/views/owner/delivery.jsp"/>  --%>
+
+	<!-- 업체 메뉴 등록페이지 -->
 	
+<%-- 	<jsp:forward page="/WEB-INF/views/owner/MenuManage.jsp"/> --%>
 	
 	<!-- 관리자 -->
 	<%-- <jsp:forward page="/WEB-INF/views/admin/main_manager.jsp"/> --%>
