@@ -1,0 +1,9 @@
+.btn {cursor:pointer; outline: none; display: inline-block; -ms-user-select: none; -moz-user-select: -moz-none; -webkit-user-select: none; -khtml-user-select: none; user-select:none; cursor: pointer;}
+.btn-default {cursor: default;}
+.btn-skyblue {background-color:#466EA5; height:50px; line-height:50px; color:#fff; font-family: 'NSG B' !important; box-sizing:border-box;}
+.btn-skyblue2 {background-color: #fff; height: 50px; line-height: 50px; color: #0091ff; font-family: 'NSG B' !important;}
+.btn-red {background-color: #fff; height: 50px; line-height: 50px; border:1px solid red; color: #ff0000; font-family: 'NSG B' !important; box-sizing:border-box; margin-left:25px;}
+.btn-main {background-color:#004693; width:400px; height:80px; line-height:80px; color:#fff; font-family: 'NSG B' !important; box-sizing:border-box;}
+.btn-sub {background-color:#165D94; height:50px; line-height:50px; color:#fff; font-family: 'NSG B' !important; box-sizing:border-box;}
+.btn-white {background-color:#fff; height:50px; line-height:50px; color:#031CA6; font-family: 'NSG B' !important}
+.btn-disabled {opacity: 0.3;}

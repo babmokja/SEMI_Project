@@ -11,25 +11,12 @@
     margin-top: 30px
 }
 
-.header>#qus_btn{
-    border: 1.5px solid black;
-    float: right;
-    margin:40px 100px;
-    padding: 10px 10px 10px 10px;
-    font-weight: bolder;
-}
-
 .header>p{
     font-size: 36px;
     /* font-weight: bold; */
     margin: 30px 0 0 280px;
 }
-.header>#info_enroll{
-    font-size: 30px;
-    font-weight: bold;
-    float: right;
-    margin: 120px -230px;
-}
+
 .wrap{
     margin-left: 150px;
     margin-right: 150px;
@@ -42,7 +29,7 @@
 }
 .main_menu>li{
     height: 200px;
-    width: 200px;
+    width: 250px;
     border: 1px solid lightgray;
     float: left;
     background-color: white;
@@ -58,7 +45,7 @@ img{
     height: 100px;
     width: 100px;
     /* padding-left: 30px; */
-    padding: 40px 50px 10px 50px;
+    padding: 40px 65px 10px 65px;
 }
 
 .side_word{
@@ -120,22 +107,4 @@ img{
 .login>#login_btn:hover{
     background-color: #e4c95c;
     
-}
-
-.login>.sign_up_btn{
-    width: 220px;
-    height: 45px;
-    margin-top: 10px;
-    border: 5px solid rgba(77, 0, 128, 0.753);
-    border-radius: 20px;
-    background-color: plum;
-    text-align: center;
-}
-.login>.sign_up_btn:hover{
-    background-color: thistle;
-}
-.sign_up_btn>li>a{
-    padding-top: 13px;
-    font-size: 20px;
-    width: 100%;
 }
