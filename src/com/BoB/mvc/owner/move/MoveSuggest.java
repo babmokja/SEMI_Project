@@ -8,16 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Comment
+ * Servlet implementation class MoveSuggest
  */
-@WebServlet("/owner/move/comment")
-public class Comment extends HttpServlet {
+@WebServlet("/owner/move/suggest")
+public class MoveSuggest extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String path = "/WEB-INF/views/owner/Owner_Comment_Board.jsp";
+		String path = "/WEB-INF/views/owner/Owner_Seggestion_Board.jsp";
 		
 		request.getRequestDispatcher(path).forward(request, response);
+		
 		
 		
 	}
