@@ -5,10 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>사장님 사이트</title>
-	<link rel="stylesheet" href="resource/css/owner/reset_jh.css">
-    <link rel="stylesheet" href="resource/css/owner/common_js.css">
-    <link rel="stylesheet" href="resource/css/owner/button_js.css">
-    <link rel="stylesheet" href="resource/css/owner/main_store_jh.css">
+	<link rel="stylesheet" href="resources/css/owner/reset_jh.css">
+    <link rel="stylesheet" href="resources/css/owner/common_js.css">
+    <link rel="stylesheet" href="resources/css/owner/button_js.css">
+    <link rel="stylesheet" href="resources/css/owner/main_store_jh.css">
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
 </head>
@@ -24,11 +24,11 @@
 
         <div class="wrap">
             <div class="main_menu">
-                <li><a href="../../semi_board_sales/company/order.html"><img src="../image/주문확인.png" alt="주문확인">주문확인</a></li>
-                <li><a href="../../semi_board/company/modifyInfo_owner.html"><img src="../image/내정보관리.png" alt="내정보관리">내 정보관리</a></li>
-                <li><a href="../../semi_board_sales/company/Owner_Sales_day_Board.html"><img src="../image/내업소관리.png" alt="내업소관리">내 업소관리</a></li>
-                <li><a href="./delivery.html"><img src="../image/PC주문관리.png" alt="PC주문관리">PC 주문관리</a></li>
-                <li><a href="../../semi_board/company/Owner_Comment_Board.html"><img src="../image/리뷰관리.png" alt="리뷰관리">리뷰관리</a></li>
+                <li><a href="../../semi_board_sales/company/order.html"><img src="resources/image/owner/주문확인.png" alt="주문확인">주문확인</a></li>
+                <li><a href="../../semi_board/company/modifyInfo_owner.html"><img src="resources/image/owner/내정보관리.png" alt="내정보관리">내 정보관리</a></li>
+                <li><a href="../../semi_board_sales/company/Owner_Sales_day_Board.html"><img src="resources/image/owner/내업소관리.png" alt="내업소관리">내 업소관리</a></li>
+                <li><a href="./delivery.html"><img src="resources/image/owner/PC주문관리.png" alt="PC주문관리">PC 주문관리</a></li>
+                <li><a href="../../semi_board/company/Owner_Comment_Board.html"><img src="resources/image/owner/리뷰관리.png" alt="리뷰관리">리뷰관리</a></li>
             </div>
 
             <div class="side_word">
