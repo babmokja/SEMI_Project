@@ -6,16 +6,16 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script type="text/javascript" src="resources/js/owner/semi_store_js/join_check.js?v=<%=new java.util.Date().getTime()%>"></script>
+    <script type="text/javascript" src="resources/js/owner/semi_store/join_check.js?v=<%=new java.util.Date().getTime()%>"></script>
     <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script type="text/javascript">   
+    <script type="text/javascript">
             $(document).ready(function() {
-            $("#footer").load("footer.html");
+            $("#footer").load("WEB-INF/views/owner/footer.jsp");
             });
     </script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owner/semi_board_css/main.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owner/semi_board_css/signin_owner.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owner/semi_board/main.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owner/semi_board/signin_owner.css">
 
 <title>Insert title here</title>
 </head>
@@ -129,7 +129,7 @@
             
             </script>
          <td>업종카테고리</td>
-         <td><select style="font-size: larger; border-radius: 8px;" name="kind">
+         <td><select style="font-size: larger; border-radius: 8px;" name="category">
                <option value="한식">한식</option>
                <option value="프랜차이즈">프랜차이즈</option>
                <option value="중식">중식</option>

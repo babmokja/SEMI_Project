@@ -9,8 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.BoB.mvc.owner.model.dto.MemberDTO;
-
-import com.BoB.mvc.owner.model.dto.MemberDTO;
+import com.BoB.mvc.owner.model.dto.StoreInfoDTO;
 
 /**
  * Servlet implementation class OwnerRegistServlet
@@ -35,6 +34,10 @@ public class OwnerRegistServlet extends HttpServlet {
 		String memberPwd = request.getParameter("pw");
 		String nickname = request.getParameter("name");
 		String phone = request.getParameter("phone").replace("-","");
+		
+		
+		MemberDTO requestMember = new MemberDTO();
+		
 		String storeName = request.getParameter("storeName");
 		String storeNum = request.getParameter("storeNum");
 		String address = request.getParameter("zip") + "$" + request.getParameter("addr1") + "$"
@@ -43,7 +46,7 @@ public class OwnerRegistServlet extends HttpServlet {
 		String bussinessNum = request.getParameter("bussinessNum");
 		String service = request.getParameter("service");
 		
-		MemberDTO requestMember = new MemberDTO();
+		StoreInfoDTO requestStore = new StoreInfoDTO();
 //		requestMember
 				
 		
