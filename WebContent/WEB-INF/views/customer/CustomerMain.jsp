@@ -15,6 +15,7 @@
 <link href="resources/css/customer/customer_main.css" type="text/css"
 	rel="stylesheet">
 </head>
+
 <body>
 	<center>
 
@@ -26,29 +27,29 @@
 		<div class="cate_list">
 			<div class="cate_first">
 				<div class="cate">
-					<a href="#;" class="cate"> <img id="cate_detail"
+					<a href="${ pageContext.servletContext.contextPath }/store/list" class="cate"> <img id="cate_detail"
 						src="resources/image/customer/kor.PNG" alt="이미지 없음">
 					</a>
 				</div>
 				<div class="cate">
-					<a href="#;" class="cate"> <img id="cate_detail"
+					<a href="${ pageContext.servletContext.contextPath }/store/list" class="cate"> <img id="cate_detail"
 						src="resources/image/customer/fran.PNG" alt="이미지 없음">
 					</a>
 				</div>
 				<div class="cate">
-					<a href="#;" class="cate"> <img id="cate_detail"
+					<a href="${ pageContext.servletContext.contextPath }/store/list" class="cate"> <img id="cate_detail"
 						src="resources/image/customer/chi.PNG" alt="이미지 없음">
 					</a>
 				</div>
 			</div>
 			<div class="cate_second">
 				<div class="cate">
-					<a href="#;" class="cate"> <img id="cate_detail"
+					<a href="${ pageContext.servletContext.contextPath }/store/list" class="cate"> <img id="cate_detail"
 						src="resources/image/customer/jap.PNG" alt="이미지 없음">
 					</a>
 				</div>
 				<div class="cate">
-					<a href="#;" class="cate"> <img id="cate_detail"
+					<a href="${ pageContext.servletContext.contextPath }/store/list" class="cate"> <img id="cate_detail"
 						src="resources/image/customer/ame.PNG" alt="이미지 없음">
 					</a>
 				</div>
@@ -62,4 +63,5 @@
 	</center>
 
 </body>
+
 </html>
