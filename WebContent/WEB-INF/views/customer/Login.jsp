@@ -17,6 +17,7 @@
 		<jsp:include page="/WEB-INF/views/common/customer/header.jsp" />
 
             <div class="body">
+              <c:if test="${ empty sessionScope.loginMember }">
 
                 <img src="resources/image/customer/eating_people.PNG" alt="이미지없음" id="eating_people">
 
@@ -30,10 +31,11 @@
                     <div class="btn">
                         <a href="#;" class="login_btn" value="Login">Login</a>
                     </div>
+                </c:if>    
                     <div class="owner">
                         <a href="#;" class="owner_login">사장님 페이지로 이동</a>
                     </div>
-                </div>
+                
 
                 <div class="manager">
                     <a href="#;" class="manager_login">관리자 로그인 바로가기</a>

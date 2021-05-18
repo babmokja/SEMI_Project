@@ -30,7 +30,7 @@
     <!-- 고객 가입 페이지 -->
     <%-- <jsp:forward page="/WEB-INF/views/customer/SigninUser.jsp"/> --%>
     <!-- 고객 마이페이지 -->
-    <jsp:forward page="/WEB-INF/views/customer/Mypage.jsp"/>
+    <%-- <jsp:forward page="/WEB-INF/views/customer/Mypage.jsp"/> --%>
     <!--  고객 게시글 목록 -->
     <%-- <jsp:forward page="/WEB-INF/views/customer/User_Board.jsp"/> --%> 
    <!--  고객 게시글 상세보기 -->
