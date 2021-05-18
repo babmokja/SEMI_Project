@@ -125,7 +125,7 @@
               <br>
               <div class="text-center">
                 
-                <span class="col-1 "><a href="#" class="page-item link-dark" >1</a></span>
+                <span class="col-1"><a href="#" class="page-item link-dark" >1</a></span>
                 <span class="col-1"><a href="#" class="page-item link-dark" >2</a></span>
                 <span class="col-1"><a href="#" class="page-item link-dark" >3</a></span>
                 <span class="col-1"><a href="#" class="page-item link-dark" >4</a></span>
