@@ -4,9 +4,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="resources/css/admin/admin_Sales_day_Board.css">
-    <link rel="stylesheet" href="resources/css/admin/main2.css">
-    <link rel="stylesheet" href="resources/css/admin/bootstrap.min.css">
+    <link rel="stylesheet" href="/SEMI_Project/resources/css/admin/admin_Sales_day_Board.css">
+    <link rel="stylesheet" href="/SEMI_Project/resources/css/admin/main2.css">
+    <link rel="stylesheet" href="/SEMI_Project/resources/css/admin/bootstrap.min.css">
     <title>Document</title>
 
 </head>
@@ -20,19 +20,19 @@
 
         <div class="row">
             <span class="col-2 menu-item">
-                <a href="../관리자/index-order.html" class="link-dark"><img src="resources/image/admin/item1.svg" />
+                <a href="${pageContext.servletContext.contextPath}/admin/order" class="link-dark"><img src="/SEMI_Project/resources/image/admin/item1.svg" />
                   &nbsp;&nbsp;&nbsp;주문확인   </a>
               </span>
               <span class="col-2 menu-item ">
-              <a href="../관리자/index-user.html" class="link-dark">  <img src="resources/image/admin/item2.png" />
+              <a href="${pageContext.servletContext.contextPath}/admin/customer" class="link-dark">  <img src="/SEMI_Project/resources/image/admin/item2.png" />
                 &nbsp;&nbsp;&nbsp; 고객관리</a>
               </span>
               <span class="col-2 menu-item menu-item-selected  ">
-                <img src="resources/image/admin/item3.png" />
+                <img src="/SEMI_Project/resources/image/admin/item3.png" />
                 &nbsp;&nbsp;&nbsp; 업소관리
               </span>
               <span class="col-2 menu-item">
-                <a href="../admin/admin_Customer_Secret_Board.html" class="link-dark"><img src="resources/image/admin/item4.svg" />
+                <a href="${pageContext.servletContext.contextPath}/admin/customer/board" class="link-dark"><img src="/SEMI_Project/resources/image/admin/item4.svg" />
                   &nbsp;&nbsp;&nbsp;  게시판</a>
               </span>
         </div>
@@ -41,7 +41,7 @@
             
        
         <div class="button01">오늘</div>
-        <div class="button02"><a href="admin_Sales_month_Board.html">월별</a></div>
+        <div class="button02"><a href="${pageContext.servletContext.contextPath}/admin/sales/month">월별</a></div>
 
        
         <div class="space"></div>

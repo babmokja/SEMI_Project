@@ -7,10 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>包府磊 皋牢 荤捞飘</title>
-    <link rel="stylesheet" href="resources/css/admin/reset.css">
-    <link rel="stylesheet" href="resources/css/admin/common.css">
-    <link rel="stylesheet" href="resources/css/admin/button.css">
-    <link rel="stylesheet" href="resources/css/admin/main_manager.css">
+    <link rel="stylesheet" href="/SEMI_Project/resources/css/admin/reset.css">
+    <link rel="stylesheet" href="/SEMI_Project/resources/css/admin/common.css">
+    <link rel="stylesheet" href="/SEMI_Project/resources/css/admin/button.css">
+    <link rel="stylesheet" href="/SEMI_Project/resources/css/admin/main_manager.css">
 </head>
 <body>
 
@@ -22,10 +22,10 @@
 
         <div class="wrap">
             <div class="main_menu">
-                <li><a href="#"><img src="resources/image/admin/林巩犬牢.png" alt="林巩犬牢">林巩犬牢</a></li>
-                <li><a href="#"><img src="resources/image/admin/绊按包府.png" alt="绊按包府">绊按包府</a></li>
-                <li><a href="#"><img src="resources/image/admin/郴沥焊包府.png" alt="郴沥焊包府">诀家包府</a></li>
-                <li><a href="#"><img src="resources/image/admin/府轰包府.png" alt="府轰包府">霸矫魄</a></li>
+                <li><a href="${pageContext.servletContext.contextPath}/admin/order"><img src="/SEMI_Project/resources/image/admin/林巩犬牢.png" alt="林巩犬牢">林巩犬牢</a></li>
+                <li><a href="${pageContext.servletContext.contextPath}/admin/customer"><img src="/SEMI_Project/resources/image/admin/绊按包府.png" alt="绊按包府">绊按包府</a></li>
+                <li><a href="${pageContext.servletContext.contextPath}/admin/owner"><img src="/SEMI_Project/resources/image/admin/郴沥焊包府.png" alt="郴沥焊包府">诀家包府</a></li>
+                <li><a href="${pageContext.servletContext.contextPath}/admin/customer/board"><img src="/SEMI_Project/resources/image/admin/府轰包府.png" alt="府轰包府">霸矫魄</a></li>
             </div>
 
             <div class="side_word">

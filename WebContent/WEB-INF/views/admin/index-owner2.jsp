@@ -9,8 +9,8 @@
   
   <title>고객 관리</title>
   
-  <link href="resources/css/admin/bootstrap.min.css" rel="stylesheet">
-  <link href="resources/css/admin/main.css" rel="stylesheet">
+  <link href="/SEMI_Project/resources/css/admin/bootstrap.min.css" rel="stylesheet">
+  <link href="/SEMI_Project/resources/css/admin/main.css" rel="stylesheet">
  
   
   <body>
@@ -47,19 +47,19 @@
           
           <div class="row">
             <span class="col-2 menu-item">
-              <a href="./index-order.html" class="link-dark"><img src="resources/image/admin/item1.svg" />
+              <a href="${pageContext.servletContext.contextPath}/admin/order" class="link-dark"><img src="/SEMI_Project/resources/image/admin/item1.svg" />
                 &nbsp;&nbsp;&nbsp;주문확인   </a>
             </span>
             <span class="col-2 menu-item ">
-            <a href="./index-user.html" class="link-dark">  <img src="resources/image/admin/item2.png" />
+            <a href="${pageContext.servletContext.contextPath}/admin/customer" class="link-dark">  <img src="/SEMI_Project/resources/image/admin/item2.png" />
               &nbsp;&nbsp;&nbsp; 고객관리</a>
             </span>
             <span class="col-2 menu-item menu-item-selected  ">
-              <img src="resources/image/admin/item3.png" />
+              <img src="/SEMI_Project/resources/image/admin/item3.png" />
               &nbsp;&nbsp;&nbsp; 업소관리
             </span>
             <span class="col-2 menu-item">
-              <a href="../admin/admin_Customer_Secret_Board.html" class="link-dark"><img src="resources/image/admin/item4.svg" />
+              <a href="${pageContext.servletContext.contextPath}/admin/customer/board" class="link-dark"><img src="/SEMI_Project/resources/image/admin/item4.svg" />
                 &nbsp;&nbsp;&nbsp;  게시판</a>
             </span>
           </div>
@@ -109,7 +109,7 @@
                 <br><br>
 
                 <span class="recipe-item col-3 ">매출 확인</span>
-                <span class="recipe-item col-6 sales-config"><a href="../admin2/admin_Sales_day_Board.html">매출 확인</a></span>
+                <span class="recipe-item col-6 sales-config"><a href="${pageContext.servletContext.contextPath}/admin/sales/today">매출 확인</a></span>
 
                 
               </div>
@@ -125,8 +125,8 @@
           <br>
           <div class="row">
             <span class="col-8"></span>
-            <span class="col-1"><a href="#"><img src="resources/image/admin/config.png" /></a></span>
-            <span class="col-1"><a href="./index-owner.html"><img src="resources/image/admin/backpage.png" /></a></span>
+            <span class="col-1"><a href="#"><img src="/SEMI_Project/resources/image/admin/config.png" /></a></span>
+            <span class="col-1"><a href="${pageContext.servletContext.contextPath}/admin/owner"><img src="/SEMI_Project/resources/image/admin/backpage.png" /></a></span>
           </div>
           <br>
           <br><br>

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -12,8 +11,8 @@
   
   <title>주문 내역</title>
   
-  <link href="resources/css/admin/bootstrap.min.css" rel="stylesheet">
-  <link href="resources/css/admin/main.css" rel="stylesheet">
+  <link href="/SEMI_Project/resources/css/admin/bootstrap.min.css" rel="stylesheet">
+  <link href="/SEMI_Project/resources/css/admin/main.css" rel="stylesheet">
   
  </head>
   <body>
@@ -39,20 +38,20 @@
           
           <div class="row">
             <span class="col-2 menu-item menu-item-selected  ">
-              <img src="resources/image/admin/item1.svg" />
+              <img src="/SEMI_Project/resources/image/admin/item1.svg" />
               &nbsp;&nbsp;&nbsp; 주문확인
             </span>
             <span class="col-2 menu-item  ">
-              <a href="./index-user.html" class="link-dark"><img src="resources/image/admin/item2.png" />
+              <a href="${pageContext.servletContext.contextPath}/admin/customer" class="link-dark"><img src="/SEMI_Project/resources/image/admin/item2.png" />
                 &nbsp;&nbsp;&nbsp; 고객관리</a>
             </span>
             <span class="col-2 menu-item">
-              <a href="./index-owner.html" class="link-dark"><img src="resources/image/admin/item3.png" />
+              <a href="${pageContext.servletContext.contextPath}/admin/owner" class="link-dark"><img src="/SEMI_Project/resources/image/admin/item3.png" />
               
                 &nbsp;&nbsp;&nbsp; 업소관리</a> 
             </span>
             <span class="col-2 menu-item">
-              <a href="../admin/admin_Customer_Secret_Board.html" class="link-dark"><img src="resources/image/admin/item4.svg" />
+              <a href="${pageContext.servletContext.contextPath}/admin/customer/board" class="link-dark"><img src="/SEMI_Project/resources/image/admin/item4.svg" />
                 &nbsp;&nbsp;&nbsp;  게시판</a>
             </span>
           </div>
@@ -108,24 +107,164 @@
                     <td>$1000</td>
                     <td>070-1234-1234</td>
                     <td>070-1234-1234</td>
-                    <td><a href="./index-order2.html" class="link-dark">상세보기</a></td>
+                    <td><a href="${pageContext.servletContext.contextPath}/admin/order/detail" class="link-dark">상세보기</a></td>
                   </tr>
-                  	<c:forEach var="board" items="${ requestScope.boardList }">
-					<tr>
-						<td><c:out value="${ board.no }"/></td>
-						<td><c:out value="${ board.category.name }"/></td>
-						<td><c:out value="${ board.title }"/></td>
-						<td><c:out value="${ board.writer.nickname }"/></td>
-						<td><c:out value="${ board.count }"/></td>
-						<td><c:out value="${ board.createdDate }"/></td>
-					</tr>
-					</c:forEach>
+                  <tr>
+                    <td>OR001</td>
+                    <td>고객명</td>
+                    <td>가게명</td>
+                    <td>2021.04.21 11:11:11</td>
+                    <td>$1000</td>
+                    <td>070-1234-1234</td>
+                    <td>070-1234-1234</td>
+                    <td><a href="#" class="link-dark">상세보기</a></td>
+                  </tr>
+                  <tr>
+                    <td>OR001</td>
+                    <td>고객명</td>
+                    <td>가게명</td>
+                    <td>2021.04.21 11:11:11</td>
+                    <td>$1000</td>
+                    <td>070-1234-1234</td>
+                    <td>070-1234-1234</td>
+                    <td><a href="#" class="link-dark">상세보기</a></td>
+                  </tr>
+                  <tr>
+                    <td>OR001</td>
+                    <td>고객명</td>
+                    <td>가게명</td>
+                    <td>2021.04.21 11:11:11</td>
+                    <td>$1000</td>
+                    <td>070-1234-1234</td>
+                    <td>070-1234-1234</td>
+                    <td><a href="#" class="link-dark">상세보기</a></td>
+                  </tr>
+                  <tr>
+                    <td>OR001</td>
+                    <td>고객명</td>
+                    <td>가게명</td>
+                    <td>2021.04.21 11:11:11</td>
+                    <td>$1000</td>
+                    <td>070-1234-1234</td>
+                    <td>070-1234-1234</td>
+                    <td><a href="#" class="link-dark">상세보기</a></td>
+                  </tr>
+                  <tr>
+                    <td>OR001</td>
+                    <td>고객명</td>
+                    <td>가게명</td>
+                    <td>2021.04.21 11:11:11</td>
+                    <td>$1000</td>
+                    <td>070-1234-1234</td>
+                    <td>070-1234-1234</td>
+                    <td><a href="#" class="link-dark">상세보기</a></td>
+                  </tr>
+                  <tr>
+                    <td>OR001</td>
+                    <td>고객명</td>
+                    <td>가게명</td>
+                    <td>2021.04.21 11:11:11</td>
+                    <td>$1000</td>
+                    <td>070-1234-1234</td>
+                    <td>070-1234-1234</td>
+                    <td><a href="#" class="link-dark">상세보기</a></td>
+                  </tr>
+                  <tr>
+                    <td>OR001</td>
+                    <td>고객명</td>
+                    <td>가게명</td>
+                    <td>2021.04.21 11:11:11</td>
+                    <td>$1000</td>
+                    <td>070-1234-1234</td>
+                    <td>070-1234-1234</td>
+                    <td><a href="#" class="link-dark">상세보기</a></td>
+                  </tr>
+                  <tr>
+                    <td>OR001</td>
+                    <td>고객명</td>
+                    <td>가게명</td>
+                    <td>2021.04.21 11:11:11</td>
+                    <td>$1000</td>
+                    <td>070-1234-1234</td>
+                    <td>070-1234-1234</td>
+                    <td><a href="#" class="link-dark">상세보기</a></td>
+                  </tr>
+                  <tr>
+                    <td>OR001</td>
+                    <td>고객명</td>
+                    <td>가게명</td>
+                    <td>2021.04.21 11:11:11</td>
+                    <td>$1000</td>
+                    <td>070-1234-1234</td>
+                    <td>070-1234-1234</td>
+                    <td><a href="#" class="link-dark">상세보기</a></td>
+                  </tr>
+                  <tr>
+                    <td>OR001</td>
+                    <td>고객명</td>
+                    <td>가게명</td>
+                    <td>2021.04.21 11:11:11</td>
+                    <td>$1000</td>
+                    <td>070-1234-1234</td>
+                    <td>070-1234-1234</td>
+                    <td><a href="#" class="link-dark">상세보기</a></td>
+                  </tr>
+                  <tr>
+                    <td>OR001</td>
+                    <td>고객명</td>
+                    <td>가게명</td>
+                    <td>2021.04.21 11:11:11</td>
+                    <td>$1000</td>
+                    <td>070-1234-1234</td>
+                    <td>070-1234-1234</td>
+                    <td><a href="#" class="link-dark">상세보기</a></td>
+                  </tr>
+                  <tr>
+                    <td>OR001</td>
+                    <td>고객명</td>
+                    <td>가게명</td>
+                    <td>2021.04.21 11:11:11</td>
+                    <td>$1000</td>
+                    <td>070-1234-1234</td>
+                    <td>070-1234-1234</td>
+                    <td><a href="#" class="link-dark">상세보기</a></td>
+                  </tr>
+                  <tr>
+                    <td>OR001</td>
+                    <td>고객명</td>
+                    <td>가게명</td>
+                    <td>2021.04.21 11:11:11</td>
+                    <td>$1000</td>
+                    <td>070-1234-1234</td>
+                    <td>070-1234-1234</td>
+                    <td><a href="#" class="link-dark">상세보기</a></td>
+                  </tr>
+                  <tr>
+                    <td>OR001</td>
+                    <td>고객명</td>
+                    <td>가게명</td>
+                    <td>2021.04.21 11:11:11</td>
+                    <td>$1000</td>
+                    <td>070-1234-1234</td>
+                    <td>070-1234-1234</td>
+                    <td><a href="#" class="link-dark">상세보기</a></td>
+                  </tr>
+                  <tr>
+                    <td>OR001</td>
+                    <td>고객명</td>
+                    <td>가게명</td>
+                    <td>2021.04.21 11:11:11</td>
+                    <td>$1000</td>
+                    <td>070-1234-1234</td>
+                    <td>070-1234-1234</td>
+                    <td><a href="#" class="link-dark">상세보기</a></td>
+                  </tr>
                 </tbody>
               </table>
               <br>
               <div class="text-center">
                 
-                <span class="col-1"><a href="#" class="page-item link-dark" >1</a></span>
+                <span class="col-1 "><a href="#" class="page-item link-dark" >1</a></span>
                 <span class="col-1"><a href="#" class="page-item link-dark" >2</a></span>
                 <span class="col-1"><a href="#" class="page-item link-dark" >3</a></span>
                 <span class="col-1"><a href="#" class="page-item link-dark" >4</a></span>
