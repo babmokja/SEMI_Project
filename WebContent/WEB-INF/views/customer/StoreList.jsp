@@ -5,20 +5,19 @@
 <head>
 <meta charset="UTF-8">
 <title>BoB</title>
-<link rel="stylesheet" href="resources/css/customer/main.css">
-
-<link href="resources/css/customer/reset.css" type="text/css"
+<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/customer/main.css">
+<link href="${ pageContext.servletContext.contextPath }/resources/css/customer/reset.css" type="text/css"
 	rel="stylesheet">
-<link href="resources/css/customer/button.css" type="text/css"
+<link href="${ pageContext.servletContext.contextPath }/resources/css/customer/button.css" type="text/css"
 	rel="stylesheet">
-<link href="resources/css/customer/common_ah.css" type="text/css"
+<link href="${ pageContext.servletContext.contextPath }/resources/css/customer/common_ah.css" type="text/css"
 	rel="stylesheet">
-<link href="resources/css/customer/store_list.css" type="text/css"
+<link href="${ pageContext.servletContext.contextPath }/resources/css/customer/store_list.css" type="text/css"
 	rel="stylesheet">
 </head>
 <body>
 	<center>
-	
+		
 		<!-- header -->
 		<jsp:include page="/WEB-INF/views/common/customer/header.jsp" />
 
@@ -47,7 +46,7 @@
 
 			<iframe
 				src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12654.934506956371!2d127.140009!3d37.537776!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xaa042b09537cc87b!2z6ri464-Z!5e0!3m2!1sko!2skr!4v1619694772935!5m2!1sko!2skr"
-				width="710" height="700" allowfullscreen="" loading="lazy" style="border: 5px solid #ffcc00; margin-top: 115px; margin-left: -100px;"></iframe>
+				width="710" height="700" allowfullscreen="" loading="lazy"></iframe>
 
 			<br>
 			<br>
@@ -60,7 +59,7 @@
 				<table>
 					<tr>
 						<td><a href="#;"><img id="store_photo_choice"
-								src="resources/image/customer/store1.PNG" alt="이미지 없음"></a></td>
+								src="${ pageContext.servletContext.contextPath }/resources/image/customer/store1.PNG" alt="이미지 없음"></a></td>
 						<td>
 							<div class="restaurants-info">
 								<div class="restaurant-name" title="가게이름">가게 이름</div>
@@ -84,7 +83,7 @@
 				<table>
 					<tr>
 						<td><a href="#;"><img id="store_photo_choice"
-								src="resources/image/customer/store1.PNG" alt="이미지 없음"></a></td>
+								src="${ pageContext.servletContext.contextPath }/resources/image/customer/store1.PNG" alt="이미지 없음"></a></td>
 						<td>
 							<div class="restaurants-info">
 								<div class="restaurant-name" title="가게이름">가게 이름</div>
@@ -108,7 +107,7 @@
 				<table>
 					<tr>
 						<td><a href="#;"><img id="store_photo_choice"
-								src="resources/image/customer/store1.PNG" alt="이미지 없음"></a></td>
+								src="${ pageContext.servletContext.contextPath }/resources/image/customer/store1.PNG" alt="이미지 없음"></a></td>
 						<td>
 							<div class="restaurants-info">
 								<div class="restaurant-name" title="가게이름">가게 이름</div>
@@ -132,7 +131,7 @@
 				<table>
 					<tr>
 						<td><a href="#;"><img id="store_photo_choice"
-								src="resources/image/customer/store1.PNG" alt="이미지 없음"></a></td>
+								src="${ pageContext.servletContext.contextPath }/resources/image/customer/store1.PNG" alt="이미지 없음"></a></td>
 						<td>
 							<div class="restaurants-info">
 								<div class="restaurant-name" title="가게이름">가게 이름</div>
@@ -168,7 +167,6 @@
 
 		<!-- footer -->
 		<jsp:include page="/WEB-INF/views/common/customer/footer.jsp" />
-
 	</center>
 
 </body>

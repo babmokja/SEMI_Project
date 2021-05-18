@@ -26,4 +26,11 @@
 	  INTO
 	
 	</entry>
+	
+	<entry key="selectAllMenuList">
+	SELECT
+	       *
+	  FROM MENU
+	
+	</entry>
 </properties>

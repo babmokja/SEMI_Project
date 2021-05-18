@@ -7,8 +7,8 @@
 <meta charset="UTF-8">
  <title>Menu Manage</title>
   
-  <link href="resources/css/owner/bootstrap.min.css" rel="stylesheet">
-  <link href="resources/css/owner/semi_store_css/main.css" rel="stylesheet">
+  <link href="BoB/resources/css/owner/bootstrap.min.css" rel="stylesheet">
+  <link href="BoB/resources/css/owner/semi_store_css/main.css" rel="stylesheet">
   
   <style>
 
@@ -90,71 +90,37 @@
                   </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${menuList }" var="menu">
+                <c:forEach items="${ requestScope.menuList }" var="menu">
                   <tr>
-                    <td><input class="form-control" type="text" value="갈릭마왕(한마리)"></td>
-                    <td><input type="text"   class="form-control text-right"  style="display:inline-block;width:200px;" value="16000"> 원</td>
+                    <td><input class="form-control" type="text" value=<c:out value="${menu.menuName}"/>></td>
+                    <td><input type="text"   class="form-control text-right"  style="display:inline-block;width:200px;" value=<c:out value="${menu.price}"/>> 원</td>
                     <td><select class="form-select" >
                       <option >판매여부 선택</option>
-                      <option value="1" selected>판매중</option>
-                      <option value="2" >품절</option>
+                      <option value="Y" selected>판매중</option>
+                      <option value="N" >품절</option>
                     </select></td>
-                    <td><input class="form-control" type="text" value="알싸하고 달달한 마늘로 완성된 맛의 끝판왕!" ></td>
+                    <td><input class="form-control" type="text" value= <c:out value ="${menu.menuExplain}" /> ></td>
                     <td><a href="#"><img src="resources/image/owner/pic.png" /></a></td>
                     <td><a href="#"><img src="resources/image/owner/delete.png" /></a></td>
                   </tr>
                 </c:forEach>
-                  <tr>
-                    <td><input class="form-control" type="text"  value="갈비천왕(순살)"></td>
-                    <td><input type="text"   class="form-control text-right"  style="display:inline-block;width:200px;" value="18000"> 원</td>
-                    <td><select class="form-select" >
-                      <option >판매여부 선택</option>
-                      <option value="1">판매중</option>
-                      <option value="2" selected>품절</option>
-                    </select></td>
-                    <td><input class="form-control" type="text" value="달콤한 갈비양념이 제대로!치킨의 새로운 지존"></td>
-                    <td><a href="#"><img src="../images/pic.png" /></a></td>
-                    <td><a href="#"><img src="../images/delete.png" /></a></td>
-                  </tr>
-                  <tr>
-                    <td><input class="form-control" type="text" ></td>
-                    <td><input type="text"   class="form-control text-right"  style="display:inline-block;width:200px;"> 원</td>
-                    <td><select class="form-select" >
-                      <option selected>판매여부 선택</option>
-                      <option value="1">판매중</option>
-                      <option value="2" >품절</option>
-                    </select></td>
-                    <td><input class="form-control" type="text" ></td>
-                    <td><a href="#"><img src="../images/pic.png" /></a></td>
-                    <td><a href="#"><img src="../images/delete.png" /></a></td>
-                  </tr>
-                  <tr>
-                    <td><input class="form-control" type="text" ></td>
-                    <td><input type="text"   class="form-control text-right"  style="display:inline-block;width:200px;"> 원</td>
-                    <td><select class="form-select" >
-                      <option selected>판매여부 선택</option>
-                      <option value="1">판매중</option>
-                      <option value="2" >품절</option>
-                    </select></td>
-                    <td><input class="form-control" type="text" ></td>
-                    <td><a href="#"><img src="../images/pic.png" /></a></td>
-                    <td><a href="#"><img src="../images/delete.png" /></a></td>
-                  </tr>
-                  <tr>
-                    <td><input class="form-control" type="text" ></td>
-                    <td><input type="text"   class="form-control text-right"  style="display:inline-block;width:200px;"> 원</td>
-                    <td><select class="form-select" >
-                      <option selected>판매여부 선택</option>
-                      <option value="1">판매중</option>
-                      <option value="2" >품절</option>
-                    </select></td>
-                    <td><input class="form-control" type="text" ></td>
-                    <td><a href="#"><img src="../images/pic.png" /></a></td>
-                    <td><a href="#"><img src="../images/delete.png" /></a></td>
-                  </tr>
-              
-                 
-               
+                
+                
+                <form action="${pageContext.servletContext.contextPath}/menu/insert" method="post">
+	                  <tr>
+	                    <td><input class="form-control" type="text"  value="갈비천왕(순살)"></td>
+	                    <td><input type="text"   class="form-control text-right"  style="display:inline-block;width:200px;" value="18000"> 원</td>
+	                    <td><select class="form-select" >
+	                      <option >판매여부 선택</option>
+	                      <option value="1">판매중</option>
+	                      <option value="2" selected>품절</option>
+	                    </select></td>
+	                    <td><input class="form-control" type="text" value="달콤한 갈비양념이 제대로!치킨의 새로운 지존"></td>
+	                    <!-- <td><input type=><a href="#"><img src="../images/pic.png" /></a></td> -->
+	                    <td><a href="#"><img src="../images/delete.png" /></a></td>
+	                  </tr>
+                  </form>
+                      
                   
                 </tbody>
               </table>

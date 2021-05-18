@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/store/list")
 public class SelectStoreListServlet extends HttpServlet {
 
+	// 정보 select와 페이징 처리, 지도 값 변경
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		//String currentPage = request.getParameter("currentPage");
