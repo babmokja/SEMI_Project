@@ -6,10 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>BoB</title>
-<link rel="stylesheet" href="resources/css/customer/main.css">
-<link href="resources/css/customer/reset.css" type="text/css"
+<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/customer/main.css">
+<link href="${ pageContext.servletContext.contextPath }/resources/css/customer/reset.css" type="text/css"
 	rel="stylesheet">
-<link href="resources/css/customer/common_ah.css" type="text/css"
+<link href="${ pageContext.servletContext.contextPath }/resources/css/customer/common_ah.css" type="text/css"
 	rel="stylesheet">
 </head>
 <body>
@@ -46,7 +46,7 @@
 						<div class="btns">
 							<div class="mypage">
 								<a href="#;" class="mypage_icon"> 
-									<img src="resources/image/customer/user.png" alt="이미지없음">
+									<img src="${ pageContext.servletContext.contextPath }/resources/image/customer/user.png" alt="이미지없음">
 								</a>
 							</div>
 							<div class="logout">
@@ -64,7 +64,7 @@
 			</div>
 			<div class="searchbox">
 				<a href="${ pageContext.servletContext.contextPath }/store/list">
-					<img src="resources/image/customer/magnifying.png" alt="이미지없음"
+					<img src="${ pageContext.servletContext.contextPath }/resources/image/customer/magnifying.png" alt="이미지없음"
 					id="icon">
 				</a> <input type="text" class="searchpoint">
 			</div>
