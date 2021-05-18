@@ -5,8 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="resources/css/customer/User_Board.css" type="text/css">
-    <link rel="stylesheet" href="resources/css/customer/css/main_board.css" type="text/css">
-    <link rel="stylesheet" href="resources/css/customer/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="resources/css/customer/main_board.css" type="text/css">
+    <link rel="stylesheet" href="resources/css/customer/bootstrap.min.css" type="text/css">
     <title>Document</title>
     <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>

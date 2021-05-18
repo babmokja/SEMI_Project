@@ -174,11 +174,86 @@
             <td></td>
             <td></td>
           </tr>
+          
+          <tr>
+				<td>대표 이미지</td>
+				<td colspan="3">
+					<div class="title-img-area" id="titleImgArea">
+						<img id="titleImg" width="350" height="200">
+					</div>
+				</td>
+		  </tr>
          
 
-
+			<!-- -------------------------------------------------------- -->
+			<form action="${ pageContext.servletContext.contextPath }/thumbnail/insert" method="post" encType="multipart/form-data">
+			<div class="thumbnail-insert-area">
+				<table align="center">
             
-
+            		<tr>
+						<td>대표 이미지</td>
+						<td colspan="3">
+							<div class="title-img-area" id="titleImgArea">
+								<img id="titleImg" width="350" height="200">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>대표 이미지2</td>
+						<td colspan="3">
+							<div class="title-img-area2" id="titleImgArea2">
+								<img id="titleImg2" width="350" height="200">
+							</div>
+						</td>
+					</tr>
+					
+					<div class="thumbnail-file-area">
+					<input type="file" id="thumbnailImg1" name="thumbnailImg1" onchange="loadImg(this,1)">
+					<input type="file" id="thumbnailImg2" name="thumbnailImg2" onchange="loadImg(this,2)">
+				</div>
+			</div>
+			<br>
+			
+			<div class="thumbnail-btn-area">
+				<button>취소하기</button>
+				<button type="submit">작성완료</button>
+			</div>
+		</form>
+		
+		<script>
+			const $titleImgArea = document.getElementById("titleImgArea");
+			const $titleImgArea2 = document.getElementById("titleImgArea2");
+			
+			$titleImgArea.onclick = function() { 
+				document.getElementById("thumbnailImg1").click(); 
+			}
+			
+			$titleImgArea2.onclick = function() { 
+				document.getElementById("thumbnailImg2").click(); 
+			}
+	
+			
+			function loadImg(value, num) {
+				if (value.files && value.files[0]) {
+					const reader = new FileReader();
+					reader.onload = function(e) {
+						switch(num){
+						case 1:
+							document.getElementById("titleImg").src = e.target.result;
+							break;
+						case 2:
+							document.getElementById("titleImg2").src = e.target.result;
+							break;
+						}
+					}
+					reader.readAsDataURL(value.files[0]);
+				}
+			}
+			
+		</script>
+		
+		
+		
 
         
          </table><br>

@@ -4,13 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
- <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>사장님 메인 사이트</title>
-    <link rel="stylesheet" href="resources/css/owner/semi_store/reset.css">
-    <link rel="stylesheet" href="resources/css/owner/semi_store/common.css">
-    <link rel="stylesheet" href="resources/css/owner/semi_store/button.css">
-    <link rel="stylesheet" href="resources/css/owner/semi_store/main_store.css">
+
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/semi_store/reset.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/semi_store/common.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/semi_store/button.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/semi_store/main_store.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
@@ -21,15 +21,17 @@
             <li id="qus_btn"><a href="${ pageContext.servletContext.contextPath }/owner/move/suggest">1대1 문의하기</a></li>
             <li id="info_enroll"><a href="../../semi_board/company/sign_up_info.html"> 입점 안내</a></li>
             <p>사장님 사이트</p>
-        </div>
+    </div>
 
         <div class="wrap">
             <div class="main_menu">
+
                 <li><a href="#"><img src="resources/image/semi_store/주문확인.png" alt="주문확인">주문확인</a></li>
-                <li><a href="../../semi_board/company/modifyInf o_owner.html"><img src="resources/image/owner/semi_store/내정보관리.png" alt="내정보관리">내 정보관리</a></li>
-                <li><a href="../../semi_board_sales/company/Owner_Sales_day_Board.html"><img src="resources/image/owner/semi_store/내업소관리.png" alt="내업소관리">내 업소관리</a></li>
-                <li><a href="./delivery.html"><img src="resources/image/owner/semi_store/PC주문관리.png" alt="PC주문관리">PC 주문관리</a></li>
-                <li><a href="${ pageContext.servletContext.contextPath }/owner/move/comment"><img src="resources/image/owner/semi_store/리뷰관리.png" alt="리뷰관리">리뷰관리</a></li>
+                <li><a href="../../semi_board/company/modifyInf o_owner.html"><img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/내정보관리.png" alt="내정보관리">내 정보관리</a></li>
+                <li><a href="../../semi_board_sales/company/Owner_Sales_day_Board.html"><img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/내업소관리.png" alt="내업소관리">내 업소관리</a></li>
+                <li><a href="./delivery.html"><img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/PC주문관리.png" alt="PC주문관리">PC 주문관리</a></li>
+                <li><a href="${ pageContext.servletContext.contextPath }/owner/move/comment"><img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/리뷰관리.png" alt="리뷰관리">리뷰관리</a></li>
+
             </div>
 
             <div class="side_word">
