@@ -11,7 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
-    <center>
+    
       <center>
          <header>
             <div class="head">
@@ -80,10 +80,10 @@
         <section id="section1">
         <div class ="myinformation" ><br><br>
         <label class='name'>[name]님 안녕하세요</label>
-        <br><br><br><br><br>
-        <h1>&nbsp;&nbsp;밥묵자 회원정보 </h1>
+        <br><br><br><br><br><br>
+        <h1>밥묵자 회원정보 </h1>
         <br>
-        <span style="float: right;font-size: larger;font-weight: 500;  margin-right:-20px;">회원정보를 수정하시면<br>수정하기 버튼을<br>눌러주세요</span>
+        <span style="float: right;font-size: larger;font-weight: 500;  margin-right:-20px; margin-top:10px">회원정보를 수정하시면<br>수정하기 버튼을<br>눌러주세요</span>
         <img src="resources/image/customer/user.png" width="150px" height="150px" style="margin-top: 10px;">
 
          <br>
@@ -98,8 +98,7 @@
      
        <div class="myinformation">
        <br><br><br><br><br><br><br>     
-       <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;밥묵자 포인트</h1>
+       <label class='pointlabel'>밥묵자 포인트</label>
        <br><br>
        <span style="font-size: larger;font-weight: 500; margin-right:-65px; width=105px; float:right;">현재 포인트<br>[0000]P</span> 
        <img src="resources/image/customer/point.png" id = "mypoint" width="150px" height="150px"style="margin-left: 150px; " >

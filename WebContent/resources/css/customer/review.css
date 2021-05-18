@@ -94,8 +94,8 @@ footer{
     background-size: 130%;
     display: inline-block;
 }
-textarea{
-    width:550px; height:250px; 
+#text{
+    width:500px; height:250px; 
     resize: none;
 }
 .reviewsec{
@@ -108,6 +108,9 @@ textarea{
 }   
 #emotion{  
     margin:10px 0px 10px 0px;
+    height:120px;
+    
+   
 }  
 .btn {
     width:200px;

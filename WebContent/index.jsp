@@ -21,8 +21,6 @@
 	<%-- <jsp:forward page="/WEB-INF/views/customer/MenuDetail.jsp"/> --%>
 	<!-- 결제 페이지 -->
 	<%-- <jsp:forward page="/WEB-INF/views/customer/Pay.jsp"/> --%>
-	<!-- 결제 페이지 -->
-	<%-- <jsp:forward page="/WEB-INF/views/customer/Pay.jsp"/> --%>
 	<!-- 고객 로그인 페이지 -->
 	<%-- <jsp:forward page="/WEB-INF/views/customer/Login.jsp"/> --%>
 	<!--  고객 리뷰 페이지 -->
@@ -32,7 +30,7 @@
     <!-- 고객 가입 페이지 -->
     <%-- <jsp:forward page="/WEB-INF/views/customer/SigninUser.jsp"/> --%>
     <!-- 고객 마이페이지 -->
-    <%-- <jsp:forward page="/WEB-INF/views/customer/Mypage.jsp"/ >--%>
+    <jsp:forward page="/WEB-INF/views/customer/Mypage.jsp"/>
     <!--  고객 게시글 목록 -->
     <%-- <jsp:forward page="/WEB-INF/views/customer/User_Board.jsp"/> --%> 
    <!--  고객 게시글 상세보기 -->
