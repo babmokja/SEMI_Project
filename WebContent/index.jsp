@@ -39,11 +39,7 @@
    <%-- <jsp:forward page="/WEB-INF/views/customer/User_Board_Read.jsp"/> --%>
    <!--  고객 건의 글쓰기 -->
    <%-- <jsp:forward page="/WEB-INF/views/customer/User_Board_Write.jsp"/> --%>
-    
-	
-   <%--  <jsp:forward page="/WEB-INF/views/customer/Mypage.jsp"/> --%>
 
-   <%--  <jsp:forward page="/WEB-INF/views/customer/Mypage.jsp"/> --%>
 
 	<!-- 업주 -->
 	<!-- 업체 메인 페이지 -->
