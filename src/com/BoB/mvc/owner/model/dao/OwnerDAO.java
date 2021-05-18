@@ -68,6 +68,7 @@ public class OwnerDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			
 			close(pstmt);
 		}
 		
