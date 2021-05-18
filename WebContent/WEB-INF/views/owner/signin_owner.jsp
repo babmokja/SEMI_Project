@@ -14,8 +14,8 @@
             $("#footer").load("WEB-INF/views/owner/footer.jsp");
             });
     </script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owner/semi_board/main.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owner/semi_board/signin_owner.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owner/semi_board/main.css">
 
 <title>Insert title here</title>
 </head>
@@ -56,9 +56,9 @@
   }
 </script>
 
-<body>
+<body style="overflow:scroll;">
 
-<section class="mainsec">
+<div class="mainsec">
         <label class="bigbtn" >밥묵자 사장님 회원가입</label>
         <center>
       <div id='signin'>
@@ -175,74 +175,66 @@
             <td></td>
           </tr>
           
-          <tr>
-				<td>대표 이미지</td>
-				<td colspan="3">
-					<div class="title-img-area" id="titleImgArea">
-						<img id="titleImg" width="350" height="200">
-					</div>
-				</td>
-		  </tr>
-         
 
 			<!-- -------------------------------------------------------- -->
+			
 			<form action="${ pageContext.servletContext.contextPath }/thumbnail/insert" method="post" encType="multipart/form-data">
 			<div class="thumbnail-insert-area">
 				<table align="center">
-            
-            		<tr>
-						<td>대표 이미지</td>
-						<td colspan="3">
-							<div class="title-img-area" id="titleImgArea">
-								<img id="titleImg" width="350" height="200">
-							</div>
-						</td>
+					<tr>
+					<td style="text-align:left;" colspan="2">&nbsp;&nbsp;사업자등록증 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 가게 사진</td>
 					</tr>
 					<tr>
-						<td>대표 이미지2</td>
-						<td colspan="3">
-							<div class="title-img-area2" id="titleImgArea2">
-								<img id="titleImg2" width="350" height="200">
+						<td>
+							<div class="content-img-area1" id="contentImgArea1">
+								<img id="contentImg1" width="120" height="100">
 							</div>
 						</td>
+						<td>
+							<div class="content-img-area2" id="contentImgArea2">
+								<img id="contentImg2" width="120" height="100">
+							</div>
+						</td>				
 					</tr>
-					
-					<div class="thumbnail-file-area">
+				</table>
+				
+				<div class="thumbnail-file-area">
 					<input type="file" id="thumbnailImg1" name="thumbnailImg1" onchange="loadImg(this,1)">
 					<input type="file" id="thumbnailImg2" name="thumbnailImg2" onchange="loadImg(this,2)">
+					<input type="file" id="thumbnailImg3" name="thumbnailImg3" onchange="loadImg(this,3)">
+					<input type="file" id="thumbnailImg4" name="thumbnailImg4" onchange="loadImg(this,4)">
 				</div>
 			</div>
 			<br>
-			
 			<div class="thumbnail-btn-area">
 				<button>취소하기</button>
 				<button type="submit">작성완료</button>
 			</div>
 		</form>
-		
+			
 		<script>
-			const $titleImgArea = document.getElementById("titleImgArea");
-			const $titleImgArea2 = document.getElementById("titleImgArea2");
+			
+			const $contentImgArea1 = document.getElementById("contentImgArea1");
+			const $contentImgArea2 = document.getElementById("contentImgArea2");
 			
 			$titleImgArea.onclick = function() { 
 				document.getElementById("thumbnailImg1").click(); 
 			}
 			
-			$titleImgArea2.onclick = function() { 
-				document.getElementById("thumbnailImg2").click(); 
+			$contentImgArea1.onclick = function() {
+				document.getElementById("thumbnailImg2").click();
 			}
-	
 			
 			function loadImg(value, num) {
 				if (value.files && value.files[0]) {
 					const reader = new FileReader();
 					reader.onload = function(e) {
 						switch(num){
-						case 1:
-							document.getElementById("titleImg").src = e.target.result;
-							break;
 						case 2:
-							document.getElementById("titleImg2").src = e.target.result;
+							document.getElementById("contentImg1").src = e.target.result;
+							break;
+						case 3:
+							document.getElementById("contentImg2").src = e.target.result;
 							break;
 						}
 					}
@@ -262,7 +254,7 @@
        
        </div>
        </center>
-        </section>
+        
                  
        <footer>
         <div id="footlim">
@@ -285,7 +277,7 @@
             </small>
         </div>
     </footer>     
-
+</div>
 
 </body>
 </html>
