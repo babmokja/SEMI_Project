@@ -70,11 +70,13 @@
                  <input type="button" id="overlap" style="display:none;" >
                  <label for="overlap">중복확인</label>
              </td>
-           </tr>
-           <tr>
+          <!--  </tr>
+           <tr> -->
             <td>비밀번호 </td>
             <td><input type="password" id="pw" onchange="check_pw()"name="pw" class="chk" size="25" placeholder="영문소문자와숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" required> </td>
           </tr>
+          
+          
           <tr> 
               <td>비밀번호확인 </td>
               <td><input type="password" id="pw2"  onchange="check_pw()" name ="pw_ck" class= "chk" size="25" style="padding:4px;font-size:13px;border-radius: 10px;" required>
@@ -82,37 +84,42 @@
 
           
             </td>
-          </tr>
-          <tr>
+          <!-- </tr>
+          <tr> -->
             <td>이 름</td>
             <td><input type="text"size="25" style="padding:4px;font-size:13px;border-radius: 10px;" name="" required> </td>
           </tr>
+          
+          
           <tr> 
-            <td>휴대전화</td>
+            <td>가게전화번호</td>
             <td><input type="text" size="25"
                        maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" name="phone" required></td>
-          </tr> 
-          <tr> 
+          <!-- </tr> 
+          <tr>  -->
             <td>상호명</td>
             <td><input type="text" size="25"
                        maxlength="13" style="padding:4px;font-size:13px;border-radius: 10px;" name="storeName" required></td>
           </tr> 
+          
+          
           <tr> 
-          <td>음식점번호</td>
+          <td>번호</td>
             <td><input type="text" size="25"
                        maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" name="storeNum" required></td>
-          </tr> 
-
-          <tr>
+          <!-- </tr> 
+          <tr> -->
             <td>우편번호</td>
             <td><input type="text" name="zip" size="25" style="padding:4px;font-size:13px;border-radius: 10px;"> 
             <button type="button"  style="width:60px; background-color: #ffcc00; border: 1px solid #d9e1e8; height:32px; border-radius: 20px; font-weight: 600; font-size: 15px; cursor: pointer;" onclick="openZipSearch()">검색</button></td>
           </tr> 
+          
+          
           <tr>
             <td>가게주소</td>
             <td><input type="text"size="25" name="addr1" style="padding:4px;font-size:13px;border-radius: 10px;"  readonly /> </td>
-          </tr> 
-          <tr>
+          <!-- </tr> 
+          <tr> -->
             <td>상세주소</td>
             <td><input type="text"size="25" name="addr2" style="padding:4px;font-size:13px;border-radius: 10px;"/> </td>
           </tr>
@@ -128,6 +135,8 @@
             }
             
             </script>
+            
+         <tr>
          <td>업종카테고리</td>
          <td><select style="font-size: larger; border-radius: 8px;" name="category">
                <option value="한식">한식</option>
@@ -136,9 +145,8 @@
                <option value="일식">일식</option>
                <option value="양식">양식</option>
          </select></td>
-         </tr> 
-
-          <tr>
+         <!-- </tr> 
+          <tr> -->
             <td>사업자번호</td>
             <td><input type="text" size="25"
                        maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" name="bussinessNum" required>
@@ -156,12 +164,15 @@
                      
             </td>
           </tr>
+          
+          
           <tr>
             <td>서비스유형</td>
             <td><input type="radio" name="service" value="1" onclick="div_OnOff(this.value,'con');" >  배달만
                 <input type="radio" name="service" value="2" onclick="div_OnOff(this.value,'con');">   픽업만
                 <input type="radio" name="service" value="3" onclick="div_OnOff(this.value,'con'); ">  배달+픽업</td>
-            
+            <td></td>
+            <td></td>
           </tr>
          
 

@@ -21,7 +21,7 @@
 	<%-- <jsp:forward page="/WEB-INF/views/customer/Pay.jsp"/> --%>
 	
 	<!-- 업주 -->
-	
+	<jsp:forward page="/WEB-INF/views/owner/main_store.jsp"/>
 	
 	<!-- 관리자 -->	
 

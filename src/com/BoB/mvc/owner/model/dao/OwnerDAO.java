@@ -48,10 +48,17 @@ public class OwnerDAO {
 			pstmt.setString( 5 , requestOwner.getAddress());
 			pstmt.setString( 6 , requestOwner.getEmail());
 			pstmt.setString( 7 , requestOwner.getResidentNum());
-			
+			/*
 			result = pstmt.executeUpdate();
-		if(result>0) {
+			
+		if(result>0) {*/
 			pstmt = con.prepareStatement(query2);
+			pstmt.setString(1, requestStore.getStoreName());
+			pstmt.setString(2, requestStore.getStoreNum());
+			pstmt.setString(3, requestStore.getAddress());
+			pstmt.setString(4, requestStore.getCategory());
+			pstmt.setString(5, requestStore.getLicense());
+			pstmt.setString(6, requestStore.getStartDate());
 			
 			
 			
