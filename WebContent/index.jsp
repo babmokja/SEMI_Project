@@ -10,7 +10,7 @@
 
 	<!-- 고객 -->
 	<!-- 고객 메인 페이지 -->
-	<jsp:forward page="/WEB-INF/views/customer/CustomerMain.jsp"/>
+	<%-- <jsp:forward page="/WEB-INF/views/customer/CustomerMain.jsp"/> --%>
 
 	<!-- 카테고리 선택시 나오는 가게 리스트 페이지 -->
 	<%-- <jsp:forward page="/WEB-INF/views/customer/StoreList.jsp"/> --%>
@@ -33,11 +33,11 @@
     <!-- 고객 마이페이지 -->
     <%-- <jsp:forward page="/WEB-INF/views/customer/Mypage.jsp"/ >--%>
     <!--  고객 게시글 목록 -->
-    <%-- <jsp:forward page="/WEB-INF/views/customer/User_Board.jsp"/>  --%>
+    <%-- <jsp:forward page="/WEB-INF/views/customer/User_Board.jsp"/> --%> 
    <!--  고객 게시글 상세보기 -->
    <%-- <jsp:forward page="/WEB-INF/views/customer/User_Board_Read.jsp"/> --%>
    <!--  고객 건의 글쓰기 -->
-  <%--  <jsp:forward page="/WEB-INF/views/customer/User_Board_Write.jsp"/> --%>
+   <%-- <jsp:forward page="/WEB-INF/views/customer/User_Board_Write.jsp"/> --%>
     
 	
 	<!-- 업주 -->

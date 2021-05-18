@@ -4,9 +4,9 @@
 <html>
 <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="resources/css/customer/css/User_Board_Write.css" type="text/css">
-        <link rel="stylesheet" href="resources/css/customer/css/main_board.css" type="text/css">
-        <link rel="stylesheet" href="resources/css/customer/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="resources/css/customer/User_Board_Write.css" type="text/css">
+        <link rel="stylesheet" href="resources/css/customer/main_board.css" type="text/css">
+        <link rel="stylesheet" href="resources/css/customer/bootstrap.min.css" type="text/css">
         <title>Document</title>
         <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
@@ -23,7 +23,7 @@
         </section>
         <div class="wrapper">
 
-                        <div class="content">
+                        <div class="content" style="margin-top:100px">
                                 <div class="as">글내용 :</div>
                                 <div class="ass"><input class="text1" type="text" size="30"></div>
 
