@@ -4,9 +4,9 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="resources/css/admin/admin_Customer_Secret_Board.css">
-    <link rel="stylesheet" href="resources/css/admin/main1.css">
-    <link rel="stylesheet" href="resources/css/admin/bootstrap.min.css">
+    <link rel="stylesheet" href="/SEMI_Project/resources/css/admin/admin_Customer_Secret_Board.css">
+    <link rel="stylesheet" href="/SEMI_Project/resources/css/admin/main1.css">
+    <link rel="stylesheet" href="/SEMI_Project/resources/css/admin/bootstrap.min.css">
     <title>Document</title>
 
     <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -17,28 +17,28 @@
         <div class="aside_top2">BABMOKJA </div>
         <div class="aside_top">고객 게시판 </div>
         <div class="button01">고객</div>
-        <div class="button02"><a href="admin_Owner_Secret_Board.html">업주</a></div>
+        <div class="button02"><a href="${pageContext.servletContext.contextPath}/admin/owner/board">업주</a></div>
     </aside>
   
     <section class="section">
 
         <div class="row">
             <span class="col-2 menu-item">
-                <a href="../관리자/index-order.html" class="link-dark"><img src="resources/image/admin/item1.svg" />
+                <a href="${pageContext.servletContext.contextPath}/admin/order" class="link-dark"><img src="/SEMI_Project/resources/image/admin/item1.svg" />
                   &nbsp;&nbsp;&nbsp;주문확인   </a>
               </span>
               <span class="col-2 menu-item">
-                <a href="../관리자/index-user.html" class="link-dark"><img src="resources/image/admin/item2.png" />
+                <a href="${pageContext.servletContext.contextPath}/admin/customer" class="link-dark"><img src="/SEMI_Project/resources/image/admin/item2.png" />
                   &nbsp;&nbsp;&nbsp; 고객관리</a>
               </span>
               <span class="col-2 menu-item">
-                <a href="../관리자/index-owner.html" class="link-dark"><img src="resources/image/admin/item3.png" />
+                <a href="${pageContext.servletContext.contextPath}/admin/owner" class="link-dark"><img src="/SEMI_Project/resources/image/admin/item3.png" />
                 
                   &nbsp;&nbsp;&nbsp; 업소관리</a> 
               </span>
             <span class="col-2 menu-item">
-              <img src="resources/image/admin/item4.svg" />
-              &nbsp;&nbsp;&nbsp;  <a href="admin_Customer_Secret_Board.html">게시판</a>
+              <img src="/SEMI_Project/resources/image/admin/item4.svg" />
+              &nbsp;&nbsp;&nbsp;  <a href="${pageContext.servletContext.contextPath}/admin/customer/board">게시판</a>
             </span>
         </div>
 
@@ -82,7 +82,7 @@
                     <tr>
                         <td class="section_contest_first section_contest_1">1</td>
                         <td class="section_contest_first section_contest_2">말머리</td>
-                        <td class="section_contest_first section_contest_3"><a href="admin_Customer_SecretWrite_Board.html">글제목11</a></td>
+                        <td class="section_contest_first section_contest_3"><a href="${pageContext.servletContext.contextPath}/admin/customer/comment">글제목11</a></td>
                         <td class="section_contest_first section_contest_4">00</td>
                         <td class="section_contest_first section_contest_5">2021-01-01</td>
                     </tr>
