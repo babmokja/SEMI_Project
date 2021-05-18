@@ -20,23 +20,23 @@
               <c:if test="${ empty sessionScope.loginMember }">
 
                 <img src="resources/image/customer/eating_people.PNG" alt="이미지없음" id="eating_people">
-
-                <div class="result">
+                 <form id="loginForm" action="${ pageContext.servletContext.contextPath }/user/login" method="post">
+                  <div class="result">
                     <div class="id">
-                        <input type="text" class="id" placeholder="     UserID">
+                        <input type="text" class="id" placeholder="     UserID" name="userId">
                     </div>
                     <div class="pwd">
-                        <input type="text" class="pwd" placeholder="     Password">
+                        <input type="text" class="pwd" placeholder="     Password" name="userPwd">
                     </div>
                     <div class="btn">
-                        <a href="#;" class="login_btn" value="Login">Login</a>
+                        <input type="submit" class="login_btn" value="Login">Login</a>
                     </div>
+                  </form>   
                 </c:if>    
+                    
                     <div class="owner">
                         <a href="#;" class="owner_login">사장님 페이지로 이동</a>
-                    </div>
-                
-
+                    </div>  
                 <div class="manager">
                     <a href="#;" class="manager_login">관리자 로그인 바로가기</a>
                 </div>
