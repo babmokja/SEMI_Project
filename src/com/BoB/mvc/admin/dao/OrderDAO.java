@@ -69,8 +69,10 @@ public class OrderDAO {
 		}
 		try {
 			pstmt = con.prepareStatement(query);
-
-		
+			pstmt.setInt(1, pageInfo.getStartRow());
+			pstmt.setInt(2, pageInfo.getEndRow());
+			System.out.println(pageInfo.getStartRow());
+			System.out.println(pageInfo.getEndRow());
 			rset = pstmt.executeQuery();
 			
 			orderList = new ArrayList<>();
