@@ -3,11 +3,15 @@ package com.BoB.mvc.admin.dto;
 import java.util.Date;
 
 public class orderDTO {
+
+
+
+
 	private int orderNum;
 	private String cusName;
 	private String stoName;
 	private Date orDate;
-	private String price;
+	private int price;
 	private String cusPhone;
 	private String stoPhone;
 	
@@ -17,7 +21,7 @@ public class orderDTO {
 	}
 
 
-	public orderDTO(int orderNum, String cusName, String stoName, Date orDate, String price, String cusPhone,
+	protected orderDTO(int orderNum, String cusName, String stoName, Date orDate, int price, String cusPhone,
 			String stoPhone) {
 		super();
 		this.orderNum = orderNum;
@@ -70,12 +74,12 @@ public class orderDTO {
 	}
 
 
-	public String getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
 
-	public void setPrice(String price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 
@@ -100,6 +104,7 @@ public class orderDTO {
 	}
 
 
+	
 	@Override
 	public String toString() {
 		return "orderDTO [orderNum=" + orderNum + ", cusName=" + cusName + ", stoName=" + stoName + ", orDate=" + orDate

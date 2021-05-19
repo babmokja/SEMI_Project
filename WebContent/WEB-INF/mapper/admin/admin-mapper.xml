@@ -7,4 +7,20 @@
           FROM ORDER_TABLE A
          
 	</entry>
+	
+	<entry key="selectOrderList1">
+		SELECT
+		    A.ORDER_CODE,
+		    B.USER_NAME,
+		    C.STORE_NAME,
+		    A.ORDER_TIME,
+		    A.TOTAL_AMOUNT,
+		    B.USER_PHONE,
+		    D.USER_PHONE "StoPhone"
+		    FROM ORDER_TABLE A
+		    JOIN USER_TABLE B ON(A.USER_CODE = B.USER_CODE)
+		    JOIN STORE_TABLE C ON(A.STORE_CODE = C.STORE_CODE)
+		    JOIN USER_TABLE D ON(C.USER_CODE = D.USER_CODE)
+         
+	</entry>
 </properties>

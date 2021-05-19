@@ -110,14 +110,16 @@
                     <td>070-1234-1234</td>
                     <td><a href="${pageContext.servletContext.contextPath}/admin/order/detail" class="link-dark">상세보기</a></td>
                   </tr>
-                  	<c:forEach var="board" items="${ requestScope.boardList }">
+                  	<c:forEach var="board" items="${ requestScope.orderList }">
 					<tr>
-						<td><c:out value="${ board.no }"/></td>
-						<td><c:out value="${ board.category.name }"/></td>
-						<td><c:out value="${ board.title }"/></td>
-						<td><c:out value="${ board.writer.nickname }"/></td>
-						<td><c:out value="${ board.count }"/></td>
-						<td><c:out value="${ board.createdDate }"/></td>
+						<td><c:out value="${ board.orderNum }"/></td>
+						<td><c:out value="${ board.cusName }"/></td>
+						<td><c:out value="${ board.stoName }"/></td>
+						<td><c:out value="${ board.orDate }"/></td>
+						<td><c:out value="${ board.price }"/></td>
+						<td><c:out value="${ board.cusPhone }"/></td>
+						<td><c:out value="${ board.stoPhone }"/></td>
+						<td><a href="${pageContext.servletContext.contextPath}/admin/order/detail" class="link-dark">상세보기</a></td>
 					</tr>
 					</c:forEach>
                 </tbody>

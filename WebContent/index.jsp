@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:forward page="/WEB-INF/views/admin/main_manager.jsp"/>
+	<%--<jsp:forward page="/WEB-INF/views/admin/main_manager.jsp"/> --%> 
 </body>
 </html>
