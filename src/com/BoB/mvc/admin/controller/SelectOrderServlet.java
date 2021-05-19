@@ -21,16 +21,16 @@ public class SelectOrderServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 
-	//	String currentPage = request.getParameter("currentPage");
+		String currentPage = request.getParameter("currentPage");
 		int pageNo = 1;
 		
-	//	if(currentPage != null && !"".equals(currentPage)) {
-	//		pageNo = Integer.parseInt(currentPage);
-	//	}
+		if(currentPage != null && !"".equals(currentPage)) {
+			pageNo = Integer.parseInt(currentPage);
+		}
 		
-	//	if(pageNo <= 0) {
-	//		pageNo = 1;
-	//	}
+		if(pageNo <= 0) {
+			pageNo = 1;
+		}
 		AdminService adminService = new AdminService();
 		int totalCount = adminService.selectTotalCount();
 		
