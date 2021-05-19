@@ -26,10 +26,10 @@
                         <input type="text" class="id" placeholder="     UserID" name="userId">
                     </div>
                     <div class="pwd">
-                        <input type="text" class="pwd" placeholder="     Password" name="userPwd">
+                        <input type="password" class="pwd" placeholder="     Password" name="userPwd">
                     </div>
                     <div class="btn">
-                        <input type="submit" class="login_btn" value="Login">Login</a>
+                        <input type="submit" class="login_btn" value="Login"></a>
                     </div>
                   </form>   
                 </c:if>    

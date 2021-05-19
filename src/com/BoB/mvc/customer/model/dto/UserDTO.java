@@ -17,7 +17,7 @@ public class UserDTO implements java.io.Serializable{
 	private int roleCode;      //역할코드
     private boolean blacklistYn;   //블랙리스트 여부
     private Date blacklistDate; 
-	
+
 	public UserDTO() {}
 
 	public UserDTO(int userCode, String id, String pwd, String name, String phone, String email, String address,

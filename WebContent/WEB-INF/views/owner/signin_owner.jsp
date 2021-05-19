@@ -31,7 +31,7 @@
           document.getElementById('pw').value='';
       }
       for(var i=0;i<SC.length;i++){
-          if(pw.indexOf(SC[i]) != -1){
+          if(pw.indexOf(SC[i]) != -1){ 
               check_SC = 1;
           }
       
@@ -62,7 +62,7 @@
         <label class="bigbtn" >밥묵자 사장님 회원가입</label>
         <center>
       <div id='signin'>
-    <form id="joinForm" action="${ pageContext.servletContext.contextPath }/member/owner/regist" method="post">
+    <form id="joinForm" action="${ pageContext.servletContext.contextPath }/member/owner/regist" method="post" encType="multipart/form-data">
         <table cellpadding="10" cellspacing="15" style="margin-left: 180px;" >
            <tr >
              <td>아이디 </td>
@@ -70,45 +70,37 @@
                  <input type="button" id="overlap" style="display:none;" >
                  <label for="overlap">중복확인</label>
              </td>
-          <!--  </tr>
-           <tr> -->
             <td>비밀번호 </td>
-            <td><input type="password" id="pw" onchange="check_pw()"name="pw" class="chk" size="25" placeholder="영문소문자와숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" required> </td>
+            <td><input type="password" id="pw" onchange="check_pw()"name="pw" class="chk" size="25" placeholder="영문소문자와숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" > </td>
           </tr>
           
           
           <tr> 
               <td>비밀번호확인 </td>
-              <td><input type="password" id="pw2"  onchange="check_pw()" name ="pw_ck" class= "chk" size="25" style="padding:4px;font-size:13px;border-radius: 10px;" required>
+              <td><input type="password" id="pw2"  onchange="check_pw()" name ="pw_ck" class= "chk" size="25" style="padding:4px;font-size:13px;border-radius: 10px;" >
                 <span id="check" ></span>
 
           
             </td>
-          <!-- </tr>
-          <tr> -->
             <td>이 름</td>
-            <td><input type="text"size="25" style="padding:4px;font-size:13px;border-radius: 10px;" name="" required> </td>
+            <td><input type="text"size="25" style="padding:4px;font-size:13px;border-radius: 10px;" name="" > </td>
           </tr>
           
           
           <tr> 
             <td>가게전화번호</td>
-            <td><input type="text" size="25"
-                       maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" name="phone" required></td>
-          <!-- </tr> 
-          <tr>  -->
+            <td><input type="text" size="25" maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" name="phone" ></td>
             <td>상호명</td>
             <td><input type="text" size="25"
-                       maxlength="13" style="padding:4px;font-size:13px;border-radius: 10px;" name="storeName" required></td>
+                       maxlength="13" style="padding:4px;font-size:13px;border-radius: 10px;" name="storeName"  ></td>
           </tr> 
           
           
           <tr> 
           <td>번호</td>
             <td><input type="text" size="25"
-                       maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" name="storeNum" required></td>
-          <!-- </tr> 
-          <tr> -->
+                       maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" name="storeNum"  ></td>
+          
             <td>우편번호</td>
             <td><input type="text" name="zip" size="25" style="padding:4px;font-size:13px;border-radius: 10px;"> 
             <button type="button"  style="width:60px; background-color: #ffcc00; border: 1px solid #d9e1e8; height:32px; border-radius: 20px; font-weight: 600; font-size: 15px; cursor: pointer;" onclick="openZipSearch()">검색</button></td>
@@ -117,9 +109,8 @@
           
           <tr>
             <td>가게주소</td>
-            <td><input type="text"size="25" name="addr1" style="padding:4px;font-size:13px;border-radius: 10px;"  readonly /> </td>
-          <!-- </tr> 
-          <tr> -->
+            <td><input type="text"size="25" name="addr1" style="padding:4px;font-size:13px;border-radius: 10px;"/> </td>
+          
             <td>상세주소</td>
             <td><input type="text"size="25" name="addr2" style="padding:4px;font-size:13px;border-radius: 10px;"/> </td>
           </tr>
@@ -136,6 +127,47 @@
             
             </script>
             
+            <!-- ---------------------추가---------------------------------- -->
+            
+            <tr>
+            <td>상호명</td>
+            <td><input type="text"size="25" name="sbName" style="padding:4px;font-size:13px;border-radius: 10px;" /> </td>
+         	
+            <td></td>
+            <td></td>
+          	</tr>
+          	
+          	<tr>
+            <td>업태</td>
+            <td><input type="text"size="25" name="condition" style="padding:4px;font-size:13px;border-radius: 10px;"  /> </td>
+         	
+            <td>종목</td>
+            <td><input type="text"size="25" name="major" style="padding:4px;font-size:13px;border-radius: 10px;"/> </td>
+          	</tr>
+          	
+          	<tr>
+            <td>사업자등록증 발급일자</td>
+            <td><input type="text"size="25" name="condition" style="padding:4px;font-size:13px;border-radius: 10px;"   /> </td>
+         	
+            <td>이메일</td>
+            <td><input type="text"size="25" name="email" style="padding:4px;font-size:13px;border-radius: 10px;"/> </td>
+          	</tr>
+          	
+          	<tr>
+            <td>식당좌표</td>
+            <td><input type="text"size="25" name="storeXY" style="padding:4px;font-size:13px;border-radius: 10px;" /> </td>
+         	
+            <td>식당소개</td>
+            <td><input type="text"size="25" name="storeIntro" style="padding:4px;font-size:13px;border-radius: 10px;"/> </td>
+          	</tr>
+            
+            
+            
+            
+            
+            <!-- ----------------------------------------------------------------------- -->
+            
+            
          <tr>
          <td>업종카테고리</td>
          <td><select style="font-size: larger; border-radius: 8px;" name="category">
@@ -145,11 +177,13 @@
                <option value="일식">일식</option>
                <option value="양식">양식</option>
          </select></td>
+         
+         
          <!-- </tr> 
           <tr> -->
             <td>사업자번호</td>
             <td><input type="text" size="25"
-                       maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" name="bussinessNum" required>
+                       maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" name="bussinessNum"  >
                     
                        <input type="file" name="filebox" id="filebox" onchange="javascript:document.getElementById('upload-name').value=this.value">
                        <label for = "filebox" class="upload-hidden" >파일 </label>
@@ -175,10 +209,17 @@
             <td></td>
           </tr>
           
+          <tr>
+            <td>사업자구분</td>
+            <td><input type="radio" name="BISI" value="개인" onclick="div_OnOff(this.value,'con');" >  개인
+                <input type="radio" name="BISI" value="사업자" onclick="div_OnOff(this.value,'con');">   사업자
+            <td></td>
+            <td></td>
+          </tr>
+          
 
 			<!-- -------------------------------------------------------- -->
 			
-			<form action="${ pageContext.servletContext.contextPath }/thumbnail/insert" method="post" encType="multipart/form-data">
 			<div class="thumbnail-insert-area">
 				<table align="center">
 					<tr>
@@ -201,27 +242,21 @@
 				<div class="thumbnail-file-area">
 					<input type="file" id="thumbnailImg1" name="thumbnailImg1" onchange="loadImg(this,1)">
 					<input type="file" id="thumbnailImg2" name="thumbnailImg2" onchange="loadImg(this,2)">
-					<input type="file" id="thumbnailImg3" name="thumbnailImg3" onchange="loadImg(this,3)">
-					<input type="file" id="thumbnailImg4" name="thumbnailImg4" onchange="loadImg(this,4)">
 				</div>
 			</div>
 			<br>
-			<div class="thumbnail-btn-area">
-				<button>취소하기</button>
-				<button type="submit">작성완료</button>
-			</div>
-		</form>
+			
 			
 		<script>
 			
 			const $contentImgArea1 = document.getElementById("contentImgArea1");
 			const $contentImgArea2 = document.getElementById("contentImgArea2");
 			
-			$titleImgArea.onclick = function() { 
+			$contentImgArea1.onclick = function() { 
 				document.getElementById("thumbnailImg1").click(); 
 			}
 			
-			$contentImgArea1.onclick = function() {
+			$contentImgArea2.onclick = function() {
 				document.getElementById("thumbnailImg2").click();
 			}
 			
@@ -230,10 +265,10 @@
 					const reader = new FileReader();
 					reader.onload = function(e) {
 						switch(num){
-						case 2:
+						case 1:
 							document.getElementById("contentImg1").src = e.target.result;
 							break;
-						case 3:
+						case 2:
 							document.getElementById("contentImg2").src = e.target.result;
 							break;
 						}
@@ -249,8 +284,11 @@
 
         
          </table><br>
-            <input type="submit" class="btn" value="제 출">
-       </form>
+           <div class="thumbnail-btn-area">
+				<button>취소하기</button>
+				<button type="submit">작성완료</button>
+			</div>
+		</form>
        
        </div>
        </center>

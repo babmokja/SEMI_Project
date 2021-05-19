@@ -23,7 +23,7 @@ public class UserService {
 	public UserDTO loginCheck(UserDTO requestUser) {
 		
 		Connection con = getConnection();
-		UserDTO loginUser = null;
+		UserDTO loginUser = null;    //
 		
 		String encPwd = userDAO.selectEncryptedPwd(con,requestUser);
 		
@@ -38,6 +38,21 @@ public class UserService {
 		
 		return loginUser;
 
+	}
+	public int registUser(UserDTO requestUser) {
+		Connection con = getConnection();
+		
+	    int result = userDAO.insertUser(con,requestUser);
+	    
+	    if(result >0) {
+	    	commit(con);
+	    	
+	    }else {
+	    	rollback(con);
+	    }
+	     close(con);
+	     
+		return result;
 	}
 
 	
