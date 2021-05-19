@@ -31,7 +31,7 @@
           document.getElementById('pw').value='';
       }
       for(var i=0;i<SC.length;i++){
-          if(pw.indexOf(SC[i]) != -1){
+          if(pw.indexOf(SC[i]) != -1){ 
               check_SC = 1;
           }
       
