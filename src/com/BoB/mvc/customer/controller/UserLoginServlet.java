@@ -31,17 +31,21 @@ public class UserLoginServlet extends HttpServlet {
 		UserService userService = new UserService();
 		
 		UserDTO loginUser = userService.loginCheck(requestUser);
-		
+		String path = "";
 		if(loginUser != null) {
+			path = "/WEB-INF/views/common/success.jsp";
+			request.setAttribute("successCode", "signin");
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", loginUser);
 			
-			System.out.println("request.getContextPath() : " + request.getContextPath());
-			response.sendRedirect(request.getContextPath());
+//			System.out.println("request.getContextPath() : " + request.getContextPath());
+//			response.sendRedirect(request.getContextPath());
 		} else {
 			request.setAttribute("message", "로그인 실패!");
 			request.getRequestDispatcher("/WEB-INF/views/common/failed.jsp").forward(request, response);
 		}
+		
+		request.getRequestDispatcher(path).forward(request, response);
 		
 	}
 

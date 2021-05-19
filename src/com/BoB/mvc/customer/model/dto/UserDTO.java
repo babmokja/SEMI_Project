@@ -4,24 +4,24 @@ import java.sql.Date;
 
 public class UserDTO implements java.io.Serializable{
 
-	public int userCode;     //사용자코드
+	private int userCode;     //사용자코드
 	private String id;
 	private String pwd;
 	private String name;
 	private String phone;
 	private String email;
 	private String address;
-	private boolean withdraw;  //탈퇴여부
+	private String withdraw;  //탈퇴여부
 	private int point; 
 	private String userNo;     //주민번호
 	private int roleCode;      //역할코드
-    private boolean blacklistYn;   //블랙리스트 여부
+    private String blacklistYn;   //블랙리스트 여부
     private Date blacklistDate; 
 
 	public UserDTO() {}
 
 	public UserDTO(int userCode, String id, String pwd, String name, String phone, String email, String address,
-			boolean withdraw, int point, String userNo, int roleCode, boolean blacklistYn, Date blacklistDate) {
+			String withdraw, int point, String userNo, int roleCode, String blacklistYn, Date blacklistDate) {
 		super();
 		this.userCode = userCode;
 		this.id = id;
@@ -94,11 +94,11 @@ public class UserDTO implements java.io.Serializable{
 		this.address = address;
 	}
 
-	public boolean isWithdraw() {
+	public String isWithdraw() {
 		return withdraw;
 	}
 
-	public void setWithdraw(boolean withdraw) {
+	public void setWithdraw(String withdraw) {
 		this.withdraw = withdraw;
 	}
 
@@ -126,11 +126,11 @@ public class UserDTO implements java.io.Serializable{
 		this.roleCode = roleCode;
 	}
 
-	public boolean isBlacklistYn() {
+	public String isBlacklistYn() {
 		return blacklistYn;
 	}
 
-	public void setBlacklistYn(boolean blacklistYn) {
+	public void setBlacklistYn(String blacklistYn) {
 		this.blacklistYn = blacklistYn;
 	}
 

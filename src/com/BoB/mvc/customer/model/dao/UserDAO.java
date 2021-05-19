@@ -89,13 +89,9 @@ public class UserDAO {
 				loginUser.setAddress(rset.getString("USER_ADDRESS"));
 				loginUser.setPoint(rset.getInt("POINT"));
 				loginUser.setEmail(rset.getString("USER_EMAIL"));
-				loginUser.setWithdraw(rset.getBoolean("WITHDRAW_YN"));
 				loginUser.setRoleCode(rset.getInt("ROLE_CODE"));
-				loginUser.setBlacklistYn(rset.getBoolean("BLACKLIST_YN"));
-				loginUser.setBlacklistDate(rset.getDate("BLACKLIST_DATE"));
 				loginUser.setUserNo(rset.getString("USER_NO"));
-				
-				
+
 
 			}
 			

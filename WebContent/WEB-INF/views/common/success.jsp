@@ -39,6 +39,12 @@
 				successMessage = "썸네일 게시판 등록에 성공하셨습니다!";
 				movePath = "${ pageContext.servletContext.contextPath }/thumbnail/list";
 				break;
+			case "signin" : 
+				successMessage = "로그인에 성공하셨습니다!!!!!";
+				movePath = "${ pageContext.servletContext.contextPath }/CustomerMain.jsp";
+				break;
+						
+				
 		}
 
 		alert(successMessage);

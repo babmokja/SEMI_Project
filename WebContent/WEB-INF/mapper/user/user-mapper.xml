@@ -7,7 +7,8 @@
                 A.USER_PWD
            FROM USER_TABLE A
           WHERE A.BLACKLIST_YN = 'N'
-            AND A.USER_ID = ? 
+            AND A.WITHDRAW_YN = 'N'
+            AND A.USER_ID = ?
      </entry>
      <entry key="selectLoginUser">
         SELECT
@@ -18,13 +19,11 @@
              , A.USER_ADDRESS
              , A.POINT
              , A.USER_EMAIL
-             , A.WITHDRAW_YN
              , A.ROLE_CODE
-             , A.BLACKLIST_YN
-             , A.BLACKLIST_DATE
              , A.USER_NO
           FROM USER_TABLE A
          WHERE A.BLACKLIST_YN = 'N'
+           AND A.WITHDRAW_YN = 'N'
            AND A.USER_ID = ?
 	</entry>
 	<entry key="insertUser">
@@ -42,10 +41,11 @@
            , A.WITHDRAW_YN
            , A.POINT
            , A.ROLE_CODE
+           , A.BLACKLIST_YN
 	    )
 	    VALUES
 	    (
-<!--시퀀스 만들거임 아직 생성안함 값도 중복 안되서 가입 안됨! SEQ_USER_CODE.NEXTVAL -->133 
+<!--시퀀스 만들거임 아직 생성안함 값도 중복 안되서 가입 안됨! SEQ_USER_CODE.NEXTVAL -->136 
 	       , ?
 	       , ?
 	       , ?
@@ -55,7 +55,8 @@
 	       , ?
 	       , 'N'
 	       , DEFAULT
-	       , 3<!--  역할코드도 확인 안되어서 확인후 수정할거임 블랙리스트 디폴트 값 추가?! --> 
+	       , 3<!--  역할코드도 확인 안되어서 확인후 수정할거임 -->
+	       , 'N'
 	    )
 	
 
