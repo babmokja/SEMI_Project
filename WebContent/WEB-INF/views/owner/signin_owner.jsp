@@ -14,8 +14,8 @@
             $("#footer").load("WEB-INF/views/owner/footer.jsp");
             });
     </script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owner/semi_board/main.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owner/semi_board/signin_owner.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owner/semi_board/main.css">
 
 <title>Insert title here</title>
 </head>
@@ -56,9 +56,9 @@
   }
 </script>
 
-<body>
+<body style="overflow:scroll;">
 
-<section class="mainsec">
+<div class="mainsec">
         <label class="bigbtn" >밥묵자 사장님 회원가입</label>
         <center>
       <div id='signin'>
@@ -70,11 +70,13 @@
                  <input type="button" id="overlap" style="display:none;" >
                  <label for="overlap">중복확인</label>
              </td>
-           </tr>
-           <tr>
+          <!--  </tr>
+           <tr> -->
             <td>비밀번호 </td>
             <td><input type="password" id="pw" onchange="check_pw()"name="pw" class="chk" size="25" placeholder="영문소문자와숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" required> </td>
           </tr>
+          
+          
           <tr> 
               <td>비밀번호확인 </td>
               <td><input type="password" id="pw2"  onchange="check_pw()" name ="pw_ck" class= "chk" size="25" style="padding:4px;font-size:13px;border-radius: 10px;" required>
@@ -82,37 +84,42 @@
 
           
             </td>
-          </tr>
-          <tr>
+          <!-- </tr>
+          <tr> -->
             <td>이 름</td>
             <td><input type="text"size="25" style="padding:4px;font-size:13px;border-radius: 10px;" name="" required> </td>
           </tr>
+          
+          
           <tr> 
-            <td>휴대전화</td>
+            <td>가게전화번호</td>
             <td><input type="text" size="25"
                        maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" name="phone" required></td>
-          </tr> 
-          <tr> 
+          <!-- </tr> 
+          <tr>  -->
             <td>상호명</td>
             <td><input type="text" size="25"
                        maxlength="13" style="padding:4px;font-size:13px;border-radius: 10px;" name="storeName" required></td>
           </tr> 
+          
+          
           <tr> 
-          <td>음식점번호</td>
+          <td>번호</td>
             <td><input type="text" size="25"
                        maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" name="storeNum" required></td>
-          </tr> 
-
-          <tr>
+          <!-- </tr> 
+          <tr> -->
             <td>우편번호</td>
             <td><input type="text" name="zip" size="25" style="padding:4px;font-size:13px;border-radius: 10px;"> 
             <button type="button"  style="width:60px; background-color: #ffcc00; border: 1px solid #d9e1e8; height:32px; border-radius: 20px; font-weight: 600; font-size: 15px; cursor: pointer;" onclick="openZipSearch()">검색</button></td>
           </tr> 
+          
+          
           <tr>
             <td>가게주소</td>
             <td><input type="text"size="25" name="addr1" style="padding:4px;font-size:13px;border-radius: 10px;"  readonly /> </td>
-          </tr> 
-          <tr>
+          <!-- </tr> 
+          <tr> -->
             <td>상세주소</td>
             <td><input type="text"size="25" name="addr2" style="padding:4px;font-size:13px;border-radius: 10px;"/> </td>
           </tr>
@@ -128,6 +135,8 @@
             }
             
             </script>
+            
+         <tr>
          <td>업종카테고리</td>
          <td><select style="font-size: larger; border-radius: 8px;" name="category">
                <option value="한식">한식</option>
@@ -136,9 +145,8 @@
                <option value="일식">일식</option>
                <option value="양식">양식</option>
          </select></td>
-         </tr> 
-
-          <tr>
+         <!-- </tr> 
+          <tr> -->
             <td>사업자번호</td>
             <td><input type="text" size="25"
                        maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" name="bussinessNum" required>
@@ -156,18 +164,88 @@
                      
             </td>
           </tr>
+          
+          
           <tr>
             <td>서비스유형</td>
             <td><input type="radio" name="service" value="1" onclick="div_OnOff(this.value,'con');" >  배달만
                 <input type="radio" name="service" value="2" onclick="div_OnOff(this.value,'con');">   픽업만
                 <input type="radio" name="service" value="3" onclick="div_OnOff(this.value,'con'); ">  배달+픽업</td>
-            
+            <td></td>
+            <td></td>
           </tr>
-         
+          
 
-
-            
-
+			<!-- -------------------------------------------------------- -->
+			
+			<form action="${ pageContext.servletContext.contextPath }/thumbnail/insert" method="post" encType="multipart/form-data">
+			<div class="thumbnail-insert-area">
+				<table align="center">
+					<tr>
+					<td style="text-align:left;" colspan="2">&nbsp;&nbsp;사업자등록증 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 가게 사진</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="content-img-area1" id="contentImgArea1">
+								<img id="contentImg1" width="120" height="100">
+							</div>
+						</td>
+						<td>
+							<div class="content-img-area2" id="contentImgArea2">
+								<img id="contentImg2" width="120" height="100">
+							</div>
+						</td>				
+					</tr>
+				</table>
+				
+				<div class="thumbnail-file-area">
+					<input type="file" id="thumbnailImg1" name="thumbnailImg1" onchange="loadImg(this,1)">
+					<input type="file" id="thumbnailImg2" name="thumbnailImg2" onchange="loadImg(this,2)">
+					<input type="file" id="thumbnailImg3" name="thumbnailImg3" onchange="loadImg(this,3)">
+					<input type="file" id="thumbnailImg4" name="thumbnailImg4" onchange="loadImg(this,4)">
+				</div>
+			</div>
+			<br>
+			<div class="thumbnail-btn-area">
+				<button>취소하기</button>
+				<button type="submit">작성완료</button>
+			</div>
+		</form>
+			
+		<script>
+			
+			const $contentImgArea1 = document.getElementById("contentImgArea1");
+			const $contentImgArea2 = document.getElementById("contentImgArea2");
+			
+			$titleImgArea.onclick = function() { 
+				document.getElementById("thumbnailImg1").click(); 
+			}
+			
+			$contentImgArea1.onclick = function() {
+				document.getElementById("thumbnailImg2").click();
+			}
+			
+			function loadImg(value, num) {
+				if (value.files && value.files[0]) {
+					const reader = new FileReader();
+					reader.onload = function(e) {
+						switch(num){
+						case 2:
+							document.getElementById("contentImg1").src = e.target.result;
+							break;
+						case 3:
+							document.getElementById("contentImg2").src = e.target.result;
+							break;
+						}
+					}
+					reader.readAsDataURL(value.files[0]);
+				}
+			}
+			
+		</script>
+		
+		
+		
 
         
          </table><br>
@@ -176,7 +254,7 @@
        
        </div>
        </center>
-        </section>
+        
                  
        <footer>
         <div id="footlim">
@@ -199,7 +277,7 @@
             </small>
         </div>
     </footer>     
-
+</div>
 
 </body>
 </html>
