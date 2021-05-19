@@ -14,8 +14,8 @@
             $("#footer").load("WEB-INF/views/owner/footer.jsp");
             });
     </script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owner/semi_board/main.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owner/semi_board/signin_owner.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owner/semi_board/main.css">
 
 <title>Insert title here</title>
 </head>
@@ -31,7 +31,7 @@
           document.getElementById('pw').value='';
       }
       for(var i=0;i<SC.length;i++){
-          if(pw.indexOf(SC[i]) != -1){
+          if(pw.indexOf(SC[i]) != -1){ 
               check_SC = 1;
           }
       
@@ -56,13 +56,13 @@
   }
 </script>
 
-<body>
+<body style="overflow:scroll;">
 
-<section class="mainsec">
+<div class="mainsec">
         <label class="bigbtn" >밥묵자 사장님 회원가입</label>
         <center>
       <div id='signin'>
-    <form id="joinForm" action="${ pageContext.servletContext.contextPath }/member/owner/regist" method="post">
+    <form id="joinForm" action="${ pageContext.servletContext.contextPath }/member/owner/regist" method="post" encType="multipart/form-data">
         <table cellpadding="10" cellspacing="15" style="margin-left: 180px;" >
            <tr >
              <td>아이디 </td>
@@ -70,49 +70,47 @@
                  <input type="button" id="overlap" style="display:none;" >
                  <label for="overlap">중복확인</label>
              </td>
-           </tr>
-           <tr>
             <td>비밀번호 </td>
-            <td><input type="password" id="pw" onchange="check_pw()"name="pw" class="chk" size="25" placeholder="영문소문자와숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" required> </td>
+            <td><input type="password" id="pw" onchange="check_pw()"name="pw" class="chk" size="25" placeholder="영문소문자와숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" > </td>
           </tr>
+          
+          
           <tr> 
               <td>비밀번호확인 </td>
-              <td><input type="password" id="pw2"  onchange="check_pw()" name ="pw_ck" class= "chk" size="25" style="padding:4px;font-size:13px;border-radius: 10px;" required>
+              <td><input type="password" id="pw2"  onchange="check_pw()" name ="pw_ck" class= "chk" size="25" style="padding:4px;font-size:13px;border-radius: 10px;" >
                 <span id="check" ></span>
 
           
             </td>
-          </tr>
-          <tr>
             <td>이 름</td>
-            <td><input type="text"size="25" style="padding:4px;font-size:13px;border-radius: 10px;" name="" required> </td>
+            <td><input type="text"size="25" style="padding:4px;font-size:13px;border-radius: 10px;" name="" > </td>
           </tr>
+          
+          
           <tr> 
-            <td>휴대전화</td>
-            <td><input type="text" size="25"
-                       maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" name="phone" required></td>
-          </tr> 
-          <tr> 
+            <td>가게전화번호</td>
+            <td><input type="text" size="25" maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" name="phone" ></td>
             <td>상호명</td>
             <td><input type="text" size="25"
-                       maxlength="13" style="padding:4px;font-size:13px;border-radius: 10px;" name="storeName" required></td>
+                       maxlength="13" style="padding:4px;font-size:13px;border-radius: 10px;" name="storeName"  ></td>
           </tr> 
+          
+          
           <tr> 
-          <td>음식점번호</td>
+          <td>번호</td>
             <td><input type="text" size="25"
-                       maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" name="storeNum" required></td>
-          </tr> 
-
-          <tr>
+                       maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" name="storeNum"  ></td>
+          
             <td>우편번호</td>
             <td><input type="text" name="zip" size="25" style="padding:4px;font-size:13px;border-radius: 10px;"> 
             <button type="button"  style="width:60px; background-color: #ffcc00; border: 1px solid #d9e1e8; height:32px; border-radius: 20px; font-weight: 600; font-size: 15px; cursor: pointer;" onclick="openZipSearch()">검색</button></td>
           </tr> 
+          
+          
           <tr>
             <td>가게주소</td>
-            <td><input type="text"size="25" name="addr1" style="padding:4px;font-size:13px;border-radius: 10px;"  readonly /> </td>
-          </tr> 
-          <tr>
+            <td><input type="text"size="25" name="addr1" style="padding:4px;font-size:13px;border-radius: 10px;"/> </td>
+          
             <td>상세주소</td>
             <td><input type="text"size="25" name="addr2" style="padding:4px;font-size:13px;border-radius: 10px;"/> </td>
           </tr>
@@ -128,6 +126,49 @@
             }
             
             </script>
+            
+            <!-- ---------------------추가---------------------------------- -->
+            
+            <tr>
+            <td>상호명</td>
+            <td><input type="text"size="25" name="sbName" style="padding:4px;font-size:13px;border-radius: 10px;" /> </td>
+         	
+            <td></td>
+            <td></td>
+          	</tr>
+          	
+          	<tr>
+            <td>업태</td>
+            <td><input type="text"size="25" name="condition" style="padding:4px;font-size:13px;border-radius: 10px;"  /> </td>
+         	
+            <td>종목</td>
+            <td><input type="text"size="25" name="major" style="padding:4px;font-size:13px;border-radius: 10px;"/> </td>
+          	</tr>
+          	
+          	<tr>
+            <td>사업자등록증 발급일자</td>
+            <td><input type="text"size="25" name="condition" style="padding:4px;font-size:13px;border-radius: 10px;"   /> </td>
+         	
+            <td>이메일</td>
+            <td><input type="text"size="25" name="email" style="padding:4px;font-size:13px;border-radius: 10px;"/> </td>
+          	</tr>
+          	
+          	<tr>
+            <td>식당좌표</td>
+            <td><input type="text"size="25" name="storeXY" style="padding:4px;font-size:13px;border-radius: 10px;" /> </td>
+         	
+            <td>식당소개</td>
+            <td><input type="text"size="25" name="storeIntro" style="padding:4px;font-size:13px;border-radius: 10px;"/> </td>
+          	</tr>
+            
+            
+            
+            
+            
+            <!-- ----------------------------------------------------------------------- -->
+            
+            
+         <tr>
          <td>업종카테고리</td>
          <td><select style="font-size: larger; border-radius: 8px;" name="category">
                <option value="한식">한식</option>
@@ -136,12 +177,13 @@
                <option value="일식">일식</option>
                <option value="양식">양식</option>
          </select></td>
-         </tr> 
-
-          <tr>
+         
+         
+         <!-- </tr> 
+          <tr> -->
             <td>사업자번호</td>
             <td><input type="text" size="25"
-                       maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" name="bussinessNum" required>
+                       maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" name="bussinessNum"  >
                     
                        <input type="file" name="filebox" id="filebox" onchange="javascript:document.getElementById('upload-name').value=this.value">
                        <label for = "filebox" class="upload-hidden" >파일 </label>
@@ -156,27 +198,101 @@
                      
             </td>
           </tr>
+          
+          
           <tr>
             <td>서비스유형</td>
             <td><input type="radio" name="service" value="1" onclick="div_OnOff(this.value,'con');" >  배달만
                 <input type="radio" name="service" value="2" onclick="div_OnOff(this.value,'con');">   픽업만
                 <input type="radio" name="service" value="3" onclick="div_OnOff(this.value,'con'); ">  배달+픽업</td>
-            
+            <td></td>
+            <td></td>
           </tr>
-         
+          
+          <tr>
+            <td>사업자구분</td>
+            <td><input type="radio" name="BISI" value="개인" onclick="div_OnOff(this.value,'con');" >  개인
+                <input type="radio" name="BISI" value="사업자" onclick="div_OnOff(this.value,'con');">   사업자
+            <td></td>
+            <td></td>
+          </tr>
+          
 
-
-            
-
+			<!-- -------------------------------------------------------- -->
+			
+			<div class="thumbnail-insert-area">
+				<table align="center">
+					<tr>
+					<td style="text-align:left;" colspan="2">&nbsp;&nbsp;사업자등록증 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 가게 사진</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="content-img-area1" id="contentImgArea1">
+								<img id="contentImg1" width="120" height="100">
+							</div>
+						</td>
+						<td>
+							<div class="content-img-area2" id="contentImgArea2">
+								<img id="contentImg2" width="120" height="100">
+							</div>
+						</td>				
+					</tr>
+				</table>
+				
+				<div class="thumbnail-file-area">
+					<input type="file" id="thumbnailImg1" name="thumbnailImg1" onchange="loadImg(this,1)">
+					<input type="file" id="thumbnailImg2" name="thumbnailImg2" onchange="loadImg(this,2)">
+				</div>
+			</div>
+			<br>
+			
+			
+		<script>
+			
+			const $contentImgArea1 = document.getElementById("contentImgArea1");
+			const $contentImgArea2 = document.getElementById("contentImgArea2");
+			
+			$contentImgArea1.onclick = function() { 
+				document.getElementById("thumbnailImg1").click(); 
+			}
+			
+			$contentImgArea2.onclick = function() {
+				document.getElementById("thumbnailImg2").click();
+			}
+			
+			function loadImg(value, num) {
+				if (value.files && value.files[0]) {
+					const reader = new FileReader();
+					reader.onload = function(e) {
+						switch(num){
+						case 1:
+							document.getElementById("contentImg1").src = e.target.result;
+							break;
+						case 2:
+							document.getElementById("contentImg2").src = e.target.result;
+							break;
+						}
+					}
+					reader.readAsDataURL(value.files[0]);
+				}
+			}
+			
+		</script>
+		
+		
+		
 
         
          </table><br>
-            <input type="submit" class="btn" value="제 출">
-       </form>
+           <div class="thumbnail-btn-area">
+				<button>취소하기</button>
+				<button type="submit">작성완료</button>
+			</div>
+		</form>
        
        </div>
        </center>
-        </section>
+        
                  
        <footer>
         <div id="footlim">
@@ -199,7 +315,7 @@
             </small>
         </div>
     </footer>     
-
+</div>
 
 </body>
 </html>

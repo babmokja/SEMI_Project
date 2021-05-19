@@ -7,8 +7,8 @@
 <meta charset="UTF-8">
  <title>Menu Manage</title>
   
-  <link href="BoB/resources/css/owner/bootstrap.min.css" rel="stylesheet">
-  <link href="BoB/resources/css/owner/semi_store_css/main.css" rel="stylesheet">
+  <link href="${ pageContext.servletContext.contextPath }/resources/css/owner/bootstrap.min.css" rel="stylesheet">
+  <link href="${ pageContext.servletContext.contextPath }/resources/css/owner/semi_store_css/main.css" rel="stylesheet">
   
   <style>
 

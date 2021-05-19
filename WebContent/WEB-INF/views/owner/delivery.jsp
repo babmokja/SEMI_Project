@@ -5,13 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>PC 주문 관리</title>
-  <link rel="stylesheet" href="resources/css/owner/reset_jh.css">
-    <link rel="stylesheet" href="resources/css/owner/button_jh.css">
-    <link rel="stylesheet" href="resources/css/owner/common_jh.css">
-    <link rel="stylesheet" href="resources/css/owner/delivery_jh.css">
-    <link rel="stylesheet" href="resources/css/owner/common_main_jh.css">
-    <link rel="stylesheet" href="resources/css/owner/bootstrap.min.css">
-    <link rel="stylesheet" href="resources/css/owner/success_modalpop_jh.css">
+  <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/reset_jh.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/button_jh.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/common_jh.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/delivery_jh.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/common_main_jh.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/bootstrap.min.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/success_modalpop_jh.css">
 
     <script src="resources/js/owner/semi_store_js/function_sc.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

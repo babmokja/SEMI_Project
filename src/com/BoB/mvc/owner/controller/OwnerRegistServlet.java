@@ -15,7 +15,7 @@ import com.BoB.mvc.owner.model.service.OwnerService;
 /**
  * Servlet implementation class OwnerRegistServlet
  */
-@WebServlet("/owner/regist")
+@WebServlet("/member/owner/regist")
 public class OwnerRegistServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,6 +31,7 @@ public class OwnerRegistServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		multipartRequest multipartRequest = new MultipartRequest(request, uploadDir, 1024*1024*10, "UTF-8", new DefaultFileRenamePolicy());
 		request.setCharacterEncoding("UTF-8");
 		
 		String memberId = request.getParameter("memberId");
