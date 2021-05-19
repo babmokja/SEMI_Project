@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 <comment/>
@@ -6,7 +6,7 @@
          SELECT
                 A.USER_PWD
            FROM USER_TABLE A
-          WHERE A.BLACKLIST = 'N'
+          WHERE A.BLACKLIST_YN = 'N'
             AND A.USER_ID = ? 
      </entry>
      <entry key="selectLoginUser">
@@ -16,8 +16,8 @@
              , A.USER_NAME
              , A.USER_PHONE
              , A.USER_ADDRESS
-             , A.USER_EMAIL
              , A.POINT
+             , A.USER_EMAIL
              , A.WITHDRAW_YN
              , A.ROLE_CODE
              , A.BLACKLIST_YN
@@ -27,6 +27,43 @@
          WHERE A.BLACKLIST_YN = 'N'
            AND A.USER_ID = ?
 	</entry>
+	<entry key="insertUser">
+	    INSERT
+	      INTO USER_TABLE A
+	    (
+	         A.USER_CODE
+           , A.USER_ID
+           , A.USER_PWD
+           , A.USER_NAME
+           , A.USER_PHONE
+           , A.USER_ADDRESS
+           , A.USER_EMAIL
+           , A.USER_NO
+           , A.WITHDRAW_YN
+           , A.POINT
+           , A.ROLE_CODE
+	    )
+	    VALUES
+	    (
+<!--시퀀스 만들거임 아직 생성안함 값도 중복 안되서 가입 안됨! SEQ_USER_CODE.NEXTVAL -->133 
+	       , ?
+	       , ?
+	       , ?
+	       , ?
+	       , ? 
+	       , ?
+	       , ?
+	       , 'N'
+	       , DEFAULT
+	       , 3<!--  역할코드도 확인 안되어서 확인후 수정할거임 블랙리스트 디폴트 값 추가?! --> 
+	    )
+	
+
+	</entry>
+	
+	
+	
+
      
      
 </properties>

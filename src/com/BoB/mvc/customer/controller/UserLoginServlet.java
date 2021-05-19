@@ -21,6 +21,9 @@ public class UserLoginServlet extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
 		
+		System.out.println(userId);
+		System.out.println(userPwd);
+		
 		UserDTO requestUser = new UserDTO();
 		requestUser.setId(userId);
 		requestUser.setPwd(userPwd);
@@ -31,7 +34,7 @@ public class UserLoginServlet extends HttpServlet {
 		
 		if(loginUser != null) {
 			HttpSession session = request.getSession();
-			session.setAttribute("loginMember", loginUser);
+			session.setAttribute("loginUser", loginUser);
 			
 			System.out.println("request.getContextPath() : " + request.getContextPath());
 			response.sendRedirect(request.getContextPath());

@@ -224,13 +224,21 @@
                 </textarea>
                 
             </div>
- 
+             <form  method="post">
              <center> 
-                <input type="checkbox" id="noti" value="1" style="font-weight: 800; font-size: 20px;" /> 약관에 모두 동의합니다.<br>
-              <input type="button" class="btn" value="회원가입" style="margin-bottom: 50px; margin-top: 30px;" onclick="location.href='signin_user.html'"  >
+                <input type="checkbox" name="agree" value="1" style="font-weight: 800; font-size: 20px;" /> 약관에 모두 동의합니다.<br>
+              <input type="button" class="btn" value="회원가입" style="margin-bottom: 50px; margin-top: 30px;" onclick="signin_check();"  >
 
-          
-            </center>  
+             </form>
+            </center>
+            <script>
+                function signin_check(){
+                	 if (!agree.checked) { 
+                		    alert("약관 동의를 체크하세요.");
+                		    agree.focus();
+                		    return false;
+                } location.href = "${ pageContext.servletContext.contextPath }/SigninUser.jsp" 
+            </script>  
             
 
         </div>

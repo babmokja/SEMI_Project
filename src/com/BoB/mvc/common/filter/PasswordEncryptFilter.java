@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.BoB.mvc.common.wrapper.EncryptReqeustWrapper;
 
+
 /**
  * Servlet Filter implementation class PasswordEncryptFilter
  */
@@ -47,6 +48,8 @@ public class PasswordEncryptFilter implements Filter {
 		}
 		
 	}
+
+	
 
 	public void init(FilterConfig fConfig) throws ServletException {
 	}
