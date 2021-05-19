@@ -15,6 +15,7 @@ import java.util.Properties;
 
 import com.BoB.mvc.common.config.ConfigLocation;
 import com.BoB.mvc.owner.model.dto.MenuListDTO;
+import com.BoB.mvc.owner.model.dto.PictureDTO;
 
 public class MenuListDAO {
 	
@@ -24,7 +25,7 @@ public class MenuListDAO {
 		prop = new Properties();
 		
 		try {
-			prop.loadFromXML(new FileInputStream(ConfigLocation.MAPPER_LOCATION+"owner-mapper.xml"));
+			prop.loadFromXML(new FileInputStream(ConfigLocation.MAPPER_LOCATION+"/owner/owner-mapper.xml"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -48,13 +49,16 @@ public class MenuListDAO {
 			while(rset.next()) {
 				
 				MenuListDTO menu = new MenuListDTO();
+				menu.setPicture(new PictureDTO());
+				
 				menu.setMenuCode(rset.getString("MENU_CODE"));
 				menu.setMenuName(rset.getString("MENU_NAME"));
 				menu.setMenuExplain(rset.getString("MENU_EXP"));
 				menu.setPrice(rset.getInt("PRICE"));
 				menu.setSalesYN(rset.getString("SALES_YN"));
 				menu.setStoreCode(rset.getInt("STORE_CODE"));
-				menu.setPictureCode(rset.getInt("PICTURE_CODE"));
+				menu.getPicture().setRevisedName(rset.getString("REVISED_NAME"));
+				menu.getPicture().setRoute(rset.getString("ROUTE"));
 				
 				menuList.add(menu);
 				

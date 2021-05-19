@@ -29,8 +29,16 @@
 	
 	<entry key="selectAllMenuList">
 	SELECT
-	       *
-	  FROM MENU
+       M.MENU_CODE
+     , M.MENU_NAME
+     , M.PRICE
+     , M.MENU_EXP
+     , M.SALES_YN
+     , M.STORE_CODE
+     , P.REVISED_NAME
+     , P.ROUTE
+  FROM MENU M
+  JOIN PICTURE P ON (M.PICTURE_CODE = P.PICTURE_CODE)
 	
 	</entry>
 </properties>

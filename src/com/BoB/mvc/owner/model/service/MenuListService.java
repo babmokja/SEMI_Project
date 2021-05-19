@@ -28,4 +28,9 @@ public class MenuListService {
 		return menuList;
 	}
 
+	public int insertBoard(MenuListDTO newMenu) {
+
+		return 0;
+	}
+
 }
