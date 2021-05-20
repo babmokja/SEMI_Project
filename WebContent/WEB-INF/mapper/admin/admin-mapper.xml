@@ -42,4 +42,66 @@
                ) A
          WHERE A.RNUM BETWEEN ? AND ?
 	</entry>
+
+	<entry key="selectCartList">
+				SELECT
+		    C.MENU_NAME,
+		    C.PRICE
+		    FROM ORDER_DETAIL A
+		    JOIN BASKET B ON(A.CART_CODE = B.CART_CODE)
+		    JOIN MENU C ON(B.MENU_CODE = C.MENU_CODE)
+		    WHERE A.ORDER_CODE = ?
+         
+	</entry>
+	
+	<entry key="selectOrderDetail">
+					SELECT
+		    B.USER_NAME,
+		    B.USER_PHONE,
+		    B.USER_ADDRESS,
+		    A.REQUEST,
+		    C.STORE_NAME,
+		    D.USER_PHONE "Stophone",
+		    C.STORE_ADDR
+		    FROM ORDER_TABLE A
+		    JOIN USER_TABLE B ON (A.USER_CODE = B.USER_CODE)
+		    JOIN STORE_TABLE C ON (A.STORE_CODE = C.STORE_CODE)
+		    JOIN USER_TABLE D ON (C.USER_CODE = D.USER_CODE)
+		    WHERE A.ORDER_CODE = ?
+         
+	</entry>
+	
+	<entry key="selectRoleCode">
+		SELECT
+			   A.ROLE_CODE
+		  FROM USER_TABLE A
+		 WHERE A.USER_ID = ?
+	</entry>
+	
+	<entry key="selectEncryptedPwd">
+		SELECT
+			   A.USER_PWD
+		  FROM USER_TABLE A
+		 WHERE USER_ID = ? 
+	</entry>
+	
+	<entry key="selectLoginMember">
+		SELECT
+		  	   A.USER_CODE
+		     , A.USER_ID
+		     , A.USER_PWD
+		     , A.USER_NAME
+		     , A.USER_PHONE
+		     , A.USER_ADDRESS
+		     , A.POINT
+		     , A.USER_EMAIL
+		     , A.WITHDRAW_YN
+		     , A.ROLE_CODE
+		     , A.BLACKLIST_YN
+		     , A.BLACKLIST_DATE
+		     , A.USER_NO
+		  FROM USER_TABLE A
+		 WHERE A.USER_ID = ?
+		  
+	</entry>
 </properties>
