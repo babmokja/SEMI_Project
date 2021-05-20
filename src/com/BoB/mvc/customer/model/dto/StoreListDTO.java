@@ -8,7 +8,7 @@ public class StoreListDTO implements java.io.Serializable {
 	private String congestion; // 혼잡도 => div갯수 => 주문진행중인것의 갯수
 	private double star;       // 별점
 	private int reviewCnt;     // 리뷰 개수
-	private int photo;         // 대표 이미지
+	private String photo;      // 대표 이미지
 	private String address;    // 지도정보 -> 가게 주소
 	
 	public StoreListDTO() {
@@ -16,7 +16,7 @@ public class StoreListDTO implements java.io.Serializable {
 	}
 
 	public StoreListDTO(String category, String type, String storeName, String congestion, double star, int reviewCnt,
-			int photo, String address) {
+			String photo, String address) {
 		super();
 		this.category = category;
 		this.type = type;
@@ -76,11 +76,11 @@ public class StoreListDTO implements java.io.Serializable {
 		this.reviewCnt = reviewCnt;
 	}
 
-	public int getPhoto() {
+	public String getPhoto() {
 		return photo;
 	}
 
-	public void setPhoto(int photo) {
+	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
 

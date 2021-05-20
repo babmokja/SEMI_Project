@@ -70,19 +70,19 @@
 			</div>
 			<div class="nav">
 				<span> <a
-					href="${ pageContext.servletContext.contextPath }/store/list"
+					href="${ pageContext.servletContext.contextPath }/store/list?cate=kor&type=1&order=congestion&currentPage=1"
 					class="a" id="kor">한식</a>
 				</span> <span> <a
-					href="${ pageContext.servletContext.contextPath }/store/list"
+					href="${ pageContext.servletContext.contextPath }/store/list?cate=fra&type=1&order=congestion&currentPage=1"
 					class="a" id="fra">프랜차이즈</a>
 				</span> <span> <a
-					href="${ pageContext.servletContext.contextPath }/store/list"
+					href="${ pageContext.servletContext.contextPath }/store/list?cate=chi&type=1&order=congestion&currentPage=1"
 					class="a" id="chi">중식</a>
 				</span> <span> <a
-					href="${ pageContext.servletContext.contextPath }/store/list"
+					href="${ pageContext.servletContext.contextPath }/store/list?cate=jap&type=1&order=congestion&currentPage=1"
 					class="a" id="jap">일식</a>
 				</span> <span> <a
-					href="${ pageContext.servletContext.contextPath }/store/list"
+					href="${ pageContext.servletContext.contextPath }/store/list?cate=ame&type=1&order=congestion&currentPage=1"
 					class="a" id="ame">양식</a>
 				</span>
 			</div>
