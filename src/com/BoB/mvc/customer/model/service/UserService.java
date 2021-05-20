@@ -32,6 +32,7 @@ public class UserService {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		
 		if(passwordEncoder.matches(requestUser.getPwd(), encPwd)) {
+	        
 			loginUser = userDAO.selectLoginUser(con, requestUser);
 		}
 		System.out.println("loginUser : " + loginUser);
