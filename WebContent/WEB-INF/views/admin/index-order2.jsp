@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+       <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html lang="ko">
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -68,34 +70,19 @@
               <hr class="start-line">
               <div class="row">
                 
-                <span class="recipe-item col-3 ">아메리카노</span>
-                <span class="recipe-item col-6 ">4,500원</span>
-                
-                <span class="recipe-sub-item col-10 ">기본 : 단품 (4,000원)</span>
-                <span class="recipe-sub-item col-10 ">음료 선택 : ICE (+500원)</span>
-                
-                <br>
-                <br>
-                <span class="recipe-item col-3 ">카페라떼</span>
-                <span class="recipe-item col-6 ">5,000원</span>
-                
-                <span class="recipe-sub-item col-10 ">기본 : 단품 (4,500원)</span>
-                <span class="recipe-sub-item col-10 ">음료 선택 : ICE (+500원)</span>
+                <c:set var="intArray" value="0" />
+                <c:forEach var="cart" items="${ requestScope.cartList }">
+					
+						 <span class="recipe-item col-3 "><c:out value="${ cart.menuName }"/></span>
+               			 <span class="recipe-item col-6 "><c:out value="${ cart.price }원"/></span>
+               			 <c:set var="intArray" value="${intArray+cart.price}" />
+					</c:forEach>
                 
                 <br>
-                <br>
-                <br>
-                <br>
-                
-                <span class="recipe-item col-3 ">총 주문금액</span>
-                <span class="recipe-item col-6 ">9,500원</span>
-                <span class="recipe-item col-3 ">배달팁</span>
-                <span class="recipe-item col-6 ">2,000원</span>
-                <br>
-                <br>
-                <br>
+          <br>
+				<br>
                 <span class="recipe-item col-3 ">총 결제금액</span>
-                <span class="recipe-item col-6 ">11,000원</span>
+                <span class="recipe-item col-6 "><c:out value="${ intArray }원"/></span>
                 
                 
               </div>
@@ -107,70 +94,49 @@
           
           <br>
           <br>
+          <c:forEach var="order" items="${ requestScope.orderDetailList  }">
+          
           <div class="row">
             <div class="col-10 offset-md-1">
               <div class="mid-font">
                 고객 정보
-                
               </div>
               <hr class="start-line">
               <div class="row">
-                
                 <span class="list-item col-2 recipe-item ">고객명</span>
-                <span class="list-item col-9 recipe-item">고객1</span>
+                <span class="list-item col-9 recipe-item"><c:out value="${ order.cusName }"/></span>
                 <span class="list-item col-2 recipe-item ">연락처</span>
-                <span class="list-item col-9 recipe-item ">010-1234-1234</span>
+                <span class="list-item col-9 recipe-item "><c:out value="${ order.cusPhone }"/></span>
                 <span class="list-item col-2 recipe-item ">받는 주소</span>
-                <span class="list-item col-9 recipe-item ">서울특별시 무슨구 무슨동</span>
+                <span class="list-item col-9 recipe-item "><c:out value="${ order.cusAddr }"/></span>
                 <span class="list-item col-2 recipe-item ">요청사항</span>
-                <span class="list-item col-9  recipe-item">요청사항 예시입니다.</span>
+                <span class="list-item col-9  recipe-item"><c:out value="${ order.request }"/></span>
                 <br>
                 <br>
                 <hr class="end-line">
-                
-                
-                
               </div>
-              
-              
-              
             </div>
-            
-            
           </div>
-          
-          
           <br>
           <br>
           <div class="row">
             <div class="col-10 offset-md-1">
               <div class="mid-font">
                 업체 정보
-                
               </div>
               <hr class="start-line">
               <div class="row">
-                
                 <span class="list-item col-2 recipe-item ">가게명</span>
-                <span class="list-item col-9 recipe-item ">가게1</span>
+                <span class="list-item col-9 recipe-item "><c:out value="${ order.stoName }"/></span>
                 <span class="list-item col-2 recipe-item ">연락처</span>
-                <span class="list-item col-9 recipe-item ">010-1234-1234</span> 
+                <span class="list-item col-9 recipe-item "><c:out value="${ order.stoPhone }"/></span> 
                 <span class="list-item col-2 recipe-item ">가게 주소</span>
-                <span class="list-item col-9 recipe-item ">서울특별시 무슨구 무슨동</span>
+                <span class="list-item col-9 recipe-item "><c:out value="${ order.stoAddr }"/></span>
                 <br>
                 <br>
                 <hr class="end-line">
-                
-                
-                
-                
               </div>
-              
-              
-              
             </div>
-            
-            
           </div>
           <br>
           <br>
@@ -183,6 +149,9 @@
           
         </main>
       </div>
+          
+       			</c:forEach>
+          
         
       <div class="footer text-right align-middle" style="background-color:#EF9309;">
         <a class="text-dark footer-text text-decoration-none">Copyright &copy; BABMOKJA All Right Reserved.&nbsp;</a>

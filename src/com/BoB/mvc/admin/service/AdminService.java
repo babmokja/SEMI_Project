@@ -8,7 +8,9 @@ import java.util.List;
 
 import com.BoB.mvc.admin.dao.OrderDAO;
 import com.BoB.mvc.admin.dto.PageInfoDTO;
+import com.BoB.mvc.admin.dto.cartDTO;
 import com.BoB.mvc.admin.dto.orderDTO;
+import com.BoB.mvc.admin.dto.orderDetailDTO;
 
 public class AdminService {
 
@@ -40,5 +42,24 @@ public class AdminService {
 		
 		
 		return orderList;
+	}
+
+	public List<cartDTO> selectCartList(int orderNumber) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+		List<cartDTO> cartList = OrderDAO.selectCartList(con,orderNumber);
+		close(con);
+
+		return cartList;
+	}
+
+	public List<orderDetailDTO> selectOrderDetail(int orderNumber) {
+		// TODO Auto-generated method stub
+		
+		Connection con = getConnection();
+		List<orderDetailDTO> orderDetailList = OrderDAO.selectOrderDetail(con,orderNumber);
+		close(con);
+
+		return orderDetailList;
 	}
 }

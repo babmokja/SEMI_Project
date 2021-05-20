@@ -110,7 +110,7 @@
 						<td><c:out value="${ board.price }"/></td>
 						<td><c:out value="${ board.cusPhone }"/></td>
 						<td><c:out value="${ board.stoPhone }"/></td>
-						<td><a href="${pageContext.servletContext.contextPath}/admin/order/detail" class="link-dark">상세보기</a></td>
+						<td><a href="${pageContext.servletContext.contextPath}/admin/order/detail?ordernum=${ board.orderNum }"  class="link-dark">상세보기</a></td>
 					</tr>
 					</c:forEach>
                 </tbody>
@@ -193,6 +193,7 @@
     <script>
 		const link = "${ pageContext.servletContext.contextPath }/admin/order";
 		const searchLink = "${ pageContext.servletContext.contextPath }/board/search";
+		const detail = "${ pageContext.servletContext.contextPath }/admin/order/detail";
 			
 		if(document.getElementById("startPage")) {
 			const $startPage = document.getElementById("startPage");
@@ -207,6 +208,8 @@
 				location.href = link + "?currentPage=${ requestScope.pageInfo.pageNo - 1 }";
 			}
 		}
+		
+
 		
 		if(document.getElementById("nextPage")) {
 			const $nextPage = document.getElementById("nextPage");
