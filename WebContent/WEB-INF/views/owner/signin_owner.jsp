@@ -19,42 +19,101 @@
 
 <title>Insert title here</title>
 </head>
-<script>
-  function check_pw(){
+					<script>
+                  function memid() {
+                  
+   
+                     //****** .은 아무문자 들어와도 되는 위치 잡는 역할 .개수 그 이상도 가능하다. 이하는 불가능 
+   
+                     var regExp = /^[a-z^]{4}[a-z\dA-Z^]{0,}$/
+                     var regExp2 = /^[A-Z^]{4}[a-z\dA-Z^]{0,}$/
 
-      var pw = document.getElementById('pw').value;
-      var SC = ["!","@","#","$","%"];
-      var check_SC = 0;
+                     
+   
+                     var pno = document.getElementById("memberId").value;
+   
+                     // 개수만 맞으면 true 반환
+                     console.log(regExp.test(pno));
+                     if (regExp.test(pno)||regExp2.test(pno)) {
+                       alert("정상입력");
+                     } else {
+                       alert("영문자 4자리로 시작해야합니다.(특수문자 사용불가)");
+                     }
+                 }
+                 </script>
+					<script>
+                      function mempwd() {
+                      
+       
+                         //****** .은 아무문자 들어와도 되는 위치 잡는 역할 .개수 그 이상도 가능하다. 이하는 불가능 
+       
+                         var regExp = /^[A-Z\da-z]{6,16}$/
+                         var regExp2 = /^[0-9]{6,16}$/
+    
+                         var pno = document.getElementById("mempwd").value;
+       
+     					
+					     
+					      if(document.getElementById('pw').value !='' && document.getElementById('pw2').value!=''){
+					          if(document.getElementById('pw').value==document.getElementById('pw2').value){
+					              document.getElementById('check').innerHTML='비밀번호가 일치'
+					              document.getElementById('check').style.color='blue';
+					             
+					          }
+					          else{
+					              document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
+					              document.getElementById('check').style.color='red';
+					              document.getElementsById('img').innerHTML=imgg;
+					             
+					          }
+					      }
+                         
+                         // 개수만 맞으면 true 반환
+                         console.log(regExp.test(pno));
+                         if (regExp.test(pno)||regExp2.test(pno)) {
+                           alert("정상입력");
+                         } else {
+                           alert("6자리이상 16자리이하로 입력하세요.(특수문자 사용불가)");
+                         }
+                     }
+                     </script>
+                <script>
+                  function namecheck() {
+                  
+                     var regExp = /^[가-힣^]{3,}$/
+   
+                     var pno = document.getElementById("named").value;
+   
+                     // 개수만 맞으면 true 반환
+                     console.log(regExp.test(pno));
+                     if (regExp.test(pno)) {
+                       alert("정상입력");
+                     } else {
+                       alert("한글로 입력해주세요");
+                     }
+                 }
+                 </script>
+                 <script>
+               function resi() {
+               
 
-      if(pw.length < 6 || pw.length>16){
-          window.alert('비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다.');
-          document.getElementById('pw').value='';
-      }
-      for(var i=0;i<SC.length;i++){
-          if(pw.indexOf(SC[i]) != -1){ 
-              check_SC = 1;
-          }
-      
-         if(check_SC == 1){
-          document.getElementById('check').innerHTML='비밀번호에 특수문자가 포함되어 있습니다.';
-          document.getElementById('check').style.color='red';  
-        }
-      }
-      if(document.getElementById('pw').value !='' && document.getElementById('pw2').value!=''){
-          if(document.getElementById('pw').value==document.getElementById('pw2').value){
-              document.getElementById('check').innerHTML='비밀번호가 일치'
-              document.getElementById('check').style.color='blue';
-             
-          }
-          else{
-              document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
-              document.getElementById('check').style.color='red';
-              document.getElementsById('img').innerHTML=imgg;
-             
-          }
-      }
-  }
-</script>
+                  //****** .은 아무문자 들어와도 되는 위치 잡는 역할 .개수 그 이상도 가능하다. 이하는 불가능 
+
+                  var regExp = /\d\d\d\d\d\d-[1234]\d\d\d\d\d\d/;
+                  var regExp2 = /\d\d\d\d\d\d-[1234]\d\d\d\d\d\d/;
+
+                  var pno = document.getElementById("residentNum").value;
+
+                  // 개수만 맞으면 true 반환
+                  console.log(regExp.test(pno));
+                  if (regExp.test(pno)||regExp2.test(pno)) {
+                    alert("정상입력");
+                  } else {
+                    alert("잘못 입력");
+                  }
+              }
+              </script>
+
 
 <body style="overflow:scroll;">
 
@@ -70,8 +129,9 @@
                  <input type="button" id="overlap" style="display:none;" >
                  <label for="overlap">중복확인</label>
              </td>
+             
             <td>비밀번호 </td>
-            <td><input type="password" id="pw" onchange="check_pw()" name="pw" class="chk" size="25" placeholder="영문소문자와숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" > </td>
+            <td><input type="password" id="pw" onchange="mempwd();" name="pw"  class="chk" size="25" placeholder="6자리 이상 16자리 이하로 입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" > </td>
           </tr>
           
           
@@ -140,8 +200,22 @@
             <td><input type="text"size="25" name="sbName" style="padding:4px;font-size:13px;border-radius: 10px;" /> </td>
          	
             <td>주민등록번호</td>
-            <td><input type="text"size="25" name="residentNum" style="padding:4px;font-size:13px;border-radius: 10px;" /></td>
+            <td><input type="text"size="25" name="residentNum" id="residentNum" style="padding:4px;font-size:13px;border-radius: 10px;" /></td>
           	</tr>
+          	<script>
+        	function test7(){
+                var regExp = /\d\d\d\d\d\d-[1234]\d\d\d\d\d\d/;
+                // [1234]=1,2,3,4만 포함
+                var pno = document.getElementById("residentNum").value;
+
+                if(regExp.test(pno)){
+                    alert("정상입력");
+                } else {
+                    alert("잘못입력");
+                }
+                //여기까지 숫자,문자 걸러냄
+		        }
+		    </script>
           	
           	<tr>
             <td>업태</td>

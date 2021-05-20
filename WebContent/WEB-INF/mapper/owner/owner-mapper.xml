@@ -71,7 +71,20 @@
 	, ?
 	)
 	</entry>
-	
+	<entry key="selectEncryptedPwd">
+		SELECT 
+		  	   U.USER_PWD
+	 	  FROM USER_TABLE U
+	 	 WHERE U.WITHDRAW_YN = 'N'
+	 	   AND U.USER_ID = ?
+	</entry>
+	<entry key="selectLoginOwner">
+		SELECT
+			   U.*
+		  FROM USER_TABLE U
+		 WHERE U.WITHDRAW_YN = 'N'
+	 	   AND U.USER_ID = ?
+	</entry>
 	<entry key="selectAllMenuList">
 	SELECT
 	       *

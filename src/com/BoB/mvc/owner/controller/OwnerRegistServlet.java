@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.BoB.mvc.owner.model.dto.LicenseManagerDTO;
 import com.BoB.mvc.owner.model.dto.OwnerDTO;
@@ -256,7 +257,14 @@ public class OwnerRegistServlet extends HttpServlet {
 				
 				OwnerDTO owner = new OwnerDTO();
 				owner.setMemberId(parameter.get("memberId"));
-				owner.setMemberPwd(parameter.get("pw"));
+				String value = "";
+				BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+				value = passwordEncoder.encode(parameter.get("pw"));
+				owner.setMemberPwd(value);
+//				owner.setMemberPwd(parameter.get("pw"));
+
+//				System.out.println(value);
 				owner.setName(parameter.get("named"));
 				owner.setPhone(parameter.get("phone").replace("-",""));
 				owner.setAddress(parameter.get("addr1")  + " " + parameter.get("addr2"));
@@ -269,7 +277,7 @@ public class OwnerRegistServlet extends HttpServlet {
 				
 				StoreInfoDTO store = new StoreInfoDTO();
 				store.setStoreName(parameter.get("storeName"));
-				store.setBusinessNum(Integer.parseInt(parameter.get("businessNum")));
+				store.setBusinessNum(Integer.parseInt(parameter.get("businessNum").replace("-","")));
 				store.setStoreXY(parameter.get("storeXY"));
 				store.setStoreIntro(parameter.get("storeIntro"));
 				store.setCategory(parameter.get("category"));
@@ -283,20 +291,20 @@ public class OwnerRegistServlet extends HttpServlet {
 				
 //				
 				
-				/* 서비스 메소드를 요청한다. */
-				int result = new OwnerService().registOwner(picture,lm,owner,store);
-				
-				/* 성공 실패 페이지를 구분하여 연결한다. */
-				String path = "";
-				if(result > 0) {
-					path = "/WEB-INF/views/common/success.jsp";
-					request.setAttribute("successCode", "insertOwner");
-				} else {
-					path = "/WEB-INF/views/common/failed.jsp";
-					request.setAttribute("message", "사업자 등록 실패!");
-				}
-				
-				request.getRequestDispatcher(path).forward(request, response);
+//				/* 서비스 메소드를 요청한다. */
+//				int result = new OwnerService().registOwner(picture,lm,owner,store);
+//				
+//				/* 성공 실패 페이지를 구분하여 연결한다. */
+//				String path = "";
+//				if(result > 0) {
+//					path = "/WEB-INF/views/common/success.jsp";
+//					request.setAttribute("successCode", "insertOwner");
+//				} else {
+//					path = "/WEB-INF/views/common/failed.jsp";
+//					request.setAttribute("message", "사업자 등록 실패!");
+//				}
+//				
+//				request.getRequestDispatcher(path).forward(request, response);
 //				
 //				
 //				
