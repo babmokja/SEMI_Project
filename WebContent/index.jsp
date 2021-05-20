@@ -24,13 +24,15 @@
 	<!-- 결제 페이지 -->
 	<%-- <jsp:forward page="/WEB-INF/views/customer/Pay.jsp"/> --%>
 	<!-- 고객 로그인 페이지 -->
-	<jsp:forward page="/WEB-INF/views/customer/Login.jsp"/>
+	<%-- <jsp:forward page="/WEB-INF/views/customer/Login.jsp"/> --%>
 	<!--  고객 리뷰 페이지 -->
     <%-- <jsp:forward page="/WEB-INF/views/customer/Review.jsp"/> --%>
     <!-- 고객 가입 약관 페이지 -->
     <%-- <jsp:forward page="/WEB-INF/views/customer/SigninCommon.jsp"/> --%>
     <!-- 고객 가입 페이지 -->
     <%-- <jsp:forward page="/WEB-INF/views/customer/SigninUser.jsp"/> --%>
+    <!-- 고객 정보 수정 페이지 -->
+    <%-- <jsp:forward page="/WEB-INF/views/customer/ModifyUserInfo.jsp"/> --%>
     <!-- 고객 마이페이지 -->
     <%-- <jsp:forward page="/WEB-INF/views/customer/Mypage.jsp"/ >--%>
     <!--  고객 게시글 목록 -->
