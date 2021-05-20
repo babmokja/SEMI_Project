@@ -62,6 +62,7 @@ public class MenuListDAO {
 				
 				menuList.add(menu);
 				
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -71,6 +72,20 @@ public class MenuListDAO {
 		}
 		
 		return menuList;
+	}
+
+	public int insertNewMenu(Connection con, MenuListDTO newMenu) {
+
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		
+		
+		MenuListDTO menuDTO= null;
+		PictureDTO pictureDTO =null;
+		
+		String query = prop.getProperty("");
+		return 0;
 	}
 
 }

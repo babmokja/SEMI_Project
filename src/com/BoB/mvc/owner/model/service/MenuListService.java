@@ -5,9 +5,11 @@ import static com.BoB.mvc.common.jdbc.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
 import java.util.List;
+import java.util.Map;
 
 import com.BoB.mvc.owner.model.dao.MenuListDAO;
 import com.BoB.mvc.owner.model.dto.MenuListDTO;
+import com.BoB.mvc.owner.model.dto.PictureDTO;
 
 public class MenuListService {
 	
@@ -30,7 +32,16 @@ public class MenuListService {
 
 	public int insertBoard(MenuListDTO newMenu) {
 
-		return 0;
+		Connection con = getConnection();
+		int result=0;
+//		int pictureResult = PictureDTO.insertPicture(con,)
+//		
+//		int result = menuListDAO.insertNewMenu(con, newMenu);
+//		
+//		close(con);
+		return result;
 	}
+
+
 
 }

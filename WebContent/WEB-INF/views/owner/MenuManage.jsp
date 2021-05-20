@@ -55,7 +55,7 @@
                 &nbsp;&nbsp;&nbsp; <a class="text-dark" href="${ pageContext.servletContext.contextPath }/owner/menu/all">내 업소 관리</a>
               </span>
               <span class="col-2 menu-item">
-                <img class="img-fluid" src="${ pageContext.servletContext.contextPath }/resources/image/owner/seme_store/PC주문관리.png" width="40px" height="40px" />
+                <img class="img-fluid" src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/PC주문관리.png" width="40px" height="40px" />
                 &nbsp;&nbsp;&nbsp;<a class="text-dark" href="${ pageContext.servletContext.contextPath }/owner/delivery">pc주문현황</a>
               </span>
   
@@ -79,6 +79,8 @@
               
              
               <br>
+              <form action="${pageContext.servletContext.contextPath}/menu/new" method="post" encType="multipart/form-data">
+              
               <table class="table  table-sm  text-center">
                 <thead>
                   <tr>
@@ -92,11 +94,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                 <form action="${pageContext.servletContext.contextPath}/menu/new" method="Post">
                 <c:forEach items="${ requestScope.menuList }" var="menu">
                   <tr>
                     <td><input class="form-control" type="text" value=<c:out value="${menu.menuName}"/>></td>
-                    <td><input type="text"   class="form-control text-right"  style="display:inline-block;width:200px;" value=<c:out value="${menu.price}"/>> 원</td>
+                    <td><input type="text"   class="form-control text-right"  style="display:inline-block;width:150px;" value=<c:out value="${menu.price}"/>> 원</td>
                     <td>               
                       <select class="form-select" > 
                       <c:if test="${ menu.salesYN eq 'Y' }">
@@ -113,40 +114,47 @@
 	                    </select>
                    </td>
                     <td><input class="form-control" type="text" value= <c:out value ="${menu.menuExplain}" /> ></td>
-                    <td><a href="#"><img src="${pageContext.servletContext.contextPath}/resources/image/owner/pic.png" /></a></td>
+                    <td><input type="file"></td>
                     <td><a href="#"><img src="${pageContext.servletContext.contextPath}/resources/image/owner/delete.png" /></a></td>
+                  	<%-- <img src="${pageContext.servletContext.contextPath}/resources/image/owner/pic.png" /> --%>
                   </tr>
                 </c:forEach>
             
 	                  <tr>
-	                    <td><input class="form-control" type="text"  value="갈비천왕(순살)"/></td>
-	                    <td><input type="text"   class="form-control text-right"  style="display:inline-block;width:200px;" value="18000"> 원</td>
-	                    <td><select class="form-select" >
+	                    <td><input class="form-control" type="text" name="menuName" value="갈비천왕(순살)"/></td>
+	                    <td><input type="text"   class="form-control text-right"  name ="price" style="display:inline-block;width:150px;" value="18000"><p>원</p></td>
+	                    <td><select class="form-select" name="salesYN">
 	                      <option >판매여부 선택</option>
 	                      <option value="Y">판매중</option>
 	                      <option value="N" selected>품절</option>
 	                    </select></td>
-	                    <td><input class="form-control" type="text" value="달콤한 갈비양념이 제대로!치킨의 새로운 지존"></td>
+	                    <td><input class="form-control" type="text" name="menuExplain" value="달콤한 갈비양념이 제대로!치킨의 새로운 지존"></td>
 	                    <!-- <td><input type=><a href="#"><img src="../images/pic.png" /></a></td> -->
-	                    <td><a href="#"><img src="${pageContext.servletContext.contextPath}/resources/image/owner/pic.png" /></a></td>
+						<td><input type="file" name="singlefile" multiple="multiple"></td>
 	                    <td><a href="#"><img src="${pageContext.servletContext.contextPath}/resources/image/owner/delete.png" /></a></td>
 	                  </tr>
+	                  
+	                  </tbody>
+             		 </table>
+             		 
+             		 <div class="row">
+			            <span class="col-10"></span>
+			            
+			            <%-- <span class="col-1"><a href="${pageContext.servletContext.contextPath}/menu/new"><img src="${pageContext.servletContext.contextPath}/resources/image/owner/config.png" /></a></span>
+			            <span class="col-1"><a href="#"><img src="${pageContext.servletContext.contextPath}/resources/image/owner/backpage.png" /></a></span> --%>
+			            <button type="submit">test</button>	
+			            
+			          </div>
                   </form>
                       
                   
-                </tbody>
-              </table>
+                
               
 
               
             </div>
           </div>
-          <div class="row">
-            <span class="col-10"></span>
-            
-            <span class="col-1"><a href="${pageContext.servletContext.contextPath}/menu/new"><img src="${pageContext.servletContext.contextPath}/resources/image/owner/config.png" /></a></span>
-            <span class="col-1"><a href="#"><img src="${pageContext.servletContext.contextPath}/resources/image/owner/backpage.png" /></a></span>
-          </div>
+          
         </main>
         
       </div>
