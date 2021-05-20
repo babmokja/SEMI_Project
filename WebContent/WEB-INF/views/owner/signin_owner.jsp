@@ -71,7 +71,7 @@
                  <label for="overlap">중복확인</label>
              </td>
             <td>비밀번호 </td>
-            <td><input type="password" id="pw" onchange="check_pw()"name="pw" class="chk" size="25" placeholder="영문소문자와숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" > </td>
+            <td><input type="password" id="pw" onchange="check_pw()" name="pw" class="chk" size="25" placeholder="영문소문자와숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" > </td>
           </tr>
           
           
@@ -83,23 +83,22 @@
           
             </td>
             <td>이 름</td>
-            <td><input type="text"size="25" style="padding:4px;font-size:13px;border-radius: 10px;" name="" > </td>
+            <td><input type="text"size="25" style="padding:4px;font-size:13px;border-radius: 10px;" name="named" > </td>
           </tr>
           
           
           <tr> 
             <td>가게전화번호</td>
             <td><input type="text" size="25" maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" name="phone" ></td>
-            <td>상호명</td>
+            <td>가게이름</td>
             <td><input type="text" size="25"
                        maxlength="13" style="padding:4px;font-size:13px;border-radius: 10px;" name="storeName"  ></td>
           </tr> 
           
           
           <tr> 
-          <td>번호</td>
-            <td><input type="text" size="25"
-                       maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" name="storeNum"  ></td>
+          <td>개업일자</td>
+            <td><input type="date"size="25" name="openDate" style="padding:4px;font-size:13px;border-radius: 10px;"   /></td>
           
             <td>우편번호</td>
             <td><input type="text" name="zip" size="25" style="padding:4px;font-size:13px;border-radius: 10px;"> 
@@ -113,6 +112,13 @@
           
             <td>상세주소</td>
             <td><input type="text"size="25" name="addr2" style="padding:4px;font-size:13px;border-radius: 10px;"/> </td>
+          </tr>
+          <tr>
+            <td>본점소재지</td>
+            <td><input type="text"size="25" name="mainAddress" style="padding:4px;font-size:13px;border-radius: 10px;"/> </td>
+          
+            <td></td>
+            <td></td>
           </tr>
           <script>
             function openZipSearch() {
@@ -133,8 +139,8 @@
             <td>상호명</td>
             <td><input type="text"size="25" name="sbName" style="padding:4px;font-size:13px;border-radius: 10px;" /> </td>
          	
-            <td></td>
-            <td></td>
+            <td>주민등록번호</td>
+            <td><input type="text"size="25" name="residentNum" style="padding:4px;font-size:13px;border-radius: 10px;" /></td>
           	</tr>
           	
           	<tr>
@@ -147,7 +153,7 @@
           	
           	<tr>
             <td>사업자등록증 발급일자</td>
-            <td><input type="text"size="25" name="condition" style="padding:4px;font-size:13px;border-radius: 10px;"   /> </td>
+            <td><input type="date"size="25" name="issueDate" style="padding:4px;font-size:13px;border-radius: 10px;"   /> </td>
          	
             <td>이메일</td>
             <td><input type="text"size="25" name="email" style="padding:4px;font-size:13px;border-radius: 10px;"/> </td>
@@ -183,9 +189,9 @@
           <tr> -->
             <td>사업자번호</td>
             <td><input type="text" size="25"
-                       maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" name="bussinessNum"  >
+                       maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" name="businessNum"  >
                     
-                       <input type="file" name="filebox" id="filebox" onchange="javascript:document.getElementById('upload-name').value=this.value">
+                       <!-- <input type="file" name="filebox" id="filebox" onchange="javascript:document.getElementById('upload-name').value=this.value">
                        <label for = "filebox" class="upload-hidden" >파일 </label>
                        <input type='text' class='upload-name' id='upload-name' disabled />
                        <script>
@@ -194,7 +200,7 @@
                             var files = e.target.files;
                             uploadname.value = files[0].name
                         })
-                      </script>
+                      </script> -->
                      
             </td>
           </tr>

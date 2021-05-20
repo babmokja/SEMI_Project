@@ -46,7 +46,7 @@
 
                 <button type="submit" id="login_btn">로그인</button>
                 <div class="sign_up_btn">
-                    <li><a href="${ pageContext.servletContext.contextPath }/owner/regist">회원가입</a></li>
+                    <li><a href="${ pageContext.servletContext.contextPath }/owner/move/signin">회원가입</a></li>
                 </div>
 
             </div>
