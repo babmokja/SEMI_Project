@@ -78,6 +78,13 @@
 		 WHERE A.USER_ID = ?
 	</entry>
 	
+	<entry key="searchId">
+			select
+	     user_pwd
+	    from user_table
+	    where user_id = ?
+	</entry>
+	
 	<entry key="selectEncryptedPwd">
 		SELECT
 			   A.USER_PWD

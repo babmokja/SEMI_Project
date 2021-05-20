@@ -11,7 +11,7 @@
 	
 	
 	<!-- 관리자 -->
-	 <%--<jsp:forward page="/WEB-INF/views/admin/main_manager.jsp"/> --%>
+	<jsp:forward page="/WEB-INF/views/admin/main_manager.jsp"/>
 	
 	
 
