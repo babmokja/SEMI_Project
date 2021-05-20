@@ -62,4 +62,20 @@ public class AdminService {
 
 		return orderDetailList;
 	}
+
+	public int searchOrderCount(String condition, String value) {
+		Connection con = getConnection();
+		int totalCount = OrderDAO.searchOrderCount(con,condition,value);
+		close(con);
+
+		return totalCount;
+	}
+
+	public List<orderDTO> searchOrderList(String condition, String value, PageInfoDTO pageInfo) {
+		Connection con = getConnection();		
+		
+		List<orderDTO> orderList = OrderDAO.searchOrderList(con,pageInfo,condition,value);
+		close(con);
+		return orderList;
+	}
 }

@@ -63,28 +63,53 @@
           
           <div class="row">
             <div class="table-responsive col-10 offset-md-1">
+              <form id="loginForm" action="${ pageContext.servletContext.contextPath }/admin/search" method="get">
+	              <div class="row">
+	                
+	                
+	                <c:choose>
+				    <c:when test="${ !empty requestScope.searchValue }">
+   					    <div class="col-3">
+	                  주문번호,고객명,가게명
+	                  <select class="form-select" id="searchCondition" name="searchCondition" >
+	                    <option value="orderNo" <c:if test="${requestScope.searchCondition eq 'orderNo'}">selected</c:if>>주문번호</option>
+		                <option value="cusName"<c:if test="${requestScope.searchCondition eq 'cusName'}">selected</c:if>>고객명</option>
+		                <option value="stoName"<c:if test="${requestScope.searchCondition eq 'stoName'}">selected</c:if>>가게명</option>
+	                  </select>
+	                </div>
+	                <div class="col-3">
+	                  주문번호,고객명,가게명 입력
+	                  <input class="form-control" type="search" id="searchValue" name="searchValue" value="${ requestScope.searchValue }" >
+	                </div>
+				    </c:when>
+				    <c:otherwise>
+						    <div class="col-3">
+		                  주문번호,고객명,가게명
+		                  <select class="form-select" id="searchCondition" name="searchCondition" >
+		                    <option value="orderNo">주문번호</option>
+		                    <option value="cusName">고객명</option>
+		                    <option value="stoName">가게명</option>
+		                  </select>
+		                </div>
+		                <div class="col-3">
+		                  주문번호,고객명,가게명 입력
+		                  <input class="form-control" type="search" id="searchValue" name="searchValue" >
+		                </div>
+				    </c:otherwise>
+				</c:choose>
+				
+				
+	                
+	                
+	                
+	                <div class="col-3">
+	                  <br>
+	                  <button type="submit" class="btn btn-outline-secondary">검색하기</button>
+	                </div>
+	              </div>
+             </form> 
               
-              <div class="row">
-                <div class="col-3">
-                  주문번호,고객명,가게명
-                  <select class="form-select" >
-                    <option selected>카테고리 선택</option>
-                    <option value="1">주문번호</option>
-                    <option value="2">고객명</option>
-                    <option value="3">가게명</option>
-                  </select>
-                </div>
-                <div class="col-3">
-                  주문번호,고객명,가게명 입력
-                  <input class="form-control" type="text" >
-                  
-                </div>
-                
-                <div class="col-3">
-                  <br>
-                  <button type="button" class="btn btn-outline-secondary">검색하기</button>
-                </div>
-              </div>
+              
               <br>
               <table class="table table-striped table-sm  text-center">
                 <thead>
@@ -192,7 +217,7 @@
     
     <script>
 		const link = "${ pageContext.servletContext.contextPath }/admin/order";
-		const searchLink = "${ pageContext.servletContext.contextPath }/board/search";
+		const searchLink = "${ pageContext.servletContext.contextPath }/admin/search";
 		const detail = "${ pageContext.servletContext.contextPath }/admin/order/detail";
 			
 		if(document.getElementById("startPage")) {
