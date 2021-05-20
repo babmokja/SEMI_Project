@@ -14,7 +14,9 @@ import java.util.List;
 import java.util.Properties;
 
 import com.BoB.mvc.admin.dto.PageInfoDTO;
+import com.BoB.mvc.admin.dto.cartDTO;
 import com.BoB.mvc.admin.dto.orderDTO;
+import com.BoB.mvc.admin.dto.orderDetailDTO;
 import com.BoB.mvc.common.config.ConfigLocation;
 
 public class OrderDAO {
@@ -78,9 +80,7 @@ public class OrderDAO {
 			orderList = new ArrayList<>();
 			
 			while(rset.next()) {
-				orderDTO order = new orderDTO();
-				
-				
+				orderDTO order = new orderDTO();		
 				order.setOrderNum(rset.getInt("ORDER_CODE"));
 				order.setCusName(rset.getString("USER_NAME"));
 				order.setStoName(rset.getString("STORE_NAME"));
@@ -88,11 +88,6 @@ public class OrderDAO {
 				order.setPrice(rset.getInt("TOTAL_AMOUNT"));
 				order.setCusPhone(rset.getString("USER_PHONE"));	
 				order.setStoPhone(rset.getString("StoPhone"));
-
-
-				
-
-				
 				orderList.add(order);
 			}
 		} catch (SQLException e) {
@@ -103,5 +98,71 @@ public class OrderDAO {
 		}
 		
 		return orderList;
+	}
+
+	public List<cartDTO> selectCartList(Connection con, int orderNumber) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		List<cartDTO> cartList = null;
+		String query = prop.getProperty("selectCartList");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, orderNumber);
+			rset = pstmt.executeQuery();
+			
+			cartList = new ArrayList<>();
+			
+			while(rset.next()) {
+				cartDTO cart = new cartDTO();		
+				cart.setMenuName(rset.getString("MENU_NAME"));
+				cart.setPrice(rset.getInt("PRICE"));
+				
+				cartList.add(cart);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return cartList;
+	}
+
+	public List<orderDetailDTO> selectOrderDetail(Connection con, int orderNumber) {
+		// TODO Auto-generated method stub
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<orderDetailDTO> orderDetailList = null;
+		String query = prop.getProperty("selectOrderDetail");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, orderNumber);
+			rset = pstmt.executeQuery();
+			
+			orderDetailList = new ArrayList<>();
+			
+			if(rset.next()) {
+				orderDetailDTO order = new orderDetailDTO();		
+				order.setCusName(rset.getString("USER_NAME"));
+				order.setCusPhone(rset.getString("USER_PHONE"));
+				order.setCusAddr(rset.getString("USER_ADDRESS"));
+				order.setRequest(rset.getString("REQUEST"));
+				order.setStoName(rset.getString("STORE_NAME"));
+				order.setStoPhone(rset.getString("StoPhone"));
+				order.setStoAddr(rset.getString("STORE_ADDR"));
+				
+				orderDetailList.add(order);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return orderDetailList;
 	}
 }
