@@ -15,28 +15,28 @@
 	  </center>
       <center>
         <div class="section1">
-            <form class="reviewsec">
+            <form class="reviewsec" action="${ pageContext.servletContext.contextPath }/review" method="post" encType="multipart/form-data">
                 <br>
                 <br>
                 <h1>사진과 함께 리뷰 작성시 포인트 적립 혜택!!</h1>
                 
                 <div id=emotion>
-                  <span class=emoji>
-                    <img src="resources/image/customer/good.png">
-                    &nbsp;&nbsp;&nbsp;
-                    <img src="resources/image/customer/okay.png">
-                    &nbsp;&nbsp;&nbsp;
-                    <img src="resources/image/customer/bad.png">
-                  </span>
+                   <span class=emoji>
+                      <img src="resources/image/customer/good.png">
+                       &nbsp;&nbsp;&nbsp;
+                      <img src="resources/image/customer/okay.png">
+                       &nbsp;&nbsp;&nbsp;
+                      <img src="resources/image/customer/bad.png">
+                   </span>
                 </div> 
                     
-                    <input type="radio"  name="taste"value="good" >
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="radio" name="taste" value="soso">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="radio" name="taste" value="bad">
+                     <input type="radio"  name="emoji"value="5" >
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <input type="radio" name="emoji" value="3">
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <input type="radio" name="emoji" value="1">
             
               
                <div>
@@ -56,7 +56,7 @@
               
         
                 <div id ="review">
-                    <textarea name = "text" id= "text" cols="50" rows="20" placeholder=
+                    <textarea name = "reviewContent" id= "text" cols="50" rows="20" placeholder=
                     "
                 사진과 함께 리뷰 작성시 최대 150 포인트 적립 가능!
                 음식에 대한 솔직한 리뷰를 남겨주세요(500자이하)" style="border-radius:10px;"maxlength="500"></textarea>
@@ -64,7 +64,7 @@
                 </div>
                 
                 <div><span id="counter">###</span></div>
-                <script>
+                  <script>
                    $(function() {
                    $('#text').keyup(function (e){
                    var content = $(this).val();
@@ -72,7 +72,7 @@
                    });
                    $('#text').keyup();
                    });
-                </script>   
+                 </script>   
              
               <div class="imagePreview" style="background:url('resources/image/customer/camera.png');background-repeat: no-repeat; margin-top: 20px;">
               <div class = "file_input">

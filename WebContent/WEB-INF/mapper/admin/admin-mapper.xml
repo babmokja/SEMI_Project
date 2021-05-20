@@ -1,10 +1,80 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
+<comment/>
 	<entry key="selectTotalCount">
 		SELECT 
                COUNT(*)
           FROM ORDER_TABLE A
          
+	</entry>
+	
+	<entry key="selectOrderList1">
+        SELECT 
+            A.RNUM,
+		    A.ORDER_CODE,
+		    A.USER_NAME,
+		    A.STORE_NAME,
+		    A.ORDER_TIME,
+		    A.TOTAL_AMOUNT,
+		    A.USER_PHONE,
+		    A.USER_PHONE "StoPhone"
+          FROM (SELECT ROWNUM RNUM,
+                     		    B.ORDER_CODE,
+                                B.USER_NAME,
+                                B.STORE_NAME,
+                                B.ORDER_TIME,
+                                B.TOTAL_AMOUNT,
+                                B.USER_PHONE,
+                                B.USER_PHONE "StoPhone"
+                  FROM (SELECT 		    C.ORDER_CODE,
+                                        D.USER_NAME,
+                                        E.STORE_NAME,
+                                        C.ORDER_TIME,
+                                        C.TOTAL_AMOUNT,
+                                        D.USER_PHONE,
+                                        F.USER_PHONE "StoPhone"
+                                        FROM ORDER_TABLE C
+                                        JOIN USER_TABLE D ON(C.USER_CODE = D.USER_CODE)
+                                        JOIN STORE_TABLE E ON(C.STORE_CODE = E.STORE_CODE)
+                                        JOIN USER_TABLE F ON(E.USER_CODE = F.USER_CODE)
+                                        ORDER BY C.ORDER_CODE DESC
+                        ) B
+               ) A
+         WHERE A.RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="selectRoleCode">
+		SELECT
+			   A.ROLE_CODE
+		  FROM USER_TABLE A
+		 WHERE A.USER_ID = ?
+	</entry>
+	
+	<entry key="selectEncryptedPwd">
+		SELECT
+			   A.USER_PWD
+		  FROM USER_TABLE A
+		 WHERE USER_ID = ? 
+	</entry>
+	
+	<entry key="selectLoginMember">
+		SELECT
+		  	   A.USER_CODE
+		     , A.USER_ID
+		     , A.USER_PWD
+		     , A.USER_NAME
+		     , A.USER_PHONE
+		     , A.USER_ADDRESS
+		     , A.POINT
+		     , A.USER_EMAIL
+		     , A.WITHDRAW_YN
+		     , A.ROLE_CODE
+		     , A.BLACKLIST_YN
+		     , A.BLACKLIST_DATE
+		     , A.USER_NO
+		  FROM USER_TABLE A
+		 WHERE A.USER_ID = ?
+		  
 	</entry>
 </properties>

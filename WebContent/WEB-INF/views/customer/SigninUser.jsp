@@ -14,100 +14,83 @@
     <link rel="stylesheet" href="resources/css/customer/signin_user.css">
 </head>
 <body>
-    <center>
+   
       <center>
         <jsp:include page="/WEB-INF/views/common/customer/header.jsp" />
-     </center>
+      </center>
 
-    <center>
+  
         <div id= 'signin1' style="margin-top: 80px;">
-        <h1>밥묵자 간편 회원가입</h1><br>
-        <form name=form method="post" onsubmit="return checkAll()">
-        <table cellpadding="10" cellspacing="15"style="margin-top:20px" >
-           <tr>
-             <th>아이디 </th>
-             <td><input type="text" size = "25"style="font-size:13px;border-radius: 10px; border:1px solid gray;">
+          <h1>밥묵자 간편 회원가입</h1><br>
+           <form name="form" id = "form" method="post" action="${ pageContext.servletContext.contextPath }/member/user/signin">
+            <table style="margin-top:20px" >
+             <tr>
+              <th>아이디 </th>
+               <td><input type="text" name ="userId" size = "25"style="font-size:13px;border-radius: 10px; border:1px solid gray;">
                  <input type="button" id="overlap" style="display:none;" >
                  <label for="overlap">중복확인</label>
-             </td>
-           </tr>
-           <tr>
-            <th>비밀번호 </th>
-            <td><input type="password" id="pw" onchange="check_pw()"name="pw" class="chk" size="25" placeholder="영문소문자와숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;"> </td>
-          </tr>
-          <tr> 
-              <th>비밀번호확인 </th>
-              <td><input type="password" id="pw2"  onchange="check_pw()" name ="pw_ck" class= "chk" size="25" style="padding:4px;font-size:13px;border-radius: 10px;">
-                <span id="check" ></span>
-
+               </td>
+             </tr>
+           
+             <tr>
+              <th>비밀번호 </th>
+               <td><input type="password" name="userPwd" id="pw" onchange="check_pw()"name="pw" class="chk" size="25" placeholder="영문소문자와숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;"> </td>
+             </tr>
           
-            </td>
-          </tr>
-          <tr>
-            <th>이 름</th>
-            <td><input type="text"size="25" style="padding:4px;font-size:13px;border-radius: 10px;"> </td>
-          </tr>
-          <tr> 
-            <th>주민번호</th>
-            <td><input type="text" size="25"
+             <tr> 
+              <th>비밀번호확인 </th>
+               <td><input type="password"  name="userPwd" id="pw2"  onchange="check_pw()" name ="pw_ck" class= "chk" size="25" style="padding:4px;font-size:13px;border-radius: 10px;">
+                <span id="check" ></span>
+               </td>
+             </tr>
+          
+             <tr>
+              <th>이 름</th>
+                <td><input type="text" id="name"name ="userName" size="25" style="padding:4px;font-size:13px;border-radius: 10px;"> </td>
+             </tr>
+          
+             <tr> 
+              <th>주민번호</th>
+                <td><input type="text" name ="userNo"size="25"
                        maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;"></td>
-          </tr>
+             </tr>
 
-          <tr> 
-            <th>휴대전화</th>
-            <td><input type="text" size="25"
+             <tr> 
+               <th>휴대전화</th>
+                <td><input type="text" name="userPhone" size="25"
                        maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;"></td>
-          </tr>
-          <tr>
-            <th>우편번호</th>
-            <td><input type="text" name="zip" size="25" style="padding:4px;font-size:13px;border-radius: 10px;"> 
-            <button type="button"  style="width:60px; background-color: #ffcc00; border: 1px solid #d9e1e8; height:32px; border-radius: 20px; font-weight: 600; font-size: 15px; cursor: pointer;" onclick="openZipSearch()">검색</button></td>
-          </tr>
-          <tr>
-            <th>주소</th>
-            <td><input type="text"size="25" name="addr1" style="padding:4px;font-size:13px;border-radius: 10px;" readonly /> </td>
-          </tr> 
-          <tr>
-            <th>상세주소</thß>
-            <td><input type="text"size="25" name="addr2" style="padding:4px;font-size:13px;border-radius: 10px;"/> </td>
-          </tr>
-          <script>
-            function openZipSearch() {
-                new daum.Postcode({
-                    oncomplete: function(data) {
-                        $('[name=zip]').val(data.zonecode); // 우편번호 (5자리)
-                        $('[name=addr1]').val(data.address);
-                        $('[name=addr2]').val(data.buildingName);
-                    }
-                }).open();
-            }
-            
-            </script>
-            <tr>
+             </tr>
+         
+             <tr>
+               <th>우편번호</th>
+                 <td><input type="text" name="zip" size="25" style="padding:4px;font-size:13px;border-radius: 10px;"> 
+                 <button type="button"  style="width:60px; background-color: #ffcc00; border: 1px solid #d9e1e8; height:32px; border-radius: 20px; font-weight: 600; font-size: 15px; cursor: pointer;" id="searchZipCode">검색</button></td>
+             </tr>
+          
+             <tr>
+               <th>주소</th>
+                <td><input type="text"size="25" name="addr1" style="padding:4px;font-size:13px;border-radius: 10px;" readonly /> </td>
+             </tr> 
+             <tr>
+               <th>상세주소</th>
+                 <td><input type="text"size="25" name="addr2" style="padding:4px;font-size:13px;border-radius: 10px;"/> </td>
+             </tr>
+
+             <tr>
               <th>이메일</th>
-              <td><input type="text" id="mail" name="mail" size="25" style="padding:4px;font-size:13px;border-radius: 10px;"></td>
-              <script>
-
-                    var emailRegExp = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
-                    if (!emailRegExp.test(mail)) {
-                         window.alert("이메일 형식이 올바르지 않습니다!");
-                         form.mail.value = "";
-                         form.mail.focus();
-                         return false;
-                    }
-                    
-              </script>
-              
-          </tr>
+                <td><input type="text" id="mail" name="userEmail" size="25" style="padding:4px;font-size:13px;border-radius: 10px;"></td>   
+             </tr>
+ 
+         </table>
+           <br>
+           <br>
+            
+            <input type="submit" class="btn" value="제 출" style="margin-bottom: 50px;">
             
             
-        </table>
-        <br><br>
-            <input type="button" class="btn" value="제 출" style="margin-bottom: 50px;"onclick="location.href='CustomerMain2.html'">
-        </p>
-      </form>
+        </form>
         </div>
-    </center> 
+
    
                  
         <footer>
@@ -159,13 +142,46 @@
           else{
               document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
               document.getElementById('check').style.color='red';
-              document.getElementsById('img').innerHTML=imgg;
+              
              
           }
       }
   }
-</script>           
-    
+</script>
+<script>
+    var emailRegExp = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
+    if (!emailRegExp.test(mail)) {
+               window.alert("이메일 형식이 올바르지 않습니다!");
+               form.mail.value = "";
+               form.mail.focus();
+               return false;
+    }
+</script>
+<script>
+     const $searchZipCode = document.getElementById("searchZipCode");
+     
+     $searchZipCode.onclick = function() {
+                new daum.Postcode({
+                    oncomplete: function(data) {
+                        $('[name=zip]').val(data.zonecode); // 우편번호 (5자리)
+                        $('[name=addr1]').val(data.address);
+                        $('[name=addr2]').val(data.buildingName);
+                    }
+                }).open();
+            }      
+</script> 
+
+<script type="text/javascript"> 
+    var a = document.getElementById("join");  
+    a.addEventListener("submit" , function(e) {
+        if(a.name.value.length == 0){
+        	alert("이름을 입력해주세요 ")
+        	e.preventDefault();
+            a.name.focus();
+            return ;
+        }
+    });
+</script>    
 
 
 </body>
