@@ -8,6 +8,12 @@
 </head>
 <body>
 	
+	
+	
+	<!-- 관리자 -->
+	 <%--<jsp:forward page="/WEB-INF/views/admin/main_manager.jsp"/> --%>
+	
+	
 	<!-- 고객 -->
 	<!-- 고객 메인 페이지 -->
 	<%-- <jsp:forward page="/WEB-INF/views/customer/CustomerMain.jsp"/> --%>
@@ -24,7 +30,7 @@
 	<!-- 결제 페이지 -->
 	<%-- <jsp:forward page="/WEB-INF/views/customer/Pay.jsp"/> --%>
 	<!-- 고객 로그인 페이지 -->
-	<jsp:forward page="/WEB-INF/views/customer/Login.jsp"/>
+	<!--<jsp:forward page="/WEB-INF/views/customer/Login.jsp"/>-->
 	<!--  고객 리뷰 페이지 -->
     <%-- <jsp:forward page="/WEB-INF/views/customer/Review.jsp"/> --%>
     <!-- 고객 가입 약관 페이지 -->
@@ -46,8 +52,5 @@
 
 	<%-- <jsp:forward page="/WEB-INF/views/owner/main_store.jsp"/> --%>
 	
-	
-	<!-- 관리자 -->
-	<%-- <jsp:forward page="/WEB-INF/views/admin/main_manager.jsp"/> --%> 
 	
 </html>
