@@ -1,6 +1,13 @@
 package com.BoB.mvc.owner.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,16 +15,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-<<<<<<< HEAD
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.BoB.mvc.owner.model.dto.LicenseManagerDTO;
-=======
->>>>>>> branch 'master' of https://github.com/babmokja/SEMI_Project.git
 import com.BoB.mvc.owner.model.dto.OwnerDTO;
+import com.BoB.mvc.owner.model.dto.PictureDTO;
 import com.BoB.mvc.owner.model.dto.StoreInfoDTO;
 import com.BoB.mvc.owner.model.service.OwnerService;
 
