@@ -80,7 +80,18 @@
 	</entry>
 	<entry key="selectLoginOwner">
 		SELECT
-			   U.*
+			   U.USER_CODE
+			 , U.USER_ID
+			 , U.USER_NAME
+			 , U.USER_PHONE
+			 , U.USER_ADDRESS
+			 , U.POINT
+			 , U.USER_EMAIL
+			 , U.WITHDRAW_YN
+			 , U.ROLE_CODE
+			 , U.BLACKLIST_YN
+			 , U.BLACKLIST_DATE
+			 , U.USER_NO
 		  FROM USER_TABLE U
 		 WHERE U.WITHDRAW_YN = 'N'
 	 	   AND U.USER_ID = ?

@@ -44,7 +44,7 @@
 	<!-- 업주 -->
 	<!-- 업체 메인 페이지 -->
 
-	<%-- <jsp:forward page="/WEB-INF/views/owner/main_store.jsp"/> --%>
+	<jsp:forward page="/WEB-INF/views/owner/main_store.jsp"/>
 	
 	
 	<!-- 관리자 -->

@@ -21,19 +21,19 @@ public class OwnerLoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String memberId = request.getParameter("memberId");
-		String memberPwd = request.getParameter("pw");
+		String pw = request.getParameter("pw");
 		
 		System.out.println("memberId : " + memberId);
-		System.out.println("memberPwd : " + memberPwd);
+		System.out.println("memberPwd : " + pw);
 		
 		OwnerDTO requestMember = new OwnerDTO();
 		requestMember.setMemberId(memberId);
-		requestMember.setMemberPwd(memberPwd);
+		requestMember.setMemberPwd(pw);
 		
 		OwnerService ownerService = new OwnerService();
 		
 		OwnerDTO loginMember = ownerService.loginCheck(requestMember);
-		
+		System.out.println(loginMember);
 		if(loginMember != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginMember", loginMember);

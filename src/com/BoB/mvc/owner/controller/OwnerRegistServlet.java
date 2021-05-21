@@ -291,20 +291,20 @@ public class OwnerRegistServlet extends HttpServlet {
 				
 //				
 				
-//				/* 서비스 메소드를 요청한다. */
-//				int result = new OwnerService().registOwner(picture,lm,owner,store);
-//				
-//				/* 성공 실패 페이지를 구분하여 연결한다. */
-//				String path = "";
-//				if(result > 0) {
-//					path = "/WEB-INF/views/common/success.jsp";
-//					request.setAttribute("successCode", "insertOwner");
-//				} else {
-//					path = "/WEB-INF/views/common/failed.jsp";
-//					request.setAttribute("message", "사업자 등록 실패!");
-//				}
-//				
-//				request.getRequestDispatcher(path).forward(request, response);
+				/* 서비스 메소드를 요청한다. */
+				int result = new OwnerService().registOwner(picture,lm,owner,store);
+				
+				/* 성공 실패 페이지를 구분하여 연결한다. */
+				String path = "";
+				if(result > 0) {
+					path = "/WEB-INF/views/common/success.jsp";
+					request.setAttribute("successCode", "insertOwner");
+				} else {
+					path = "/WEB-INF/views/common/failed.jsp";
+					request.setAttribute("message", "사업자 등록 실패!");
+				}
+				
+				request.getRequestDispatcher(path).forward(request, response);
 //				
 //				
 //				
@@ -338,31 +338,6 @@ public class OwnerRegistServlet extends HttpServlet {
 	}
 		
 
-		
-		
-				
-//		OwnerService ownerService = new OwnerService();
-//		
-//		int result = ownerService.registOwner(requestOwner, requestStore);
-//
-//		
-//		System.out.println("memberController result : " + result);
-//		
-//		String page = "";
-//		
-//		page = "/WEB-INF/views/common/success.jsp";
-//		
-//		if(result > 0) {
-//			
-//			page = "/WEB-INF/views/common/success.jsp";
-//			request.setAttribute("successCode", "insertMember");
-//			
-//		} else {
-//			page = "/WEB-INF/views/common/failed.jsp";
-//			request.setAttribute("message", "회원 가입 실패!");
-//		}
-		
-//		request.getRequestDispatcher(page).forward(request, response);
 		
 		
 	}
