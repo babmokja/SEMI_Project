@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,6 +41,31 @@ public class OwnerRegistServlet extends HttpServlet {
 	
 	}
 
+	
+/* 파일 업로드시 필수적으로 사용하는 값 */
+	
+	private String rootLocation; /* 경로 */
+	private int maxFileSize;	/* 최대 파일사이즈 */
+	private String encodingType; /* 인코딩 타입 */
+	
+	@Override
+	public void init() throws ServletException {
+		
+//		-------------- 업로드 필수요소 경로,용량,언어셋 가져와서 선언하기 -------------------
+		
+		// 해당값 가져오기 context에 설정된 값 다 가져올수 있다.
+		// .getContextPath : 루트컨텍스트 경로를 가져오기, 언제사용? 동적으로 사용할때 나중에 변수에 담아서도 사용
+		ServletContext context = getServletContext();
+		// web.xml context-param속성에 지정한 값들은 getInitParameter()메소드를 이용해서 꺼내어 쓸수있다.
+		rootLocation = context.getInitParameter("upload-location");
+		maxFileSize = Integer.parseInt(context.getInitParameter("max-file-size"));
+		encodingType = context.getInitParameter("encoding-type");
+		
+		
+		
+	}
+	
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -319,4 +345,4 @@ public class OwnerRegistServlet extends HttpServlet {
 		
 	}
 
-}
+

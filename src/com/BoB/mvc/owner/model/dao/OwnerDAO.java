@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import com.BoB.mvc.common.config.ConfigLocation;
+import com.BoB.mvc.owner.model.dto.LicenseManagerDTO;
 import com.BoB.mvc.owner.model.dto.OwnerDTO;
 import com.BoB.mvc.owner.model.dto.PictureDTO;
 import com.BoB.mvc.owner.model.dto.StoreInfoDTO;
@@ -23,52 +24,89 @@ public class OwnerDAO {
 	public OwnerDAO() {
 		
 		try {
-			prop.loadFromXML(new FileInputStream(ConfigLocation.MAPPER_LOCATION+"owner-mapper.xml"));
+			prop.loadFromXML(new FileInputStream(ConfigLocation.MAPPER_LOCATION+"owner/owner-mapper.xml"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 	}
+	
+	
 
-	public int insertOwner(Connection con, OwnerDTO requestOwner, StoreInfoDTO requestStore) {
+	public int insertPicture(Connection con, Map<String, PictureDTO> picture) {
 		
-		PreparedStatement pstmt = null;
+		PreparedStatement pstmt1 = null;
 		PreparedStatement pstmt2 = null;
-		
-		int result = 0;
+		int result1 = 0;
 		int result2 = 0;
 		
-		String query = prop.getProperty("insertOwner");
-		String query2 = prop.getProperty("insertStore");
+		String query1 = prop.getProperty("insertPicture");
+		String query2 = prop.getProperty("insertPicture");
 		
 		
 		try {
-			pstmt = con.prepareStatement(query);
-			pstmt.setString( 1 , requestOwner.getMemberId());
-			pstmt.setString( 2 , requestOwner.getMemberPwd());
-			pstmt.setString( 3 , requestOwner.getName());
-			pstmt.setString( 4 , requestOwner.getPhone());
-			pstmt.setString( 5 , requestOwner.getAddress());
-			pstmt.setString( 6 , requestOwner.getEmail());
-			pstmt.setString( 7 , requestOwner.getResidentNum());
+			pstmt1 =con.prepareStatement(query1);
 			
-			result = pstmt.executeUpdate();
-		if(result>0) {
-			pstmt = con.prepareStatement(query2);
+//			2개 동시에 넣는방법?
+			
+			pstmt1.setString(1, picture.get("pict1").getOriginName());
+			pstmt1.setString(2, picture.get("pict1").getRevisedName());
+			pstmt1.setString(3, picture.get("pict1").getRoute());
+			result1 =pstmt1.executeUpdate();
+			
+			pstmt2 =con.prepareStatement(query2);
+			pstmt2.setString(1, picture.get("pict2").getOriginName());
+			pstmt2.setString(2, picture.get("pict2").getRevisedName());
+			pstmt2.setString(3, picture.get("pict2").getRoute());
 			
 			
-			
+			result2 =pstmt2.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt1);
+			close(pstmt2);
+		}
+		
+		
+		return result1+result2;
+	}
+	
+	public int insertLicenseManager(Connection con, LicenseManagerDTO lm, Map<String, PictureDTO> picture) {
+		
+		PreparedStatement pstmt = null;
+		
+		int result2 = 0;
+		
+		String query = prop.getProperty("insertLicenseManager");
+		
+		try {
+			pstmt =con.prepareStatement(query);
+			pstmt.setString(1, lm.getSbName());
+			pstmt.setString(2, lm.getBISI());
+			pstmt.setDate(3, lm.getOpenDate());
+			pstmt.setString(4, lm.getAddress());
+			pstmt.setString(5, lm.getCondition());
+			pstmt.setString(6, lm.getMajor());
+			pstmt.setString(7, lm.getMainAddress());
+			pstmt.setDate(8, lm.getIssueDate());
 			
 			result2 = pstmt.executeUpdate();
-		}
+			
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
 		
+		
+		
 		return result2;
 	}
+	
+	
 	
 
 	public int insertOwner(Connection con, OwnerDTO Owner) {
@@ -211,6 +249,13 @@ public class OwnerDAO {
 
 
 
+	
+
+
+
+
+
+	
 	
 	
 	

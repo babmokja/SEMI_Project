@@ -32,6 +32,28 @@
   	<url-pattern>/*</url-pattern>
   </filter-mapping>
   
+    <!-- 기입후 대기 상태로 만들어놓고 파일 업로드시 여기설정값 사용 -->
+  <!-- 웹app실행시 처음 실행시 생성해서 넘겨주는 기본 설정값 적용 --> 
+  <context-param> 
+  <param-name>upload-location</param-name>
+  <param-value>C:\\upload-files</param-value>
+  <!--운영체제에따라 표현방식다름 넣어주는곳 표시하는중  -->
+  <!-- 이전에 escape문자에서 역슬래시 하나로는 안된다를 알려주심 xml에서는 역슬래시 두개를 하나로 인식한다. -->
+  
+  </context-param>
+  <context-param>
+  <!-- COS MULTI 용량제한 하나씩 적용된다. -->
+  <param-name>max-file-size</param-name>
+  <param-value>50000000</param-value>
+   </context-param>
+   
+   
+   <context-param>
+   	<param-name>encoding-type</param-name>
+   	<param-value>UTF-8</param-value>
+   </context-param>
+  
+  
   <!-- css url mapping -->
    <servlet-mapping>
      <servlet-name>default</servlet-name>
