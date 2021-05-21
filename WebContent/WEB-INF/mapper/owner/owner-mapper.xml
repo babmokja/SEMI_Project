@@ -1,42 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-	<entry key="insertPicture">
-	INSERT
-	  INTO PICTURE
-	VALUES
-	(
-	  SEQ_PICTURE.NEXTVAL
-	, SYSDATE
-	, 'N'
-	, ?
-	, ?
-	, ?
-	)
-	</entry>
-	<entry key="insertLicenseManager">
-	INSERT
-	  INTO LICENSE_MANAGE
-	VALUES
-	(
-	  ?
-	, ?
-	, ?
-	, ?
-	, ?
-	, ?
-	, ?
-	, ?
-	, SEQ_LMANAGER.NEXTVAL
-	, SEQ_PICTURE.CURRVAL
-	)
-	</entry>
 	<entry key="insertOwner">
 	INSERT
-	  INTO USER_TABLE
+	  INTO USER_TABLE U
 	  VALUES
 	  (  
-	    SEQ_USER.NEXTVAL
+	  INDEX???
 	  , ?
 	  , ?
 	  , ?
@@ -53,38 +23,38 @@
 	</entry>
 	<entry key="insertStore">
 	INSERT
-	  INTO STORE_TABLE
-	VALUES
-	(
-	  ?
-	, ?
-	, ?
-	, ?
-	, ?
-	, SEQ_USER.CURRVAL
-	, SEQ_LMANAGER.CURRVAL
-	, SEQ_STORE.NEXTVAL
-	, SEQ_PICTURE.CURRVAL
-	, 'N'
-	, SYSDATE
-	, ?
-	, ?
-	)
-	</entry>
+	  INTO
 	
+	</entry>
+	<entry key="selectEncryptedPwd">
+		SELECT 
+		  	   U.USER_PWD
+	 	  FROM USER_TABLE U
+	 	 WHERE U.WITHDRAW_YN = 'N'
+	 	   AND U.USER_ID = ?
+	</entry>
+	<entry key="selectLoginOwner">
+		SELECT
+			   U.USER_CODE
+			 , U.USER_ID
+			 , U.USER_NAME
+			 , U.USER_PHONE
+			 , U.USER_ADDRESS
+			 , U.POINT
+			 , U.USER_EMAIL
+			 , U.WITHDRAW_YN
+			 , U.ROLE_CODE
+			 , U.BLACKLIST_YN
+			 , U.BLACKLIST_DATE
+			 , U.USER_NO
+		  FROM USER_TABLE U
+		 WHERE U.WITHDRAW_YN = 'N'
+	 	   AND U.USER_ID = ?
+	</entry>
 	<entry key="selectAllMenuList">
 	SELECT
-       M.MENU_CODE
-     , M.MENU_NAME
-     , M.PRICE
-     , M.MENU_EXP
-     , M.SALES_YN
-     , M.STORE_CODE
-     , P.REVISED_NAME
-     , P.ROUTE
- 	 FROM MENU M
-  	 JOIN PICTURE P ON (M.PICTURE_CODE = P.PICTURE_CODE)
- 
+	       *
+	  FROM MENU
 	
 	</entry>
 	

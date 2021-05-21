@@ -28,32 +28,26 @@ public class AdminLoginService {
 		
 		return roleCode;
 	}
-	
-	public AdminDTO loginCheck(AdminDTO adminmember) {
-		
+
+
+	public AdminDTO loginCheck(String adminId, String adminPwd) {
 		Connection con = getConnection();
 		AdminDTO loginAdmin = null;
-		
-		String encPwd = adminDAO.selectEncryptedPwd(con,adminmember);
-		
-		System.out.println("encPwd : " + encPwd);
-		
+		String encPwd = adminDAO.selectEncryptedPwd(con,adminId,adminPwd);
 		
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		
-		/* 로그인 요청한 원문 비밀번호와 저장되어 있는 암호화된 비밀번호가 일치하는지 확인 */
-		if(passwordEncoder.matches(adminmember.getPwd(), encPwd)) {
-			
-			/* 비밀번호가 일치하는 경우에만 회원 정보를 조회해온다. */
-			loginAdmin = adminDAO.selectLoginMember(con, adminmember);
-		}
-		
-		System.out.println("adminmember : " + adminmember);
+
+		loginAdmin = adminDAO.selectLoginMember(con, adminId,adminPwd);	
 		
 		close(con);
 		
 		return loginAdmin;
+		
 	}
+	
+
+
+	
 
 	
 	

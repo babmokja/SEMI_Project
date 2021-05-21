@@ -7,7 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<<<<<<< HEAD
+
+	
+	
+	<!-- 관리자 -->
+	<%-- <jsp:forward page="/WEB-INF/views/admin/main_manager.jsp"/> --%>
+	
+	
 
 
 	<!-- 고객 -->
@@ -26,6 +32,11 @@
 	<!-- 결제 페이지 -->
 	<%-- <jsp:forward page="/WEB-INF/views/customer/Pay.jsp"/> --%>
 	<!-- 고객 로그인 페이지 -->
+<<<<<<< HEAD
+=======
+
+	<!--<jsp:forward page="/WEB-INF/views/customer/Login.jsp"/>-->
+>>>>>>> branch 'master' of https://github.com/babmokja/SEMI_Project.git
 	<%-- <jsp:forward page="/WEB-INF/views/customer/Login.jsp"/> --%>
 	<!--  고객 리뷰 페이지 -->
     <%-- <jsp:forward page="/WEB-INF/views/customer/Review.jsp"/> --%>
@@ -47,7 +58,7 @@
 	
 	<!-- 업체 메인 페이지 -->
 
-	<%-- <jsp:forward page="/WEB-INF/views/owner/main_store.jsp"/> --%>
+	<jsp:forward page="/WEB-INF/views/owner/main_store.jsp"/>
 	
 	
 	<!-- 관리자 -->
@@ -95,7 +106,7 @@
 	<!-- 업체 메인 페이지 -->
 
 
-	<jsp:forward page="/WEB-INF/views/owner/main_store.jsp"/>
+<%-- 	<jsp:forward page="/WEB-INF/views/owner/main_store.jsp"/> --%>
 	
 	
 	<!-- 관리자 -->

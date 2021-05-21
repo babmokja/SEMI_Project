@@ -43,6 +43,11 @@ public class PasswordEncryptFilter implements Filter {
 			EncryptReqeustWrapper wrapper = new EncryptReqeustWrapper(hrequest);
 			
 			chain.doFilter(wrapper, response);
+		} else if(!"/regist".equals(intent)) {
+			
+			EncryptReqeustWrapper wrapper = new EncryptReqeustWrapper(hrequest);
+			
+			chain.doFilter(wrapper, response);
 		} else {
 			chain.doFilter(request, response);
 		}

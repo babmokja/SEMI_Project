@@ -10,7 +10,6 @@ import javax.servlet.http.HttpSession;
 
 import com.BoB.mvc.admin.dto.AdminDTO;
 import com.BoB.mvc.admin.service.AdminLoginService;
-import com.BoB.mvc.admin.service.AdminService;
 @WebServlet("/admin/login")
 public class AdminLoginServlet extends HttpServlet {
 	
@@ -21,41 +20,41 @@ public class AdminLoginServlet extends HttpServlet {
 		String adminId = request.getParameter("adminId");
 		String adminPwd = request.getParameter("adminPwd");
 		
-		System.out.println(adminId);
-		System.out.println(adminPwd);
 		
 		AdminDTO adminmember = new AdminDTO();
 		
-		adminmember.setId(adminId);
-		adminmember.setPwd(adminPwd);
 		
 		AdminLoginService adminservice = new AdminLoginService();
 		
 		int roleCode = adminservice.selectRoleCode(adminId);
 		
-		if(roleCode == 3) {			
-			AdminDTO loginAdmin = adminservice.loginCheck(adminmember);
+		
+		if(adminId.equals("admin")  && adminPwd.equals("admin")) {
 			
-			if(loginAdmin != null) {
+			if(roleCode == 3) {
+				AdminDTO loginAdmin = adminservice.loginCheck(adminId,adminPwd);
+	
 				HttpSession session = request.getSession();
 				session.setAttribute("loginAdmin", loginAdmin);
-					
-				System.out.println("로그인 성공");
+				
+				
 				System.out.println("request.getContextPath() : " + request.getContextPath());
 				response.sendRedirect(request.getContextPath());
 				
+				
 			} else {
 				
-				request.setAttribute("message", "로그인 실패");
-				request.getRequestDispatcher("/WEB-INF/views/common/failed.jsp").forward(request, response);
-			}
-			
-		} else {
-			
-			request.setAttribute("message", "관리자가 아닙니다.");
+				System.out.println("관리자가 아님");
+				
+			  }
+		}
+		else {
+			request.setAttribute("message", "로그인실패");
 			request.getRequestDispatcher("/WEB-INF/views/common/failed.jsp").forward(request, response);
 		}
 		
+		
+			
 	
 				
 	}

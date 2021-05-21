@@ -2,6 +2,7 @@ package com.BoB.mvc.owner.controller;
 
 import java.io.File;
 import java.io.IOException;
+
 import java.lang.ref.PhantomReference;
 import java.net.FileNameMap;
 import java.sql.Date;
@@ -15,13 +16,13 @@ import java.util.Set;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.catalina.ha.deploy.FileMessage;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -33,39 +34,39 @@ import com.BoB.mvc.owner.model.service.MenuListService;
 /**
  * Servlet implementation class InsertNewMenuServlet
  */
-@WebServlet("/menu/new")
+@WebServlet("/menu/insert")
 public class InsertNewMenuServlet extends HttpServlet {
-	
 	private String rootLocation;
 	private int maxFileSize;
 	private String encodingType;
-	
+
 	@Override
 	public void init() throws ServletException{
-		
+
 		ServletContext context = getServletContext();
 		// web.xml context-param속성에 지정한 값들은 getInitParameter()메소드를 이용해서 꺼내어 쓸수있다.
 		rootLocation = context.getInitParameter("upload-location");
 		maxFileSize = Integer.parseInt(context.getInitParameter("max-file-size"));
 		encodingType = context.getInitParameter("encoding-type");
-		
+
 	}
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-//		String path ="/WEB-INF/views/owner/MenuManage.jsp";
-//		
-//		request.getRequestDispatcher(path).forward(request, response);
+		String path ="/WEB-INF/views/owner/MenuManage.jsp";
+		
+		request.getRequestDispatcher(path).forward(request, response);
 		
 	}	
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-//		request.getAttribute("menuList");
-//		System.out.println(request.getAttribute("menuList"));
+		String menuName = request.getParameter("menuName");
+		int price = Integer.parseInt(request.getParameter("price"));
+		String salesYN = request.getParameter("salesYN");
+		String menuExplain = request.getParameter("menuExplain");
 
-//		if(request.getParameter("menuCode").isEmpty()) {
-		
 		if(ServletFileUpload.isMultipartContent(request)) {
 			
 			System.out.println("파일 저장 ROOT 경로: "+ rootLocation);

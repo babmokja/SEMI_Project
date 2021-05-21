@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.BoB.mvc.owner.model.dto.LicenseManagerDTO;
 import com.BoB.mvc.owner.model.dto.OwnerDTO;
@@ -31,6 +32,15 @@ import com.BoB.mvc.owner.model.service.OwnerService;
  */
 @WebServlet("/member/owner/regist")
 public class OwnerRegistServlet extends HttpServlet {
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String path = "/WEB-INF/views/owner/signin_owner.jsp";
+		
+		request.getRequestDispatcher(path).forward(request, response);
+	
+	}
+
 	
 /* 파일 업로드시 필수적으로 사용하는 값 */
 	
@@ -55,16 +65,11 @@ public class OwnerRegistServlet extends HttpServlet {
 		
 	}
 	
-
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-//		-------------------- 경로 설정 + dir 만들기 -------------------------
-		/* 받아주는쪽에서 속성값을 정상적으로 넘겼는지 확인 */
-		if(ServletFileUpload.isMultipartContent(request)) {
 		
 			System.out.println("파일 저장 Root 경로 : " + rootLocation);
 			System.out.println("최대 업로드 파일 용량 : " + maxFileSize);
@@ -256,7 +261,14 @@ public class OwnerRegistServlet extends HttpServlet {
 				
 				OwnerDTO owner = new OwnerDTO();
 				owner.setMemberId(parameter.get("memberId"));
-				owner.setMemberPwd(parameter.get("pw"));
+				String value = "";
+				BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+				value = passwordEncoder.encode(parameter.get("pw"));
+				owner.setMemberPwd(value);
+//				owner.setMemberPwd(parameter.get("pw"));
+
+//				System.out.println(value);
 				owner.setName(parameter.get("named"));
 				owner.setPhone(parameter.get("phone").replace("-",""));
 				owner.setAddress(parameter.get("addr1")  + " " + parameter.get("addr2"));
@@ -269,7 +281,7 @@ public class OwnerRegistServlet extends HttpServlet {
 				
 				StoreInfoDTO store = new StoreInfoDTO();
 				store.setStoreName(parameter.get("storeName"));
-				store.setBusinessNum(Integer.parseInt(parameter.get("businessNum")));
+				store.setBusinessNum(Integer.parseInt(parameter.get("businessNum").replace("-","")));
 				store.setStoreXY(parameter.get("storeXY"));
 				store.setStoreIntro(parameter.get("storeIntro"));
 				store.setCategory(parameter.get("category"));
@@ -328,35 +340,9 @@ public class OwnerRegistServlet extends HttpServlet {
 				
 			}
 	}
-		
 
-		
-		
-				
-//		OwnerService ownerService = new OwnerService();
-//		
-//		int result = ownerService.registOwner(requestOwner, requestStore);
-//
-//		
-//		System.out.println("memberController result : " + result);
-//		
-//		String page = "";
-//		
-//		page = "/WEB-INF/views/common/success.jsp";
-//		
-//		if(result > 0) {
-//			
-//			page = "/WEB-INF/views/common/success.jsp";
-//			request.setAttribute("successCode", "insertMember");
-//			
-//		} else {
-//			page = "/WEB-INF/views/common/failed.jsp";
-//			request.setAttribute("message", "회원 가입 실패!");
-//		}
-		
-//		request.getRequestDispatcher(page).forward(request, response);
 		
 		
 	}
 
-}
+

@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
 import java.util.Properties;
@@ -168,6 +169,82 @@ public class OwnerDAO {
 		}
 		
 		return result4;
+	}
+
+
+
+	public String selectEncryptedPwd(Connection con, OwnerDTO requestMember) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String encPwd = null;
+		
+		String query = prop.getProperty("selectEncryptedPwd");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, requestMember.getMemberId());
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				encPwd = rset.getString("USER_PWD");
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return encPwd;
+	}
+
+
+
+	public OwnerDTO selectLoginMember(Connection con, OwnerDTO requestMember) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		OwnerDTO loginMember = null;
+		
+		String query = prop.getProperty("selectLoginOwner");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, requestMember.getMemberId());
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				loginMember = new OwnerDTO();
+				
+				loginMember.setUserCode(rset.getInt("USER_CODE"));
+				loginMember.setMemberId(rset.getString("USER_ID"));
+				loginMember.setName(rset.getString("USER_NAME"));
+				loginMember.setPhone(rset.getString("USER_PHONE"));
+				loginMember.setAddress(rset.getString("ADDRESS"));
+				loginMember.setPoint(rset.getInt("POINT"));
+				loginMember.setEmail(rset.getString("USER_EMAIL"));
+				loginMember.setWithdrawYN(rset.getString("WITHDRAW_YN"));
+				loginMember.setRoleCode(rset.getInt("ROLE_CODE"));
+				loginMember.setBlacklistYN(rset.getString("BLACKLIST_YN"));
+				loginMember.setBlacklistDate(rset.getDate("BLACKLIST_DATE"));
+				loginMember.setResidentNum(rset.getString("USER_NO"));
+				
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return loginMember;
 	}
 
 

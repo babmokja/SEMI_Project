@@ -19,7 +19,7 @@ public class EncodingFilter implements Filter {
 	private String encodingType;
   
     public EncodingFilter() {}
-	
+ 
 	public void destroy() {	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {

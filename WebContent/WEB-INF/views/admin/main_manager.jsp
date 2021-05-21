@@ -46,7 +46,7 @@
              <div class="login">
 			
                 <input type="text" class="id" placeholder="아이디를 입력해주세요" name="adminId"><br>
-                <input type="text" class="pw" placeholder="비밀번호를 입력해주세요" name="adminPwd"><br>
+                <input type="password" class="pw" placeholder="비밀번호를 입력해주세요" name="adminPwd"><br>
 
                 <button type="submit" id="login_btn">로그인</button>
             </div>

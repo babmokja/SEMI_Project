@@ -25,7 +25,7 @@ public class MenuListDAO {
 		prop = new Properties();
 		
 		try {
-			prop.loadFromXML(new FileInputStream(ConfigLocation.MAPPER_LOCATION+"/owner/owner-mapper.xml"));
+			prop.loadFromXML(new FileInputStream(ConfigLocation.MAPPER_LOCATION+"owner-mapper.xml"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -52,6 +52,7 @@ public class MenuListDAO {
 				menu.setPictureCode(new PictureDTO());
 //				menu.setStoreCode(new Stor);
 				
+
 				menu.setMenuCode(rset.getString("MENU_CODE"));
 				menu.setMenuName(rset.getString("MENU_NAME"));
 				menu.setMenuExplain(rset.getString("MENU_EXP"));
@@ -62,9 +63,12 @@ public class MenuListDAO {
 
 				menu.getPictureCode().setRevisedName(rset.getString("REVISED_NAME"));
 				menu.getPictureCode().setRoute(rset.getString("ROUTE"));
+				menu.getPictureCode().setPictureCode(rset.getInt("PICTURE_CODE"));
+//				menu.setStoreCode(rset.getInt("STORE_CODE"));
+//				menu.setPictureCode(rset.getInt("PICTURE_CODE"));
+
 				
 				menuList.add(menu);
-				
 				
 			}
 		} catch (SQLException e) {
@@ -76,6 +80,7 @@ public class MenuListDAO {
 		
 		return menuList;
 	}
+
 
 	public int insertPicture(Connection con, PictureDTO pictureDTO) {
 		

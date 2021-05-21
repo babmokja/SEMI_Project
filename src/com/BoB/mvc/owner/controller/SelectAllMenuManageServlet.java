@@ -15,10 +15,10 @@ import com.BoB.mvc.owner.model.service.MenuListService;
 /**
  * Servlet implementation class MenuManageServlet
  */
-@WebServlet("/owner/menu/all")
+@WebServlet("/menu/all")
 public class SelectAllMenuManageServlet extends HttpServlet {
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		List<MenuListDTO> menuList = new MenuListService().selectAllMenuList();
 		System.out.println(menuList);

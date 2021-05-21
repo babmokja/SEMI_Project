@@ -5,16 +5,22 @@
 <head>
 <meta charset="UTF-8">
 <title>BoB</title>
-<link rel="stylesheet" href="resources/css/customer/main.css">
-<link href="resources/css/customer/reset2.css" type="text/css"
-	rel="stylesheet">
-<link href="resources/css/customer/button.css" type="text/css"
-	rel="stylesheet">
-<link href="resources/css/customer/common_ah.css" type="text/css"
-	rel="stylesheet">
-<link href="resources/css/customer/select.css" type="text/css"
-	rel="stylesheet">
-<script type="text/javascript" src="resources/js/customer/select.js"></script>
+<link rel="stylesheet"
+	href="${ pageContext.servletContext.contextPath }/resources/css/customer/main.css">
+<link
+	href="${ pageContext.servletContext.contextPath }/resources/css/customer/reset2.css"
+	type="text/css" rel="stylesheet">
+<link
+	href="${ pageContext.servletContext.contextPath }/resources/css/customer/button.css"
+	type="text/css" rel="stylesheet">
+<link
+	href="${ pageContext.servletContext.contextPath }/resources/css/customer/common_ah.css"
+	type="text/css" rel="stylesheet">
+<link
+	href="${ pageContext.servletContext.contextPath }/resources/css/customer/select.css"
+	type="text/css" rel="stylesheet">
+<script type="text/javascript"
+	src="${ pageContext.servletContext.contextPath }/resources/js/customer/select.js"></script>
 </head>
 
 <body>
@@ -22,15 +28,15 @@
 		<!-- header -->
 		<jsp:include page="/WEB-INF/views/common/customer/header.jsp" />
 	</center>
-
+	
 	<!-- body -->
 	<div id="selectwrap">
 		<div id="main">
 			<div class="wrap">
-				<div class="eatselect">
+				<!-- <div class="eatselect">
 					<div class="bp">배달/픽업하기</div>
 					<div class="or" onclick="">예약하기</div>
-				</div>
+				</div> -->
 				<div class="section1">
 					<div class="pic"></div>
 					<div class="pic"></div>
@@ -60,7 +66,6 @@
 							모범답안을 만나보세요 강남구에 위치한 한우등심 전문점 '길목'에서 자신있게 만든 브랜드 매장에서 직접 한우 갈빗대를
 							발골하여 최상의 갈빗살만을 제공합니다. 고기의 모범답안을 만나보세요 강남구에 위치한 한우등심 전문점 '길목'에서
 							자신있게 만든 브랜드 매장에서 직접 한우 갈빗대를 발골하여 최상의 갈빗살만을 제공합니다. 고기의 모범답안을 만나보세요
-
 						</div>
 						<br> <br> <br> <br>
 					</div>
@@ -75,31 +80,32 @@
 
 						var map = new kakao.maps.Map(container, options);
 					</script>
-
 				</div>
 			</div>
 
 			<div class="buttonwrap">
-				<button type="button" class="button1"
-					onclick="location.href='#;'">배달/픽업 메뉴판</button>
+				<button type="button" class="button1" onclick="location.href='#;'">메뉴판</button>
 			</div>
 
 			<div class="emot">
 				<div class="emoticon">
-					<img src="resources/image/customer/goodgood.png" alt=""> <img
-						src="resources/image/customer/good.png" alt=""> <img src="resources/image/customer/notgood.png"
+					<img
+						src="${ pageContext.servletContext.contextPath }/resources/image/customer/goodgood.png"
+						alt=""> <img
+						src="${ pageContext.servletContext.contextPath }/resources/image/customer/good.png"
+						alt=""> <img
+						src="${ pageContext.servletContext.contextPath }/resources/image/customer/notgood.png"
 						alt="">
 				</div>
 				<div class="icon">
 					<img src="" alt="">
 				</div>
 				<div class="emodesc">맛있다(15) &nbsp;&nbsp; | &nbsp;&nbsp;
-					괜찮다(10) &nbsp;&nbsp; | &nbsp;&nbsp; 별로(5)</div>
-
+					괜찮다(10) &nbsp;&nbsp; | &nbsp;&nbsp; 별로(5)
+				</div>
 			</div>
 
 			<div class="section4">
-
 				<div class="review">
 					<div class="line"></div>
 					<div class="profile">
@@ -111,22 +117,9 @@
 					<div class="desc">맛있어요 맛있어서 죽어요맛있어요 맛있어서 죽어요맛있어요 맛있어서 죽어요</div>
 					<div class="preview"></div>
 				</div>
-
-				<div class="review">
-					<div class="line"></div>
-					<div class="profile">
-						<div class="user">
-							<img src="" alt="">
-						</div>
-						<div class="uname">user02</div>
-					</div>
-					<div class="desc">맛있어요 맛있어서 죽어요 맛있어요 맛있어서 죽어요 맛있어요 맛있어서 죽어요</div>
-					<div class="preview"></div>
-				</div>
-
 				<div class="line"></div>
-
 			</div>
+			
 		</div>
 	</div>
 	
@@ -134,6 +127,6 @@
 		<!-- footer -->
 		<jsp:include page="/WEB-INF/views/common/customer/footer.jsp" />
 	</center>
-	
 </body>
+
 </html>

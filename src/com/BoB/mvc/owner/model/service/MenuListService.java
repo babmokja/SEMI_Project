@@ -7,7 +7,6 @@ import static com.BoB.mvc.common.jdbc.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.List;
-import java.util.Map;
 
 import com.BoB.mvc.owner.model.dao.MenuListDAO;
 import com.BoB.mvc.owner.model.dto.MenuListDTO;

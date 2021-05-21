@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,10 +29,9 @@
 
                 <li><a href="#"><img src="resources/image/semi_store/주문확인.png" alt="주문확인">주문확인</a></li>
                 <li><a href="../../semi_board/company/modifyInf o_owner.html"><img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/내정보관리.png" alt="내정보관리">내 정보관리</a></li>
-                <li><a href="${ pageContext.servletContext.contextPath }/owner/menu/all"><img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/내업소관리.png" alt="내업소관리">내 업소관리</a></li>
+                <li><a href="../../semi_board_sales/company/Owner_Sales_day_Board.html"><img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/내업소관리.png" alt="내업소관리">내 업소관리</a></li>
                 <li><a href="./delivery.html"><img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/PC주문관리.png" alt="PC주문관리">PC 주문관리</a></li>
                 <li><a href="${ pageContext.servletContext.contextPath }/owner/move/comment"><img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/리뷰관리.png" alt="리뷰관리">리뷰관리</a></li>
-
 
             </div>
 
@@ -41,16 +41,33 @@
                 <div class="word3">밥묵자</div>
             </div>
 
+            <c:if test="${ empty sessionScope.loginMember }">
+            <form action="${ pageContext.servletContext.contextPath }/member/owner/login" method="post" >
             <div class="login">
-                <input type="text" class="id" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;아이디를 입력해주세요"><br>
-                <input type="text" class="pw" placeholder="&nbsp;&nbsp;&nbsp;비밀번호를 입력해주세요"><br>
+                <input type="text" class="id" name="memberId" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;아이디를 입력해주세요"><br>
+                <input type="text" class="pw" name="pw" placeholder="&nbsp;&nbsp;&nbsp;비밀번호를 입력해주세요"><br>
 
                 <button type="submit" id="login_btn">로그인</button>
                 <div class="sign_up_btn">
-                    <li><a href="${ pageContext.servletContext.contextPath }/owner/move/signin">회원가입</a></li>
+                    <li><a href="${ pageContext.servletContext.contextPath }/owner/regist">회원가입</a></li>
+                </div>
+                </c:if>
+
+            </div>
+                </form>
+                
+                
+            <c:if test="${ !empty sessionScope.loginMember }">
+            <div class="login">
+                <h3><c:out value="${ sessionScope.loginMember.nickname }"/>님의 방문을 환영합니다.</h3>
+
+                <div class="sign_up_btn">
+                    <li><a href="${ pageContext.servletContext.contextPath }/owner/move/signin">정보수정</a></li>
+                    <li><a href="${ pageContext.servletContext.contextPath }/owner/move/signin">로그아웃</a></li>
                 </div>
 
             </div>
+            </c:if>
         
         </div>
 

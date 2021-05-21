@@ -8,6 +8,8 @@ import static com.BoB.mvc.common.jdbc.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.Map;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import com.BoB.mvc.owner.model.dao.OwnerDAO;
 import com.BoB.mvc.owner.model.dto.LicenseManagerDTO;
 import com.BoB.mvc.owner.model.dto.OwnerDTO;
@@ -54,6 +56,29 @@ public class OwnerService {
 		close(con);
 		
 		return result4;
+	}
+
+
+
+	public OwnerDTO loginCheck(OwnerDTO requestMember) {
+		
+		Connection con = getConnection();
+		OwnerDTO loginMember = null;
+		
+		String encPwd = ownerDAO.selectEncryptedPwd(con,requestMember);
+		
+		System.out.println("encPwd : " + encPwd);
+		
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		/* 로그인 요청한 원문 비밀번호와 저장되어 있는 암호화된 비밀번호가 일치하는지 확인 */
+		if(passwordEncoder.matches(requestMember.getMemberPwd(), encPwd)) {
+			/* 비밀번호가 일치하는 경우에만 회원 정보를 조회해온다. */
+			loginMember = ownerDAO.selectLoginMember(con, requestMember);
+		}
+		System.out.println("loginMember : " + loginMember);
+		
+		return loginMember;
+		
 	}
 	
 	

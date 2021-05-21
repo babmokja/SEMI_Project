@@ -13,6 +13,11 @@ public class SelectOwnerDetailServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+
+		
+		
+		
+		
 		String path="";
 		path = "/WEB-INF/views/admin/index-owner2.jsp";
 		request.setAttribute("message", "성공");

@@ -15,7 +15,7 @@
 	  </center>
       <center>
         <div class="section1">
-            <form class="reviewsec" action="${ pageContext.servletContext.contextPath }/review" method="post" encType="multipart/form-data">
+            <form class="reviewsec" action="${ pageContext.servletContext.contextPath }/review" encType="multipart/form-data">
                 <br>
                 <br>
                 <h1>사진과 함께 리뷰 작성시 포인트 적립 혜택!!</h1>

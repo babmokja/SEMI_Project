@@ -54,23 +54,27 @@ public class AdminDAO {
 		return roleCode;
 	}
 	
-	public String selectEncryptedPwd(Connection con, AdminDTO adminmember) {
+
+	public String selectEncryptedPwd(Connection con, String adminId, String adminPwd) {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
 		String encPwd = null;
-		
-		String query = prop.getProperty("selectEncryptedPwd");
+		String query = prop.getProperty("searchId");
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, adminmember.getId());
+			
+			pstmt.setString(1, adminId);
+			
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
+				if(rset.getString("USER_PWD") != null) {
+					encPwd = rset.getString("USER_PWD");
+				}
 				
-				encPwd = rset.getString("USER_PWD");
 				
 			}
 		} catch (SQLException e) {
@@ -82,10 +86,10 @@ public class AdminDAO {
 		
 		
 		return encPwd;
-	}
-	
 
-	public AdminDTO selectLoginMember(Connection con, AdminDTO adminmember) {
+	}
+
+	public AdminDTO selectLoginMember(Connection con, String adminId, String adminPwd) {
 		
 		PreparedStatement pstmt = null;
 		
@@ -97,25 +101,14 @@ public class AdminDAO {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, adminmember.getId());
+			pstmt.setString(1, adminId);
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
 				admindto = new AdminDTO();
 				
-				admindto.setUserCode(rset.getInt("USER_CODE"));
 				admindto.setId(rset.getString("USER_ID"));
 				admindto.setPwd(rset.getString("USER_PWD"));
-				admindto.setName(rset.getString("USER_NAME"));
-				admindto.setPhone(rset.getString("USER_PHONE"));
-				admindto.setAddress(rset.getString("USER_ADDRESS"));
-				admindto.setPoint(rset.getInt("POINT"));
-				admindto.setEmail(rset.getString("USER_EMAIL"));
-				admindto.setWithdraw(rset.getString("WITHDRAW_YN"));
-				admindto.setRollcode(rset.getInt("ROLE_CODE"));
-				admindto.setBlacklistYn(rset.getString("BLACKLIST_YN"));
-				admindto.setBlacklistDate(rset.getDate("BLACKLIST_DATE"));
-				admindto.setUserNo(rset.getString("USER_NO"));
 				
 			}
 			
@@ -125,7 +118,6 @@ public class AdminDAO {
 			close(rset);
 			close(pstmt);
 		}
-		
 		
 		return admindto;
 	}
