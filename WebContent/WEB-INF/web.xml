@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
-  <display-name>babmokja</display-name>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>BoB</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -10,7 +10,7 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
-  <context-param>
+    <context-param>
   	<param-name>connection-info</param-name>
   	<param-value>/WEB-INF/config/connection-info.properties</param-value>
   </context-param>
@@ -18,24 +18,6 @@
   	<param-name>mapper-location</param-name>
   	<param-value>/WEB-INF/mapper/</param-value>
   </context-param>
-  
-    <!-- 기입후 대기 상태로 만들어놓고 파일 업로드시 여기설정값 사용 -->
-  <!-- 웹app실행시 처음 실행시 생성해서 넘겨주는 기본 설정값 적용 --> 
-  <context-param> 
-  <param-name>upload-location</param-name>
-  <param-value>C:\\upload-files</param-value>
-  <!--운영체제에따라 표현방식다름 넣어주는곳 표시하는중  -->
-  <!-- 이전에 escape문자에서 역슬래시 하나로는 안된다를 알려주심 xml에서는 역슬래시 두개를 하나로 인식한다. -->
-  
-  </context-param>
-  <context-param>
-  <!-- COS MULTI 용량제한 하나씩 적용된다. -->
-  <param-name>max-file-size</param-name>
-  <param-value>50000000</param-value>
-   </context-param>
-   
-  
-  
   
   <filter>
   	<filter-name>encoding</filter-name>
@@ -50,9 +32,16 @@
   	<url-pattern>/*</url-pattern>
   </filter-mapping>
   
-   <context-param>
-   	<param-name>encoding-type</param-name>
-   	<param-value>UTF-8</param-value>
-   </context-param>
-  
+  <!-- css url mapping -->
+   <servlet-mapping>
+     <servlet-name>default</servlet-name>
+     <url-pattern>*.js</url-pattern>
+     <url-pattern>*.css</url-pattern>
+     <url-pattern>*.jpg</url-pattern>
+     <url-pattern>*.PNG</url-pattern>
+     <url-pattern>*.gif</url-pattern>
+     <url-pattern>*.png</url-pattern>
+     <url-pattern>*.ico</url-pattern>
+     <url-pattern>*.swf</url-pattern>
+    </servlet-mapping>
 </web-app>

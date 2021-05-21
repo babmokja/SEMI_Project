@@ -1,42 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-	<entry key="insertPicture">
-	INSERT
-	  INTO PICTURE
-	VALUES
-	(
-	  SEQ_PICTURE.NEXTVAL
-	, SYSDATE
-	, 'N'
-	, ?
-	, ?
-	, ?
-	)
-	</entry>
-	<entry key="insertLicenseManager">
-	INSERT
-	  INTO LICENSE_MANAGE
-	VALUES
-	(
-	  ?
-	, ?
-	, ?
-	, ?
-	, ?
-	, ?
-	, ?
-	, ?
-	, SEQ_LMANAGER.NEXTVAL
-	, SEQ_PICTURE.CURRVAL
-	)
-	</entry>
 	<entry key="insertOwner">
 	INSERT
-	  INTO USER_TABLE
+	  INTO USER_TABLE U
 	  VALUES
 	  (  
-	    SEQ_USER.NEXTVAL
+	  INDEX???
 	  , ?
 	  , ?
 	  , ?
@@ -53,23 +23,8 @@
 	</entry>
 	<entry key="insertStore">
 	INSERT
-	  INTO STORE_TABLE
-	VALUES
-	(
-	  ?
-	, ?
-	, ?
-	, ?
-	, ?
-	, SEQ_USER.CURRVAL
-	, SEQ_LMANAGER.CURRVAL
-	, SEQ_STORE.NEXTVAL
-	, SEQ_PICTURE.CURRVAL
-	, 'N'
-	, SYSDATE
-	, ?
-	, ?
-	)
+	  INTO
+	
 	</entry>
 	<entry key="selectEncryptedPwd">
 		SELECT 
@@ -102,5 +57,4 @@
 	  FROM MENU
 	
 	</entry>
-	
 </properties>

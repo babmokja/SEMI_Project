@@ -4,11 +4,11 @@
     margin-right: 33%;
     margin-bottom: 3%;
     margin-top: 1%;
+    height: 1000px;
 }
 
 .how_eat {
     display: inline-flex;
-    margin-right: 200px;
 }
 
 .home_eat {
@@ -21,6 +21,14 @@
 
 .home_eat:hover {
     opacity: 60%;
+}
+
+.on{
+	background: red;
+}
+
+.off{
+	background: gray;
 }
 
 .store_eat {
@@ -51,6 +59,15 @@ iframe {
     position: absolute;
     margin-top: 115px;
     margin-left: -100px;
+}
+
+.frame {
+    border: 5px solid #ffcc00;
+    position: absolute;
+    margin-top: 115px;
+    margin-left: -100px;
+    width: 710px; 
+    height: 700px;
 }
 
 .store_list_title {
@@ -95,7 +112,7 @@ iframe {
     background: orangered;
     color: white;
     border-radius: 50%;
-    padding: 6px 3px;
+    padding: 5px 10px;
     font-size: small;
 }
 

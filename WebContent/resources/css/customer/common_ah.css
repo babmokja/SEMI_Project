@@ -32,7 +32,7 @@ input[type=text] {
     border: none;
     height: 48px;
     font-size: 16px;
-    /*vertical-align: top;*/
+    vertical-align: top;
     font-family: 'NSG R' !important;
     border-radius: 5px;
 }
