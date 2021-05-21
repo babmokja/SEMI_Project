@@ -143,7 +143,7 @@ public class MenuListDAO {
 			pstmt.setString(3, newMenu.getMenuExplain());
 			pstmt.setString(4, newMenu.getSalesYN());
 			pstmt.setInt(5,newMenu.getPicCode());
-			pstmt.setInt(6, newMenu.getStoreCode().getStoreNum());
+			pstmt.setInt(6, newMenu.getStoCode());
 		
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

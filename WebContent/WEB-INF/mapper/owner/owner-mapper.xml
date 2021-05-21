@@ -110,7 +110,7 @@
 	    (
 	     SEQ_PICTURE_CODE.NEXTVAL
 	   , SYSDATE
-	   , "N"
+	   , DEFAULT
 	   , ?
 	   , ?
 	   , ?

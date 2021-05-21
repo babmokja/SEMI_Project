@@ -183,14 +183,11 @@ public class InsertNewMenuServlet extends HttpServlet {
 //							for()
 								aMap.put(itm.getFieldName(), new String(itm.getString().getBytes("ISO-8859-1"),"UTF-8"));	
 					
-//								MenuListDTO newMenu = new MenuListDTO();
-//								newMenu.setMenuName(parameter.get("menuName"));
-//								newMenu.setPrice(Integer.parseInt(parameter.get("price")));
-//								newMenu.setSalesYN(parameter.get("salesYN"));
-//								newMenu.setMenuExplain(parameter.get("menuExplain"));
 							}
 //					}
+						
 //				}
+					
 						
 					
 			
@@ -202,6 +199,12 @@ public class InsertNewMenuServlet extends HttpServlet {
 				}
 				System.out.println("aMap: "+ aMap);
 				System.out.println("fileMap: "+ fileMap);
+				
+				PictureDTO pictureDTO = new PictureDTO();
+				pictureDTO.setOriginName(fileMap.get("originFileName"));
+				pictureDTO.setRevisedName(fileMap.get("saveFileName"));
+				pictureDTO.setRoute(fileMap.get("savePath"));
+				System.out.println(fileMap.get("uploadDate"));
 				
 				MenuListDTO menuList = new MenuListDTO();
 				menuList.setMenuName(aMap.get("menuName"));
@@ -285,10 +288,10 @@ public class InsertNewMenuServlet extends HttpServlet {
 				
 				
 	//				System.out.println(newMenu);
-//					MenuListService menuService = new MenuListService();
-//					int result = menuService.insertBoard(newMenu);
+					MenuListService menuService = new MenuListService();
+					int result = menuService.insertBoard(newMenu,pictureDTO);
 					
-					int result =1;
+//					int result =1;
 					String path ="";
 					if(result>0) {
 						path="/WEB-INF/views/owner/MenuManage.jsp";
