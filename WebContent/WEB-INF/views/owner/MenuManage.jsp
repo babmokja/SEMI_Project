@@ -77,9 +77,12 @@
               
              
               <br>
+              <form id="fm1" action="${pageContext.servletContext.contextPath}/menu/new" method="post" encType="multipart/form-data">
+              
               <table class="table  table-sm  text-center">
                 <thead>
                   <tr>
+                    <th>코드</th>
                     <th>메뉴</th>
                     <th>메뉴가격</th>
                     <th>상태</th>
@@ -92,6 +95,30 @@
                 <tbody>
                 <c:forEach items="${ requestScope.menuList }" var="menu">
                   <tr>
+					<td><input class="form-control" name="menuCode" type="text" value=<c:out value="${menu.menuCode}"/>></td>
+					<%-- <td><input type="hidden" name="test" value=${menu.menuCode }>
+					</td> --%>
+                    <td><input class="form-control" type="text"  name="menuName" value=<c:out value="${menu.menuName}"/>></td>
+                    <td><input type="text"  name ="price" class="form-control text-right"  style="display:inline-block;width:150px;" value=<c:out value="${menu.price}"/>> 원</td>
+                    <td>               
+                      <select class="form-select" name="salesYN" > 
+                      <c:if test="${ menu.salesYN eq 'Y' }">
+                       <option value="Y" selected>판매중</option>
+	                   <option value="N">품절</option>
+	                 
+                      </c:if>
+                   
+                       <c:if test="${ menu.salesYN eq 'N' }">
+                       
+                       <option value="Y">판매중</option>
+	                    <option value="N" selected>품절</option>
+                      </c:if>
+	                    </select>
+                   </td>
+                    <td><input class="form-control" type="text" name="menuExplain" value= <c:out value ="${menu.menuExplain}" /> ></td>
+                    <td><input type="file" name="singlefile"></td>
+                    <td><a href="#"><img src="${pageContext.servletContext.contextPath}/resources/image/owner/delete.png" /></a></td>
+                  	<%-- <img src="${pageContext.servletContext.contextPath}/resources/image/owner/pic.png" /> --%>
                     <td><input class="form-control" type="text" value=<c:out value="${menu.menuName}"/>></td>
                     <td><input type="text"   class="form-control text-right"  style="display:inline-block;width:200px;" value=<c:out value="${menu.price}"/>> 원</td>
                     <td><select class="form-select" >
@@ -108,9 +135,16 @@
                 
                 <form action="${pageContext.servletContext.contextPath}/menu/insert" method="post">
 	                  <tr>
+<<<<<<< HEAD
+ 	                    <td><input class="form-control" name="menuCode" type="text" value=""/></td>
+	                    <td><input class="form-control" type="text" name="menuName" value="갈비천왕(순살)"/></td>
+	                    <td><input type="text"   class="form-control text-right"  name ="price" style="display:inline-block;width:150px;" value="18000"><p>원</p></td>
+	                    <td><select class="form-select" name="salesYN">
+=======
 	                    <td><input class="form-control" type="text"  value="갈비천왕(순살)"></td>
 	                    <td><input type="text"   class="form-control text-right"  style="display:inline-block;width:200px;" value="18000"> 원</td>
 	                    <td><select class="form-select" >
+>>>>>>> branch 'master' of https://github.com/babmokja/SEMI_Project.git
 	                      <option >판매여부 선택</option>
 	                      <option value="1">판매중</option>
 	                      <option value="2" selected>품절</option>
@@ -119,6 +153,22 @@
 	                    <!-- <td><input type=><a href="#"><img src="../images/pic.png" /></a></td> -->
 	                    <td><a href="#"><img src="../images/delete.png" /></a></td>
 	                  </tr>
+<<<<<<< HEAD
+	                  
+	                  </tbody>
+             		 </table>
+             		 
+             		 <div class="row">
+			            <span class="col-10"></span>
+			            
+			            <%-- <span class="col-1"><a href="${pageContext.servletContext.contextPath}/menu/new"><img src="${pageContext.servletContext.contextPath}/resources/image/owner/config.png" /></a></span>
+			            <span class="col-1"><a href="#"><img src="${pageContext.servletContext.contextPath}/resources/image/owner/backpage.png" /></a></span> --%>
+			            <button type="submit">test</button>	
+			           <!--  <button type="submit"></button> -->
+			            
+			          </div>
+=======
+>>>>>>> branch 'master' of https://github.com/babmokja/SEMI_Project.git
                   </form>
                       
                   
