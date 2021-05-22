@@ -109,5 +109,40 @@
 	
 	</entry>
 	
+
+	<entry key="insertNewMenu">
+		INSERT
+		  INTO MENU
+		VALUES
+		(
+		  SEQ_MENU_CODE.NEXTVAL
+		, ?
+		, ?
+		, ?
+		, ?
+		, ?
+		, ?
+		)
+	</entry>
+	
+	<entry key="insertPicture">
+	    INSERT
+	      INTO PICTURE
+	    VALUES
+	    (
+	     SEQ_PICTURE_CODE.NEXTVAL
+	   , SYSDATE
+	   , DEFAULT
+	   , ?
+	   , ?
+	   , ?
+	    )
+	</entry>
+	
+	<entry key="selectPictureSequence">
+	    SELECT
+	           SEQ_PICTURE_CODE.CURRVAL
+	      FROM DUAL
+	</entry>
 	
 </properties>
