@@ -225,7 +225,7 @@ public class OwnerDAO {
 				loginMember.setMemberId(rset.getString("USER_ID"));
 				loginMember.setName(rset.getString("USER_NAME"));
 				loginMember.setPhone(rset.getString("USER_PHONE"));
-				loginMember.setAddress(rset.getString("ADDRESS"));
+				loginMember.setAddress(rset.getString("USER_ADDRESS"));
 				loginMember.setPoint(rset.getInt("POINT"));
 				loginMember.setEmail(rset.getString("USER_EMAIL"));
 				loginMember.setWithdrawYN(rset.getString("WITHDRAW_YN"));
@@ -233,9 +233,11 @@ public class OwnerDAO {
 				loginMember.setBlacklistYN(rset.getString("BLACKLIST_YN"));
 				loginMember.setBlacklistDate(rset.getDate("BLACKLIST_DATE"));
 				loginMember.setResidentNum(rset.getString("USER_NO"));
+			
+				
 				
 			}
-			
+			System.out.println("dao의 loginMember : " + loginMember);
 		}catch(SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -246,6 +248,43 @@ public class OwnerDAO {
 		
 		return loginMember;
 	}
+
+
+
+	public String IdCheck(Connection con, String memberId) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String checkId = "";
+		
+		String query = prop.getProperty("checkId");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				checkId = rset.getString("USER_ID");
+			}
+			System.out.println("dao까지는 성공했습니다 " +checkId);
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return checkId;
+	}
+		
+		
+		
+		
+		
+		
 
 
 

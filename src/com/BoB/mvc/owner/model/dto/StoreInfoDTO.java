@@ -3,9 +3,8 @@ package com.BoB.mvc.owner.model.dto;
 import java.sql.Date;
 
 public class StoreInfoDTO {
-
+	private int storeCode; // 시퀀스 받는 필드
 	private String storeName;
-	private int storeNum;
 	private String address;
 	private String category;
 	private String license;
@@ -19,11 +18,11 @@ public class StoreInfoDTO {
 	public StoreInfoDTO() {}
 
 
-	public StoreInfoDTO(String storeName, int storeNum, String address, String category, String license, Date startDate,
-			int businessNum, String storeXY, String storeIntro, int typeCode) {
+	public StoreInfoDTO(int storeCode, String storeName, String address, String category, String license,
+			Date startDate, int businessNum, String storeXY, String storeIntro, int typeCode) {
 		super();
+		this.storeCode = storeCode;
 		this.storeName = storeName;
-		this.storeNum = storeNum;
 		this.address = address;
 		this.category = category;
 		this.license = license;
@@ -35,6 +34,16 @@ public class StoreInfoDTO {
 	}
 
 
+	public int getStoreCode() {
+		return storeCode;
+	}
+
+
+	public void setStoreCode(int storeCode) {
+		this.storeCode = storeCode;
+	}
+
+
 	public String getStoreName() {
 		return storeName;
 	}
@@ -42,16 +51,6 @@ public class StoreInfoDTO {
 
 	public void setStoreName(String storeName) {
 		this.storeName = storeName;
-	}
-
-
-	public int getStoreNum() {
-		return storeNum;
-	}
-
-
-	public void setStoreNum(int storeNum) {
-		this.storeNum = storeNum;
 	}
 
 
@@ -137,12 +136,13 @@ public class StoreInfoDTO {
 
 	@Override
 	public String toString() {
-		return "StoreInfoDTO [storeName=" + storeName + ", storeNum=" + storeNum + ", address=" + address
+		return "StoreInfoDTO [storeCode=" + storeCode + ", storeName=" + storeName + ", address=" + address
 				+ ", category=" + category + ", license=" + license + ", startDate=" + startDate + ", businessNum="
 				+ businessNum + ", storeXY=" + storeXY + ", storeIntro=" + storeIntro + ", typeCode=" + typeCode + "]";
 	}
 
 
+	
 	
 
 	

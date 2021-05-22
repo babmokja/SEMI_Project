@@ -25,17 +25,18 @@
    
                      //****** .은 아무문자 들어와도 되는 위치 잡는 역할 .개수 그 이상도 가능하다. 이하는 불가능 
    
-                     var regExp = /^[a-z^]{4}[a-z\dA-Z^]{0,}$/;
-                     var regExp2 = /^[A-Z^]{4}[a-z\dA-Z^]{0,}$/;
+                     var regExp = /^[a-z^A-Z]{4}[a-z\dA-Z^]{0,}$/;
 
                      var pno = document.getElementById("memberId").value;
    
                      // 개수만 맞으면 true 반환
                      console.log(regExp.test(pno));
-                     if (regExp.test(pno)||regExp2.test(pno)) {
-                       alert("정상입력");
+                     if (regExp.test(pno)) {
+                       document.getElementById("memberId").style.borderColor = "blue";
+                       document.getElementById("memberId").style.backgroundColor = "white";
                      } else {
                        alert("영문자 4자리로 시작해야합니다.(특수문자 사용불가)");
+                       document.getElementById("memberId").style.backgroundColor = "red";
                      }
                 	 }
                	   
@@ -119,7 +120,34 @@
              <td>아이디 </td>
              <td><input type="text" size = "25"style="padding:4px;font-size:13px;border-radius: 10px;" name="memberId" id="memberId" onchange="memid();">
                  <input type="button" id="overlap" style="display:none;" >
-                 <label for="overlap">중복확인</label>
+                 <label for="overlap" id="idCheck">중복확인</label>
+                 <script>
+			      $("#idCheck").click(function(){
+			         
+			         const memberId = document.getElementById("memberId").value;
+			    	
+			         
+			         $.ajax({
+			            url: "${ pageContext.servletContext.contextPath }/owner/idCheck",
+			            type: "get",
+			            data : { memberId: memberId },
+			            success: function(data, textStatus, xhr) {
+			               console.table(data);
+			               if(data == "1"){
+			               alert("중복된 아이디입니다.");
+			               }
+			               else {
+			            	   alert("사용가능한 아이디입니다.");
+			               }
+			            },
+			            error: function(xhr, status, error) {
+			               console.log(error);
+			            }
+			         });
+			      });
+			      
+			      
+			   </script>
              </td>
              
             <td>비밀번호 </td>

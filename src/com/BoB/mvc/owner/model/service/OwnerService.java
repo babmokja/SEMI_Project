@@ -77,8 +77,23 @@ public class OwnerService {
 		}
 		System.out.println("loginMember : " + loginMember);
 		
+		close(con);
+		
 		return loginMember;
 		
+	}
+
+
+
+	public String IdCheck(String memberId) {
+		
+		Connection con = getConnection();
+		
+		String checkId = ownerDAO.IdCheck(con,memberId);
+		
+		close(con);
+		
+		return checkId;
 	}
 	
 	

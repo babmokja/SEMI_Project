@@ -1,5 +1,7 @@
 package com.BoB.mvc.common.wrapper;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
@@ -31,6 +33,10 @@ public class EncryptReqeustWrapper extends HttpServletRequestWrapper{
 		}
 		return value;
 	}
+
+	
+	
+	
 	
 
 

@@ -302,7 +302,7 @@ public class OwnerRegistServlet extends HttpServlet {
 				String path = "";
 				if(result > 0) {
 					path = "/WEB-INF/views/common/success.jsp";
-					request.setAttribute("successCode", "insertOwner");
+					request.setAttribute("successCode", "insertMember");
 				} else {
 					path = "/WEB-INF/views/common/failed.jsp";
 					request.setAttribute("message", "사업자 등록 실패!");
@@ -334,6 +334,10 @@ public class OwnerRegistServlet extends HttpServlet {
 				
 				if(cnt == fileList.size()) {
 					System.out.println("업로드에 실패한 모든 사진 삭제완료!");
+					String path2 = "";
+					path2 = "/WEB-INF/views/common/failed.jsp";
+					request.setAttribute("message", "사업자 등록 실패!");
+					request.getRequestDispatcher(path2).forward(request, response);
 				} else {
 					e.printStackTrace();
 				}

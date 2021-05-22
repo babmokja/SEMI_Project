@@ -15,7 +15,7 @@ import com.BoB.mvc.owner.model.service.OwnerService;
 /**
  * Servlet implementation class OwnerLoginServlet
  */
-@WebServlet("/member/owner/login")
+@WebServlet("/owner/login")
 public class OwnerLoginServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

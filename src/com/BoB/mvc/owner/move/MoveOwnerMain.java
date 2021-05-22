@@ -1,4 +1,4 @@
-package com.BoB.mvc.common.move;
+package com.BoB.mvc.owner.move;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

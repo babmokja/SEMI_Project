@@ -3,12 +3,8 @@ package com.BoB.mvc.owner.model.dto;
 import java.io.Serializable;
 import java.sql.Date;
 
-public class OwnerDTO implements Serializable{
+public class OwnerDTO{
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -4075987019496763269L;
 	private int userCode;
 	private String memberId;
 	private String memberPwd;

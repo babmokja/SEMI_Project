@@ -42,32 +42,42 @@
             </div>
 
             <c:if test="${ empty sessionScope.loginMember }">
-            <form action="${ pageContext.servletContext.contextPath }/member/owner/login" method="post" >
+            <form action="${ pageContext.servletContext.contextPath }/owner/login" method="post" >
             <div class="login">
                 <input type="text" class="id" name="memberId" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;아이디를 입력해주세요"><br>
-                <input type="text" class="pw" name="pw" placeholder="&nbsp;&nbsp;&nbsp;비밀번호를 입력해주세요"><br>
+                <input type="password" class="pw" name="pw" placeholder="&nbsp;&nbsp;&nbsp;비밀번호를 입력해주세요"><br>
 
                 <button type="submit" id="login_btn">로그인</button>
                 <div class="sign_up_btn">
-                    <li><a href="${ pageContext.servletContext.contextPath }/owner/regist">회원가입</a></li>
+                    <li><a href="${ pageContext.servletContext.contextPath }/owner/move/signin">회원가입</a></li>
                 </div>
-                </c:if>
 
             </div>
                 </form>
+                </c:if>
                 
                 
-            <c:if test="${ !empty sessionScope.loginMember }">
             <div class="login">
-                <h3><c:out value="${ sessionScope.loginMember.nickname }"/>님의 방문을 환영합니다.</h3>
-
-                <div class="sign_up_btn">
-                    <li><a href="${ pageContext.servletContext.contextPath }/owner/move/signin">정보수정</a></li>
-                    <li><a href="${ pageContext.servletContext.contextPath }/owner/move/signin">로그아웃</a></li>
+            <c:if test="${ !empty sessionScope.loginMember }">
+            	<br>
+            	<h4 style="font-size:20px; font-weight:bold">&nbsp;&nbsp;&nbsp;<c:out value="${ sessionScope.loginMember.name }"/>님 환영합니다.</h4>
+            	<br>
+            	<button type="submit" id="login_btn">정보수정</button>
+                <div class="sign_up_btn" style=>
+                    <li ><a href="${ pageContext.servletContext.contextPath }/owner/logout">로그아웃</a></li>
                 </div>
+            
+            
+            
+            
+                <%-- <div class="sign_up_btn">
+               		<li><c:out value="${ sessionScope.loginMember.name }"/>님의 방문을 환영합니다.</li>
+                    <li><a href="${ pageContext.servletContext.contextPath }/owner/move/signin">정보수정</a></li>
+                    <li><a href="${ pageContext.servletContext.contextPath }/owner/move/logout">로그아웃</a></li>
+                </div> --%>
 
-            </div>
             </c:if>
+            </div>
         
         </div>
 
