@@ -86,7 +86,8 @@ public class OwnerDAO {
 						order.setStoName(rset.getString("STORE_NAME"));
 						order.setBisiNum(rset.getInt("OWNER_NO"));
 						order.setStoAddr(rset.getString("STORE_ADDR"));
-						
+						order.setEnrollDate(rset.getDate("ENROLL_DATE"));
+						order.setAppr(rset.getString("APPROVAL"));
 						ownerList.add(order);
 					}
 				} catch (SQLException e) {
@@ -171,6 +172,8 @@ public class OwnerDAO {
 				order.setStoName(rset.getString("STORE_NAME"));
 				order.setBisiNum(rset.getInt("OWNER_NO"));
 				order.setStoAddr(rset.getString("STORE_ADDR"));
+				order.setEnrollDate(rset.getDate("ENROLL_DATE"));
+				order.setAppr(rset.getString("APPROVAL"));
 				
 				ownerList.add(order);
 			}

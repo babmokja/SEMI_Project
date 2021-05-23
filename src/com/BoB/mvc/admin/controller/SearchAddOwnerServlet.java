@@ -14,12 +14,19 @@ import com.BoB.mvc.admin.dto.ownerDTO;
 import com.BoB.mvc.admin.paging.OrderPaging;
 import com.BoB.mvc.admin.service.AdminService;
 
-@WebServlet("/admin/add/company")
-public class SelectAddOwnerServlet extends HttpServlet {
-	
-	
+/**
+ * Servlet implementation class SearchAddOwnerServlet
+ */
+@WebServlet("/admin/add/owner/search")
+public class SearchAddOwnerServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String condition = request.getParameter("searchCondition");
+		String value = request.getParameter("searchValue");
+		
+		System.out.println(condition);
+		System.out.println(value);
+		
 		String currentPage = request.getParameter("currentPage");
 		int pageNo = 1;
 		
@@ -30,30 +37,35 @@ public class SelectAddOwnerServlet extends HttpServlet {
 		if(pageNo <= 0) {
 			pageNo = 1;
 		}
+		
 		AdminService adminService = new AdminService();
-		int totalCount = adminService.selectOwnerTotalCount();
+		int totalCount = adminService.searchOwnerCount(condition, value);
 		
 		System.out.println(totalCount);
 		
 		/* 한 페이지에 보여 줄 게시물 수 */
-		int limit = 10;
-		/* 한 번에 보여질 페이징 버튼의 수*/
+		int limit = 10;		//얘도 파라미터로 전달받아도 된다.
+		/* 한 번에 보여질 페이징 버튼의 갯수 */
 		int buttonAmount = 5;
 		
+		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
 		PageInfoDTO pageInfo = OrderPaging.getPageInfo(pageNo, totalCount, limit, buttonAmount);
 		
-		List<ownerDTO> ownerList = adminService.selectOwnerList(pageInfo);
+		System.out.println(pageInfo);
 		
-		
+		List<ownerDTO> ownerList = adminService.searchOwnerList(condition, value, pageInfo);
 		System.out.println(ownerList);
+		
 		String path="";
 		path = "/WEB-INF/views/admin/index-owner-new.jsp";
 		request.setAttribute("ownerList", ownerList);
 		request.setAttribute("pageInfo", pageInfo);
+		request.setAttribute("searchCondition", condition);
+		request.setAttribute("searchValue", value);
 		request.setAttribute("message", "성공");
 		request.getRequestDispatcher(path).forward(request, response);
-		
-		
+	
+	
 	}
 
 }

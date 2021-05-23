@@ -276,19 +276,25 @@
 	A.user_name,
 	a.store_name,
 	a.owner_no,
-	a.store_addr
+	a.store_addr,
+	a.ENROLL_DATE,
+	a.APPROVAL
 			FROM (SELECT 
 				ROWNUM RNUM,
 				B.user_code,
 				B.user_name,
 				B.store_name,
 				B.owner_no,
-				B.store_addr
+				B.store_addr,
+				B.ENROLL_DATE,
+				B.APPROVAL
 					FROM(SELECT C.user_code,
 						D.user_name,
 						C.store_name,
 						C.owner_no,
-						C.store_addr
+						C.store_addr,
+						C.ENROLL_DATE,
+						C.APPROVAL
 						FROM STORE_TABLE C
 						JOIN USER_TABLE D ON(C.USER_CODE = D.USER_CODE)
 						ORDER BY C.USER_CODE ASC
@@ -305,19 +311,25 @@
 	A.user_name,
 	a.store_name,
 	a.owner_no,
-	a.store_addr
+	a.store_addr,
+	a.ENROLL_DATE,
+	a.APPROVAL
 			FROM (SELECT 
 				ROWNUM RNUM,
 				B.user_code,
 				B.user_name,
 				B.store_name,
 				B.owner_no,
-				B.store_addr
+				B.store_addr,
+				B.ENROLL_DATE,
+				B.APPROVAL
 					FROM(SELECT C.user_code,
 						D.user_name,
 						C.store_name,
 						C.owner_no,
-						C.store_addr
+						C.store_addr,
+						C.ENROLL_DATE,
+						C.APPROVAL
 						FROM STORE_TABLE C
 						JOIN USER_TABLE D ON(C.USER_CODE = D.USER_CODE)
 						ORDER BY C.USER_CODE ASC
@@ -334,19 +346,25 @@
 	A.user_name,
 	a.store_name,
 	a.owner_no,
-	a.store_addr
+	a.store_addr,
+	a.ENROLL_DATE,
+	a.APPROVAL
 			FROM (SELECT 
 				ROWNUM RNUM,
 				B.user_code,
 				B.user_name,
 				B.store_name,
 				B.owner_no,
-				B.store_addr
+				B.store_addr,
+				B.ENROLL_DATE,
+				B.APPROVAL
 					FROM(SELECT C.user_code,
 						D.user_name,
 						C.store_name,
 						C.owner_no,
-						C.store_addr
+						C.store_addr,
+						C.ENROLL_DATE,
+						C.APPROVAL
 						FROM STORE_TABLE C
 						JOIN USER_TABLE D ON(C.USER_CODE = D.USER_CODE)
 						ORDER BY C.USER_CODE ASC
@@ -362,19 +380,25 @@
 	A.user_name,
 	a.store_name,
 	a.owner_no,
-	a.store_addr
+	a.store_addr,
+	a.ENROLL_DATE,
+	a.APPROVAL
 			FROM (SELECT 
 				ROWNUM RNUM,
 				B.user_code,
 				B.user_name,
 				B.store_name,
 				B.owner_no,
-				B.store_addr
+				B.store_addr,
+				B.ENROLL_DATE,
+				B.APPROVAL
 					FROM(SELECT C.user_code,
 						D.user_name,
 						C.store_name,
 						C.owner_no,
-						C.store_addr
+						C.store_addr,
+						C.ENROLL_DATE,
+						C.APPROVAL
 						FROM STORE_TABLE C
 						JOIN USER_TABLE D ON(C.USER_CODE = D.USER_CODE)
 						ORDER BY C.USER_CODE ASC

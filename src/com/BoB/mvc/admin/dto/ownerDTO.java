@@ -1,5 +1,7 @@
 package com.BoB.mvc.admin.dto;
 
+import java.util.Date;
+
 public class ownerDTO {
 	
 	
@@ -8,22 +10,13 @@ public class ownerDTO {
 	private String stoName;
 	private int bisiNum;
 	private String stoAddr;
+	private Date enrollDate;
+	private String appr;
 	
 	public ownerDTO() {
 		
 	}
-	
 
-	
-	protected ownerDTO(int ownerNum, String ownerName, String stoName, int bisiNum, String stoAddr) {
-		super();
-		this.ownerNum = ownerNum;
-		this.ownerName = ownerName;
-		this.stoName = stoName;
-		this.bisiNum = bisiNum;
-		this.stoAddr = stoAddr;
-	}
-	
 	public int getOwnerNum() {
 		return ownerNum;
 	}
@@ -64,17 +57,44 @@ public class ownerDTO {
 		this.stoAddr = stoAddr;
 	}
 
-	
+	public Date getEnrollDate() {
+		return enrollDate;
+	}
 
-	
-	
-	
+	public void setEnrollDate(Date enrollDate) {
+		this.enrollDate = enrollDate;
+	}
+
+	public String getAppr() {
+		return appr;
+	}
+
+	public void setAppr(String appr) {
+		this.appr = appr;
+	}
+
+	public ownerDTO(int ownerNum, String ownerName, String stoName, int bisiNum, String stoAddr, Date enrollDate,
+			String appr) {
+		super();
+		this.ownerNum = ownerNum;
+		this.ownerName = ownerName;
+		this.stoName = stoName;
+		this.bisiNum = bisiNum;
+		this.stoAddr = stoAddr;
+		this.enrollDate = enrollDate;
+		this.appr = appr;
+	}
 
 	@Override
 	public String toString() {
 		return "ownerDTO [ownerNum=" + ownerNum + ", ownerName=" + ownerName + ", stoName=" + stoName + ", bisiNum="
-				+ bisiNum + ", stoAddr=" + stoAddr + "]";
+				+ bisiNum + ", stoAddr=" + stoAddr + ", enrollDate=" + enrollDate + ", appr=" + appr + "]";
 	}
+
+	
+
+	
+	
 	
 	
 	
