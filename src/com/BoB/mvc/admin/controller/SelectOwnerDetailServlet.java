@@ -7,12 +7,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.BoB.mvc.admin.service.AdminService;
+
 @WebServlet("/admin/owner/detail")
 public class SelectOwnerDetailServlet extends HttpServlet {
 	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		String ownerNum = request.getParameter("ordernum");
+		int ownerNumber = 0;
+		
+		if(ownerNum != null && !"".equals(ownerNum)) {
+			ownerNumber = Integer.parseInt(ownerNum);
+			System.out.println(ownerNumber);
+		}
+		
+		AdminService adminService = new AdminService();
+		
 
 		
 		

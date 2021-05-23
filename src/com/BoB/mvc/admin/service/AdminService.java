@@ -7,18 +7,21 @@ import java.sql.Connection;
 import java.util.List;
 
 import com.BoB.mvc.admin.dao.OrderDAO;
+import com.BoB.mvc.admin.dao.OwnerDAO;
 import com.BoB.mvc.admin.dto.PageInfoDTO;
 import com.BoB.mvc.admin.dto.cartDTO;
 import com.BoB.mvc.admin.dto.orderDTO;
 import com.BoB.mvc.admin.dto.orderDetailDTO;
+import com.BoB.mvc.admin.dto.ownerDTO;
 
 public class AdminService {
 
 	
 	private  OrderDAO OrderDAO;
-	
+	private  OwnerDAO OwnerDAO;
 	public AdminService() {
 		OrderDAO = new OrderDAO();
+		OwnerDAO = new OwnerDAO();
 	}
 	
 	public int selectTotalCount() {
@@ -75,6 +78,43 @@ public class AdminService {
 		Connection con = getConnection();		
 		
 		List<orderDTO> orderList = OrderDAO.searchOrderList(con,pageInfo,condition,value);
+		close(con);
+		return orderList;
+	}
+
+	public int selectOwnerTotalCount() {
+		Connection con = getConnection();
+		
+		int totalCount = OwnerDAO.selectOwnerTotalCount(con);
+		
+		close(con);
+		
+		return totalCount;
+	}
+
+	public List<ownerDTO> selectOwnerList(PageInfoDTO pageInfo) {
+		Connection con = getConnection();
+		
+		List<ownerDTO> orderList = OwnerDAO.selectOwnerList(con, pageInfo);
+		
+		close(con);
+		
+		
+		return orderList;
+	}
+
+	public int searchOwnerCount(String condition, String value) {
+		Connection con = getConnection();
+		int totalCount = OwnerDAO.searchOrderCount(con,condition,value);
+		close(con);
+
+		return totalCount;
+	}
+
+	public List<ownerDTO> searchOwnerList(String condition, String value, PageInfoDTO pageInfo) {
+		Connection con = getConnection();		
+		
+		List<ownerDTO> orderList = OwnerDAO.searchOrderList(con,pageInfo,condition,value);
 		close(con);
 		return orderList;
 	}

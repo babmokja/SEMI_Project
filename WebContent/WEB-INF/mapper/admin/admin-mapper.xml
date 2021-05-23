@@ -78,13 +78,6 @@
 		 WHERE A.USER_ID = ?
 	</entry>
 	
-	<entry key="searchId">
-			select
-	     user_pwd
-	    from user_table
-	    where user_id = ?
-	</entry>
-	
 	<entry key="selectEncryptedPwd">
 		SELECT
 			   A.USER_PWD
@@ -248,4 +241,151 @@
                ) A
          WHERE A.RNUM BETWEEN ? AND ? 
 	</entry>
+	
+	<entry key="ownerNumCount">
+        SELECT
+            COUNT(*)
+            FROM STORE_TABLE
+            WHERE USER_CODE = ?
+	</entry>
+	
+	<entry key="bisiNumCount">
+        SELECT
+            COUNT(*)
+            FROM STORE_TABLE
+            WHERE OWNER_NO = ?
+	</entry>
+	
+	<entry key="ownerNameCount">
+        SELECT
+            COUNT(*)
+            FROM STORE_TABLE A
+            JOIN USER_TABLE B ON(A.USER_CODE = B.USER_CODE)
+            WHERE B.USER_NAME LIKE '%' || ? || '%' 
+	</entry>
+	<entry key="selectOwnerTotalCount">
+	SELECT
+	COUNT(*)
+	FROM STORE_TABLE A 
+	</entry>
+	
+	<entry key="selectOwnerList">
+	SELECT
+	A.RNUM,
+	a.user_code,
+	A.user_name,
+	a.store_name,
+	a.owner_no,
+	a.store_addr
+			FROM (SELECT 
+				ROWNUM RNUM,
+				B.user_code,
+				B.user_name,
+				B.store_name,
+				B.owner_no,
+				B.store_addr
+					FROM(SELECT C.user_code,
+						D.user_name,
+						C.store_name,
+						C.owner_no,
+						C.store_addr
+						FROM STORE_TABLE C
+						JOIN USER_TABLE D ON(C.USER_CODE = D.USER_CODE)
+						ORDER BY C.USER_CODE ASC
+				)B
+				
+			)A
+	WHERE A.RNUM BETWEEN ? AND ? </entry>
+	
+	
+	<entry key="ownerNumSearch">
+	SELECT
+	A.RNUM,
+	a.user_code,
+	A.user_name,
+	a.store_name,
+	a.owner_no,
+	a.store_addr
+			FROM (SELECT 
+				ROWNUM RNUM,
+				B.user_code,
+				B.user_name,
+				B.store_name,
+				B.owner_no,
+				B.store_addr
+					FROM(SELECT C.user_code,
+						D.user_name,
+						C.store_name,
+						C.owner_no,
+						C.store_addr
+						FROM STORE_TABLE C
+						JOIN USER_TABLE D ON(C.USER_CODE = D.USER_CODE)
+						ORDER BY C.USER_CODE ASC
+				)B
+				WHERE B.USER_CODE = ?
+			)A
+	WHERE A.RNUM BETWEEN ? AND ? </entry>
+	
+	
+	<entry key="bisiNumSearch">
+	SELECT
+	A.RNUM,
+	a.user_code,
+	A.user_name,
+	a.store_name,
+	a.owner_no,
+	a.store_addr
+			FROM (SELECT 
+				ROWNUM RNUM,
+				B.user_code,
+				B.user_name,
+				B.store_name,
+				B.owner_no,
+				B.store_addr
+					FROM(SELECT C.user_code,
+						D.user_name,
+						C.store_name,
+						C.owner_no,
+						C.store_addr
+						FROM STORE_TABLE C
+						JOIN USER_TABLE D ON(C.USER_CODE = D.USER_CODE)
+						ORDER BY C.USER_CODE ASC
+				)B
+				WHERE B.OWNER_NO = ?
+			)A
+	WHERE A.RNUM BETWEEN ? AND ? </entry>
+	
+	<entry key="ownerNameSearch">
+	SELECT
+	A.RNUM,
+	a.user_code,
+	A.user_name,
+	a.store_name,
+	a.owner_no,
+	a.store_addr
+			FROM (SELECT 
+				ROWNUM RNUM,
+				B.user_code,
+				B.user_name,
+				B.store_name,
+				B.owner_no,
+				B.store_addr
+					FROM(SELECT C.user_code,
+						D.user_name,
+						C.store_name,
+						C.owner_no,
+						C.store_addr
+						FROM STORE_TABLE C
+						JOIN USER_TABLE D ON(C.USER_CODE = D.USER_CODE)
+						ORDER BY C.USER_CODE ASC
+				)B
+				WHERE B.USER_NAME LIKE '%' || ? || '%'
+			)A
+	WHERE A.RNUM BETWEEN ? AND ? </entry>
+	
+	
+	
+	
+	
+	
 </properties>
