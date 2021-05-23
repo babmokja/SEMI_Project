@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment/>
+
+<entry key="selectCustomerList">
+	SELECT
+           A.BOARD_CODE
+         , A.BOARD_TITLE
+         , A.BOARD_DATE
+         , A.BOARD_CONTENT
+         , A.USER_CODE
+         , B.USER_NAME
+	  FROM USER_BOARD A
+      JOIN USER_TABLE B ON(A.USER_CODE = B.USER_CODE)
+	</entry>
+
+</properties>

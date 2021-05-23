@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+       <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -45,28 +46,42 @@
         <div class="section_top">
  
         <div class="top-1">
-        
-            <div class="top">
-                말머리,제목,글쓴이
-                <select class="form-select" >
-                  <option selected>카테고리 선택</option>
-                  <option value="1">말머리</option>
-                  <option value="2">제목</option>
-                  <option value="3">글쓴이</option>
-                </select>
-              </div>
-              <div class="top">
-                말머리,제목,글쓴이 입력
-                <input class="form-control" type="text" >
-                
-              </div>
+        <form id="loginForm" action="${ pageContext.servletContext.contextPath }/admin/owner/search" method="get">
+        <c:choose>
+				    <c:when test="${ !empty requestScope.searchValue }">
+   					    <div class="col-3">
+	                  제목,글쓴이
+	                  <select class="form-select" id="searchCondition" name="searchCondition" >
+	                    <option value="ownerNum" <c:if test="${requestScope.searchCondition eq 'boardTitle'}">selected</c:if>>제목</option>
+		                <option value="bisiNum"<c:if test="${requestScope.searchCondition eq 'userName'}">selected</c:if>>글쓴이</option>
+	                  </select>
+	                </div>
+	                <div class="col-3">
+	                  제목,글쓴이 입력
+	                  <input class="form-control" type="search" id="searchValue" name="searchValue" value="${ requestScope.searchValue }" >
+	                </div>
+				    </c:when>
+				    <c:otherwise>
+						    <div class="col-3">
+		                 제목,글쓴이
+		                  <select class="form-select" id="searchCondition" name="searchCondition" >
+		                    <option value="boardTitle">제목</option>
+		                    <option value="userName">글쓴이</option>
+		                  </select>
+		                </div>
+		                <div class="col-3">
+		                  제목,글쓴이 입력
+		                  <input class="form-control" type="search" id="searchValue" name="searchValue" >
+		                </div>
+				    </c:otherwise>
+				</c:choose>
               
               <div class="top">
                 <br>
                 <button type="button" class="btn btn-outline-secondary">검색하기</button>
               </div>
         </div>
-
+		</form>
             <table> 
                 <thead>
                     <tr class="contest_top">
@@ -78,62 +93,18 @@
                     </tr>
                 </thead>
                 <tbody>
-
+				 <c:forEach var="customerBoard" items="${ requestScope.customerBoardList }">
                     <tr>
-                        <td class="section_contest_first section_contest_1">1</td>
-                        <td class="section_contest_first section_contest_2">말머리</td>
-                        <td class="section_contest_first section_contest_3"><a href="${pageContext.servletContext.contextPath}/admin/customer/comment">글제목11</a></td>
-                        <td class="section_contest_first section_contest_4">00</td>
-                        <td class="section_contest_first section_contest_5">2021-01-01</td>
+                        <td class="section_contest_first section_contest_1"><c:out value="${ customerBoard.boardCode }"/></td>
+                        <td class="section_contest_first section_contest_2">건의</td>
+                        
+                        <td class="section_contest_first section_contest_3">
+                        <a href="${pageContext.servletContext.contextPath}/admin/customer/comment"><c:out value="${ customerBoard.boardTitle }"/></a></td>
+                        
+                        <td class="section_contest_first section_contest_4"><c:out value="${ customerBoard.userName }"/></td>
+                        <td class="section_contest_first section_contest_5"><c:out value="${ customerBoard.boardDate }"/></td>
                     </tr>
-
-                    <tr>
-                        <td class="section_contest_two section_contest_1">2</td>
-                        <td class="section_contest_two section_contest_2">말머리</td>
-                        <td class="section_contest_two section_contest_3">글제목22</td>
-                        <td class="section_contest_two section_contest_4">00</td>
-                        <td class="section_contest_two section_contest_5">2021-01-02</td>
-                    </tr>
-
-                    <tr>
-                        <td class="section_contest_two section_contest_1">3</td>
-                        <td class="section_contest_two section_contest_2">말머리</td>
-                        <td class="section_contest_two section_contest_3">글제목33</td>
-                        <td class="section_contest_two section_contest_4">00</td>
-                        <td class="section_contest_two section_contest_5">2021-01-03</td>
-                    </tr>
-
-                    <tr>
-                        <td class="section_contest_two section_contest_1">4</td>
-                        <td class="section_contest_two section_contest_2">말머리</td>
-                        <td class="section_contest_two section_contest_3">글제목44</td>
-                        <td class="section_contest_two section_contest_4">00</td>
-                        <td class="section_contest_two section_contest_5">2021-01-04</td>
-                    </tr>
-
-                    <tr>
-                        <td class="section_contest_two section_contest_1">5</td>
-                        <td class="section_contest_two section_contest_2">말머리</td>
-                        <td class="section_contest_two section_contest_3">글제목55</td>
-                        <td class="section_contest_two section_contest_4">00</td>
-                        <td class="section_contest_two section_contest_5">2021-01-05</td>
-                    </tr>
-
-                    <tr>
-                        <td class="section_contest_two section_contest_1">6</td>
-                        <td class="section_contest_two section_contest_2">말머리</td>
-                        <td class="section_contest_two section_contest_3">글제목66</td>
-                        <td class="section_contest_two section_contest_4">00</td>
-                        <td class="section_contest_two section_contest_5">2021-01-06</td>
-                    </tr>
-
-                    <tr>
-                        <td class="section_contest_two section_contest_1">7</td>
-                        <td class="section_contest_two section_contest_2">말머리</td>
-                        <td class="section_contest_two section_contest_3">글제목77</td>
-                        <td class="section_contest_two section_contest_4">00</td>
-                        <td class="section_contest_two section_contest_5">2021-01-07</td>
-                    </tr>
+				</c:forEach>
                     
                 </tbody>
             </table>
