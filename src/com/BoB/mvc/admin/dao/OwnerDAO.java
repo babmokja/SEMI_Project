@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.BoB.mvc.admin.dto.OwnerDetailDTO;
 import com.BoB.mvc.admin.dto.PageInfoDTO;
 import com.BoB.mvc.admin.dto.ownerDTO;
 import com.BoB.mvc.common.config.ConfigLocation;
@@ -181,5 +182,40 @@ public class OwnerDAO {
 		}
 		
 		return ownerList;
+	}
+
+
+	public List<OwnerDetailDTO> selectOwnerDetail(Connection con, int ownerNumber) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<OwnerDetailDTO> orderDetailList = null;
+		String query = prop.getProperty("selectOwnerDetail");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, ownerNumber);
+			rset = pstmt.executeQuery();
+			
+			orderDetailList = new ArrayList<>();
+			
+			if(rset.next()) {
+
+				OwnerDetailDTO owner = new OwnerDetailDTO();		
+				owner.setOwnerNum(rset.getInt("OWNER_NO"));
+				owner.setStoName(rset.getString("STORE_NAME"));
+				owner.setStoNum(rset.getInt("STORE_CODE"));
+				owner.setCategory(rset.getString("CATEGORY"));
+				owner.setStoAddr(rset.getString("STORE_ADDR"));
+				owner.setPhone(rset.getString("USER_PHONE"));
+				owner.setType(rset.getString("TYPE_NAME"));
+				
+				orderDetailList.add(owner);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return orderDetailList;
 	}
 }

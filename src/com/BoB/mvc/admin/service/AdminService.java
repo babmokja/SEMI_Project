@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.BoB.mvc.admin.dao.OrderDAO;
 import com.BoB.mvc.admin.dao.OwnerDAO;
+import com.BoB.mvc.admin.dto.OwnerDetailDTO;
 import com.BoB.mvc.admin.dto.PageInfoDTO;
 import com.BoB.mvc.admin.dto.cartDTO;
 import com.BoB.mvc.admin.dto.orderDTO;
@@ -117,5 +118,13 @@ public class AdminService {
 		List<ownerDTO> orderList = OwnerDAO.searchOrderList(con,pageInfo,condition,value);
 		close(con);
 		return orderList;
+	}
+
+	public List<OwnerDetailDTO> selectOwnerDetail(int ownerNumber) {
+		Connection con = getConnection();		
+		
+		List<OwnerDetailDTO> detailList = OwnerDAO.selectOwnerDetail(con,ownerNumber);
+		close(con);
+		return detailList;
 	}
 }

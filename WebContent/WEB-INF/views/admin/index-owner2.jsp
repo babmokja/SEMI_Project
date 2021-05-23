@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   
@@ -76,42 +77,40 @@
               </div>
               <hr class="start-line">
               <div class="row">
+                <c:forEach var="owner" items="${ requestScope.ownerDetail  }">
                 
                 <span class="recipe-item col-3 ">사업자번호</span>
-                <span class="recipe-item col-6 ">310-12345-1234</span>
+                <span class="recipe-item col-6 "><c:out value="${ owner.ownerNum }"/></span>
                 <br><br>
                 <span class="recipe-item col-3 ">음식점 이름</span>
-                <span class="recipe-item col-6 ">한식뷔페1</span>
+                <span class="recipe-item col-6 "><c:out value="${ owner.stoName }"/></span>
                 <br><br>
 
                 <span class="recipe-item col-3 ">음식점번호</span>
-                <span class="recipe-item col-6 ">A1234</span>
+                <span class="recipe-item col-6 "><c:out value="${ owner.stoNum }"/></span>
                 <br><br>
 
                 <span class="recipe-item col-3 ">업종카테고리</span>
-                <span class="recipe-item col-6 ">한식</span>
+                <span class="recipe-item col-6 "><c:out value="${ owner.category }"/></span>
                 <br><br>
 
                 <span class="recipe-item col-3 ">음식점주소</span>
-                <span class="recipe-item col-6 ">서울특별시 어디구 어디동</span>
+                <span class="recipe-item col-6 "><c:out value="${ owner.stoAddr }"/></span>
                 <br><br>
 
                 <span class="recipe-item col-3 ">휴대전화</span>
-                <span class="recipe-item col-6 ">070-1234-1234</span>
+                <span class="recipe-item col-6 "><c:out value="${ owner.phone }"/></span>
                 <br><br>
 
-                <span class="recipe-item col-3 ">좌석</span>
-                <span class="recipe-item col-6 ">2인석 : 4조 / 3인석 : 3조 / 4인석 : 7조</span>
-                <br><br>
 
                 <span class="recipe-item col-3 ">서비스 유형</span>
-                <span class="recipe-item col-6 ">배달, 포장, 좌석예약</span>
+                <span class="recipe-item col-6 "><c:out value="${ owner.type }"/></span>
                 <br><br>
 
                 <span class="recipe-item col-3 ">매출 확인</span>
                 <span class="recipe-item col-6 sales-config"><a href="${pageContext.servletContext.contextPath}/admin/sales/today">매출 확인</a></span>
 
-                
+                </c:forEach>
               </div>
 
               

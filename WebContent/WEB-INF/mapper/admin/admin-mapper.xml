@@ -385,7 +385,20 @@
 	
 	
 	
-	
+	<entry key="selectOwnerDetail">
+	    SELECT 
+        A.OWNER_NO,
+        A.STORE_NAME,
+        A.STORE_CODE,
+        A.CATEGORY,
+        A.STORE_ADDR,
+        B.USER_PHONE,
+        C.TYPE_NAME
+    FROM STORE_TABLE A
+    JOIN USER_TABLE B ON(A.USER_CODE = B.USER_CODE)
+    JOIN TYPE_LIST C ON(A.TYPE_CODE = C.TYPE_CODE)
+    WHERE A.STORE_CODE = ?
+	</entry>
 	
 	
 </properties>
