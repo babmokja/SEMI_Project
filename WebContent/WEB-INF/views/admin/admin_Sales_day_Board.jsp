@@ -42,7 +42,7 @@
             
        
         <div class="button01">오늘</div>
-        <div class="button02"><a href="${pageContext.servletContext.contextPath}/admin/sales/month">월별</a></div>
+        <div class="button02"><a href="${pageContext.servletContext.contextPath}/admin/sales/month?&ownerNum=${ requestScope.ownerNum }">월별</a></div>
 
        
         <div class="space"></div>

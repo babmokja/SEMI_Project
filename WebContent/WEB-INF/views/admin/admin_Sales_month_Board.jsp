@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,24 +53,50 @@
                 <thead>
                     <tr>
                         <th class="section_contest section_contest_1">
+                        <form id="loginForm" action="${ pageContext.servletContext.contextPath }/admin/sales/month?ownerNum=${ requestScope.ownerNum }&" method="get">
+                        
+                        <c:choose>
+				    	<c:when test="${ !empty requestScope.searchValue }">
+				    		<span class="months">
+                            <select class="form" onchange="this.form.submit()"  id="searchValue" name="searchValue">
+                                <option value="1" <c:if test="${requestScope.searchValue eq '1'}">selected</c:if>>1</option>
+                                <option value="2" <c:if test="${requestScope.searchValue eq '2'}">selected</c:if>>2</option>
+                                <option value="3" <c:if test="${requestScope.searchValue eq '3'}">selected</c:if>>3</option>
+                                <option value="4" <c:if test="${requestScope.searchValue eq '4'}">selected</c:if>>4</option>
+                                <option value="5" <c:if test="${requestScope.searchValue eq '5'}">selected</c:if>>5</option>
+                                <option value="6" <c:if test="${requestScope.searchValue eq '6'}">selected</c:if>>6</option>
+                                <option value="7" <c:if test="${requestScope.searchValue eq '7'}">selected</c:if>>7</option>
+                                <option value="8" <c:if test="${requestScope.searchValue eq '8'}">selected</c:if>>8</option>
+                                <option value="9" <c:if test="${requestScope.searchValue eq '9'}">selected</c:if>>9</option>
+                                <option value="10" <c:if test="${requestScope.searchValue eq '10'}">selected</c:if>>10</option>
+                                <option value="11" <c:if test="${requestScope.searchValue eq '11'}">selected</c:if>>11</option>
+                                <option value="12" <c:if test="${requestScope.searchValue eq '12'}">selected</c:if>>12</option>
+                              </select>
+                            </span>
+                            월
+                            </form>
+                        </c:when>
+                        <c:otherwise>
                         <span class="months">
-                            <select class="form" >
-                                <option selected>-</option>
+                            <select class="form"  onchange="this.form.submit()" id="searchValue" name="searchValue">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
-                                <option value="3">4</option>
-                                <option value="3">5</option>
-                                <option value="3">6</option>
-                                <option value="3">7</option>
-                                <option value="3">8</option>
-                                <option value="3">9</option>
-                                <option value="3">10</option>
-                                <option value="3">11</option>
-                                <option value="3">12</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
                               </select>
                             </span>
-                        월
+                            월
+                            </form>
+                        </c:otherwise>
+                        </c:choose>
                         </th>
                         <th class="section_contest section_contest_2">일자</th>
                         <th class="section_contest section_contest_3">총 주문건수</th>
@@ -138,5 +165,9 @@
     <footer>
         <address class="footer footer-text"> Copyright &copy; BABMOKJA All Right Reserved.</address>
     </footer>
+    
+    <script>
+
+    </script>
 </body>
 </html>
