@@ -10,19 +10,9 @@ public class CustomerBoardDTO implements java.io.Serializable{
 	private String boardContent;
 	private int userCode;
 	private String userName;
+	private String visible;
 	
 	public CustomerBoardDTO() {}
-
-	public CustomerBoardDTO(int boardCode, String boardTitle, Date boardDate, String boardContent, int userCode,
-			String userName) {
-		super();
-		this.boardCode = boardCode;
-		this.boardTitle = boardTitle;
-		this.boardDate = boardDate;
-		this.boardContent = boardContent;
-		this.userCode = userCode;
-		this.userName = userName;
-	}
 
 	public int getBoardCode() {
 		return boardCode;
@@ -72,11 +62,37 @@ public class CustomerBoardDTO implements java.io.Serializable{
 		this.userName = userName;
 	}
 
+	public String getVisible() {
+		return visible;
+	}
+
+	public void setVisible(String visible) {
+		this.visible = visible;
+	}
+
+	public CustomerBoardDTO(int boardCode, String boardTitle, Date boardDate, String boardContent, int userCode,
+			String userName, String visible) {
+		super();
+		this.boardCode = boardCode;
+		this.boardTitle = boardTitle;
+		this.boardDate = boardDate;
+		this.boardContent = boardContent;
+		this.userCode = userCode;
+		this.userName = userName;
+		this.visible = visible;
+	}
+
 	@Override
 	public String toString() {
 		return "CustomerBoardDTO [boardCode=" + boardCode + ", boardTitle=" + boardTitle + ", boardDate=" + boardDate
-				+ ", boardContent=" + boardContent + ", userCode=" + userCode + ", userName=" + userName + "]";
+				+ ", boardContent=" + boardContent + ", userCode=" + userCode + ", userName=" + userName + ", visible="
+				+ visible + "]";
 	}
+
+	
+
+	
+
 	
 	
 	

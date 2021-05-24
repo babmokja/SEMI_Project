@@ -6,8 +6,10 @@ import static com.BoB.mvc.common.jdbc.JDBCTemplate.getConnection;
 import java.sql.Connection;
 import java.util.List;
 
+import com.BoB.mvc.admin.dao.BoardDAO;
 import com.BoB.mvc.admin.dao.OrderDAO;
 import com.BoB.mvc.admin.dao.OwnerDAO;
+import com.BoB.mvc.admin.dto.CustomerBoardDTO;
 import com.BoB.mvc.admin.dto.OwnerDetailDTO;
 import com.BoB.mvc.admin.dto.PageInfoDTO;
 import com.BoB.mvc.admin.dto.cartDTO;
@@ -20,9 +22,11 @@ public class AdminService {
 	
 	private  OrderDAO OrderDAO;
 	private  OwnerDAO OwnerDAO;
+	private BoardDAO BoardDAO;
 	public AdminService() {
 		OrderDAO = new OrderDAO();
 		OwnerDAO = new OwnerDAO();
+		BoardDAO = new BoardDAO();
 	}
 	
 	public int selectTotalCount() {
@@ -140,5 +144,40 @@ public class AdminService {
 			System.out.println("업데이트 실패");
 
 		}
+	}
+
+	public int selectCusBoardTotalCount() {
+		Connection con = getConnection();
+		
+		int totalCount = BoardDAO.selectCusBoardTotalCount(con);
+		
+		close(con);
+		
+		return totalCount;
+	}
+
+	public List<CustomerBoardDTO> selectCusBoardList(PageInfoDTO pageInfo) {
+		
+		Connection con = getConnection();
+		
+		List<CustomerBoardDTO> boardList = BoardDAO.selectCusBoardList(con,pageInfo);
+		
+		return boardList;
+	}
+
+	public int searchBoardCount(String condition, String value) {
+		Connection con = getConnection();
+		int totalCount = BoardDAO.searchOrderCount(con,condition,value);
+		close(con);
+
+		return totalCount;
+	}
+
+	public List<CustomerBoardDTO> searchBoardList(String condition, String value, PageInfoDTO pageInfo) {
+		Connection con = getConnection();		
+		
+		List<CustomerBoardDTO> boardList = BoardDAO.searchBoardList(con,pageInfo,condition,value);
+		close(con);
+		return boardList;
 	}
 }
