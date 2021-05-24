@@ -32,14 +32,19 @@
             <ul class="nav flex-column">
               <hr class="end-line">
               <li class="nav-item sublogo">
-                <a href="./index-owner.html">업소 정보조회</a>
+                <a href="${pageContext.servletContext.contextPath}/admin/owner" >업소 정보조회</a>
                 <hr class="end-line">
               </li>
               
               <li class="nav-item sublogo">
-                이용료 정산내역 조회
+                <a href="${pageContext.servletContext.contextPath}/admin/fee" >이용료 정산내역 조회</a>
                 <hr class="end-line">
               </li>
+
+              <li class="nav-item sublogo">
+                업소 가입/추가신청 조회
+               <hr class="end-line">
+             </li>
             </ul>
           </div>
         </nav>
@@ -48,7 +53,7 @@
           
           <div class="row">
             <span class="col-2 menu-item">
-              <a href="${pageContext.servletContext.contextPath}/admin/order" class="link-dark"><img src="/SEMI_Project/resources/image/admin/item1.svg" />
+              <a href="${pageContext.servletContext.contextPath}/admin/order" class="link-dark"><img src="/SEMI_Project/resources/image/admin/item1.png" />
                 &nbsp;&nbsp;&nbsp;주문확인   </a>
             </span>
             <span class="col-2 menu-item ">
@@ -60,7 +65,7 @@
               &nbsp;&nbsp;&nbsp; 업소관리
             </span>
             <span class="col-2 menu-item">
-              <a href="${pageContext.servletContext.contextPath}/admin/customer/board" class="link-dark"><img src="/SEMI_Project/resources/image/admin/item4.svg" />
+              <a href="${pageContext.servletContext.contextPath}/admin/customer/board" class="link-dark"><img src="/SEMI_Project/resources/image/admin/item4.png" />
                 &nbsp;&nbsp;&nbsp;  게시판</a>
             </span>
           </div>

@@ -60,7 +60,7 @@
           
           <div class="row bg-white">
             <span class="col-2 menu-item">
-              <a href="${pageContext.servletContext.contextPath}/admin/order" class="link-dark"><img src="/SEMI_Project/resources/image/admin/item1.svg" />
+              <a href="${pageContext.servletContext.contextPath}/admin/order" class="link-dark"><img src="/SEMI_Project/resources/image/admin/item1.png" />
                 &nbsp;&nbsp;&nbsp;주문확인   </a>
             </span>
             <span class="col-2 menu-item ">
@@ -72,7 +72,7 @@
               &nbsp;&nbsp;&nbsp; 업소관리
             </span>
             <span class="col-2 menu-item">
-              <a href="${pageContext.servletContext.contextPath}/admin/customer/board" class="link-dark"><img src="/SEMI_Project/resources/image/admin/item4.svg" />
+              <a href="${pageContext.servletContext.contextPath}/admin/customer/board" class="link-dark"><img src="/SEMI_Project/resources/image/admin/item4.png" />
                 &nbsp;&nbsp;&nbsp;  게시판</a>
             </span>
           </div>
