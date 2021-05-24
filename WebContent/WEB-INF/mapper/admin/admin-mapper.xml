@@ -440,6 +440,13 @@
          
 	</entry>
 	
+	<entry key="selectCusBoardTotalCount">
+		SELECT 
+               COUNT(*)
+          FROM USER_BOARD A
+         
+	</entry>
+	
 	
 	<entry key="selectBoardList">
 	    SELECT
@@ -475,6 +482,40 @@
          
 	</entry>
 	
+	<entry key="selectCusBoardList">
+	    SELECT
+	    A.RNUM,
+	    A.BOARD_CODE,
+	    A.BOARD_TITLE,
+	    A.BOARD_DATE,
+	    A.VISIBLE_YN,
+	    A.USER_CODE,
+	    A.USER_NAME
+	        FROM(SELECT
+	                ROWNUM RNUM,
+	                    B.BOARD_CODE,
+	                    B.BOARD_TITLE,
+	                    B.BOARD_DATE,
+	                    B.VISIBLE_YN,
+	                    B.USER_CODE,
+	                    B.USER_NAME
+	                    FROM(SELECT 
+	                                C.BOARD_CODE,
+	                                C.BOARD_TITLE,
+	                                C.BOARD_DATE,
+	                                C.VISIBLE_YN,
+	                                C.USER_CODE,
+	                                D.USER_NAME
+	                                FROM USER_BOARD C
+	                                JOIN USER_TABLE D ON(C.USER_CODE = D.USER_CODE)
+	                                ORDER BY C.BOARD_CODE ASC
+	                            )B
+	                            
+	                    )A
+	            WHERE A.RNUM BETWEEN ? AND ?
+         
+	</entry>
+	
 	<entry key="boardTitleCount">
 		        
 		SELECT
@@ -488,6 +529,24 @@
 		    COUNT(*)
 		    FROM OWNER_INQUIRY A
 		    JOIN USER_TABLE B ON(A.OWNER_CODE = B.USER_CODE)
+		    WHERE B.USER_NAME  LIKE '%' || ? || '%'
+         
+	</entry>
+	
+	
+	<entry key="CusBoardTitleCount">
+		        
+		SELECT
+	    COUNT(*)
+	    FROM USER_BOARD A
+	    WHERE A.BOARD_TITLE  LIKE '%' || ? || '%'
+         
+	</entry>
+	
+	<entry key="CusUserNameCount">
+		    COUNT(*)
+		    FROM USER_BOARD A
+		    JOIN USER_TABLE B ON(A.USER_CODE = B.USER_CODE)
 		    WHERE B.USER_NAME  LIKE '%' || ? || '%'
          
 	</entry>
@@ -559,6 +618,77 @@
 	                           WHERE B.USER_NAME  LIKE '%' || ? || '%'
 	                    )A
 	            WHERE A.RNUM BETWEEN ? AND ?
+         
+	</entry>
+	
+	
+	<entry key="searchCusBoardTitle">
+		SELECT
+	    A.RNUM,
+	    A.BOARD_CODE,
+	    A.BOARD_TITLE,
+	    A.BOARD_DATE,
+	    A.VISIBLE_YN,
+	    A.USER_CODE,
+	    A.USER_NAME
+	        FROM(SELECT
+	                ROWNUM RNUM,
+	                    B.BOARD_CODE,
+	                    B.BOARD_TITLE,
+	                    B.BOARD_DATE,
+	                    B.VISIBLE_YN,
+	                    B.USER_CODE,
+	                    B.USER_NAME
+	                    FROM(SELECT 
+	                                C.BOARD_CODE,
+	                                C.BOARD_TITLE,
+	                                C.BOARD_DATE,
+	                                C.VISIBLE_YN,
+	                                C.USER_CODE,
+	                                D.USER_NAME
+	                                FROM USER_BOARD C
+	                                JOIN USER_TABLE D ON(C.USER_CODE = D.USER_CODE)
+	                                ORDER BY C.BOARD_CODE ASC
+	                            )B
+	                           WHERE B.BOARD_TITLE  LIKE '%' || ? || '%'
+	                    )A
+	            WHERE A.RNUM BETWEEN ? AND ?
+         
+	</entry>
+	
+	
+	<entry key="searchCusUserName">
+		SELECT
+	    A.RNUM,
+	    A.BOARD_CODE,
+	    A.BOARD_TITLE,
+	    A.BOARD_DATE,
+	    A.VISIBLE_YN,
+	    A.USER_CODE,
+	    A.USER_NAME
+	        FROM(SELECT
+	                ROWNUM RNUM,
+	                    B.BOARD_CODE,
+	                    B.BOARD_TITLE,
+	                    B.BOARD_DATE,
+	                    B.VISIBLE_YN,
+	                    B.USER_CODE,
+	                    B.USER_NAME
+	                    FROM(SELECT 
+	                                C.BOARD_CODE,
+	                                C.BOARD_TITLE,
+	                                C.BOARD_DATE,
+	                                C.VISIBLE_YN,
+	                                C.USER_CODE,
+	                                D.USER_NAME
+	                                FROM USER_BOARD C
+	                                JOIN USER_TABLE D ON(C.USER_CODE = D.USER_CODE)
+	                                ORDER BY C.BOARD_CODE ASC
+	                            )B
+	                           WHERE B.USER_NAME  LIKE '%' || ? || '%'
+	                    )A
+	            WHERE A.RNUM BETWEEN ? AND ?
+         
          
 	</entry>
 </properties>

@@ -146,6 +146,41 @@ public class AdminService {
 		}
 	}
 
+	public int selectStoBoardTotalCount() {
+		Connection con = getConnection();
+		
+		int totalCount = BoardDAO.selectStoBoardTotalCount(con);
+		
+		close(con);
+		
+		return totalCount;
+	}
+
+	public List<CustomerBoardDTO> selectStoBoardList(PageInfoDTO pageInfo) {
+		
+		Connection con = getConnection();
+		
+		List<CustomerBoardDTO> boardList = BoardDAO.selectStoBoardList(con,pageInfo);
+		
+		return boardList;
+	}
+
+	public int searchBoardCount(String condition, String value) {
+		Connection con = getConnection();
+		int totalCount = BoardDAO.searchBoardCount(con,condition,value);
+		close(con);
+
+		return totalCount;
+	}
+
+	public List<CustomerBoardDTO> searchBoardList(String condition, String value, PageInfoDTO pageInfo) {
+		Connection con = getConnection();		
+		
+		List<CustomerBoardDTO> boardList = BoardDAO.searchBoardList(con,pageInfo,condition,value);
+		close(con);
+		return boardList;
+	}
+
 	public int selectCusBoardTotalCount() {
 		Connection con = getConnection();
 		
@@ -157,7 +192,6 @@ public class AdminService {
 	}
 
 	public List<CustomerBoardDTO> selectCusBoardList(PageInfoDTO pageInfo) {
-		
 		Connection con = getConnection();
 		
 		List<CustomerBoardDTO> boardList = BoardDAO.selectCusBoardList(con,pageInfo);
@@ -165,18 +199,18 @@ public class AdminService {
 		return boardList;
 	}
 
-	public int searchBoardCount(String condition, String value) {
+	public int searchCusBoardCount(String condition, String value) {
 		Connection con = getConnection();
-		int totalCount = BoardDAO.searchOrderCount(con,condition,value);
+		int totalCount = BoardDAO.searchCusBoardCount(con,condition,value);
 		close(con);
 
 		return totalCount;
 	}
 
-	public List<CustomerBoardDTO> searchBoardList(String condition, String value, PageInfoDTO pageInfo) {
+	public List<CustomerBoardDTO> searchCusBoardList(String condition, String value, PageInfoDTO pageInfo) {
 		Connection con = getConnection();		
 		
-		List<CustomerBoardDTO> boardList = BoardDAO.searchBoardList(con,pageInfo,condition,value);
+		List<CustomerBoardDTO> boardList = BoardDAO.searchCusBoardList(con,pageInfo,condition,value);
 		close(con);
 		return boardList;
 	}

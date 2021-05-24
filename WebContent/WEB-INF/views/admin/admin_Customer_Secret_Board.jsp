@@ -46,14 +46,15 @@
         <div class="section_top">
  
         <div class="top-1">
-        <form id="loginForm" action="${ pageContext.servletContext.contextPath }/admin/owner/search" method="get">
-        <c:choose>
+        <form id="loginForm" action="${ pageContext.servletContext.contextPath }/admin/customer/board/search" method="get">
+              <div class="row">
+                <c:choose>
 				    <c:when test="${ !empty requestScope.searchValue }">
    					    <div class="col-3">
 	                  제목,글쓴이
 	                  <select class="form-select" id="searchCondition" name="searchCondition" >
-	                    <option value="ownerNum" <c:if test="${requestScope.searchCondition eq 'boardTitle'}">selected</c:if>>제목</option>
-		                <option value="bisiNum"<c:if test="${requestScope.searchCondition eq 'userName'}">selected</c:if>>글쓴이</option>
+	                    <option value="boardTitle" <c:if test="${requestScope.searchCondition eq 'boardTitle'}">selected</c:if>>제목</option>
+		                <option value="userName"<c:if test="${requestScope.searchCondition eq 'userName'}">selected</c:if>>글쓴이</option>
 	                  </select>
 	                </div>
 	                <div class="col-3">
@@ -63,7 +64,7 @@
 				    </c:when>
 				    <c:otherwise>
 						    <div class="col-3">
-		                 제목,글쓴이
+		                  제목,글쓴이
 		                  <select class="form-select" id="searchCondition" name="searchCondition" >
 		                    <option value="boardTitle">제목</option>
 		                    <option value="userName">글쓴이</option>
@@ -75,13 +76,14 @@
 		                </div>
 				    </c:otherwise>
 				</c:choose>
-              
-              <div class="top">
-                <br>
-                <button type="button" class="btn btn-outline-secondary">검색하기</button>
+                
+                <div class="col-3">
+                  <br>
+                  <button type="submit" class="btn btn-outline-secondary">검색하기</button>
+                </div>
               </div>
-        </div>
-		</form>
+              </form>
+             </div>
             <table> 
                 <thead>
                     <tr class="contest_top">
@@ -93,29 +95,85 @@
                     </tr>
                 </thead>
                 <tbody>
-				 <c:forEach var="customerBoard" items="${ requestScope.customerBoardList }">
-                    <tr>
-                        <td class="section_contest_first section_contest_1"><c:out value="${ customerBoard.boardCode }"/></td>
+				 <c:forEach var="board" items="${ requestScope.boardList }">
+					<c:choose>
+			    	<c:when test="${ board.visible =='Y' }">
+					<tr>
+						<td class="section_contest_first section_contest_1"><c:out value="${ board.boardCode }"/></td>
                         <td class="section_contest_first section_contest_2">건의</td>
-                        
-                        <td class="section_contest_first section_contest_3">
-                        <a href="${pageContext.servletContext.contextPath}/admin/customer/comment"><c:out value="${ customerBoard.boardTitle }"/></a></td>
-                        
-                        <td class="section_contest_first section_contest_4"><c:out value="${ customerBoard.userName }"/></td>
-                        <td class="section_contest_first section_contest_5"><c:out value="${ customerBoard.boardDate }"/></td>
-                    </tr>
-				</c:forEach>
+                        <td class="section_contest_first section_contest_3"><a href="${pageContext.servletContext.contextPath}/admin/customer/comment"><c:out value="${ board.boardTitle }"/></a></td>
+                        <td class="section_contest_first section_contest_4"><c:out value="${ board.userName }"/></td>
+                        <td class="section_contest_first section_contest_5"><c:out value="${ board.boardDate }"/></td>
+					</tr>
+					</c:when>
+					</c:choose>
+					</c:forEach>
                     
                 </tbody>
             </table>
 
-            <div class="center clearfix">
-                <div class="button button_space">1</div>
-                <div class="button button_space">2</div>
-                <div class="button button_space">3</div>
-                <div class="button button_space">4</div>
-                <div class="button">5</div>
-            </div>
+            <div class="text-center">
+           
+                	
+                <c:choose>
+			    <c:when test="${ empty requestScope.searchValue }">
+				    <button id="startPage"><<</button>
+	
+					<c:if test="${ requestScope.pageInfo.pageNo <= 1 }">
+						<button disabled><</button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo > 1 }">
+						<button id="prevPage"><</button>
+					</c:if>
+		
+					<c:forEach var="p" begin="${ requestScope.pageInfo.startPage }" end="${ requestScope.pageInfo.endPage }" step="1">
+						<c:if test="${ requestScope.pageInfo.pageNo eq p }">
+							<button disabled><c:out value="${ p }"/></button>
+						</c:if>
+						<c:if test="${ requestScope.pageInfo.pageNo ne p }">
+							<button onclick="pageButtonAction(this.innerText);"><c:out value="${ p }"/></button>
+						</c:if>
+					</c:forEach>
+					
+					<c:if test="${ requestScope.pageInfo.pageNo >= requestScope.pageInfo.maxPage }">
+						<button disabled>></button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo < requestScope.pageInfo.maxPage }">
+						<button id="nextPage">></button>
+					</c:if>
+					
+					<button id="maxPage">>></button> 
+			     </c:when>
+			    <c:otherwise>
+   				    <button id="searchStartPage"><<</button>
+	
+					<c:if test="${ requestScope.pageInfo.pageNo <= 1 }">
+						<button disabled><</button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo > 1 }">
+						<button id="searchPrevPage"><</button>
+					</c:if>
+		
+					<c:forEach var="p" begin="${ requestScope.pageInfo.startPage }" end="${ requestScope.pageInfo.endPage }" step="1">
+						<c:if test="${ requestScope.pageInfo.pageNo eq p }">
+							<button disabled><c:out value="${ p }"/></button>
+						</c:if>
+						<c:if test="${ requestScope.pageInfo.pageNo ne p }">
+							<button onclick="seachPageButtonAction(this.innerText);"><c:out value="${ p }"/></button>
+						</c:if>
+					</c:forEach>
+					
+					<c:if test="${ requestScope.pageInfo.pageNo >= requestScope.pageInfo.maxPage }">
+						<button disabled>></button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo < requestScope.pageInfo.maxPage }">
+						<button id="searchNextPage">></button>
+					</c:if>
+					
+					<button id="searchMaxPage">>></button> 
+			    </c:otherwise>
+			</c:choose>   
+              </div>
             
         </div>
     </section>
