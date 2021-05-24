@@ -417,12 +417,21 @@
         A.CATEGORY,
         A.STORE_ADDR,
         B.USER_PHONE,
-        C.TYPE_NAME
+        C.TYPE_NAME,
+        A.APPROVAL
+        
     FROM STORE_TABLE A
     JOIN USER_TABLE B ON(A.USER_CODE = B.USER_CODE)
     JOIN TYPE_LIST C ON(A.TYPE_CODE = C.TYPE_CODE)
     WHERE A.STORE_CODE = ?
 	</entry>
 	
+	<entry key="updateAppr">
+	    UPDATE
+        STORE_TABLE A
+        SET A.APPROVAL = ?
+        WHERE A.STORE_CODE = ?
+	
+	</entry>
 	
 </properties>

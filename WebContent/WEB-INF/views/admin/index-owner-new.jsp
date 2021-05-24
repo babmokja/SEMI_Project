@@ -125,6 +125,8 @@
                 
               
               <br>
+              
+              
               <table class="table table-striped table-sm  text-center ">
                 <thead>
                   <tr>
@@ -143,7 +145,7 @@
 						<td><c:out value="${ board.ownerName }"/></td>
 						<td><c:out value="${ board.enrollDate }"/></td>
 						<td><c:out value="${ board.appr }"/></td>
-						<td><a href="${pageContext.servletContext.contextPath}/admin/owner/detail?ownerNum=${ board.ownerNum }"  class="link-dark">상세보기</a></td>
+						<td><a href="${pageContext.servletContext.contextPath}/admin/owner/new/detail?ownerNum=${ board.ownerNum }"  class="link-dark">상세보기</a></td>
 					</tr>
 				</c:forEach>
                 </tbody>

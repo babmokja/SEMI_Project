@@ -127,4 +127,12 @@ public class AdminService {
 		close(con);
 		return detailList;
 	}
+
+	public void updateAppr(String result, String ownerNum) {
+		Connection con = getConnection();		
+
+		int updateAppr = OwnerDAO.updateAppr(con,result,ownerNum);
+		close(con);
+		System.out.println(updateAppr);
+	}
 }

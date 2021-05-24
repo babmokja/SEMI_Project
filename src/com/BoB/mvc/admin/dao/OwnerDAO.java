@@ -210,6 +210,7 @@ public class OwnerDAO {
 				owner.setStoAddr(rset.getString("STORE_ADDR"));
 				owner.setPhone(rset.getString("USER_PHONE"));
 				owner.setType(rset.getString("TYPE_NAME"));
+				owner.setAppr(rset.getString("APPROVAL"));
 				
 				orderDetailList.add(owner);
 			}
@@ -220,5 +221,41 @@ public class OwnerDAO {
 			close(pstmt);
 		}
 		return orderDetailList;
+	}
+
+
+	public int updateAppr(Connection con, String result, String ownerNum) {
+		
+		PreparedStatement pstmt = null;
+		int updateAppr = 0;
+		String query = prop.getProperty("updateAppr");
+		
+		try {
+			
+			if(result.equals("OK")) {
+				pstmt = con.prepareStatement(query);
+				
+				pstmt.setString(1, "Y");
+				pstmt.setString(2, ownerNum);
+				
+				updateAppr = pstmt.executeUpdate();
+			}else {
+				pstmt = con.prepareStatement(query);
+				
+				pstmt.setString(1, "N");
+				pstmt.setString(2, ownerNum);
+				
+				updateAppr = pstmt.executeUpdate();
+			}
+			
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		
+		return updateAppr;
 	}
 }
