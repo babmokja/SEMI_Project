@@ -113,7 +113,7 @@
                 <br><br>
 
                 <span class="recipe-item col-3 ">매출 확인</span>
-                <span class="recipe-item col-6 sales-config"><a href="${pageContext.servletContext.contextPath}/admin/sales/today">매출 확인</a></span>
+                <span class="recipe-item col-6 sales-config"><a href="${pageContext.servletContext.contextPath}/admin/sales/today?ownerNum=${ owner.ownerNum }">매출 확인</a></span>
 
                 </c:forEach>
               </div>

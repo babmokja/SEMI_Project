@@ -232,7 +232,6 @@
     <script>
 		const link = "${ pageContext.servletContext.contextPath }/admin/owner";
 		const searchLink = "${ pageContext.servletContext.contextPath }admin/owner/search";
-		const detail = "${ pageContext.servletContext.contextPath }/admin/owner/detail";
 			
 		if(document.getElementById("startPage")) {
 			const $startPage = document.getElementById("startPage");

@@ -85,7 +85,7 @@ public class OrderDAO {
 				order.setOrderNum(rset.getInt("ORDER_CODE"));
 				order.setCusName(rset.getString("USER_NAME"));
 				order.setStoName(rset.getString("STORE_NAME"));
-				order.setOrDate(rset.getDate("ORDER_TIME"));
+				order.setOrDate(rset.getTimestamp("ORDER_TIME"));
 				order.setPrice(rset.getInt("TOTAL_AMOUNT"));
 				order.setCusPhone(rset.getString("USER_PHONE"));	
 				order.setStoPhone(rset.getString("StoPhone"));

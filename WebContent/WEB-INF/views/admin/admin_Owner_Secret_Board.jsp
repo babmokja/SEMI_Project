@@ -186,5 +186,74 @@
     <footer>
         <address class="footer footer-text"> Copyright &copy; BABMOKJA All Right Reserved.</address>
     </footer>
+            <script>
+		const link = "${ pageContext.servletContext.contextPath }/admin/owner/board";
+		const searchLink = "${ pageContext.servletContext.contextPath }/admin/owner/board/search";
+			
+		if(document.getElementById("startPage")) {
+			const $startPage = document.getElementById("startPage");
+			$startPage.onclick = function() {
+				location.href = link + "?currentPage=1";
+			}
+		}
+		
+		if(document.getElementById("prevPage")) {
+			const $prevPage = document.getElementById("prevPage");
+			$prevPage.onclick = function() {
+				location.href = link + "?currentPage=${ requestScope.pageInfo.pageNo - 1 }";
+			}
+		}
+		
+
+		
+		if(document.getElementById("nextPage")) {
+			const $nextPage = document.getElementById("nextPage");
+			$nextPage.onclick = function() {
+				location.href = link + "?currentPage=${ requestScope.pageInfo.pageNo + 1 }";
+			}
+		}
+		
+		if(document.getElementById("maxPage")) {
+			const $maxPage = document.getElementById("maxPage");
+			$maxPage.onclick = function() {
+				location.href = link + "?currentPage=${ requestScope.pageInfo.maxPage }";
+			}
+		}
+		
+		if(document.getElementById("searchStartPage")) {
+			const $searchStartPage = document.getElementById("searchStartPage");
+			$searchStartPage.onclick = function() {
+				location.href = searchLink + "?currentPage=1&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+		if(document.getElementById("searchPrevPage")) {
+			const $searchPrevPage = document.getElementById("searchPrevPage");
+			$searchPrevPage.onclick = function() {
+				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.pageNo - 1 }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+		if(document.getElementById("searchNextPage")) {
+			const $searchNextPage = document.getElementById("searchNextPage");
+			$searchNextPage.onclick = function() {
+				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.pageNo + 1 }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+		if(document.getElementById("searchMaxPage")) {
+			const $searchMaxPage = document.getElementById("searchMaxPage");
+			$searchMaxPage.onclick = function() {
+				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.maxPage }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+		function pageButtonAction(text) {
+			location.href = link + "?currentPage=" + text;
+		}
+		function seachPageButtonAction(text) {
+			location.href = searchLink + "?currentPage=" + text + "&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+		}
+	</script>
 </body>
 </html>

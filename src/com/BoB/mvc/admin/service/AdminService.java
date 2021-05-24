@@ -19,6 +19,7 @@ import com.BoB.mvc.admin.dto.cartDTO;
 import com.BoB.mvc.admin.dto.orderDTO;
 import com.BoB.mvc.admin.dto.orderDetailDTO;
 import com.BoB.mvc.admin.dto.ownerDTO;
+import com.BoB.mvc.admin.dto.ownerSalesDTO;
 
 public class AdminService {
 
@@ -261,5 +262,21 @@ public class AdminService {
 		List<UserDetailDTO> detailList = AdminUserDAO.selectUserDetail(con,userNumber);
 		close(con);
 		return detailList;
+	}
+
+	public int selectSalesTodayCount(int ownerNum) {
+		Connection con = getConnection();
+		int totalCount = OwnerDAO.selectSalesTodayCount(con,ownerNum);
+		close(con);
+
+		return totalCount;
+	}
+
+	public List<ownerSalesDTO> selectSalesTodayList(PageInfoDTO pageInfo, int ownerNum) {
+		Connection con = getConnection();
+		
+		List<ownerSalesDTO> salesList = OwnerDAO.selectSalesTodayList(con,pageInfo,ownerNum);
+		
+		return salesList;
 	}
 }

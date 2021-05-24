@@ -16,6 +16,7 @@
 	</entry>
 	
 	<entry key="selectOrderList1">
+	
         SELECT 
             A.RNUM,
 		    A.ORDER_CODE,
@@ -882,5 +883,46 @@
         SUBSTR(USER_NO,1,8)
         FROM USER_TABLE
         WHERE USER_CODE =?
+	</entry>
+	
+	<entry key="selectSalesTotalCount">
+	        SELECT
+            COUNT(*)
+            FROM ORDER_TABLE A
+            JOIN STORE_TABLE B ON(A.STORE_CODE = B.STORE_CODE)
+            JOIN USER_TABLE C ON(B.USER_CODE = C.USER_CODE)
+            WHERE ORDER_TIME like concat(SUBSTR(sysdate,1,10),'%') and c.user_code =?
+	</entry>
+	
+	<entry key="selectSalesTodayList">
+	         SELECT
+            A.RNUM,
+            A.USER_CODE,
+            A.ORDER_CODE,
+            A.ORDER_TIME,
+            A.TYPE_YN,
+            A.TOTAL_AMOUNT
+                FROM(SELECT 
+                            ROWNUM RNUM,
+                            B.USER_CODE,
+                            B.ORDER_CODE,
+                            B.ORDER_TIME,
+                            B.TYPE_YN,
+                            B.TOTAL_AMOUNT
+                            FROM (SELECT 
+                                        E.USER_CODE,
+                                        C.ORDER_CODE,
+                                        C.ORDER_TIME,
+                                        C.TYPE_YN,
+                                        C.TOTAL_AMOUNT
+                                        FROM ORDER_TABLE C
+                                        JOIN STORE_TABLE D ON(C.STORE_CODE = D.STORE_CODE)
+                                        JOIN USER_TABLE E ON(D.USER_CODE = E.USER_CODE)
+                                        ORDER BY C.ORDER_CODE DESC
+                                )B
+                                WHERE B.ORDER_TIME like concat(SUBSTR(sysdate,1,10),'%')and B.user_code =?
+                    )A
+                    
+            WHERE A.RNUM BETWEEN ? AND ?
 	</entry>
 </properties>

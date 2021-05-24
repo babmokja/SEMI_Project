@@ -16,6 +16,7 @@ import java.util.Properties;
 import com.BoB.mvc.admin.dto.OwnerDetailDTO;
 import com.BoB.mvc.admin.dto.PageInfoDTO;
 import com.BoB.mvc.admin.dto.ownerDTO;
+import com.BoB.mvc.admin.dto.ownerSalesDTO;
 import com.BoB.mvc.common.config.ConfigLocation;
 
 public class OwnerDAO {
@@ -257,5 +258,76 @@ public class OwnerDAO {
 
 		
 		return updateAppr;
+	}
+
+
+	public int selectSalesTodayCount(Connection con, int ownerNum) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int totalCount = 0;
+		
+		String query = prop.getProperty("selectSalesTotalCount");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, ownerNum);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				totalCount = rset.getInt("COUNT(*)");
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return totalCount;
+	}
+
+
+	public List<ownerSalesDTO> selectSalesTodayList(Connection con, PageInfoDTO pageInfo, int ownerNum) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		List<ownerSalesDTO> salesList = null;
+		
+		String query = prop.getProperty("selectSalesTodayList");
+
+		if(query != null) {
+			System.out.println(query);
+		}
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, ownerNum);
+			pstmt.setInt(2, pageInfo.getStartRow());
+			pstmt.setInt(3, pageInfo.getEndRow());
+			System.out.println(pageInfo.getStartRow());
+			System.out.println(pageInfo.getEndRow());
+			rset = pstmt.executeQuery();
+			
+			salesList = new ArrayList<>();
+			
+			while(rset.next()) {
+				ownerSalesDTO sales = new ownerSalesDTO();		
+				sales.setOwnerNum(rset.getInt("USER_CODE"));
+				sales.setOrderNum(rset.getInt("ORDER_CODE"));
+				sales.setOrderDate(rset.getTime("ORDER_TIME"));
+				sales.setType(rset.getString("TYPE_YN"));
+				sales.setPrice(rset.getInt("TOTAL_AMOUNT"));
+				
+				
+				salesList.add(sales);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return salesList;
 	}
 }
