@@ -133,6 +133,12 @@ public class AdminService {
 
 		int updateAppr = OwnerDAO.updateAppr(con,result,ownerNum);
 		close(con);
-		System.out.println(updateAppr);
+		
+		if(updateAppr == 1) {
+			System.out.println("업데이트 성공");
+		}else {
+			System.out.println("업데이트 실패");
+
+		}
 	}
 }

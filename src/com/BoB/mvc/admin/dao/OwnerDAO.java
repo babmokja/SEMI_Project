@@ -242,7 +242,7 @@ public class OwnerDAO {
 			}else {
 				pstmt = con.prepareStatement(query);
 				
-				pstmt.setString(1, "N");
+				pstmt.setString(1, "X");
 				pstmt.setString(2, ownerNum);
 				
 				updateAppr = pstmt.executeUpdate();

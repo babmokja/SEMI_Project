@@ -135,8 +135,7 @@
           <br>
           <div class="row">
             <span class="col-8"></span>
-            <span class="col-1"><a href="#"><img src="/SEMI_Project/resources/image/admin/config.png" /></a></span>
-            <span class="col-1"><a href="${pageContext.servletContext.contextPath}/admin/owner"><img src="/SEMI_Project/resources/image/admin/backpage.png" /></a></span>
+            <span class="col-1"><a href="${pageContext.servletContext.contextPath}/admin/add/company"><img src="/SEMI_Project/resources/image/admin/backpage.png" /></a></span>
           </div>
           <br>
           <br><br>
