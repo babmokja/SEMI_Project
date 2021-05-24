@@ -9,6 +9,8 @@ import java.util.List;
 import com.BoB.mvc.admin.dao.BoardDAO;
 import com.BoB.mvc.admin.dao.OrderDAO;
 import com.BoB.mvc.admin.dao.OwnerDAO;
+import com.BoB.mvc.admin.dao.AdminUserDAO;
+import com.BoB.mvc.admin.dto.AdminUserDTO;
 import com.BoB.mvc.admin.dto.CustomerBoardDTO;
 import com.BoB.mvc.admin.dto.OwnerDetailDTO;
 import com.BoB.mvc.admin.dto.PageInfoDTO;
@@ -23,7 +25,10 @@ public class AdminService {
 	private  OrderDAO OrderDAO;
 	private  OwnerDAO OwnerDAO;
 	private BoardDAO BoardDAO;
+	private AdminUserDAO AdminUserDAO;
+	
 	public AdminService() {
+		AdminUserDAO = new AdminUserDAO();
 		OrderDAO = new OrderDAO();
 		OwnerDAO = new OwnerDAO();
 		BoardDAO = new BoardDAO();
@@ -213,5 +218,39 @@ public class AdminService {
 		List<CustomerBoardDTO> boardList = BoardDAO.searchCusBoardList(con,pageInfo,condition,value);
 		close(con);
 		return boardList;
+	}
+
+	public int selectUserCount() {
+		Connection con = getConnection();
+		
+		int totalCount = AdminUserDAO.selectUserCount(con);
+		
+		close(con);
+		
+		return totalCount;
+	}
+
+	public List<AdminUserDTO> selectUserList(PageInfoDTO pageInfo) {
+		Connection con = getConnection();
+		
+		List<AdminUserDTO> userList = AdminUserDAO.selectUserList(con,pageInfo);
+		
+		return userList;
+	}
+
+	public int searchUserCount(String condition, String value) {
+		Connection con = getConnection();
+		int totalCount = AdminUserDAO.searchUserCount(con,condition,value);
+		close(con);
+
+		return totalCount;
+	}
+
+	public List<AdminUserDTO> searchUserList(String condition, String value, PageInfoDTO pageInfo) {
+		Connection con = getConnection();		
+		
+		List<AdminUserDTO> userList = AdminUserDAO.searchUserList(con,pageInfo,condition,value);
+		close(con);
+		return userList;
 	}
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -64,27 +65,45 @@
           <div class="row">
             <div class="table-responsive col-10 offset-md-1">
               
+              <form id="loginForm" action="${ pageContext.servletContext.contextPath }/admin/user/search" method="get">
               <div class="row">
-                <div class="col-3">
-                  유저명,유저아이디,유저번호
-                    <select class="form-select" >
-                    <option selected>카테고리 선택</option>
-                    <option value="1">유저명</option>
-                    <option value="2">유저아이디</option>
-                    <option value="3">유저번호</option>
-                  </select>
-                </div>
-                <div class="col-3">
-                  유저명,유저아이디,유저번호 입력
-                  <input class="form-control" type="text" >
-                  
-                </div>
+                <c:choose>
+				    <c:when test="${ !empty requestScope.searchValue }">
+   					    <div class="col-3">
+	                  유저번호,유저아이디,유저명
+	                  <select class="form-select" id="searchCondition" name="searchCondition" >
+	                    <option value="userNum" <c:if test="${requestScope.searchCondition eq 'userNum'}">selected</c:if>>유저번호</option>
+		                <option value="userId"<c:if test="${requestScope.searchCondition eq 'userId'}">selected</c:if>>유저아이디</option>
+		                <option value="userName"<c:if test="${requestScope.searchCondition eq 'userName'}">selected</c:if>>유저명</option>
+	                  </select>
+	                </div>
+	                <div class="col-3">
+	                  유저번호,유저아이디,유저명 입력
+	                  <input class="form-control" type="search" id="searchValue" name="searchValue" value="${ requestScope.searchValue }" >
+	                </div>
+				    </c:when>
+				    <c:otherwise>
+						    <div class="col-3">
+		                  유저번호,유저아이디,유저명
+		                  <select class="form-select" id="searchCondition" name="searchCondition" >
+		                    <option value="userNum">유저번호</option>
+		                    <option value="userId">유저아이디</option>
+		                    <option value="userName">유저명</option>
+		                  </select>
+		                </div>
+		                <div class="col-3">
+		                  유저번호,유저아이디,유저명
+		                  <input class="form-control" type="search" id="searchValue" name="searchValue" >
+		                </div>
+				    </c:otherwise>
+				</c:choose>
                 
                 <div class="col-3">
                   <br>
-                  <button type="button" class="btn btn-outline-secondary">검색하기</button>
+                  <button type="submit" class="btn btn-outline-secondary">검색하기</button>
                 </div>
               </div>
+              </form>
               <br>
               <table class="table table-striped table-sm  text-center">
                 <thead>
@@ -93,167 +112,90 @@
                     <th>블랙리스트 여부</th>
                     <th>유저명</th>
                     <th>유저아이디</th>
-                    <th>가입일</th>
                     <th>주소</th>
                     <th>상세보기</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>US001</td>
-                    <td>N</td>
-                    <td>홍길동</td>
-                    <td>user1234</td>
-                    <td>2021.04.21 11:11:11</td>
-                    <td>서울시 어디구 어디동</td>
-                    <td><a href="${pageContext.servletContext.contextPath}/admin/customer/detail" class="link-dark">상세보기</a></td>
-                  </tr>
-                  <tr>
-                    <td>US001</td>
-                    <td>N</td>
-                    <td>홍길동</td>
-                    <td>user1234</td>
-                    <td>2021.04.21 11:11:11</td>
-                    <td>서울시 어디구 어디동</td>
-                    <td><a href="#" class="link-dark">상세보기</a></td>
-                  </tr>
-                  <tr>
-                    <td>US001</td>
-                    <td>N</td>
-                    <td>홍길동</td>
-                    <td>user1234</td>
-                    <td>2021.04.21 11:11:11</td>
-                    <td>서울시 어디구 어디동</td>
-                    <td><a href="#" class="link-dark">상세보기</a></td>
-                  </tr>
-                  <tr>
-                    <td>US001</td>
-                    <td>N</td>
-                    <td>홍길동</td>
-                    <td>user1234</td>
-                    <td>2021.04.21 11:11:11</td>
-                    <td>서울시 어디구 어디동</td>
-                    <td><a href="#" class="link-dark">상세보기</a></td>
-                  </tr>
-                  <tr>
-                    <td>US001</td>
-                    <td>N</td>
-                    <td>홍길동</td>
-                    <td>user1234</td>
-                    <td>2021.04.21 11:11:11</td>
-                    <td>서울시 어디구 어디동</td>
-                    <td><a href="#" class="link-dark">상세보기</a></td>
-                  </tr>
-                  <tr>
-                    <td>US001</td>
-                    <td>N</td>
-                    <td>홍길동</td>
-                    <td>user1234</td>
-                    <td>2021.04.21 11:11:11</td>
-                    <td>서울시 어디구 어디동</td>
-                    <td><a href="#" class="link-dark">상세보기</a></td>
-                  </tr>
-                  <tr>
-                    <td>US001</td>
-                    <td>N</td>
-                    <td>홍길동</td>
-                    <td>user1234</td>
-                    <td>2021.04.21 11:11:11</td>
-                    <td>서울시 어디구 어디동</td>
-                    <td><a href="#" class="link-dark">상세보기</a></td>
-                  </tr>
-                  <tr>
-                    <td>US001</td>
-                    <td>N</td>
-                    <td>홍길동</td>
-                    <td>user1234</td>
-                    <td>2021.04.21 11:11:11</td>
-                    <td>서울시 어디구 어디동</td>
-                    <td><a href="#" class="link-dark">상세보기</a></td>
-                  </tr>
-                  <tr>
-                    <td>US001</td>
-                    <td>N</td>
-                    <td>홍길동</td>
-                    <td>user1234</td>
-                    <td>2021.04.21 11:11:11</td>
-                    <td>서울시 어디구 어디동</td>
-                    <td><a href="#" class="link-dark">상세보기</a></td>
-                  </tr>
-                  <tr>
-                    <td>US001</td>
-                    <td>N</td>
-                    <td>홍길동</td>
-                    <td>user1234</td>
-                    <td>2021.04.21 11:11:11</td>
-                    <td>서울시 어디구 어디동</td>
-                    <td><a href="#" class="link-dark">상세보기</a></td>
-                  </tr>
-                  <tr>
-                    <td>US001</td>
-                    <td>N</td>
-                    <td>홍길동</td>
-                    <td>user1234</td>
-                    <td>2021.04.21 11:11:11</td>
-                    <td>서울시 어디구 어디동</td>
-                    <td><a href="#" class="link-dark">상세보기</a></td>
-                  </tr>
-                  <tr>
-                    <td>US001</td>
-                    <td>N</td>
-                    <td>홍길동</td>
-                    <td>user1234</td>
-                    <td>2021.04.21 11:11:11</td>
-                    <td>서울시 어디구 어디동</td>
-                    <td><a href="#" class="link-dark">상세보기</a></td>
-                  </tr>
-                  <tr>
-                    <td>US001</td>
-                    <td>N</td>
-                    <td>홍길동</td>
-                    <td>user1234</td>
-                    <td>2021.04.21 11:11:11</td>
-                    <td>서울시 어디구 어디동</td>
-                    <td><a href="#" class="link-dark">상세보기</a></td>
-                  </tr>
-                  <tr>
-                    <td>US001</td>
-                    <td>N</td>
-                    <td>홍길동</td>
-                    <td>user1234</td>
-                    <td>2021.04.21 11:11:11</td>
-                    <td>서울시 어디구 어디동</td>
-                    <td><a href="#" class="link-dark">상세보기</a></td>
-                  </tr>
-                  <tr>
-                    <td>US001</td>
-                    <td>N</td>
-                    <td>홍길동</td>
-                    <td>user1234</td>
-                    <td>2021.04.21 11:11:11</td>
-                    <td>서울시 어디구 어디동</td>
-                    <td><a href="#" class="link-dark">상세보기</a></td>
-                  </tr>
-                  <tr>
-                    <td>US001</td>
-                    <td>N</td>
-                    <td>홍길동</td>
-                    <td>user1234</td>
-                    <td>2021.04.21 11:11:11</td>
-                    <td>서울시 어디구 어디동</td>
-                    <td><a href="#" class="link-dark">상세보기</a></td>
-                  </tr>
+                  
+                  <c:forEach var="user" items="${ requestScope.userList }">
+					<c:choose>
+			    	<c:when test="${ user.withDrawYN =='N' }">
+					<tr>
+						<td><c:out value="${ user.userNum }"/></td>
+						<td><c:out value="${ user.blackList }"/></td>
+						<td><c:out value="${ user.userName }"/></td>
+						<td><c:out value="${ user.userId }"/></td>
+						<td><c:out value="${ user.userAddr }"/></td>
+						<td><a href="${pageContext.servletContext.contextPath}/admin/owner/detail?ownerNum=${ board.ownerNum }"  class="link-dark">상세보기</a></td>
+					</tr>
+					</c:when>
+					</c:choose>
+					</c:forEach>
                 </tbody>
               </table>
               <br>
               <div class="text-center">
-                
-                <span class="col-1 "><a href="#" class="page-item link-dark" >1</a></span>
-                <span class="col-1"><a href="#" class="page-item link-dark" >2</a></span>
-                <span class="col-1"><a href="#" class="page-item link-dark" >3</a></span>
-                <span class="col-1"><a href="#" class="page-item link-dark" >4</a></span>
-                <span class="col-1"><a href="#" class="page-item link-dark" >5</a></span>
-                
+           
+                	
+                <c:choose>
+			    <c:when test="${ empty requestScope.searchValue }">
+				    <button id="startPage"><<</button>
+	
+					<c:if test="${ requestScope.pageInfo.pageNo <= 1 }">
+						<button disabled><</button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo > 1 }">
+						<button id="prevPage"><</button>
+					</c:if>
+		
+					<c:forEach var="p" begin="${ requestScope.pageInfo.startPage }" end="${ requestScope.pageInfo.endPage }" step="1">
+						<c:if test="${ requestScope.pageInfo.pageNo eq p }">
+							<button disabled><c:out value="${ p }"/></button>
+						</c:if>
+						<c:if test="${ requestScope.pageInfo.pageNo ne p }">
+							<button onclick="pageButtonAction(this.innerText);"><c:out value="${ p }"/></button>
+						</c:if>
+					</c:forEach>
+					
+					<c:if test="${ requestScope.pageInfo.pageNo >= requestScope.pageInfo.maxPage }">
+						<button disabled>></button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo < requestScope.pageInfo.maxPage }">
+						<button id="nextPage">></button>
+					</c:if>
+					
+					<button id="maxPage">>></button> 
+			     </c:when>
+			    <c:otherwise>
+   				    <button id="searchStartPage"><<</button>
+	
+					<c:if test="${ requestScope.pageInfo.pageNo <= 1 }">
+						<button disabled><</button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo > 1 }">
+						<button id="searchPrevPage"><</button>
+					</c:if>
+		
+					<c:forEach var="p" begin="${ requestScope.pageInfo.startPage }" end="${ requestScope.pageInfo.endPage }" step="1">
+						<c:if test="${ requestScope.pageInfo.pageNo eq p }">
+							<button disabled><c:out value="${ p }"/></button>
+						</c:if>
+						<c:if test="${ requestScope.pageInfo.pageNo ne p }">
+							<button onclick="seachPageButtonAction(this.innerText);"><c:out value="${ p }"/></button>
+						</c:if>
+					</c:forEach>
+					
+					<c:if test="${ requestScope.pageInfo.pageNo >= requestScope.pageInfo.maxPage }">
+						<button disabled>></button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo < requestScope.pageInfo.maxPage }">
+						<button id="searchNextPage">></button>
+					</c:if>
+					
+					<button id="searchMaxPage">>></button> 
+			    </c:otherwise>
+			</c:choose>   
               </div>
               
             </div>

@@ -8,6 +8,13 @@
          
 	</entry>
 	
+	<entry key="selectUserCount">
+		SELECT 
+               COUNT(*)
+          FROM USER_TABLE A
+         
+	</entry>
+	
 	<entry key="selectOrderList1">
         SELECT 
             A.RNUM,
@@ -690,5 +697,171 @@
 	            WHERE A.RNUM BETWEEN ? AND ?
          
          
+	</entry>
+	
+	<entry key="selectUserList">
+	                SELECT 
+            A.RNUM,
+            A.USER_CODE,
+            A.BLACKLIST_YN,
+            A.USER_NAME,
+            A.USER_ID,
+            A.USER_ADDRESS,
+            A.WITHDRAW_YN
+                    FROM(SELECT
+                                ROWNUM RNUM,
+                                B.USER_CODE,
+                                B.BLACKLIST_YN,
+                                B.USER_NAME,
+                                B.USER_ID,
+                                B.USER_ADDRESS,
+                                B.WITHDRAW_YN
+                                FROM (SELECT
+                                            C.USER_CODE,
+                                            C.BLACKLIST_YN,
+                                            C.USER_NAME,
+                                            C.USER_ID,
+                                            C.USER_ADDRESS,
+                                            C.WITHDRAW_YN
+                                            FROM USER_TABLE C
+                                            ORDER BY C.USER_CODE DESC
+                                )B
+                                
+                    )A
+                    
+            WHERE A.RNUM BETWEEN ? AND ?
+	
+	</entry>
+	
+	
+	
+		<entry key="userNumCount">
+		        SELECT
+                COUNT(*)
+                
+                FROM USER_TABLE
+                WHERE USER_CODE = ?
+         
+	</entry>
+	
+		<entry key="userIdCount">
+            SELECT
+                COUNT(*)
+                
+                FROM USER_TABLE
+                WHERE USER_ID  LIKE '%' || ? || '%'
+         
+	</entry>
+	
+	
+		<entry key="userNameCount2">
+		        SELECT
+                COUNT(*)
+                
+                FROM USER_TABLE
+                WHERE USER_NAME  LIKE '%' || ? || '%'
+         
+	</entry>
+	
+		<entry key="userNumSearch">
+	                SELECT 
+            A.RNUM,
+            A.USER_CODE,
+            A.BLACKLIST_YN,
+            A.USER_NAME,
+            A.USER_ID,
+            A.USER_ADDRESS,
+            A.WITHDRAW_YN
+                    FROM(SELECT
+                                ROWNUM RNUM,
+                                B.USER_CODE,
+                                B.BLACKLIST_YN,
+                                B.USER_NAME,
+                                B.USER_ID,
+                                B.USER_ADDRESS,
+                                B.WITHDRAW_YN
+                                FROM (SELECT
+                                            C.USER_CODE,
+                                            C.BLACKLIST_YN,
+                                            C.USER_NAME,
+                                            C.USER_ID,
+                                            C.USER_ADDRESS,
+                                            C.WITHDRAW_YN
+                                            FROM USER_TABLE C
+                                            ORDER BY C.USER_CODE DESC
+                                )B
+                               WHERE B.USER_CODE = ? 
+                    )A
+                    
+            WHERE A.RNUM BETWEEN ? AND ?
+	
+	</entry>
+	
+		<entry key="userIdSearch">
+	                SELECT 
+            A.RNUM,
+            A.USER_CODE,
+            A.BLACKLIST_YN,
+            A.USER_NAME,
+            A.USER_ID,
+            A.USER_ADDRESS,
+            A.WITHDRAW_YN
+                    FROM(SELECT
+                                ROWNUM RNUM,
+                                B.USER_CODE,
+                                B.BLACKLIST_YN,
+                                B.USER_NAME,
+                                B.USER_ID,
+                                B.USER_ADDRESS,
+                                B.WITHDRAW_YN
+                                FROM (SELECT
+                                            C.USER_CODE,
+                                            C.BLACKLIST_YN,
+                                            C.USER_NAME,
+                                            C.USER_ID,
+                                            C.USER_ADDRESS,
+                                            C.WITHDRAW_YN
+                                            FROM USER_TABLE C
+                                            ORDER BY C.USER_CODE DESC
+                                )B
+                                WHERE B.USER_ID  LIKE '%' || ? || '%'
+                    )A
+                    
+            WHERE A.RNUM BETWEEN ? AND ?
+	
+	</entry>
+	
+		<entry key="userNameSearch2">
+	                SELECT 
+            A.RNUM,
+            A.USER_CODE,
+            A.BLACKLIST_YN,
+            A.USER_NAME,
+            A.USER_ID,
+            A.USER_ADDRESS,
+            A.WITHDRAW_YN
+                    FROM(SELECT
+                                ROWNUM RNUM,
+                                B.USER_CODE,
+                                B.BLACKLIST_YN,
+                                B.USER_NAME,
+                                B.USER_ID,
+                                B.USER_ADDRESS,
+                                B.WITHDRAW_YN
+                                FROM (SELECT
+                                            C.USER_CODE,
+                                            C.BLACKLIST_YN,
+                                            C.USER_NAME,
+                                            C.USER_ID,
+                                            C.USER_ADDRESS,
+                                            C.WITHDRAW_YN
+                                            FROM USER_TABLE C
+                                            ORDER BY C.USER_CODE DESC
+                                )B
+                             WHERE B.USER_NAME  LIKE '%' || ? || '%'   
+                    )A
+                    
+            WHERE A.RNUM BETWEEN ? AND ?
+	
 	</entry>
 </properties>
