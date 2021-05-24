@@ -14,6 +14,7 @@ import com.BoB.mvc.admin.dto.AdminUserDTO;
 import com.BoB.mvc.admin.dto.CustomerBoardDTO;
 import com.BoB.mvc.admin.dto.OwnerDetailDTO;
 import com.BoB.mvc.admin.dto.PageInfoDTO;
+import com.BoB.mvc.admin.dto.UserDetailDTO;
 import com.BoB.mvc.admin.dto.cartDTO;
 import com.BoB.mvc.admin.dto.orderDTO;
 import com.BoB.mvc.admin.dto.orderDetailDTO;
@@ -252,5 +253,13 @@ public class AdminService {
 		List<AdminUserDTO> userList = AdminUserDAO.searchUserList(con,pageInfo,condition,value);
 		close(con);
 		return userList;
+	}
+
+	public List<UserDetailDTO> selectUserDetail(int userNumber) {
+		Connection con = getConnection();		
+		
+		List<UserDetailDTO> detailList = AdminUserDAO.selectUserDetail(con,userNumber);
+		close(con);
+		return detailList;
 	}
 }

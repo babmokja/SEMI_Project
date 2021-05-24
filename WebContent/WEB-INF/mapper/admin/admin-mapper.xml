@@ -864,4 +864,23 @@
             WHERE A.RNUM BETWEEN ? AND ?
 	
 	</entry>
+	
+	
+	<entry key="selectUserDetail">
+	   SELECT
+        USER_CODE,
+        USER_ID,
+        USER_NAME,
+        USER_PHONE,
+        USER_ADDRESS,
+        POINT,
+        USER_EMAIL,
+        WITHDRAW_YN,
+        ROLE_CODE,
+        BLACKLIST_YN,
+        BLACKLIST_DATE,
+        SUBSTR(USER_NO,1,8)
+        FROM USER_TABLE
+        WHERE USER_CODE =?
+	</entry>
 </properties>

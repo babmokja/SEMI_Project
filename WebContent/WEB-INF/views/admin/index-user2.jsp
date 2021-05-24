@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   
@@ -67,42 +68,74 @@
               <hr class="start-line">
               <div class="row">
                 
+				<c:forEach var="detail" items="${ requestScope.userDetail }">
                 <span class="recipe-item col-3 ">유저번호</span>
-                <span class="recipe-item col-6 ">US001</span>
+                <span class="recipe-item col-6 "><c:out value="${ detail.userNum }"/></span>
                 <br><br>
-                <span class="recipe-item col-3 ">사용자 이름</span>
-                <span class="recipe-item col-6 ">홍길동</span>
-                <br><br>
-
                 <span class="recipe-item col-3 ">유저아이디</span>
-                <span class="recipe-item col-6 ">user1234</span>
+                <span class="recipe-item col-6 "><c:out value="${ detail.userId }"/></span>
                 <br><br>
 
-                <span class="recipe-item col-3 ">주민번호</span>
-                <span class="recipe-item col-6 ">111111-1******</span>
+                <span class="recipe-item col-3 ">유저명</span>
+                <span class="recipe-item col-6 "><c:out value="${ detail.userName }"/></span>
                 <br><br>
 
-                <span class="recipe-item col-3 ">사용자 주소</span>
-                <span class="recipe-item col-6 ">서울특별시 어디구 어디동</span>
+
+				<span class="recipe-item col-3 ">휴대전화</span>
+                <span class="recipe-item col-6 "><c:out value="${ detail.userPhone }"/></span>
                 <br><br>
-
-                <span class="recipe-item col-3 ">카드번호</span>
-                <span class="recipe-item col-6 ">1234-****-****-1234</span>
+                
+                <span class="recipe-item col-3 ">주소</span>
+                <span class="recipe-item col-6 "><c:out value="${ detail.userAddr }"/></span>
                 <br><br>
-
-                <span class="recipe-item col-3 ">CVC번호</span>
-                <span class="recipe-item col-6 ">1**</span>
+                
+                <span class="recipe-item col-3 ">잔여 포인트</span>
+                <span class="recipe-item col-6 "><c:out value="${ detail.point }"/></span>
                 <br><br>
-
-                <span class="recipe-item col-3 ">가입일</span>
-                <span class="recipe-item col-6 ">2021.04.21 11:11:11</span>
+                
+                <span class="recipe-item col-3 ">이메일</span>
+                <span class="recipe-item col-6 "><c:out value="${ detail.userEmail }"/></span>
                 <br><br>
-
-                <span class="recipe-item col-3 ">블랙리스트 여부</span>
-                <span class="recipe-item col-6 ">N</span>
-  
-              </div>
-
+                
+                <span class="recipe-item col-3 ">탈퇴여부</span>
+                <span class="recipe-item col-6 "><c:out value="${ detail.withdraw_yn }"/></span>
+                <br><br>
+                
+				<span class="recipe-item col-3 ">분류</span>
+				<c:choose>
+			    <c:when test="${ detail.roleCode == 1 }">
+			    <span class="recipe-item col-6 ">고객</span>
+			    </c:when>
+			    <c:when test="${ detail.roleCode == 2 }">
+			    <span class="recipe-item col-6 ">업주</span>
+			    </c:when>
+			    <c:when test="${ detail.roleCode == 3 }">
+			    <span class="recipe-item col-6 ">관리자</span>
+			    </c:when>
+			    </c:choose>
+                
+                <br><br>
+  		
+  		
+  				<span class="recipe-item col-3 ">블랙리스트 여부</span>
+                <span class="recipe-item col-6 "><c:out value="${ detail.blackListyn }"/></span>
+                <br><br>
+                <span class="recipe-item col-3 ">블랙리스트 갱신일자</span>
+                <c:choose>
+			    <c:when test="${ detail.blackListDate == null }">
+			    <span class="recipe-item col-6 ">해당없음</span>
+			    </c:when>
+			    <c:otherwise>
+			    <span class="recipe-item col-6 "><c:out value="${ detail.blackListDate }"/></span>
+			    </c:otherwise>
+			    </c:choose>
+                
+                <br><br>
+                <span class="recipe-item col-3 ">주민등록번호</span>
+                <span class="recipe-item col-6 "><c:out value="${ detail.userJumin }"/>******</span>
+                </c:forEach>
+                <br><br>
+			</div>
             </div>
           </div>
 
@@ -113,7 +146,6 @@
           <br>
           <div class="row">
             <span class="col-8"></span>
-            <span class="col-1"><a href="#"><img src="/SEMI_Project/resources/image/admin/config.png" /></a></span>
             <span class="col-1"><a href="${pageContext.servletContext.contextPath}/admin/customer"><img src="/SEMI_Project/resources/image/admin/backpage.png" /></a></span>
           </div>
           <br>

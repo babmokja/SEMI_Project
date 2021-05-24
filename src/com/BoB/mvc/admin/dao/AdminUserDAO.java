@@ -15,6 +15,7 @@ import java.util.Properties;
 import com.BoB.mvc.admin.dto.AdminUserDTO;
 import com.BoB.mvc.admin.dto.CustomerBoardDTO;
 import com.BoB.mvc.admin.dto.PageInfoDTO;
+import com.BoB.mvc.admin.dto.UserDetailDTO;
 import com.BoB.mvc.common.config.ConfigLocation;
 
 public class AdminUserDAO {
@@ -183,5 +184,49 @@ public class AdminUserDAO {
 			
 		
 		return userList;
+	}
+
+	public List<UserDetailDTO> selectUserDetail(Connection con, int userNumber) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<UserDetailDTO> userDetail = null;
+		String query = prop.getProperty("selectUserDetail");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userNumber);
+			rset = pstmt.executeQuery();
+			
+			userDetail = new ArrayList<>();
+			
+			if(rset.next()) {
+				UserDetailDTO detail = new UserDetailDTO();
+				detail.setUserNum(rset.getInt("USER_CODE"));
+				detail.setUserId(rset.getString("USER_ID"));
+				detail.setUserName(rset.getString("USER_NAME"));
+				detail.setUserPhone(rset.getString("USER_PHONE"));
+				detail.setUserAddr(rset.getString("USER_ADDRESS"));
+				detail.setPoint(rset.getInt("POINT"));
+				detail.setUserEmail(rset.getString("USER_EMAIL"));
+				detail.setWithdraw_yn(rset.getString("WITHDRAW_YN"));
+				detail.setRoleCode(rset.getInt("ROLE_CODE"));
+				detail.setBlackListyn(rset.getString("BLACKLIST_YN"));
+				detail.setBlackListDate(rset.getDate("BLACKLIST_DATE"));
+				detail.setUserJumin(rset.getString("SUBSTR(USER_NO,1,8)"));
+				
+				userDetail.add(detail);
+				
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+
+		return userDetail;
 	}
 }

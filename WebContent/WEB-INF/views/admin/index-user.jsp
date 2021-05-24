@@ -127,7 +127,7 @@
 						<td><c:out value="${ user.userName }"/></td>
 						<td><c:out value="${ user.userId }"/></td>
 						<td><c:out value="${ user.userAddr }"/></td>
-						<td><a href="${pageContext.servletContext.contextPath}/admin/owner/detail?ownerNum=${ board.ownerNum }"  class="link-dark">상세보기</a></td>
+						<td><a href="${pageContext.servletContext.contextPath}/admin/customer/detail?userNum=${ user.userNum }"  class="link-dark">상세보기</a></td>
 					</tr>
 					</c:when>
 					</c:choose>
