@@ -25,7 +25,7 @@
 	<%-- <jsp:forward page="/WEB-INF/views/customer/Pay.jsp"/> --%>
 	<!-- 고객 로그인 페이지 -->
 	<%-- <jsp:forward page="/WEB-INF/views/customer/Login.jsp"/> --%>
-	<!--  고객 리뷰 페이지 -->
+	<!--  고객 리뷰 페이 지 -->
     <%-- <jsp:forward page="/WEB-INF/views/customer/Review.jsp"/> --%>
     <!-- 고객 가입 약관 페이지 -->
     <%-- <jsp:forward page="/WEB-INF/views/customer/SigninCommon.jsp"/> --%>
@@ -34,18 +34,18 @@
     <!-- 고객 마이페이지 -->
     <%-- <jsp:forward page="/WEB-INF/views/customer/Mypage.jsp"/ >--%>
     <!--  고객 게시글 목록 -->
-    <%-- <jsp:forward page="/WEB-INF/views/customer/User_Board.jsp"/> --%> 
+    <%-- <jsp:forward page\="/WEB-INF/views/customer/User_Board.jsp"/> --%> 
    <!--  고객 게시글 상세보기 -->
    <%-- <jsp:forward page="/WEB-INF/views/customer/User_Board_Read.jsp"/> --%>
    <!--  고객 건의 글쓰기 -->
    <%-- <jsp:forward page="/WEB-INF/views/customer/User_Board_Write.jsp"/> --%>
-
 
 	<!-- 업주 -->
 	
 	<!-- 업체 메인 페이지 -->
 
 	<jsp:forward page="/WEB-INF/views/owner/main_store.jsp"/>	
+	<%-- <jsp:forward page="/WEB-INF/views/owner/MenuManage.jsp"/> --%>	
 	
 	<!-- 관리자 -->
 	<%-- <jsp:forward page="/WEB-INF/views/admin/main_manager.jsp"/> --%> 
@@ -96,7 +96,8 @@
 	
 	
 	<!-- 관리자 -->
-	<jsp:forward page="/WEB-INF/views/admin/main_manager.jsp"/>
+	<%-- <jsp:forward page="/WEB-INF/views/admin/main_manager.jsp"/> --%>
+	
 	</body>
 	
 </html>
