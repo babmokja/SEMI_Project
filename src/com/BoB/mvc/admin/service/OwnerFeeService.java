@@ -18,27 +18,38 @@ public class OwnerFeeService {
 	
 	 
 
-	public List<AdminBillDTO> selectFeeList(String month, int value) {
+public List<AdminBillDTO> selectFeeList(String month, int value) {
 		
 		Connection con = getConnection();
 		
 		String calender = "";
 		
-		calender += month.charAt(2);
-		calender += month.charAt(3);
-		calender += "-";
-		calender += month.charAt(5);
-		calender += month.charAt(6);
-		//calender += "__";
+		  calender += month.charAt(2);
+	      calender += month.charAt(3);
+	      calender += "/";
+	      calender += month.charAt(5);
+	      calender += month.charAt(6);
 		
 		System.out.println("calender "+calender);
  
 		List<AdminBillDTO> OwnerFeeList = ownerFeeDAO.selectBillList(con, calender,value);
-		System.out.println("서비스쪽 확인 "+OwnerFeeList);
 		close(con);
 		
 		
 		return OwnerFeeList;
+	}
+
+
+
+	public List<AdminBillDTO> selectOneFee(int value) {
+		
+		Connection con = getConnection();
+		
+	      
+	      List<AdminBillDTO> oneFeeList = ownerFeeDAO.selectOneFee(con,value);
+	      close(con);
+		
+		return oneFeeList;
 	}
 
 }

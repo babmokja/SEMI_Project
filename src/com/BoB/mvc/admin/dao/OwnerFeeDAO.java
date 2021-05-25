@@ -34,12 +34,11 @@ public class OwnerFeeDAO {
 		
 		List<AdminBillDTO> OwnerFeeList = null;
 		String query = prop.getProperty("selectfee1");
-		System.out.println(query);
 		try {
 			
 			pstmt = con.prepareStatement(query);
-//			pstmt.setInt(1, value);
-//			pstmt.setString(2, calender);
+			pstmt.setInt(1, value);
+			pstmt.setString(2, calender);
 			
 			rset = pstmt.executeQuery();
 			
@@ -60,7 +59,7 @@ public class OwnerFeeDAO {
 				System.out.println("fee 확인"+fee);
 				OwnerFeeList.add(fee);
 			}
-			System.out.println("서비스2" + OwnerFeeList);
+			
 		}catch(SQLException e){
 			
 			e.printStackTrace();
@@ -70,6 +69,47 @@ public class OwnerFeeDAO {
 		}
 		
 		return OwnerFeeList;
+	}
+
+	public List<AdminBillDTO> selectOneFee(Connection con, int value) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		List<AdminBillDTO> oneFeeList = null;
+		String query = prop.getProperty("oneselectfee");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, value);
+			
+			rset = pstmt.executeQuery();
+			
+			oneFeeList = new ArrayList<>();
+			
+			if(rset.next()) {
+				
+				AdminBillDTO oneFee = new AdminBillDTO();
+				
+				oneFee.setOwnerNo(rset.getInt("OWNER_NO"));
+				oneFee.setStoreName(rset.getString("STORE_NAME"));
+				oneFee.setStoreAddress(rset.getString("STORE_ADDRESS"));
+				oneFee.setCompany(rset.getString("COMPANY"));
+				oneFee.setItem(rset.getString("ITEM"));
+				oneFee.setUserName(rset.getString("USER_NAME"));
+				System.out.println("oneFee : " + oneFee);
+				oneFeeList.add(oneFee);
+				
+			} 
+			
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return oneFeeList;
 	}
 	
 	
