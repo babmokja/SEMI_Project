@@ -9,61 +9,47 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
-    <context-param>
-  	<param-name>connection-info</param-name>
-  	<param-value>/WEB-INF/config/connection-info.properties</param-value>
+  <context-param>
+    <param-name>connection-info</param-name>
+    <param-value>/WEB-INF/config/connection-info.properties</param-value>
   </context-param>
   <context-param>
-  	<param-name>mapper-location</param-name>
-  	<param-value>/WEB-INF/mapper/</param-value>
+    <param-name>mapper-location</param-name>
+    <param-value>/WEB-INF/mapper/</param-value>
   </context-param>
-  
   <filter>
-  	<filter-name>encoding</filter-name>
-  	<filter-class>com.BoB.mvc.common.filter.EncodingFilter</filter-class>
-  	<init-param>
-  		<param-name>encoding-type</param-name>
-  		<param-value>UTF-8</param-value>
-  	</init-param>
+    <filter-name>encoding</filter-name>
+    <filter-class>com.BoB.mvc.common.filter.EncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding-type</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
   </filter>
   <filter-mapping>
-  	<filter-name>encoding</filter-name>
-  	<url-pattern>/*</url-pattern>
+    <filter-name>encoding</filter-name>
+    <url-pattern>/*</url-pattern>
   </filter-mapping>
-  
-    <!-- After filling in, make it in a standby state and use the settings here when uploading files -->
-  <!-- Apply default setting values ​​created and passed on when running the web app for the first time --> 
-  <context-param> 
-  <param-name>upload-location</param-name>
-  <param-value>C:\\upload-files</param-value>
-  <!-- Displaying where to put different expression methods depending on the operating system   -->
-  <!-- Informed that one backslash cannot be used in the previous escape character. In xml, two backslashes are recognized as one. -->
-  
+  <context-param>
+    <param-name>upload-location</param-name>
+    <param-value>C:\\upload-files</param-value>
   </context-param>
   <context-param>
-  <!-- One COS MULTI dose limit applies. -->
-  <param-name>max-file-size</param-name>
-  <param-value>50000000</param-value>
-   </context-param>
-   
-   
-   <context-param>
-   	<param-name>encoding-type</param-name>
-   	<param-value>UTF-8</param-value>
-   </context-param>
-  
-  
-  <!-- css url mapping -->
-   <servlet-mapping>
-     <servlet-name>default</servlet-name>
-     <url-pattern>*.js</url-pattern>
-     <url-pattern>*.css</url-pattern>
-     <url-pattern>*.jpg</url-pattern>
-     <url-pattern>*.PNG</url-pattern>
-     <url-pattern>*.gif</url-pattern>
-     <url-pattern>*.png</url-pattern>
-     <url-pattern>*.ico</url-pattern>
-     <url-pattern>*.swf</url-pattern>
-    </servlet-mapping>
+    <param-name>max-file-size</param-name>
+    <param-value>50000000</param-value>
+  </context-param>
+  <context-param>
+    <param-name>encoding-type</param-name>
+    <param-value>UTF-8</param-value>
+  </context-param>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.js</url-pattern>
+    <url-pattern>*.css</url-pattern>
+    <url-pattern>*.jpg</url-pattern>
+    <url-pattern>*.PNG</url-pattern>
+    <url-pattern>*.gif</url-pattern>
+    <url-pattern>*.png</url-pattern>
+    <url-pattern>*.ico</url-pattern>
+    <url-pattern>*.swf</url-pattern>
+  </servlet-mapping>
 </web-app>

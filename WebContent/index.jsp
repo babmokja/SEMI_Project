@@ -12,5 +12,5 @@
 
 	<jsp:forward page="/WEB-INF/views/customer/CustomerMain.jsp"/>
 
-	
+	</body>
 </html>

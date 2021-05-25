@@ -54,8 +54,7 @@ public class OwnerLoginServlet extends HttpServlet {
 			session.setAttribute("storeInfoDTO", storeInfoDTO);
 			
 			System.out.println("request.getContextPath() : " + request.getContextPath());
-			response.sendRedirect(request.getContextPath());
-			
+			request.getRequestDispatcher("/WEB-INF/views/owner/main_store.jsp").forward(request, response);			
 		} else {
 			request.setAttribute("message", "로그인 실패!");
 			request.getRequestDispatcher("/WEB-INF/views/common/failed.jsp").forward(request, response);

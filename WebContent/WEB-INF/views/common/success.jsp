@@ -33,7 +33,7 @@
 				break;
 			case "insertBoard" : 
 				successMessage = "게시판 등록에 성공하셨습니다!";
-				movePath = "${ pageContext.servletContext.contextPath }/board/list";
+				movePath = "${ pageContext.servletContext.contextPath }/suggestion/list";
 				break;
 			case "insertThumbnail" : 
 				successMessage = "썸네일 게시판 등록에 성공하셨습니다!";
