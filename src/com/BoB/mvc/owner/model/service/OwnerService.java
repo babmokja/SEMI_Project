@@ -7,23 +7,28 @@ import static com.BoB.mvc.common.jdbc.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.BoB.mvc.admin.dto.PageInfoDTO;
 import com.BoB.mvc.owner.model.dao.OwnerDAO;
 import com.BoB.mvc.owner.model.dto.LicenseManagerDTO;
 import com.BoB.mvc.owner.model.dto.OwnerDTO;
 import com.BoB.mvc.owner.model.dto.PictureDTO;
 import com.BoB.mvc.owner.model.dto.SelectBeforeModifyDTO;
 import com.BoB.mvc.owner.model.dto.StoreInfoDTO;
+import com.BoB.mvc.owner.model.dto.orderDTO;
+import com.BoB.mvc.owner.model.dao.orderDAO;
 
 public class OwnerService {
 	
 	private final OwnerDAO ownerDAO;
+	private orderDAO orderDAO;
 	
 	public OwnerService() {
-		
+		orderDAO = new orderDAO();
 		ownerDAO = new OwnerDAO();
 	}
 
@@ -143,6 +148,27 @@ public class OwnerService {
 		
 		
 		return result4;
+	}
+
+
+
+	public int selectOrderCount(int ownerNum) {
+		Connection con = getConnection();
+		int totalCount = orderDAO.selectTotalCount(con,ownerNum);
+		close(con);
+		
+		return totalCount;
+	}
+
+
+
+	public List<orderDTO> selectOrderList(PageInfoDTO pageInfo, int ownerNum) {
+		Connection con = getConnection();
+		
+		List<orderDTO> orderList =orderDAO.selectOrderList(con,pageInfo,ownerNum);
+		close(con);
+		
+		return orderList;
 	}
 	
 	
