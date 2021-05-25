@@ -47,7 +47,7 @@
        
         <div class="space"></div>
 
-
+		<c:set var="intArray" value="0" />
             <table> 
                 <thead>
                     <tr>
@@ -64,7 +64,8 @@
                         <td class="section_contest_first section_contest_1"><c:out value="${ sales.orderNum }"/></td>
                         <td class="section_contest_first section_contest_2"><c:out value="${ sales.orderDate }"/></td>
                         <td class="section_contest_first section_contest_3"><c:out value="${ sales.type }"/></td>
-                        <td class="section_contest_first section_contest_4"><c:out value="${ sales.price }"/></td>
+                        <td class="section_contest_first section_contest_4"><c:out value="${ sales.price }"/>원</td>
+                        <c:set var="intArray" value="${intArray+sales.price}" />
                     </tr>
                     </c:forEach>
 
@@ -104,6 +105,8 @@
 					</c:if>
 					
 					<button id="maxPage">>></button> 
+				<span class="total">오늘 총 <c:out value="${ intArray }원"/> 판매 하셨습니다.</span>
+					
 			     </c:when>
 			</c:choose>   
               </div>

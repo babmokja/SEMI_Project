@@ -330,4 +330,78 @@ public class OwnerDAO {
 		
 		return salesList;
 	}
+
+
+	public int searchMonthSalesCount(Connection con, String stringValue, String ownerNum) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int totalCount = 0;
+		
+		String query = prop.getProperty("searchMonthSalesCount");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, stringValue);
+			pstmt.setString(2, ownerNum);
+			rset = pstmt.executeQuery();
+			System.out.println(query);
+			if(rset.next()) {
+				totalCount = rset.getInt("COUNT(*)");
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return totalCount;
+	}
+
+
+	public List<ownerSalesDTO> searchMonthSales(Connection con, PageInfoDTO pageInfo, String ownerNum,
+			String stringValue) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		List<ownerSalesDTO> salesList = null;
+		
+		String query = prop.getProperty("searchMonthSales");
+
+		if(query != null) {
+			System.out.println(query);
+		}
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, stringValue);
+			pstmt.setString(2, ownerNum);
+			pstmt.setInt(3, pageInfo.getStartRow());
+			pstmt.setInt(4, pageInfo.getEndRow());
+			System.out.println(pageInfo.getStartRow());
+			System.out.println(pageInfo.getEndRow());
+			rset = pstmt.executeQuery();
+			
+			salesList = new ArrayList<>();
+			
+			while(rset.next()) {
+				ownerSalesDTO sales = new ownerSalesDTO();		
+				sales.setOwnerNum(rset.getInt("USER_CODE"));
+				sales.setOrderNum(rset.getInt("ORDER_CODE"));
+				sales.setOrderDate(rset.getDate("ORDER_TIME"));
+				sales.setType(rset.getString("TYPE_YN"));
+				sales.setPrice(rset.getInt("TOTAL_AMOUNT"));
+				
+				
+				salesList.add(sales);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return salesList;
+	}
 }

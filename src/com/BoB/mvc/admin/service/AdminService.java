@@ -279,4 +279,20 @@ public class AdminService {
 		
 		return salesList;
 	}
+
+	public int searchMonthSalesCount(String stringValue, String ownerNum) {
+		Connection con = getConnection();
+		int totalCount = OwnerDAO.searchMonthSalesCount(con,stringValue,ownerNum);
+		close(con);
+
+		return totalCount;
+	}
+
+	public List<ownerSalesDTO> searchMonthSales(PageInfoDTO pageInfo, String stringValue, String ownerNum) {
+		Connection con = getConnection();
+		
+		List<ownerSalesDTO> salesList = OwnerDAO.searchMonthSales(con,pageInfo,ownerNum,stringValue);
+		
+		return salesList;
+	}
 }

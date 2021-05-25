@@ -39,7 +39,7 @@
                         <a href="#;" class="owner_login">사장님 페이지로 이동</a>
                     </div>  
                 <div class="manager">
-                    <a href="#;" class="manager_login">관리자 로그인 바로가기</a>
+                    <a href="${ pageContext.servletContext.contextPath }/link/admin/login" class="manager_login">관리자 로그인 바로가기</a>
                 </div>
             </div>
 
