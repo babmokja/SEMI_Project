@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/SEMI_Project/resources/css/admin/admin_Sales_month_Board.css">
-    <link rel="stylesheet" href="/SEMI_Project/resources/css/admin/main2.css">
+    <link rel="stylesheet" href="/SEMI_Project/resources/css/admin/main1.css">
     <link rel="stylesheet" href="/SEMI_Project/resources/css/admin/bootstrap.min.css">
     <title>Document</title>
 
