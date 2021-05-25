@@ -23,34 +23,32 @@
 				<div class="sq">
 
 					<!-- 로그인이 필요한 경우 -->
-					<c:if test="${ empty sessionScope.loginMember }">
+					<c:if test="${ empty sessionScope.loginUser }">
 
 						<!-- 로그인 폼 -->
-						<form id="loginForm"
-							action="${ pageContext.servletContext.contextPath }/customer/login"
-							method="post">
+						<form id="loginForm" method="post">
 							<div class="btns" align="right">
 								<div class="join">
-									<a href="#;" class="join_icon">회원가입</a>
+									<a href="${ pageContext.servletContext.contextPath }/member/user/signin"class="join_icon">회원가입</a>
 								</div>
 								<div class="login">
-									<a href="#;" class="login_icon">로그인</a>
+									<a href="${ pageContext.servletContext.contextPath }/user/login" class="login_icon">로그인</a>
 								</div>
 							</div>
 						</form>
 
 					</c:if>
 
-					<c:if test="${ !empty sessionScope.loginMember }">
+					<c:if test="${ !empty sessionScope.loginUser }">
 						<!-- 로그인 되어 있는 경우 -->
 						<div class="btns">
 							<div class="mypage">
-								<a href="#;" class="mypage_icon"> 
+								<a href="${ pageContext.servletContext.contextPath}/user/mypage" class="mypage_icon"> 
 									<img src="${ pageContext.servletContext.contextPath }/resources/image/customer/user.png" alt="이미지없음">
 								</a>
 							</div>
 							<div class="logout">
-								<a href="#;" class="logout_icon">로그아웃</a>
+								<a href="${ pageContext.servletContext.contextPath }/user/logout" class="logout_icon">로그아웃</a>
 							</div>
 						</div>
 					</c:if>
