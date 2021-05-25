@@ -4,9 +4,9 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="resources/css/owner/semi_board/Owner_Seggestion_Board.css">
-    <link rel="stylesheet" href="resources/css/owner/semi_board/main.css">
-    <link rel="stylesheet" href="resources/css/owner/semi_board/bootstrap.min.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/semi_board/Owner_Seggestion_Board.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/semi_board/main.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/semi_board/bootstrap.min.css">
     <title>Document</title>
 
     <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -22,30 +22,30 @@
 
         <div class="row">
             <span class="col-2 menu-item menu-item-selected">
-                <img src="resources/image/owner/semiboard/item1.svg" />
+                <img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_board/item1.png" />
                 &nbsp;&nbsp;&nbsp;주문확인
               </span>
               <span class="col-2 menu-item  ">
-                <img src="resources/image/owner/semiboard/item2.png" />
+                <img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_board/item2.png" />
                 &nbsp;&nbsp;&nbsp; 내 정보관리
               </span>
               <span class="col-2 menu-item">
-                <img src="resources/image/owner/semiboard/item3.png" />
+                <img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_board/item3.png" />
                 
                 &nbsp;&nbsp;&nbsp; <a class="text-dark" href="../../semi_board_sales/company/Owner_Sales_day_Board.html">내 업소 관리</a>
               </span>
               <span class="col-2 menu-item">
-                <img class="img-fluid" src="resources/image/owner/semiboard/computer.png" />
+                <img class="img-fluid" src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_board/computer.png" />
                 &nbsp;&nbsp;&nbsp;<a class="text-dark" href="../../front_semi_store/views/delivery.html">pc주문현황</a>
               </span>
   
               <span class="col-2 menu-item">
-                  <span class="imagesize"><img src="resources/image/owner/semiboard/item4.svg" /></span>
+                  <span class="imagesize"><img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_board/item4.png" /></span>
                   &nbsp;&nbsp;&nbsp; <a class="text-dark" href="../company/Owner_Comment_Board.html">리뷰관리</a>
                 </span>
   
                 <span class="col-2 menu-item">
-                  <img src="resources/image/owner/semiboard/item4.svg" />
+                  <img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_board/item4.svg" />
                   &nbsp;&nbsp;&nbsp; <a class="text-dark" href="../company/Owner_Seggestion_Board.html">1:1 문의하기</a>
                 </span>
           </div>

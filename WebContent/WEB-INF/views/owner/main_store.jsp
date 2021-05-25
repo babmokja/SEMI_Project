@@ -27,21 +27,21 @@
         <div class="wrap">
             <div class="main_menu">
 
-                <li><a href="#"><img src="resources/image/semi_store/주문확인.png" alt="주문확인">주문확인</a></li>
-                <li><a href="../../semi_board/company/modifyInf o_owner.html"><img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/내정보관리.png" alt="내정보관리">내 정보관리</a></li>
-                <li><a href="../../semi_board_sales/company/Owner_Sales_day_Board.html"><img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/내업소관리.png" alt="내업소관리">내 업소관리</a></li>
-                <li><a href="./delivery.html"><img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/PC주문관리.png" alt="PC주문관리">PC 주문관리</a></li>
+                <li><a href="${ pageContext.servletContext.contextPath }/owner/delivery"><img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/주문확인.png" alt="주문확인">주문확인</a></li>
+                <li><a href="${ pageContext.servletContext.contextPath }/menu/insert"><img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/내정보관리.png" alt="내정보관리">내 정보관리</a></li>
+                <li><a href="${ pageContext.servletContext.contextPath }/menu/all"><img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/내업소관리.png" alt="내업소관리">내 업소관리</a></li>
+                <li><a href="${ pageContext.servletContext.contextPath }/menu/insert"><img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/PC주문관리.png" alt="PC주문관리">PC 주문관리</a></li>
                 <li><a href="${ pageContext.servletContext.contextPath }/owner/move/comment"><img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/리뷰관리.png" alt="리뷰관리">리뷰관리</a></li>
 
             </div>
 
-            <div class="side_word">
+            <div class="side_word"> 
                 <div class="word1">배달,픽업,자리예약까지 한번에!</div>
                 <div class="word2">강남지역 주문 플랫폼</div>
                 <div class="word3">밥묵자</div>
             </div>
 
-            <c:if test="${ empty sessionScope.loginMember }">
+            <c:if test="${ empty sessionScope.ownerDTO }">
             <form action="${ pageContext.servletContext.contextPath }/owner/login" method="post" >
             <div class="login">
                 <input type="text" class="id" name="memberId" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;아이디를 입력해주세요"><br>
@@ -58,24 +58,15 @@
                 
                 
             <div class="login">
-            <c:if test="${ !empty sessionScope.loginMember }">
+            <c:if test="${ !empty sessionScope.ownerDTO }">
             	<br>
-            	<h4 style="font-size:20px; font-weight:bold">&nbsp;&nbsp;&nbsp;<c:out value="${ sessionScope.loginMember.name }"/>님 환영합니다.</h4>
+            	<h4 style="font-size:20px; font-weight:bold">&nbsp;&nbsp;&nbsp;<c:out value="${ sessionScope.ownerDTO.name }"/>님 환영합니다.</h4>
             	<br>
-            	<button type="submit" id="login_btn">정보수정</button>
+            	<button type="submit" id="login_btn" onclick="location.href='${ pageContext.servletContext.contextPath }/owner/modify'">정보수정</button>
                 <div class="sign_up_btn" style=>
-                    <li ><a href="${ pageContext.servletContext.contextPath }/owner/logout">로그아웃</a></li>
+                    <li><a href="${ pageContext.servletContext.contextPath }/owner/logout">로그아웃</a></li>
                 </div>
             
-            
-            
-            
-                <%-- <div class="sign_up_btn">
-               		<li><c:out value="${ sessionScope.loginMember.name }"/>님의 방문을 환영합니다.</li>
-                    <li><a href="${ pageContext.servletContext.contextPath }/owner/move/signin">정보수정</a></li>
-                    <li><a href="${ pageContext.servletContext.contextPath }/owner/move/logout">로그아웃</a></li>
-                </div> --%>
-
             </c:if>
             </div>
         

@@ -7,8 +7,8 @@
 <meta charset="UTF-8">
  <title>Menu Manage</title>
   
-  <link href="${ pageContext.servletContext.contextPath }/resources/css/owner/bootstrap.min.css" rel="stylesheet">
-  <link href="${ pageContext.servletContext.contextPath }/resources/css/owner/semi_store_css/main.css" rel="stylesheet">
+  <link href="${ pageContext.servletContext.contextPath }/resources/css/owner/semi_store/bootstrap.min.css" rel="stylesheet">
+  <link href="${ pageContext.servletContext.contextPath }/resources/css/owner/semi_store/main.css" rel="stylesheet">
   
   <style>
 
@@ -135,16 +135,10 @@
                 
                 <form action="${pageContext.servletContext.contextPath}/menu/insert" method="post">
 	                  <tr>
-<<<<<<< HEAD
  	                    <td><input class="form-control" name="menuCode" type="text" value=""/></td>
 	                    <td><input class="form-control" type="text" name="menuName" value="갈비천왕(순살)"/></td>
 	                    <td><input type="text"   class="form-control text-right"  name ="price" style="display:inline-block;width:150px;" value="18000"><p>원</p></td>
 	                    <td><select class="form-select" name="salesYN">
-=======
-	                    <td><input class="form-control" type="text"  value="갈비천왕(순살)"></td>
-	                    <td><input type="text"   class="form-control text-right"  style="display:inline-block;width:200px;" value="18000"> 원</td>
-	                    <td><select class="form-select" >
->>>>>>> branch 'master' of https://github.com/babmokja/SEMI_Project.git
 	                      <option >판매여부 선택</option>
 	                      <option value="1">판매중</option>
 	                      <option value="2" selected>품절</option>
@@ -153,10 +147,6 @@
 	                    <!-- <td><input type=><a href="#"><img src="../images/pic.png" /></a></td> -->
 	                    <td><a href="#"><img src="../images/delete.png" /></a></td>
 	                  </tr>
-<<<<<<< HEAD
-	                  
-	                  </tbody>
-             		 </table>
              		 
              		 <div class="row">
 			            <span class="col-10"></span>
@@ -167,8 +157,6 @@
 			           <!--  <button type="submit"></button> -->
 			            
 			          </div>
-=======
->>>>>>> branch 'master' of https://github.com/babmokja/SEMI_Project.git
                   </form>
                       
                   

@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
@@ -15,6 +16,7 @@ import com.BoB.mvc.common.config.ConfigLocation;
 import com.BoB.mvc.owner.model.dto.LicenseManagerDTO;
 import com.BoB.mvc.owner.model.dto.OwnerDTO;
 import com.BoB.mvc.owner.model.dto.PictureDTO;
+import com.BoB.mvc.owner.model.dto.SelectBeforeModifyDTO;
 import com.BoB.mvc.owner.model.dto.StoreInfoDTO;
 
 public class OwnerDAO {
@@ -40,27 +42,26 @@ public class OwnerDAO {
 		int result1 = 0;
 		int result2 = 0;
 		
-		String query1 = prop.getProperty("insertPicture");
-		String query2 = prop.getProperty("insertPicture");
+		String query1 = prop.getProperty("registPictures");
 		
 		
 		try {
 			pstmt1 =con.prepareStatement(query1);
-			
-//			2개 동시에 넣는방법?
 			
 			pstmt1.setString(1, picture.get("pict1").getOriginName());
 			pstmt1.setString(2, picture.get("pict1").getRevisedName());
 			pstmt1.setString(3, picture.get("pict1").getRoute());
 			result1 =pstmt1.executeUpdate();
 			
-			pstmt2 =con.prepareStatement(query2);
+			pstmt2 =con.prepareStatement(query1);
+			
 			pstmt2.setString(1, picture.get("pict2").getOriginName());
 			pstmt2.setString(2, picture.get("pict2").getRevisedName());
 			pstmt2.setString(3, picture.get("pict2").getRoute());
 			
+			result2 = pstmt2.executeUpdate();
 			
-			result2 =pstmt2.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -78,7 +79,7 @@ public class OwnerDAO {
 		
 		int result2 = 0;
 		
-		String query = prop.getProperty("insertLicenseManager");
+		String query = prop.getProperty("registLicenseManager");
 		
 		try {
 			pstmt =con.prepareStatement(query);
@@ -115,7 +116,7 @@ public class OwnerDAO {
 		
 		int result3 = 0;
 		
-		String query = prop.getProperty("insertOwner");
+		String query = prop.getProperty("registOwner");
 		
 		
 		try {
@@ -147,7 +148,7 @@ public class OwnerDAO {
 		
 		int result4 = 0;
 		
-		String query = prop.getProperty("insertStore");
+		String query = prop.getProperty("registStore");
 		
 		
 		try {
@@ -155,10 +156,10 @@ public class OwnerDAO {
 			pstmt.setString( 1 , store.getStoreName());
 			pstmt.setInt( 2 , store.getBusinessNum());
 			pstmt.setString( 3 , store.getStoreXY());
-			pstmt.setString( 4 , store.getStoreIntro());
-			pstmt.setString( 5 , store.getCategory());
-			pstmt.setInt(6, store.getTypeCode());
-			pstmt.setString( 7 , store.getAddress());
+			pstmt.setString( 4 , store.getCategory());
+			pstmt.setInt(5, store.getTypeCode());
+			pstmt.setString( 6 , owner.getAddress());
+			pstmt.setString( 7 , store.getStoreIntro());
 			
 			result4 = pstmt.executeUpdate();
 			
@@ -169,6 +170,37 @@ public class OwnerDAO {
 		}
 		
 		return result4;
+	}
+	
+	public int insertPICtable(Connection con, StoreInfoDTO store, Map<String, PictureDTO> picture, OwnerDTO owner,
+			LicenseManagerDTO lm) {
+		
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		
+		int result5 = 0;
+		int result50 = 0;
+		
+		String query = prop.getProperty("registPICtable");
+		String query2 = prop.getProperty("registPICtable2");
+		
+		
+			try {
+				pstmt = con.prepareStatement(query);
+				
+				result5 = pstmt.executeUpdate();
+				
+				
+				pstmt2 = con.prepareStatement(query2);
+				
+				result50 = pstmt2.executeUpdate();
+				 
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		
+		
+		return result5+result50;
 	}
 
 
@@ -203,17 +235,26 @@ public class OwnerDAO {
 
 
 
-	public OwnerDTO selectLoginMember(Connection con, OwnerDTO requestMember) {
+	public Map<String, Object> selectLoginMember(Connection con, OwnerDTO requestMember) {
 		
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		PreparedStatement pstmt3 = null;
 		ResultSet rset = null;
+		ResultSet rset2 = null;
+		ResultSet rset3 = null;
 		
+		Map<String, Object> loginmap = new HashMap<String, Object>();
 		OwnerDTO loginMember = null;
+		StoreInfoDTO loginStore = null;
+		LicenseManagerDTO loginLManager = null;
 		
-		String query = prop.getProperty("selectLoginOwner");
+		String query1 = prop.getProperty("selectLoginOwner");
+		String query2 = prop.getProperty("selectLoginStore");
+		String query3 = prop.getProperty("selectLoginLicenseManage");
 		
 		try {
-			pstmt = con.prepareStatement(query);
+			pstmt = con.prepareStatement(query1);
 			pstmt.setString(1, requestMember.getMemberId());
 			
 			rset = pstmt.executeQuery();
@@ -233,20 +274,79 @@ public class OwnerDAO {
 				loginMember.setBlacklistYN(rset.getString("BLACKLIST_YN"));
 				loginMember.setBlacklistDate(rset.getDate("BLACKLIST_DATE"));
 				loginMember.setResidentNum(rset.getString("USER_NO"));
-			
 				
+			
+			}
+			loginmap.put("loginMember", loginMember);
+				
+				System.out.println(loginMember);
+			
+			pstmt2 = con.prepareStatement(query2);
+			pstmt2.setString(1, requestMember.getMemberId());
+			
+			rset2 = pstmt2.executeQuery();
+			
+			if(rset2.next()) {
+				loginStore = new StoreInfoDTO();
+				
+				loginStore.setStoreName(rset2.getString("STORE_NAME"));
+				loginStore.setBusinessNum(rset2.getInt("OWNER_NO"));
+				loginStore.setStoreXY(rset2.getString("STORE_XY"));
+				loginStore.setCategory(rset2.getString("CATEGORY"));
+				loginStore.setUserCode(rset2.getInt("USER_CODE"));
+				loginStore.setBusinessRegistCode(rset2.getInt("BUSINESS_REGIST_CODE"));
+				loginStore.setStoreCode(rset2.getInt("STORE_CODE"));
+				loginStore.setApproval(rset2.getString("APPROVAL"));
+				loginStore.setStartDate(rset2.getDate("ENROLL_DATE"));
+				loginStore.setTypeCode(rset2.getInt("TYPE_CODE"));
+				loginStore.setAddress(rset2.getString("STORE_ADDR"));
+				loginStore.setStoreIntro(rset2.getString("STORE_INFO"));
 				
 			}
-			System.out.println("dao의 loginMember : " + loginMember);
+			loginmap.put("loginStore", loginStore);
+			System.out.println(loginStore);
+			
+			pstmt3 = con.prepareStatement(query3);
+			pstmt3.setString(1, requestMember.getMemberId());
+			
+			rset3 = pstmt3.executeQuery();
+			
+			if(rset3.next()) {
+				loginLManager = new LicenseManagerDTO();
+				
+				loginLManager.setSbName(rset3.getString("STORE_NAME"));
+				loginLManager.setBISI(rset3.getString("BISI_DIV"));
+				loginLManager.setOpenDate(rset3.getDate("OPEN_DATE"));
+				loginLManager.setAddress(rset3.getString("STORE_ADDRESS"));
+				loginLManager.setCondition(rset3.getString("COMPANY"));
+				loginLManager.setMajor(rset3.getString("ITEM"));
+				loginLManager.setMainAddress(rset3.getString("MAIN_ADDRESS"));
+				loginLManager.setIssueDate(rset3.getDate("LIC_DATE"));
+				loginLManager.setBISICODE(rset3.getInt("BISI_CODE"));
+				loginLManager.setPictureCode(rset3.getInt("PICTURE_CODE"));
+				
+			}
+			loginmap.put("loginLManager", loginLManager);
+			System.out.println(loginLManager);
+			
+			
+			
+			
+			
+			
 		}catch(SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(rset);
+			close(rset2);
+			close(rset3);
 			close(pstmt);
+			close(pstmt2);
+			close(pstmt3);
 		}
 		
 		
-		return loginMember;
+		return loginmap;
 	}
 
 
@@ -279,6 +379,196 @@ public class OwnerDAO {
 		
 		return checkId;
 	}
+
+
+
+	public SelectBeforeModifyDTO ModifyInfo(Connection con, String id) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		SelectBeforeModifyDTO dto = null;
+		
+			String query = prop.getProperty("BeforeModifyInfo");
+		
+			try {
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, id);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					dto = new SelectBeforeModifyDTO();
+					dto.setMemberId(rset.getString("USER_ID"));
+					dto.setName(rset.getString("USER_NAME"));
+					dto.setBusinessNum(rset.getInt("OWNER_NO"));
+					
+				}
+				
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+		
+		
+		return dto;
+	}
+
+
+
+	public int modifyPicture(Connection con, Map<String, PictureDTO> picture, LicenseManagerDTO lm, StoreInfoDTO storeInfoDTO) {
+		
+		PreparedStatement pstmt1 = null;
+		PreparedStatement pstmt2 = null;
+		int result1 = 0;
+		int result2 = 0;
+		
+		String query1 = prop.getProperty("modifyPictures");
+		String query2 = prop.getProperty("modifyPictures2");
+		
+		
+		try {
+			pstmt1 =con.prepareStatement(query1);
+			
+			
+//			2개 동시에 넣는방법?
+			
+			pstmt1.setString(1, picture.get("pict1").getOriginName());
+			pstmt1.setString(2, picture.get("pict1").getRevisedName());
+			pstmt1.setString(3, picture.get("pict1").getRoute());
+			pstmt1.setInt(4, storeInfoDTO.getStoreCode());
+			
+			result1 =pstmt1.executeUpdate();
+			
+			pstmt2 =con.prepareStatement(query2);
+			
+			pstmt2.setString(1, picture.get("pict2").getOriginName());
+			pstmt2.setString(2, picture.get("pict2").getRevisedName());
+			pstmt2.setString(3, picture.get("pict2").getRoute());
+			pstmt2.setInt(4, storeInfoDTO.getStoreCode());
+			
+			result2 = pstmt2.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt1);
+			close(pstmt2);
+		}
+		
+		
+		return result1+result2;
+	}
+
+
+
+	public int modifyLicenseManager(Connection con, LicenseManagerDTO lm, Map<String, PictureDTO> picture) {
+		
+		PreparedStatement pstmt = null;
+		
+		int result2 = 0;
+		
+		String query = prop.getProperty("modifyLicenseManager");
+		
+		try {
+			pstmt =con.prepareStatement(query);
+			pstmt.setString(1, lm.getSbName());
+			pstmt.setString(2, lm.getBISI());
+			pstmt.setDate(3, lm.getOpenDate());
+			pstmt.setString(4, lm.getAddress());
+			pstmt.setString(5, lm.getCondition());
+			pstmt.setString(6, lm.getMajor());
+			pstmt.setString(7, lm.getMainAddress());
+			pstmt.setDate(8, lm.getIssueDate());
+			pstmt.setInt(9, lm.getBISICODE());
+			
+			result2 = pstmt.executeUpdate();
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		
+		return result2;
+	}
+
+
+
+	public int modifyOwner(Connection con, OwnerDTO owner, OwnerDTO ownerDTO) {
+		
+		PreparedStatement pstmt = null;
+		
+		int result3 = 0;
+		
+		String query = prop.getProperty("modifyOwner");
+		
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString( 1 , owner.getMemberPwd());
+			pstmt.setString( 2 , owner.getPhone());
+			pstmt.setString( 3 , owner.getAddress());
+			pstmt.setString( 4 , owner.getEmail());
+			pstmt.setInt( 5 , owner.getRoleCode());
+			
+			result3 = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result3;
+	}
+
+
+
+	public int modifyStore(Connection con, StoreInfoDTO store, Map<String, PictureDTO> picture, OwnerDTO owner,
+			LicenseManagerDTO lm) {
+		
+		PreparedStatement pstmt = null;
+		
+		int result4 = 0;
+		
+		String query = prop.getProperty("modifyStore");
+		
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString( 1 , store.getStoreName());
+			pstmt.setString( 2 , store.getStoreXY());
+			pstmt.setString( 3 , store.getCategory());
+			pstmt.setInt(4, store.getTypeCode());
+			pstmt.setString( 5 , store.getAddress());
+			pstmt.setString( 6 , store.getStoreIntro());
+			
+			result4 = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result4;
+		
+	}
+
+
+
+	
 		
 		
 		

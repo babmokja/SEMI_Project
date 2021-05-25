@@ -3,44 +3,40 @@ package com.BoB.mvc.owner.model.dto;
 import java.sql.Date;
 
 public class StoreInfoDTO {
-	private int storeCode; // 시퀀스 받는 필드
+
 	private String storeName;
-	private String address;
-	private String category;
-	private String license;
-	private Date startDate;
 	private int businessNum;
 	private String storeXY;
-	private String storeIntro;
+	private String category;
+	private int userCode;
+	private int businessRegistCode;
+	private int storeCode; // 시퀀스 받는 필드
+	private String approval;
+	private Date startDate;
 	private int typeCode;
+	private String address;
+	private String storeIntro;
 	
 	
 	public StoreInfoDTO() {}
 
 
-	public StoreInfoDTO(int storeCode, String storeName, String address, String category, String license,
-			Date startDate, int businessNum, String storeXY, String storeIntro, int typeCode) {
+	public StoreInfoDTO(String storeName, int businessNum, String storeXY, String category, int userCode,
+			int businessRegistCode, int storeCode, String approval, Date startDate, int typeCode, String address,
+			String storeIntro) {
 		super();
-		this.storeCode = storeCode;
 		this.storeName = storeName;
-		this.address = address;
-		this.category = category;
-		this.license = license;
-		this.startDate = startDate;
 		this.businessNum = businessNum;
 		this.storeXY = storeXY;
-		this.storeIntro = storeIntro;
-		this.typeCode = typeCode;
-	}
-
-
-	public int getStoreCode() {
-		return storeCode;
-	}
-
-
-	public void setStoreCode(int storeCode) {
+		this.category = category;
+		this.userCode = userCode;
+		this.businessRegistCode = businessRegistCode;
 		this.storeCode = storeCode;
+		this.approval = approval;
+		this.startDate = startDate;
+		this.typeCode = typeCode;
+		this.address = address;
+		this.storeIntro = storeIntro;
 	}
 
 
@@ -51,46 +47,6 @@ public class StoreInfoDTO {
 
 	public void setStoreName(String storeName) {
 		this.storeName = storeName;
-	}
-
-
-	public String getAddress() {
-		return address;
-	}
-
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-
-	public String getCategory() {
-		return category;
-	}
-
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-
-	public String getLicense() {
-		return license;
-	}
-
-
-	public void setLicense(String license) {
-		this.license = license;
-	}
-
-
-	public Date getStartDate() {
-		return startDate;
-	}
-
-
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
 	}
 
 
@@ -114,13 +70,63 @@ public class StoreInfoDTO {
 	}
 
 
-	public String getStoreIntro() {
-		return storeIntro;
+	public String getCategory() {
+		return category;
 	}
 
 
-	public void setStoreIntro(String storeIntro) {
-		this.storeIntro = storeIntro;
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+
+	public int getUserCode() {
+		return userCode;
+	}
+
+
+	public void setUserCode(int userCode) {
+		this.userCode = userCode;
+	}
+
+
+	public int getBusinessRegistCode() {
+		return businessRegistCode;
+	}
+
+
+	public void setBusinessRegistCode(int businessRegistCode) {
+		this.businessRegistCode = businessRegistCode;
+	}
+
+
+	public int getStoreCode() {
+		return storeCode;
+	}
+
+
+	public void setStoreCode(int storeCode) {
+		this.storeCode = storeCode;
+	}
+
+
+	public String getApproval() {
+		return approval;
+	}
+
+
+	public void setApproval(String approval) {
+		this.approval = approval;
+	}
+
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
 
 
@@ -134,12 +140,38 @@ public class StoreInfoDTO {
 	}
 
 
+	public String getAddress() {
+		return address;
+	}
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
+	public String getStoreIntro() {
+		return storeIntro;
+	}
+
+
+	public void setStoreIntro(String storeIntro) {
+		this.storeIntro = storeIntro;
+	}
+
+
 	@Override
 	public String toString() {
-		return "StoreInfoDTO [storeCode=" + storeCode + ", storeName=" + storeName + ", address=" + address
-				+ ", category=" + category + ", license=" + license + ", startDate=" + startDate + ", businessNum="
-				+ businessNum + ", storeXY=" + storeXY + ", storeIntro=" + storeIntro + ", typeCode=" + typeCode + "]";
+		return "StoreInfoDTO [storeName=" + storeName + ", businessNum=" + businessNum + ", storeXY=" + storeXY
+				+ ", category=" + category + ", userCode=" + userCode + ", businessRegistCode=" + businessRegistCode
+				+ ", storeCode=" + storeCode + ", approval=" + approval + ", startDate=" + startDate + ", typeCode="
+				+ typeCode + ", address=" + address + ", storeIntro=" + storeIntro + "]";
 	}
+
+
+	
+
+	
 
 
 	

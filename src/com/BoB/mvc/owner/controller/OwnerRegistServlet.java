@@ -248,7 +248,7 @@ public class OwnerRegistServlet extends HttpServlet {
 				lm.setSbName(parameter.get("sbName"));
 				lm.setBISI(parameter.get("BISI"));
 				lm.setOpenDate(Date.valueOf(parameter.get("openDate")));
-				lm.setAddress(parameter.get("addr1")  + " " + parameter.get("addr2"));
+				lm.setAddress(parameter.get("zip")  + "@" + parameter.get("addr1") + "@" + parameter.get("addr3"));
 				lm.setCondition(parameter.get("condition"));
 				lm.setMajor(parameter.get("major"));
 				lm.setMainAddress(parameter.get("mainAddress"));
@@ -271,7 +271,7 @@ public class OwnerRegistServlet extends HttpServlet {
 //				System.out.println(value);
 				owner.setName(parameter.get("named"));
 				owner.setPhone(parameter.get("phone").replace("-",""));
-				owner.setAddress(parameter.get("addr1")  + " " + parameter.get("addr2"));
+				owner.setAddress(parameter.get("zip")  + "@" + parameter.get("addr1") + "@" + parameter.get("addr2"));
 				owner.setEmail(parameter.get("email"));
 				owner.setResidentNum(parameter.get("residentNum"));
 				
@@ -283,10 +283,10 @@ public class OwnerRegistServlet extends HttpServlet {
 				store.setStoreName(parameter.get("storeName"));
 				store.setBusinessNum(Integer.parseInt(parameter.get("businessNum").replace("-","")));
 				store.setStoreXY(parameter.get("storeXY"));
-				store.setStoreIntro(parameter.get("storeIntro"));
 				store.setCategory(parameter.get("category"));
-				store.setAddress(parameter.get("address"));
+				store.setAddress(parameter.get("zip")  + "@" + parameter.get("addr1") + "@" + parameter.get("addr2"));
 				store.setTypeCode(Integer.parseInt(parameter.get("service")));
+				store.setStoreIntro(parameter.get("storeIntro"));
 				
 				System.out.println(store);
 				
@@ -304,8 +304,10 @@ public class OwnerRegistServlet extends HttpServlet {
 					path = "/WEB-INF/views/common/success.jsp";
 					request.setAttribute("successCode", "insertMember");
 				} else {
+//					String path2 = "";
 					path = "/WEB-INF/views/common/failed.jsp";
 					request.setAttribute("message", "사업자 등록 실패!");
+					request.getRequestDispatcher(path).forward(request, response);
 				}
 				
 				request.getRequestDispatcher(path).forward(request, response);
@@ -334,10 +336,10 @@ public class OwnerRegistServlet extends HttpServlet {
 				
 				if(cnt == fileList.size()) {
 					System.out.println("업로드에 실패한 모든 사진 삭제완료!");
-					String path2 = "";
-					path2 = "/WEB-INF/views/common/failed.jsp";
-					request.setAttribute("message", "사업자 등록 실패!");
-					request.getRequestDispatcher(path2).forward(request, response);
+//					String path2 = "";
+//					path2 = "/WEB-INF/views/common/failed.jsp";
+//					request.setAttribute("message", "사업자 등록 실패!");
+//					request.getRequestDispatcher(path2).forward(request, response);
 				} else {
 					e.printStackTrace();
 				}

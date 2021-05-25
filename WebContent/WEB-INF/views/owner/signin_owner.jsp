@@ -11,7 +11,7 @@
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript">
             $(document).ready(function() {
-            $("#footer").load("WEB-INF/views/owner/footer.jsp");
+            $("#footer").load("${pageContext.request.contextPath}/WEB-INF/views/owner/footer.jsp");
             });
     </script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owner/semi_board/signin_owner.css">
@@ -188,7 +188,7 @@
           
           <tr>
             <td>가게주소</td>
-            <td><input type="text"size="25" name="addr1" style="padding:4px;font-size:13px;border-radius: 10px;"/> </td>
+            <td><input type="text"size="25" name="addr1" style="padding:4px;font-size:13px;border-radius: 10px;"  /> </td>
           
             <td>상세주소</td>
             <td><input type="text"size="25" name="addr2" style="padding:4px;font-size:13px;border-radius: 10px;"/> </td>
@@ -270,7 +270,7 @@
           <tr> -->
             <td>사업자번호</td>
             <td><input type="text" size="25"
-                       maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" name="businessNum"  >
+                       maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" name="businessNum" / >
                     
                        <!-- <input type="file" name="filebox" id="filebox" onchange="javascript:document.getElementById('upload-name').value=this.value">
                        <label for = "filebox" class="upload-hidden" >파일 </label>
@@ -372,8 +372,7 @@
         
          </table><br>
            <div class="thumbnail-btn-area">
-				<button>취소하기</button>
-				<button type="submit">작성완료</button>
+				<input type="submit" class="btn" value="가입하기">
 			</div>
 		</form>
        

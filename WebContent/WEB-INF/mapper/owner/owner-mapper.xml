@@ -1,7 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-	<entry key="insertPicture">
+	
+	<entry key="modifyPictures">
+		  UPDATE PICTURE P
+		    SET P.ORIGIN_NAME = ?,
+		        P.UPLOAD_DATE = SYSDATE
+		        P.REVISED_NAME = ?,
+		        P.ROUTE = ?
+          WHERE P.PICTURE_CODE = (SELECT MAX(S.PICTURE_CODE)
+                                    FROM STORE_PIC_TABLE S
+                                   WHERE S.STORE_CODE = ?);
+	</entry>
+	<entry key="modifyPictures2">
+		  UPDATE PICTURE P
+		    SET P.ORIGIN_NAME = ?,
+		        P.UPLOAD_DATE = SYSDATE,
+		        P.REVISED_NAME = ?,
+		        P.ROUTE = ?
+          WHERE P.PICTURE_CODE = (SELECT MAX(S.PICTURE_CODE)-1
+                                    FROM STORE_PIC_TABLE S
+                                   WHERE S.STORE_CODE = ?);
+	</entry>
+	<!-- <entry key="modifyBISIPictures">
+		 UPDATE PICTURE P
+				    SET P.ORIGIN_NAME = ?,
+				        P.REVISED_NAME = ?,
+				        P.ROUTE = ?,
+				        P.UPLOAD_DATE = SYSDATE
+				  WHERE PICTURE_CODE = (SELECT
+			                              PICTURE_CODE -1
+			                         FROM LICENSE_MANAGE L
+			                        WHERE L.STORE_ADDRESS = ?);
+	</entry> -->
+	<!-- <entry key="modifyStorePictures">
+		 UPDATE PICTURE P
+   SET P.ORIGIN_NAME = ?,
+       P.REVISED_NAME = ?,
+       P.ROUTE = ?,
+       P.UPLOAD_DATE = SYSDATE
+ WHERE PICTURE_CODE = (SELECT
+                              PICTURE_CODE
+                         FROM LICENSE_MANAGE L
+                        WHERE L.STORE_ADDRESS = ?);
+	</entry> -->
+	<entry key="modifyLicenseManager">
+	UPDATE LICENSE_MANAGE L
+	   SET L.STORE_NAME = ?,
+		   L.BISI_DIV = ?,
+		   L.OPEN_DATE = ?,
+		   L.STORE_ADDRESS = ?,
+		   L.COMPANY = ?,
+		   L.ITEM = ?,
+		   L.MAIN_ADDRESS = ?,
+		   L.LIC_DATE = ?,
+		   L.BISI_CODE = ?
+	)
+	</entry>
+	<entry key="modifyOwner">
+		UPDATE USER_TABLE U
+	  	   SET U.USER_PWD = ?,
+	  	   	   U.USER_PHONE = ?,
+			   U.USER_ADDRESS = ?,
+			   U.USER_EMAIL = ?,
+			   U.ROLE_CODE = ?
+	</entry>
+	<entry key="modifyStore">
+	UPDATE STORE_TABLE S
+	   SET S.STORE_NAME = ?,
+		   S.STORE_XY = ?,
+		   S.CATEGORY = ?,
+		   S.ENROLL_DATE = SYSDATE,
+		   S.TYPE_CODE = ?,
+		   S.STORE_ADDR = ?,
+		   S.STORE_INFO = ?
+	</entry>
+	
+	
+	
+	<!-- ===================================== -->
+	
+	<entry key="BeforeModifyInfo">
+		SELECT
+			   U.USER_ID,
+			   U.USER_NAME,
+			   S.OWNER_NO
+		  FROM USER_TABLE U
+		  JOIN STORE_TABLE S ON(U.USER_CODE = S.USER_CODE)
+		 WHERE U.USER_ID = ?
+	</entry>
+	
+	<entry key="registPictures">
 	INSERT
 	  INTO PICTURE
 	VALUES
@@ -14,7 +103,8 @@
 	, ?
 	)
 	</entry>
-	<entry key="insertLicenseManager">
+	
+	<entry key="registLicenseManager">
 	INSERT
 	  INTO LICENSE_MANAGE
 	VALUES
@@ -31,7 +121,7 @@
 	, SEQ_PICTURE.CURRVAL
 	)
 	</entry>
-	<entry key="insertOwner">
+	<entry key="registOwner">
 	INSERT
 	  INTO USER_TABLE
 	  VALUES
@@ -51,7 +141,7 @@
 	  , ?
 	  )
 	</entry>
-	<entry key="insertStore">
+	<entry key="registStore">
 	INSERT
 	  INTO STORE_TABLE
 	VALUES
@@ -60,15 +150,32 @@
 	, ?
 	, ?
 	, ?
-	, ?
 	, SEQ_USER.CURRVAL
 	, SEQ_LMANAGER.CURRVAL
 	, SEQ_STORE.NEXTVAL
-	, SEQ_PICTURE.CURRVAL
 	, 'N'
 	, SYSDATE
 	, ?
 	, ?
+	, ?
+	)
+	</entry>
+	<entry key="registPICtable">
+	INSERT
+	  INTO STORE_PIC_TABLE
+	VALUES
+	(
+	  SEQ_PICTURE.CURRVAL
+	, SEQ_STORE.CURRVAL
+	)
+	</entry>
+	<entry key="registPICtable2">
+	INSERT
+	  INTO STORE_PIC_TABLE
+	VALUES
+	(
+	  SEQ_PICTURE.CURRVAL-1
+	, SEQ_STORE.CURRVAL
 	)
 	</entry>
 	<entry key="selectEncryptedPwd">
@@ -78,6 +185,7 @@
 	 	 WHERE U.WITHDRAW_YN = 'N'
 	 	   AND U.USER_ID = ?
 	</entry>
+	<!-- 로그인시 세션에 넣어줄 값들 -->
 	<entry key="selectLoginOwner">
 		SELECT
 			   U.USER_CODE
@@ -96,6 +204,43 @@
 		 WHERE U.WITHDRAW_YN = 'N'
 	 	   AND U.USER_ID = ?
 	</entry>
+	<entry key="selectLoginStore">
+		SELECT
+       	 	   S.STORE_NAME,
+		       S.OWNER_NO,
+		       S.STORE_XY,
+		       S.CATEGORY,
+		       S.USER_CODE,
+		       S.BUSINESS_REGIST_CODE,
+		       S.STORE_CODE,
+		       S.APPROVAL,
+		       S.ENROLL_DATE,
+		       S.TYPE_CODE,
+		       S.STORE_ADDR,
+		       S.STORE_INFO
+ 		  FROM STORE_TABLE S
+		 WHERE S.USER_CODE = (SELECT U.USER_CODE
+                     		    FROM USER_TABLE U
+                    		   WHERE U.USER_ID = ?)
+	</entry>
+	<entry key="selectLoginLicenseManage">
+		SELECT
+			   L.STORE_NAME,
+			   L.BISI_DIV,
+			   L.OPEN_DATE,
+			   L.STORE_ADDRESS,
+			   L.COMPANY,
+			   L.ITEM,
+			   L.MAIN_ADDRESS,
+			   L.LIC_DATE,
+			   L.BISI_CODE,
+			   L.PICTURE_CODE
+		  FROM LICENSE_MANAGE L
+		  JOIN STORE_PIC_TABLE P ON(L.PICTURE_CODE = P.PICTURE_CODE)
+		  JOIN STORE_TABLE S ON(P.STORE_CODE = S.STORE_CODE)
+		  JOIN USER_TABLE U ON(S.USER_CODE = U.USER_CODE)
+		 WHERE USER_ID = ?
+	</entry>
 	<entry key="checkId">
 		SELECT
 			   U.USER_ID
@@ -106,10 +251,7 @@
 	SELECT
 	       *
 	  FROM MENU
-	
 	</entry>
-	
-
 	<entry key="insertNewMenu">
 		INSERT
 		  INTO MENU
@@ -124,7 +266,6 @@
 		, ?
 		)
 	</entry>
-	
 	<entry key="insertPicture">
 	    INSERT
 	      INTO PICTURE
@@ -138,11 +279,9 @@
 	   , ?
 	    )
 	</entry>
-	
 	<entry key="selectPictureSequence">
 	    SELECT
 	           SEQ_PICTURE_CODE.CURRVAL
 	      FROM DUAL
 	</entry>
-	
 </properties>
