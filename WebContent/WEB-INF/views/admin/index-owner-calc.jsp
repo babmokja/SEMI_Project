@@ -44,7 +44,7 @@
               </li>
               
               <li class="nav-item sublogo">
-                이용료 정산내역 조회
+                <a href="${pageContext.servletContext.contextPath}/admin/fee" >이용료 정산내역 조회</a>
                 <hr class="end-line">
               </li>
 
