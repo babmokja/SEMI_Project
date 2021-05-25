@@ -24,7 +24,8 @@
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item logo">
-                bakmokja
+                
+                <a href="${pageContext.servletContext.contextPath}/link/admin/login" class="link-dark">babmokja</a>
               </li>
               <li class="nav-item title">
                 주문 내역  
@@ -146,60 +147,60 @@
                 	
                 <c:choose>
 			    <c:when test="${ empty requestScope.searchValue }">
-				    <button id="startPage"><<</button>
+				    <button id="startPage" class="btn btn-warning"><<</button>
 	
 					<c:if test="${ requestScope.pageInfo.pageNo <= 1 }">
-						<button disabled><</button>
+						<button class="btn btn-warning" disabled><</button>
 					</c:if>
 					<c:if test="${ requestScope.pageInfo.pageNo > 1 }">
-						<button id="prevPage"><</button>
+						<button class="btn btn-warning" id="prevPage"><</button>
 					</c:if>
 		
 					<c:forEach var="p" begin="${ requestScope.pageInfo.startPage }" end="${ requestScope.pageInfo.endPage }" step="1">
 						<c:if test="${ requestScope.pageInfo.pageNo eq p }">
-							<button disabled><c:out value="${ p }"/></button>
+							<button class="btn btn-warning" disabled><c:out value="${ p }"/></button>
 						</c:if>
 						<c:if test="${ requestScope.pageInfo.pageNo ne p }">
-							<button onclick="pageButtonAction(this.innerText);"><c:out value="${ p }"/></button>
+							<button class="btn btn-warning" onclick="pageButtonAction(this.innerText);"><c:out value="${ p }"/></button>
 						</c:if>
 					</c:forEach>
 					
 					<c:if test="${ requestScope.pageInfo.pageNo >= requestScope.pageInfo.maxPage }">
-						<button disabled>></button>
+						<button class="btn btn-warning" disabled>></button>
 					</c:if>
 					<c:if test="${ requestScope.pageInfo.pageNo < requestScope.pageInfo.maxPage }">
-						<button id="nextPage">></button>
+						<button class="btn btn-warning" id="nextPage">></button>
 					</c:if>
 					
-					<button id="maxPage">>></button> 
+					<button class="btn btn-warning" id="maxPage">>></button> 
 			     </c:when>
 			    <c:otherwise>
-   				    <button id="searchStartPage"><<</button>
+   				    <button class="btn btn-warning" id="searchStartPage"><<</button>
 	
 					<c:if test="${ requestScope.pageInfo.pageNo <= 1 }">
-						<button disabled><</button>
+						<button class="btn btn-warning" disabled><</button>
 					</c:if>
 					<c:if test="${ requestScope.pageInfo.pageNo > 1 }">
-						<button id="searchPrevPage"><</button>
+						<button class="btn btn-warning" id="searchPrevPage"><</button>
 					</c:if>
 		
 					<c:forEach var="p" begin="${ requestScope.pageInfo.startPage }" end="${ requestScope.pageInfo.endPage }" step="1">
 						<c:if test="${ requestScope.pageInfo.pageNo eq p }">
-							<button disabled><c:out value="${ p }"/></button>
+							<button class="btn btn-warning" disabled><c:out value="${ p }"/></button>
 						</c:if>
 						<c:if test="${ requestScope.pageInfo.pageNo ne p }">
-							<button onclick="seachPageButtonAction(this.innerText);"><c:out value="${ p }"/></button>
+							<button class="btn btn-warning" onclick="seachPageButtonAction(this.innerText);"><c:out value="${ p }"/></button>
 						</c:if>
 					</c:forEach>
 					
 					<c:if test="${ requestScope.pageInfo.pageNo >= requestScope.pageInfo.maxPage }">
-						<button disabled>></button>
+						<button class="btn btn-warning" disabled>></button>
 					</c:if>
 					<c:if test="${ requestScope.pageInfo.pageNo < requestScope.pageInfo.maxPage }">
-						<button id="searchNextPage">></button>
+						<button class="btn btn-warning" id="searchNextPage">></button>
 					</c:if>
 					
-					<button id="searchMaxPage">>></button> 
+					<button class="btn btn-warning" id="searchMaxPage">>></button> 
 			    </c:otherwise>
 			</c:choose>   
               </div>

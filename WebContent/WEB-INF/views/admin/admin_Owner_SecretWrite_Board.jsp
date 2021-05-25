@@ -12,8 +12,7 @@
 </head>
 <body>
     <aside class="aside">
-        <div class="aside_top2">BABMOKJA </div>
-        <div class="aside_top">업주 비밀건의 게시글 </div>
+<div class=" logo"><a href="${pageContext.servletContext.contextPath}/link/admin/login" class="link-dark text-decoration-none">babmokja</a> </div>        <div class="aside_top">업주 비밀건의 게시글 </div>
     </aside>
   
     <section id="section">
