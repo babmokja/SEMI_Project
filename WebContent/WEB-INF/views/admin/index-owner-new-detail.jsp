@@ -22,7 +22,7 @@
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item logo">
-                bakmokja
+                <a href="${pageContext.servletContext.contextPath}/link/admin/login" class="link-dark">babmokja</a>
               </li>
               <li class="nav-item title">
                 업소 관리   

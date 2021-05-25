@@ -6,15 +6,15 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/SEMI_Project/resources/css/admin/admin_Sales_day_Board.css">
-    <link rel="stylesheet" href="/SEMI_Project/resources/css/admin/main2.css">
+    <link rel="stylesheet" href="/SEMI_Project/resources/css/admin/main1.css">
     <link rel="stylesheet" href="/SEMI_Project/resources/css/admin/bootstrap.min.css">
     <title>Document</title>
 
 </head>
 <body>
     <aside class="aside">
-        <div class="aside_top2">BABMOKJA </div>
-        <div class="aside_top">일별 매출 관리 </div>
+<div class="logo"><a href="${pageContext.servletContext.contextPath}/link/admin/login" class="link-dark text-decoration-none">babmokja</a></div>        
+<div class="aside_top">일별 매출 관리 </div>
     </aside>
 
     <section class="section">
@@ -79,32 +79,32 @@
                 	
                 <c:choose>
 			    <c:when test="${ empty requestScope.searchValue }">
-				    <button id="startPage"><<</button>
+				    <button class="btn btn-warning" id="startPage"><<</button>
 	
 					<c:if test="${ requestScope.pageInfo.pageNo <= 1 }">
-						<button disabled><</button>
+						<button class="btn btn-warning" disabled><</button>
 					</c:if>
 					<c:if test="${ requestScope.pageInfo.pageNo > 1 }">
-						<button id="prevPage"><</button>
+						<button class="btn btn-warning" id="prevPage"><</button>
 					</c:if>
 		
 					<c:forEach var="p" begin="${ requestScope.pageInfo.startPage }" end="${ requestScope.pageInfo.endPage }" step="1">
 						<c:if test="${ requestScope.pageInfo.pageNo eq p }">
-							<button disabled><c:out value="${ p }"/></button>
+							<button class="btn btn-warning" disabled><c:out value="${ p }"/></button>
 						</c:if>
 						<c:if test="${ requestScope.pageInfo.pageNo ne p }">
-							<button onclick="pageButtonAction(this.innerText);"><c:out value="${ p }"/></button>
+							<button class="btn btn-warning" onclick="pageButtonAction(this.innerText);"><c:out value="${ p }"/></button>
 						</c:if>
 					</c:forEach>
 					
 					<c:if test="${ requestScope.pageInfo.pageNo >= requestScope.pageInfo.maxPage }">
-						<button disabled>></button>
+						<button class="btn btn-warning" disabled>></button>
 					</c:if>
 					<c:if test="${ requestScope.pageInfo.pageNo < requestScope.pageInfo.maxPage }">
-						<button id="nextPage">></button>
+						<button class="btn btn-warning" id="nextPage">></button>
 					</c:if>
 					
-					<button id="maxPage">>></button> 
+					<button class="btn btn-warning" id="maxPage">>></button> 
 				<span class="total">오늘 총 <c:out value="${ intArray }원"/> 판매 하셨습니다.</span>
 					
 			     </c:when>
