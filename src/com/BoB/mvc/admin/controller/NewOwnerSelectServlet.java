@@ -12,31 +12,28 @@ import javax.servlet.http.HttpServletResponse;
 import com.BoB.mvc.admin.dto.OwnerDetailDTO;
 import com.BoB.mvc.admin.service.AdminService;
 
-@WebServlet("/admin/owner/detail")
-public class SelectOwnerDetailServlet extends HttpServlet {
-	
+/**
+ * Servlet implementation class NewOwnerSelectServlet
+ */
+@WebServlet("/admin/new/detail/select")
+public class NewOwnerSelectServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String result = request.getParameter("result");
 		String ownerNum = request.getParameter("ownerNum");
-		int ownerNumber = 0;
+		int ownerInt = Integer.parseInt(ownerNum);
+		System.out.println(result);
+		System.out.println(ownerNum);
 		
-		if(ownerNum != null && !"".equals(ownerNum)) {
-			ownerNumber = Integer.parseInt(ownerNum);
-			System.out.println(ownerNumber);
-		}
+		AdminService adminservice = new AdminService();
 		
-		AdminService adminService = new AdminService();
-		List<OwnerDetailDTO> ownerDetail = adminService.selectOwnerDetail(ownerNumber);
-
-		
-		
+		adminservice.updateAppr(result,ownerNum);
+		List<OwnerDetailDTO> ownerDetail = adminservice.selectOwnerDetail(ownerInt);
 		
 		
 		String path="";
-		path = "/WEB-INF/views/admin/index-owner2.jsp";
+		path = "/WEB-INF/views/admin/index-owner-new-detail.jsp";
 		request.setAttribute("ownerDetail", ownerDetail);
-
-		request.setAttribute("message", "성공");
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 

@@ -17,6 +17,7 @@ import com.BoB.mvc.admin.dto.PageInfoDTO;
 import com.BoB.mvc.admin.dto.cartDTO;
 import com.BoB.mvc.admin.dto.orderDTO;
 import com.BoB.mvc.admin.dto.orderDetailDTO;
+import com.BoB.mvc.admin.dto.ownerDTO;
 import com.BoB.mvc.common.config.ConfigLocation;
 
 public class OrderDAO {
@@ -38,7 +39,7 @@ public class OrderDAO {
 		
 		int totalCount = 0;
 		
-		String query = prop.getProperty("selectTotalCount");
+		String query = prop.getProperty("selectOrderTotalCount");
 
 		try {
 			stmt = con.createStatement();
@@ -84,7 +85,7 @@ public class OrderDAO {
 				order.setOrderNum(rset.getInt("ORDER_CODE"));
 				order.setCusName(rset.getString("USER_NAME"));
 				order.setStoName(rset.getString("STORE_NAME"));
-				order.setOrDate(rset.getDate("ORDER_TIME"));
+				order.setOrDate(rset.getTimestamp("ORDER_TIME"));
 				order.setPrice(rset.getInt("TOTAL_AMOUNT"));
 				order.setCusPhone(rset.getString("USER_PHONE"));	
 				order.setStoPhone(rset.getString("StoPhone"));
@@ -251,4 +252,6 @@ public class OrderDAO {
 		
 		return orderList;
 	}
+
+
 }

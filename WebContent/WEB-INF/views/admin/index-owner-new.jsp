@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -60,7 +61,7 @@
           
           <div class="row">
             <span class="col-2 menu-item">
-              <a href="${pageContext.servletContext.contextPath}/admin/order" class="link-dark"><img src="/SEMI_Project/resources/image/admin/item1.svg" />
+              <a href="${pageContext.servletContext.contextPath}/admin/order" class="link-dark"><img src="/SEMI_Project/resources/image/admin/item1.png" />
                 &nbsp;&nbsp;&nbsp;주문확인   </a>
             </span>
             <span class="col-2 menu-item ">
@@ -72,7 +73,7 @@
               &nbsp;&nbsp;&nbsp; 업소관리
             </span>
             <span class="col-2 menu-item">
-              <a href="${pageContext.servletContext.contextPath}/admin/customer/board" class="link-dark"><img src="/SEMI_Project/resources/image/admin/item4.svg" />
+              <a href="${pageContext.servletContext.contextPath}/admin/customer/board" class="link-dark"><img src="/SEMI_Project/resources/image/admin/item4.png" />
                 &nbsp;&nbsp;&nbsp;  게시판</a>
             </span>
           </div>
@@ -83,188 +84,138 @@
           
           <div class="row">
             <div class="table-responsive col-10 offset-md-1">
-              
+              <form id="loginForm" action="${ pageContext.servletContext.contextPath }/admin/add/owner/search" method="get">
               <div class="row">
-                <div class="col-2">
-                  유저번호,유저명
-                  <select class="form-select" >
-                    <option selected>카테고리 선택</option>
-                    <option value="1">유저번호</option>
-                    <option value="2">유저명</option>
-                  </select>
-                </div>
-                <div class="col-2">
-                  신청구분
-                  <select class="form-select" >
-                    <option selected>카테고리</option>
-                    <option value="1">신규가입</option>
-                    <option value="2">추가신청</option>
-
-                  </select>
-                </div>
-                <div class="col-3">
-                  유저번호,유저명 입력
-                  <input class="form-control" type="text" >
-                  
-                </div>
+                <c:choose>
+				    <c:when test="${ !empty requestScope.searchValue }">
+   					    <div class="col-3">
+	                  유저번호,업주명
+	                  <select class="form-select" id="searchCondition" name="searchCondition" >
+	                    <option value="ownerNum" <c:if test="${requestScope.searchCondition eq 'ownerNum'}">selected</c:if>>유저번호</option>
+		                <option value="ownerName"<c:if test="${requestScope.searchCondition eq 'ownerName'}">selected</c:if>>업주명</option>
+	                  </select>
+	                </div>
+	                <div class="col-3">
+	                  유저번호,업주명 입력
+	                  <input class="form-control" type="search" id="searchValue" name="searchValue" value="${ requestScope.searchValue }" >
+	                </div>
+				    </c:when>
+				    <c:otherwise>
+						    <div class="col-3">
+		                  유저번호,업주명
+		                  <select class="form-select" id="searchCondition" name="searchCondition" >
+		                    <option value="ownerNum">유저번호</option>
+		                    <option value="ownerName">업주명</option>
+		                  </select>
+		                </div>
+		                <div class="col-3">
+		                  유저번호,업주명 입력
+		                  <input class="form-control" type="search" id="searchValue" name="searchValue" >
+		                </div>
+				    </c:otherwise>
+				</c:choose>
                 
                 <div class="col-3">
                   <br>
-                  <button type="button" class="btn btn-outline-secondary">검색하기</button>
+                  <button type="submit" class="btn btn-outline-secondary">검색하기</button>
                 </div>
               </div>
+              </form>
+                
+                
+              
               <br>
+              
+              
               <table class="table table-striped table-sm  text-center ">
                 <thead>
                   <tr>
                     <th>유저번호</th>
                     <th>유저명</th>
-                    <th>카테고리</th>
                     <th>신청일자</th>
                     <th>처리여부</th>
                     <th>상세보기</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>OW001</td>
-                    <td>홍길동</td>
-                    <td>신규가입</td>
-                    <td>2021-05-13 09:00:00</td>
-                    <th>승인</th>
-                    <td><a href="${pageContext.servletContext.contextPath}/admin/owner/detail" class="link-dark">상세보기</a></td>
-                  </tr>
-                  <tr>
-                    <td>OW001</td>
-                    <td>홍길똥</td>
-                    <td>추가신청</td>
-                    <td>2021-05-13 09:00:00</td>
-                    <th>미확인</th>
-                    <td><a href="./index-owner2.html" class="link-dark">상세보기</a></td>
-                  </tr>
-                  <tr>
-                    <td>OW001</td>
-                    <td>홍길동</td>
-                    <td>신규가입</td>
-                    <td>2021-05-13 09:00:00</td>
-                    <th>승인</th>
-                    <td><a href="./index-owner2.html" class="link-dark">상세보기</a></td>
-                  </tr>
-                  <tr>
-                    <td>OW001</td>
-                    <td>홍길똥</td>
-                    <td>추가신청</td>
-                    <td>2021-05-13 09:00:00</td>
-                    <th>미확인</th>
-                    <td><a href="./index-owner2.html" class="link-dark">상세보기</a></td>
-                  </tr>
-                  <tr>
-                    <td>OW001</td>
-                    <td>홍길동</td>
-                    <td>신규가입</td>
-                    <td>2021-05-13 09:00:00</td>
-                    <th>승인</th>
-                    <td><a href="./index-owner2.html" class="link-dark">상세보기</a></td>
-                  </tr>
-                  <tr>
-                    <td>OW001</td>
-                    <td>홍길똥</td>
-                    <td>추가신청</td>
-                    <td>2021-05-13 09:00:00</td>
-                    <th>미확인</th>
-                    <td><a href="./index-owner2.html" class="link-dark">상세보기</a></td>
-                  </tr>
-                  <tr>
-                    <td>OW001</td>
-                    <td>홍길동</td>
-                    <td>신규가입</td>
-                    <td>2021-05-13 09:00:00</td>
-                    <th>승인</th>
-                    <td><a href="./index-owner2.html" class="link-dark">상세보기</a></td>
-                  </tr>
-                  <tr>
-                    <td>OW001</td>
-                    <td>홍길똥</td>
-                    <td>추가신청</td>
-                    <td>2021-05-13 09:00:00</td>
-                    <th>미확인</th>
-                    <td><a href="./index-owner2.html" class="link-dark">상세보기</a></td>
-                  </tr>
-                  <tr>
-                    <td>OW001</td>
-                    <td>홍길동</td>
-                    <td>신규가입</td>
-                    <td>2021-05-13 09:00:00</td>
-                    <th>승인</th>
-                    <td><a href="./index-owner2.html" class="link-dark">상세보기</a></td>
-                  </tr>
-                  <tr>
-                    <td>OW001</td>
-                    <td>홍길똥</td>
-                    <td>추가신청</td>
-                    <td>2021-05-13 09:00:00</td>
-                    <th>미확인</th>
-                    <td><a href="./index-owner2.html" class="link-dark">상세보기</a></td>
-                  </tr>
-                  <tr>
-                    <td>OW001</td>
-                    <td>홍길동</td>
-                    <td>신규가입</td>
-                    <td>2021-05-13 09:00:00</td>
-                    <th>승인</th>
-                    <td><a href="./index-owner2.html" class="link-dark">상세보기</a></td>
-                  </tr>
-                  <tr>
-                    <td>OW001</td>
-                    <td>홍길똥</td>
-                    <td>추가신청</td>
-                    <td>2021-05-13 09:00:00</td>
-                    <th>미확인</th>
-                    <td><a href="./index-owner2.html" class="link-dark">상세보기</a></td>
-                  </tr>
-                  <tr>
-                    <td>OW001</td>
-                    <td>홍길동</td>
-                    <td>신규가입</td>
-                    <td>2021-05-13 09:00:00</td>
-                    <th>승인</th>
-                    <td><a href="./index-owner2.html" class="link-dark">상세보기</a></td>
-                  </tr>
-                  <tr>
-                    <td>OW001</td>
-                    <td>홍길똥</td>
-                    <td>추가신청</td>
-                    <td>2021-05-13 09:00:00</td>
-                    <th>미확인</th>
-                    <td><a href="./index-owner2.html" class="link-dark">상세보기</a></td>
-                  </tr>
-                  <tr>
-                    <td>OW001</td>
-                    <td>홍길동</td>
-                    <td>신규가입</td>
-                    <td>2021-05-13 09:00:00</td>
-                    <th>승인</th>
-                    <td><a href="./index-owner2.html" class="link-dark">상세보기</a></td>
-                  </tr>
-                  <tr>
-                    <td>OW001</td>
-                    <td>홍길똥</td>
-                    <td>추가신청</td>
-                    <td>2021-05-13 09:00:00</td>
-                    <th>미확인</th>
-                    <td><a href="./index-owner2.html" class="link-dark">상세보기</a></td>
-                  </tr>
+
+                <c:forEach var="board" items="${ requestScope.ownerList }">
+                	<c:choose>
+			    	<c:when test="${ board.appr !='X' }">
+					<tr>
+						<td><c:out value="${ board.ownerNum }"/></td>
+						<td><c:out value="${ board.ownerName }"/></td>
+						<td><c:out value="${ board.enrollDate }"/></td>
+						<td><c:out value="${ board.appr }"/></td>
+						<td><a href="${pageContext.servletContext.contextPath}/admin/owner/new/detail?ownerNum=${ board.ownerNum }"  class="link-dark">상세보기</a></td>
+					</tr>
+					</c:when>
+					</c:choose>
+				</c:forEach>
                 </tbody>
               </table>
               <br>
               <div class="text-center">
-                
-                <span class="col-1 "><a href="#" class="page-item link-dark" >1</a></span>
-                <span class="col-1"><a href="#" class="page-item link-dark" >2</a></span>
-                <span class="col-1"><a href="#" class="page-item link-dark" >3</a></span>
-                <span class="col-1"><a href="#" class="page-item link-dark" >4</a></span>
-                <span class="col-1"><a href="#" class="page-item link-dark" >5</a></span>
-                
+           
+                	
+                <c:choose>
+			    <c:when test="${ empty requestScope.searchValue }">
+				    <button id="startPage"><<</button>
+	
+					<c:if test="${ requestScope.pageInfo.pageNo <= 1 }">
+						<button disabled><</button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo > 1 }">
+						<button id="prevPage"><</button>
+					</c:if>
+		
+					<c:forEach var="p" begin="${ requestScope.pageInfo.startPage }" end="${ requestScope.pageInfo.endPage }" step="1">
+						<c:if test="${ requestScope.pageInfo.pageNo eq p }">
+							<button disabled><c:out value="${ p }"/></button>
+						</c:if>
+						<c:if test="${ requestScope.pageInfo.pageNo ne p }">
+							<button onclick="pageButtonAction(this.innerText);"><c:out value="${ p }"/></button>
+						</c:if>
+					</c:forEach>
+					
+					<c:if test="${ requestScope.pageInfo.pageNo >= requestScope.pageInfo.maxPage }">
+						<button disabled>></button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo < requestScope.pageInfo.maxPage }">
+						<button id="nextPage">></button>
+					</c:if>
+					
+					<button id="maxPage">>></button> 
+			     </c:when>
+			    <c:otherwise>
+   				    <button id="searchStartPage"><<</button>
+	
+					<c:if test="${ requestScope.pageInfo.pageNo <= 1 }">
+						<button disabled><</button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo > 1 }">
+						<button id="searchPrevPage"><</button>
+					</c:if>
+		
+					<c:forEach var="p" begin="${ requestScope.pageInfo.startPage }" end="${ requestScope.pageInfo.endPage }" step="1">
+						<c:if test="${ requestScope.pageInfo.pageNo eq p }">
+							<button disabled><c:out value="${ p }"/></button>
+						</c:if>
+						<c:if test="${ requestScope.pageInfo.pageNo ne p }">
+							<button onclick="seachPageButtonAction(this.innerText);"><c:out value="${ p }"/></button>
+						</c:if>
+					</c:forEach>
+					
+					<c:if test="${ requestScope.pageInfo.pageNo >= requestScope.pageInfo.maxPage }">
+						<button disabled>></button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo < requestScope.pageInfo.maxPage }">
+						<button id="searchNextPage">></button>
+					</c:if>
+					
+					<button id="searchMaxPage">>></button> 
+			    </c:otherwise>
+			</c:choose>   
               </div>
               
             </div>
@@ -277,6 +228,75 @@
       </div>
       
     </div>
-    
+    <script>
+		const link = "${ pageContext.servletContext.contextPath }/admin/add/company";
+		const searchLink = "${ pageContext.servletContext.contextPath }/admin/add/owner/search";
+		const detail = "${ pageContext.servletContext.contextPath }/admin/order/detail";
+			
+		if(document.getElementById("startPage")) {
+			const $startPage = document.getElementById("startPage");
+			$startPage.onclick = function() {
+				location.href = link + "?currentPage=1";
+			}
+		}
+		
+		if(document.getElementById("prevPage")) {
+			const $prevPage = document.getElementById("prevPage");
+			$prevPage.onclick = function() {
+				location.href = link + "?currentPage=${ requestScope.pageInfo.pageNo - 1 }";
+			}
+		}
+		
+
+		
+		if(document.getElementById("nextPage")) {
+			const $nextPage = document.getElementById("nextPage");
+			$nextPage.onclick = function() {
+				location.href = link + "?currentPage=${ requestScope.pageInfo.pageNo + 1 }";
+			}
+		}
+		
+		if(document.getElementById("maxPage")) {
+			const $maxPage = document.getElementById("maxPage");
+			$maxPage.onclick = function() {
+				location.href = link + "?currentPage=${ requestScope.pageInfo.maxPage }";
+			}
+		}
+		
+		if(document.getElementById("searchStartPage")) {
+			const $searchStartPage = document.getElementById("searchStartPage");
+			$searchStartPage.onclick = function() {
+				location.href = searchLink + "?currentPage=1&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+		if(document.getElementById("searchPrevPage")) {
+			const $searchPrevPage = document.getElementById("searchPrevPage");
+			$searchPrevPage.onclick = function() {
+				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.pageNo - 1 }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+		if(document.getElementById("searchNextPage")) {
+			const $searchNextPage = document.getElementById("searchNextPage");
+			$searchNextPage.onclick = function() {
+				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.pageNo + 1 }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+		if(document.getElementById("searchMaxPage")) {
+			const $searchMaxPage = document.getElementById("searchMaxPage");
+			$searchMaxPage.onclick = function() {
+				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.maxPage }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+		function pageButtonAction(text) {
+			location.href = link + "?currentPage=" + text;
+		}
+		function seachPageButtonAction(text) {
+			location.href = searchLink + "?currentPage=" + text + "&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+		}
+	</script>
     
   </body></html>

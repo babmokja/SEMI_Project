@@ -32,17 +32,17 @@
             <ul class="nav flex-column">
               <hr class="end-line">
               <li class="nav-item sublogo">
-                업소 정보조회
+                <a href="${pageContext.servletContext.contextPath}/admin/owner" >업소 정보조회</a>
                 <hr class="end-line">
               </li>
               
               <li class="nav-item sublogo">
-                 <a href="${pageContext.servletContext.contextPath}/admin/fee" >이용료 정산내역 조회</a>
+                <a href="${pageContext.servletContext.contextPath}/admin/fee" >이용료 정산내역 조회</a>
                 <hr class="end-line">
               </li>
 
               <li class="nav-item sublogo">
-                <a href="${pageContext.servletContext.contextPath}/admin/add/company" >업소 가입/추가신청 조회</a>
+                업소 가입/추가신청 조회
                <hr class="end-line">
              </li>
             </ul>
@@ -107,14 +107,25 @@
                 <span class="recipe-item col-6 "><c:out value="${ owner.phone }"/></span>
                 <br><br>
 
-
+				<span class="recipe-item col-3 ">가입여부</span>
+                <span class="recipe-item col-6 "><c:out value="${ owner.appr }"/></span>
+                <br><br>
+                
                 <span class="recipe-item col-3 ">서비스 유형</span>
                 <span class="recipe-item col-6 "><c:out value="${ owner.type }"/></span>
-                <br><br>
+                <br><br><br><br>
 
-                <span class="recipe-item col-3 ">매출 확인</span>
-                <span class="recipe-item col-6 sales-config"><a href="${pageContext.servletContext.contextPath}/admin/sales/today?ownerNum=${ owner.ownerNum }">매출 확인</a></span>
-
+                
+                
+                <c:choose>
+			    <c:when test="${ owner.appr =='N' }">
+			    <span class="recipe-item col-2 "></span>
+                <span class="recipe-item col-2 sales-config"><a href="${pageContext.servletContext.contextPath}/admin/new/detail/select?result=OK&ownerNum=${ owner.ownerNum }">가입승인</a></span>
+				<span class="recipe-item col-2 sales-config"><a href="${pageContext.servletContext.contextPath}/admin/new/detail/select?result=NO">가입거절</a></span>			
+                </c:when>
+                </c:choose> 
+                
+                
                 </c:forEach>
               </div>
 
@@ -129,7 +140,7 @@
           <br>
           <div class="row">
             <span class="col-8"></span>
-            <span class="col-1"><a href="${pageContext.servletContext.contextPath}/admin/owner"><img src="/SEMI_Project/resources/image/admin/backpage.png" /></a></span>
+            <span class="col-1"><a href="${pageContext.servletContext.contextPath}/admin/add/company"><img src="/SEMI_Project/resources/image/admin/backpage.png" /></a></span>
           </div>
           <br>
           <br><br>

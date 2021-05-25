@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-	<entry key="selectTotalCount">
+	<entry key="selectOrderTotalCount">
 		SELECT 
                COUNT(*)
           FROM ORDER_TABLE A
          
 	</entry>
 	
+	<entry key="selectUserCount">
+		SELECT 
+               COUNT(*)
+          FROM USER_TABLE A
+         
+	</entry>
+	
 	<entry key="selectOrderList1">
+	
         SELECT 
             A.RNUM,
 		    A.ORDER_CODE,
@@ -76,13 +84,6 @@
 			   A.ROLE_CODE
 		  FROM USER_TABLE A
 		 WHERE A.USER_ID = ?
-	</entry>
-	
-	<entry key="searchId">
-			select
-	     user_pwd
-	    from user_table
-	    where user_id = ?
 	</entry>
 	
 	<entry key="selectEncryptedPwd">
@@ -247,5 +248,681 @@
                         WHERE B.STORE_NAME LIKE '%' || ? || '%'
                ) A
          WHERE A.RNUM BETWEEN ? AND ? 
+	</entry>
+	
+	<entry key="ownerNumCount">
+        SELECT
+            COUNT(*)
+            FROM STORE_TABLE
+            WHERE USER_CODE = ?
+	</entry>
+	
+	<entry key="bisiNumCount">
+        SELECT
+            COUNT(*)
+            FROM STORE_TABLE
+            WHERE OWNER_NO = ?
+	</entry>
+	
+	<entry key="ownerNameCount">
+        SELECT
+            COUNT(*)
+            FROM STORE_TABLE A
+            JOIN USER_TABLE B ON(A.USER_CODE = B.USER_CODE)
+            WHERE B.USER_NAME LIKE '%' || ? || '%' 
+	</entry>
+	<entry key="selectOwnerTotalCount">
+	SELECT
+	COUNT(*)
+	FROM STORE_TABLE A 
+	</entry>
+	
+	<entry key="selectOwnerList">
+	SELECT
+	A.RNUM,
+	a.user_code,
+	A.user_name,
+	a.store_name,
+	a.owner_no,
+	a.store_addr,
+	a.ENROLL_DATE,
+	a.APPROVAL
+			FROM (SELECT 
+				ROWNUM RNUM,
+				B.user_code,
+				B.user_name,
+				B.store_name,
+				B.owner_no,
+				B.store_addr,
+				B.ENROLL_DATE,
+				B.APPROVAL
+					FROM(SELECT C.user_code,
+						D.user_name,
+						C.store_name,
+						C.owner_no,
+						C.store_addr,
+						C.ENROLL_DATE,
+						C.APPROVAL
+						FROM STORE_TABLE C
+						JOIN USER_TABLE D ON(C.USER_CODE = D.USER_CODE)
+						ORDER BY C.USER_CODE ASC
+				)B
+				
+			)A
+	WHERE A.RNUM BETWEEN ? AND ? </entry>
+	
+	
+	<entry key="ownerNumSearch">
+	SELECT
+	A.RNUM,
+	a.user_code,
+	A.user_name,
+	a.store_name,
+	a.owner_no,
+	a.store_addr,
+	a.ENROLL_DATE,
+	a.APPROVAL
+			FROM (SELECT 
+				ROWNUM RNUM,
+				B.user_code,
+				B.user_name,
+				B.store_name,
+				B.owner_no,
+				B.store_addr,
+				B.ENROLL_DATE,
+				B.APPROVAL
+					FROM(SELECT C.user_code,
+						D.user_name,
+						C.store_name,
+						C.owner_no,
+						C.store_addr,
+						C.ENROLL_DATE,
+						C.APPROVAL
+						FROM STORE_TABLE C
+						JOIN USER_TABLE D ON(C.USER_CODE = D.USER_CODE)
+						ORDER BY C.USER_CODE ASC
+				)B
+				WHERE B.USER_CODE = ?
+			)A
+	WHERE A.RNUM BETWEEN ? AND ? </entry>
+	
+	
+	<entry key="bisiNumSearch">
+	SELECT
+	A.RNUM,
+	a.user_code,
+	A.user_name,
+	a.store_name,
+	a.owner_no,
+	a.store_addr,
+	a.ENROLL_DATE,
+	a.APPROVAL
+			FROM (SELECT 
+				ROWNUM RNUM,
+				B.user_code,
+				B.user_name,
+				B.store_name,
+				B.owner_no,
+				B.store_addr,
+				B.ENROLL_DATE,
+				B.APPROVAL
+					FROM(SELECT C.user_code,
+						D.user_name,
+						C.store_name,
+						C.owner_no,
+						C.store_addr,
+						C.ENROLL_DATE,
+						C.APPROVAL
+						FROM STORE_TABLE C
+						JOIN USER_TABLE D ON(C.USER_CODE = D.USER_CODE)
+						ORDER BY C.USER_CODE ASC
+				)B
+				WHERE B.OWNER_NO = ?
+			)A
+	WHERE A.RNUM BETWEEN ? AND ? </entry>
+	
+	<entry key="ownerNameSearch">
+	SELECT
+	A.RNUM,
+	a.user_code,
+	A.user_name,
+	a.store_name,
+	a.owner_no,
+	a.store_addr,
+	a.ENROLL_DATE,
+	a.APPROVAL
+			FROM (SELECT 
+				ROWNUM RNUM,
+				B.user_code,
+				B.user_name,
+				B.store_name,
+				B.owner_no,
+				B.store_addr,
+				B.ENROLL_DATE,
+				B.APPROVAL
+					FROM(SELECT C.user_code,
+						D.user_name,
+						C.store_name,
+						C.owner_no,
+						C.store_addr,
+						C.ENROLL_DATE,
+						C.APPROVAL
+						FROM STORE_TABLE C
+						JOIN USER_TABLE D ON(C.USER_CODE = D.USER_CODE)
+						ORDER BY C.USER_CODE ASC
+				)B
+				WHERE B.USER_NAME LIKE '%' || ? || '%'
+			)A
+	WHERE A.RNUM BETWEEN ? AND ? </entry>
+	
+	
+	
+	<entry key="selectOwnerDetail">
+	    SELECT 
+        A.OWNER_NO,
+        A.STORE_NAME,
+        A.STORE_CODE,
+        A.CATEGORY,
+        A.STORE_ADDR,
+        B.USER_PHONE,
+        C.TYPE_NAME,
+        A.APPROVAL
+        
+    FROM STORE_TABLE A
+    JOIN USER_TABLE B ON(A.USER_CODE = B.USER_CODE)
+    JOIN TYPE_LIST C ON(A.TYPE_CODE = C.TYPE_CODE)
+    WHERE A.STORE_CODE = ?
+	</entry>
+	
+	<entry key="updateAppr">
+	    UPDATE
+        STORE_TABLE A
+        SET A.APPROVAL = ?
+        WHERE A.STORE_CODE = ?
+	
+	</entry>
+	<entry key="selectBoardTotalCount">
+		SELECT 
+               COUNT(*)
+          FROM OWNER_INQUIRY A
+         
+	</entry>
+	
+	<entry key="selectCusBoardTotalCount">
+		SELECT 
+               COUNT(*)
+          FROM USER_BOARD A
+         
+	</entry>
+	
+	
+	<entry key="selectBoardList">
+	    SELECT
+	    A.RNUM,
+	    A.BOARD_CODE,
+	    A.BOARD_TITLE,
+	    A.BOARD_DATE,
+	    A.VISIBLE_YN,
+	    A.OWNER_CODE,
+	    A.USER_NAME
+	        FROM(SELECT
+	                ROWNUM RNUM,
+	                    B.BOARD_CODE,
+	                    B.BOARD_TITLE,
+	                    B.BOARD_DATE,
+	                    B.VISIBLE_YN,
+	                    B.OWNER_CODE,
+	                    B.USER_NAME
+	                    FROM(SELECT 
+	                                C.BOARD_CODE,
+	                                C.BOARD_TITLE,
+	                                C.BOARD_DATE,
+	                                C.VISIBLE_YN,
+	                                C.OWNER_CODE,
+	                                D.USER_NAME
+	                                FROM OWNER_INQUIRY C
+	                                JOIN USER_TABLE D ON(C.OWNER_CODE = D.USER_CODE)
+	                                ORDER BY C.BOARD_CODE ASC
+	                            )B
+	                            
+	                    )A
+	            WHERE A.RNUM BETWEEN ? AND ?
+         
+	</entry>
+	
+	<entry key="selectCusBoardList">
+	    SELECT
+	    A.RNUM,
+	    A.BOARD_CODE,
+	    A.BOARD_TITLE,
+	    A.BOARD_DATE,
+	    A.VISIBLE_YN,
+	    A.USER_CODE,
+	    A.USER_NAME
+	        FROM(SELECT
+	                ROWNUM RNUM,
+	                    B.BOARD_CODE,
+	                    B.BOARD_TITLE,
+	                    B.BOARD_DATE,
+	                    B.VISIBLE_YN,
+	                    B.USER_CODE,
+	                    B.USER_NAME
+	                    FROM(SELECT 
+	                                C.BOARD_CODE,
+	                                C.BOARD_TITLE,
+	                                C.BOARD_DATE,
+	                                C.VISIBLE_YN,
+	                                C.USER_CODE,
+	                                D.USER_NAME
+	                                FROM USER_BOARD C
+	                                JOIN USER_TABLE D ON(C.USER_CODE = D.USER_CODE)
+	                                ORDER BY C.BOARD_CODE ASC
+	                            )B
+	                            
+	                    )A
+	            WHERE A.RNUM BETWEEN ? AND ?
+         
+	</entry>
+	
+	<entry key="boardTitleCount">
+		        
+		SELECT
+	    COUNT(*)
+	    FROM OWNER_INQUIRY A
+	    WHERE A.BOARD_TITLE  LIKE '%' || ? || '%'
+         
+	</entry>
+	
+	<entry key="userNameCount">
+		    COUNT(*)
+		    FROM OWNER_INQUIRY A
+		    JOIN USER_TABLE B ON(A.OWNER_CODE = B.USER_CODE)
+		    WHERE B.USER_NAME  LIKE '%' || ? || '%'
+         
+	</entry>
+	
+	
+	<entry key="CusBoardTitleCount">
+		        
+		SELECT
+	    COUNT(*)
+	    FROM USER_BOARD A
+	    WHERE A.BOARD_TITLE  LIKE '%' || ? || '%'
+         
+	</entry>
+	
+	<entry key="CusUserNameCount">
+		    COUNT(*)
+		    FROM USER_BOARD A
+		    JOIN USER_TABLE B ON(A.USER_CODE = B.USER_CODE)
+		    WHERE B.USER_NAME  LIKE '%' || ? || '%'
+         
+	</entry>
+	
+	
+	<entry key="searchBoardTitle">
+		SELECT
+	    A.RNUM,
+	    A.BOARD_CODE,
+	    A.BOARD_TITLE,
+	    A.BOARD_DATE,
+	    A.VISIBLE_YN,
+	    A.OWNER_CODE,
+	    A.USER_NAME
+	        FROM(SELECT
+	                ROWNUM RNUM,
+	                    B.BOARD_CODE,
+	                    B.BOARD_TITLE,
+	                    B.BOARD_DATE,
+	                    B.VISIBLE_YN,
+	                    B.OWNER_CODE,
+	                    B.USER_NAME
+	                    FROM(SELECT 
+	                                C.BOARD_CODE,
+	                                C.BOARD_TITLE,
+	                                C.BOARD_DATE,
+	                                C.VISIBLE_YN,
+	                                C.OWNER_CODE,
+	                                D.USER_NAME
+	                                FROM OWNER_INQUIRY C
+	                                JOIN USER_TABLE D ON(C.OWNER_CODE = D.USER_CODE)
+	                                ORDER BY C.BOARD_CODE ASC
+	                            )B
+	                           WHERE B.BOARD_TITLE  LIKE '%' || ? || '%'
+	                    )A
+	            WHERE A.RNUM BETWEEN ? AND ?
+         
+	</entry>
+	
+	
+	<entry key="searchUserName">
+		SELECT
+	    A.RNUM,
+	    A.BOARD_CODE,
+	    A.BOARD_TITLE,
+	    A.BOARD_DATE,
+	    A.VISIBLE_YN,
+	    A.OWNER_CODE,
+	    A.USER_NAME
+	        FROM(SELECT
+	                ROWNUM RNUM,
+	                    B.BOARD_CODE,
+	                    B.BOARD_TITLE,
+	                    B.BOARD_DATE,
+	                    B.VISIBLE_YN,
+	                    B.OWNER_CODE,
+	                    B.USER_NAME
+	                    FROM(SELECT 
+	                                C.BOARD_CODE,
+	                                C.BOARD_TITLE,
+	                                C.BOARD_DATE,
+	                                C.VISIBLE_YN,
+	                                C.OWNER_CODE,
+	                                D.USER_NAME
+	                                FROM OWNER_INQUIRY C
+	                                JOIN USER_TABLE D ON(C.OWNER_CODE = D.USER_CODE)
+	                                ORDER BY C.BOARD_CODE ASC
+	                            )B
+	                           WHERE B.USER_NAME  LIKE '%' || ? || '%'
+	                    )A
+	            WHERE A.RNUM BETWEEN ? AND ?
+         
+	</entry>
+	
+	
+	<entry key="searchCusBoardTitle">
+		SELECT
+	    A.RNUM,
+	    A.BOARD_CODE,
+	    A.BOARD_TITLE,
+	    A.BOARD_DATE,
+	    A.VISIBLE_YN,
+	    A.USER_CODE,
+	    A.USER_NAME
+	        FROM(SELECT
+	                ROWNUM RNUM,
+	                    B.BOARD_CODE,
+	                    B.BOARD_TITLE,
+	                    B.BOARD_DATE,
+	                    B.VISIBLE_YN,
+	                    B.USER_CODE,
+	                    B.USER_NAME
+	                    FROM(SELECT 
+	                                C.BOARD_CODE,
+	                                C.BOARD_TITLE,
+	                                C.BOARD_DATE,
+	                                C.VISIBLE_YN,
+	                                C.USER_CODE,
+	                                D.USER_NAME
+	                                FROM USER_BOARD C
+	                                JOIN USER_TABLE D ON(C.USER_CODE = D.USER_CODE)
+	                                ORDER BY C.BOARD_CODE ASC
+	                            )B
+	                           WHERE B.BOARD_TITLE  LIKE '%' || ? || '%'
+	                    )A
+	            WHERE A.RNUM BETWEEN ? AND ?
+         
+	</entry>
+	
+	
+	<entry key="searchCusUserName">
+		SELECT
+	    A.RNUM,
+	    A.BOARD_CODE,
+	    A.BOARD_TITLE,
+	    A.BOARD_DATE,
+	    A.VISIBLE_YN,
+	    A.USER_CODE,
+	    A.USER_NAME
+	        FROM(SELECT
+	                ROWNUM RNUM,
+	                    B.BOARD_CODE,
+	                    B.BOARD_TITLE,
+	                    B.BOARD_DATE,
+	                    B.VISIBLE_YN,
+	                    B.USER_CODE,
+	                    B.USER_NAME
+	                    FROM(SELECT 
+	                                C.BOARD_CODE,
+	                                C.BOARD_TITLE,
+	                                C.BOARD_DATE,
+	                                C.VISIBLE_YN,
+	                                C.USER_CODE,
+	                                D.USER_NAME
+	                                FROM USER_BOARD C
+	                                JOIN USER_TABLE D ON(C.USER_CODE = D.USER_CODE)
+	                                ORDER BY C.BOARD_CODE ASC
+	                            )B
+	                           WHERE B.USER_NAME  LIKE '%' || ? || '%'
+	                    )A
+	            WHERE A.RNUM BETWEEN ? AND ?
+         
+         
+	</entry>
+	
+	<entry key="selectUserList">
+	                SELECT 
+            A.RNUM,
+            A.USER_CODE,
+            A.BLACKLIST_YN,
+            A.USER_NAME,
+            A.USER_ID,
+            A.USER_ADDRESS,
+            A.WITHDRAW_YN
+                    FROM(SELECT
+                                ROWNUM RNUM,
+                                B.USER_CODE,
+                                B.BLACKLIST_YN,
+                                B.USER_NAME,
+                                B.USER_ID,
+                                B.USER_ADDRESS,
+                                B.WITHDRAW_YN
+                                FROM (SELECT
+                                            C.USER_CODE,
+                                            C.BLACKLIST_YN,
+                                            C.USER_NAME,
+                                            C.USER_ID,
+                                            C.USER_ADDRESS,
+                                            C.WITHDRAW_YN
+                                            FROM USER_TABLE C
+                                            ORDER BY C.USER_CODE DESC
+                                )B
+                                
+                    )A
+                    
+            WHERE A.RNUM BETWEEN ? AND ?
+	
+	</entry>
+	
+	
+	
+		<entry key="userNumCount">
+		        SELECT
+                COUNT(*)
+                
+                FROM USER_TABLE
+                WHERE USER_CODE = ?
+         
+	</entry>
+	
+		<entry key="userIdCount">
+            SELECT
+                COUNT(*)
+                
+                FROM USER_TABLE
+                WHERE USER_ID  LIKE '%' || ? || '%'
+         
+	</entry>
+	
+	
+		<entry key="userNameCount2">
+		        SELECT
+                COUNT(*)
+                
+                FROM USER_TABLE
+                WHERE USER_NAME  LIKE '%' || ? || '%'
+         
+	</entry>
+	
+		<entry key="userNumSearch">
+	                SELECT 
+            A.RNUM,
+            A.USER_CODE,
+            A.BLACKLIST_YN,
+            A.USER_NAME,
+            A.USER_ID,
+            A.USER_ADDRESS,
+            A.WITHDRAW_YN
+                    FROM(SELECT
+                                ROWNUM RNUM,
+                                B.USER_CODE,
+                                B.BLACKLIST_YN,
+                                B.USER_NAME,
+                                B.USER_ID,
+                                B.USER_ADDRESS,
+                                B.WITHDRAW_YN
+                                FROM (SELECT
+                                            C.USER_CODE,
+                                            C.BLACKLIST_YN,
+                                            C.USER_NAME,
+                                            C.USER_ID,
+                                            C.USER_ADDRESS,
+                                            C.WITHDRAW_YN
+                                            FROM USER_TABLE C
+                                            ORDER BY C.USER_CODE DESC
+                                )B
+                               WHERE B.USER_CODE = ? 
+                    )A
+                    
+            WHERE A.RNUM BETWEEN ? AND ?
+	
+	</entry>
+	
+		<entry key="userIdSearch">
+	                SELECT 
+            A.RNUM,
+            A.USER_CODE,
+            A.BLACKLIST_YN,
+            A.USER_NAME,
+            A.USER_ID,
+            A.USER_ADDRESS,
+            A.WITHDRAW_YN
+                    FROM(SELECT
+                                ROWNUM RNUM,
+                                B.USER_CODE,
+                                B.BLACKLIST_YN,
+                                B.USER_NAME,
+                                B.USER_ID,
+                                B.USER_ADDRESS,
+                                B.WITHDRAW_YN
+                                FROM (SELECT
+                                            C.USER_CODE,
+                                            C.BLACKLIST_YN,
+                                            C.USER_NAME,
+                                            C.USER_ID,
+                                            C.USER_ADDRESS,
+                                            C.WITHDRAW_YN
+                                            FROM USER_TABLE C
+                                            ORDER BY C.USER_CODE DESC
+                                )B
+                                WHERE B.USER_ID  LIKE '%' || ? || '%'
+                    )A
+                    
+            WHERE A.RNUM BETWEEN ? AND ?
+	
+	</entry>
+	
+		<entry key="userNameSearch2">
+	                SELECT 
+            A.RNUM,
+            A.USER_CODE,
+            A.BLACKLIST_YN,
+            A.USER_NAME,
+            A.USER_ID,
+            A.USER_ADDRESS,
+            A.WITHDRAW_YN
+                    FROM(SELECT
+                                ROWNUM RNUM,
+                                B.USER_CODE,
+                                B.BLACKLIST_YN,
+                                B.USER_NAME,
+                                B.USER_ID,
+                                B.USER_ADDRESS,
+                                B.WITHDRAW_YN
+                                FROM (SELECT
+                                            C.USER_CODE,
+                                            C.BLACKLIST_YN,
+                                            C.USER_NAME,
+                                            C.USER_ID,
+                                            C.USER_ADDRESS,
+                                            C.WITHDRAW_YN
+                                            FROM USER_TABLE C
+                                            ORDER BY C.USER_CODE DESC
+                                )B
+                             WHERE B.USER_NAME  LIKE '%' || ? || '%'   
+                    )A
+                    
+            WHERE A.RNUM BETWEEN ? AND ?
+	
+	</entry>
+	
+	
+	<entry key="selectUserDetail">
+	   SELECT
+        USER_CODE,
+        USER_ID,
+        USER_NAME,
+        USER_PHONE,
+        USER_ADDRESS,
+        POINT,
+        USER_EMAIL,
+        WITHDRAW_YN,
+        ROLE_CODE,
+        BLACKLIST_YN,
+        BLACKLIST_DATE,
+        SUBSTR(USER_NO,1,8)
+        FROM USER_TABLE
+        WHERE USER_CODE =?
+	</entry>
+	
+	<entry key="selectSalesTotalCount">
+	        SELECT
+            COUNT(*)
+            FROM ORDER_TABLE A
+            JOIN STORE_TABLE B ON(A.STORE_CODE = B.STORE_CODE)
+            JOIN USER_TABLE C ON(B.USER_CODE = C.USER_CODE)
+            WHERE ORDER_TIME like concat(SUBSTR(sysdate,1,10),'%') and c.user_code =?
+	</entry>
+	
+	<entry key="selectSalesTodayList">
+	         SELECT
+            A.RNUM,
+            A.USER_CODE,
+            A.ORDER_CODE,
+            A.ORDER_TIME,
+            A.TYPE_YN,
+            A.TOTAL_AMOUNT
+                FROM(SELECT 
+                            ROWNUM RNUM,
+                            B.USER_CODE,
+                            B.ORDER_CODE,
+                            B.ORDER_TIME,
+                            B.TYPE_YN,
+                            B.TOTAL_AMOUNT
+                            FROM (SELECT 
+                                        E.USER_CODE,
+                                        C.ORDER_CODE,
+                                        C.ORDER_TIME,
+                                        C.TYPE_YN,
+                                        C.TOTAL_AMOUNT
+                                        FROM ORDER_TABLE C
+                                        JOIN STORE_TABLE D ON(C.STORE_CODE = D.STORE_CODE)
+                                        JOIN USER_TABLE E ON(D.USER_CODE = E.USER_CODE)
+                                        ORDER BY C.ORDER_CODE DESC
+                                )B
+                                WHERE B.ORDER_TIME like concat(SUBSTR(sysdate,1,10),'%')and B.user_code =?
+                    )A
+                    
+            WHERE A.RNUM BETWEEN ? AND ?
 	</entry>
 </properties>

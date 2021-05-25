@@ -60,7 +60,7 @@
           
           <div class="row bg-white">
             <span class="col-2 menu-item">
-              <a href="${pageContext.servletContext.contextPath}/admin/order" class="link-dark"><img src="/SEMI_Project/resources/image/admin/item1.svg" />
+              <a href="${pageContext.servletContext.contextPath}/admin/order" class="link-dark"><img src="/SEMI_Project/resources/image/admin/item1.png" />
                 &nbsp;&nbsp;&nbsp;주문확인   </a>
             </span>
             <span class="col-2 menu-item ">
@@ -72,7 +72,7 @@
               &nbsp;&nbsp;&nbsp; 업소관리
             </span>
             <span class="col-2 menu-item">
-              <a href="${pageContext.servletContext.contextPath}/admin/customer/board" class="link-dark"><img src="/SEMI_Project/resources/image/admin/item4.svg" />
+              <a href="${pageContext.servletContext.contextPath}/admin/customer/board" class="link-dark"><img src="/SEMI_Project/resources/image/admin/item4.png" />
                 &nbsp;&nbsp;&nbsp;  게시판</a>
             </span>
           </div>
@@ -80,136 +80,35 @@
           <br>
           <br>
           <br>
-          
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
           <div class="row">
             <div class="table-responsive col-10 offset-md-1">
-              
+              <form id="loginForm" action="${ pageContext.servletContext.contextPath }/admin/fee/search" method="get">
               <div class="row">
-                <div class="col-3">
-                  유저번호,업주명,가게명
-                  <select class="form-select" >
-                    <option selected>카테고리 선택</option>
-                    <option value="1">유저번호</option>
-                    <option value="2">업주명</option>
-                    <option value="3">가게명</option>
-                  </select>
-                </div>
-                <div class="col-3">
-                  유저번호,업주명,가게명 입력
-                  <input class="form-control" type="text" >
-                  
-                </div>
-                
-                <div class="col-3">
-                  <br>
-                  <button type="button" class="btn btn-outline-secondary">검색하기</button>
-                </div>
+                <div class="form-group row">
+                <div class="col-1"></div>
+				  <label for="example-month-input" class="col-2 col-form-label">일자,유저코드 입력</label>
+				  <div class="col-3">
+				    <input class="form-control" type="month" value="2021-05" id="month-input" name="month-input">
+				  </div>
+				  <div class="col-3">
+		             <input class="form-control" type="search" id="searchValue" name="searchValue" >
+		          </div>
+				  <div class="col-3">
+	                  <button type="submit" class="btn btn-outline-secondary">검색하기</button>
+	               </div>
+				</div>
               </div>
+              </form>
               <br>
-              <table class="table table-striped table-sm  text-center ">
-                <thead>
-                  <tr>
-                    <th>유저번호</th>
-                    <th>업주명</th>
-                    <th>가게명</th>
-                    <th>정산일자</th>
-                    <th>이체요금</th>
-                    <th>상세보기</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>OW001</td>
-                    <td>홍길동</td>
-                    <td>가게명</td>
-                    <td>2021년 5월</td>
-                    <td>99,999원</td>
-                    <td><a href="${pageContext.servletContext.contextPath}/admin/owner/detail" class="link-dark">상세보기</a></td>
-                  </tr>
-                  <tr>
-                    <td>OW001</td>
-                    <td>홍길동</td>
-                    <td>가게명</td>
-                    <td>2021년 5월</td>
-                    <td>99,999원</td>
-                    <td><a href="./index-owner2.html" class="link-dark">상세보기</a></td>
-                  </tr>                
-                  <tr>
-                    <td>OW001</td>
-                    <td>홍길동</td>
-                    <td>가게명</td>
-                    <td>2021년 5월</td>
-                    <td>99,999원</td>
-                    <td><a href="./index-owner2.html" class="link-dark">상세보기</a></td>
-                  </tr><tr>
-                    <td>OW001</td>
-                    <td>홍길동</td>
-                    <td>가게명</td>
-                    <td>2021년 5월</td>
-                    <td>99,999원</td>
-                    <td><a href="./index-owner2.html" class="link-dark">상세보기</a></td>
-                  </tr><tr>
-                    <td>OW001</td>
-                    <td>홍길동</td>
-                    <td>가게명</td>
-                    <td>2021년 5월</td>
-                    <td>99,999원</td>
-                    <td><a href="./index-owner2.html" class="link-dark">상세보기</a></td>
-                  </tr><tr>
-                    <td>OW001</td>
-                    <td>홍길동</td>
-                    <td>가게명</td>
-                    <td>2021년 5월</td>
-                    <td>99,999원</td>
-                    <td><a href="./index-owner2.html" class="link-dark">상세보기</a></td>
-                  </tr><tr>
-                    <td>OW001</td>
-                    <td>홍길동</td>
-                    <td>가게명</td>
-                    <td>2021년 5월</td>
-                    <td>99,999원</td>
-                    <td><a href="./index-owner2.html" class="link-dark">상세보기</a></td>
-                  </tr><tr>
-                    <td>OW001</td>
-                    <td>홍길동</td>
-                    <td>가게명</td>
-                    <td>2021년 5월</td>
-                    <td>99,999원</td>
-                    <td><a href="./index-owner2.html" class="link-dark">상세보기</a></td>
-                  </tr><tr>
-                    <td>OW001</td>
-                    <td>홍길동</td>
-                    <td>가게명</td>
-                    <td>2021년 5월</td>
-                    <td>99,999원</td>
-                    <td><a href="./index-owner2.html" class="link-dark">상세보기</a></td>
-                  </tr><tr>
-                    <td>OW001</td>
-                    <td>홍길동</td>
-                    <td>가게명</td>
-                    <td>2021년 5월</td>
-                    <td>99,999원</td>
-                    <td><a href="./index-owner2.html" class="link-dark">상세보기</a></td>
-                  </tr><tr>
-                    <td>OW001</td>
-                    <td>홍길동</td>
-                    <td>가게명</td>
-                    <td>2021년 5월</td>
-                    <td>99,999원</td>
-                    <td><a href="./index-owner2.html" class="link-dark">상세보기</a></td>
-                  </tr>
-                </tbody>
-              </table>
+              
               <br>
-              <div class="text-center">
-                
-                <span class="col-1 "><a href="#" class="page-item link-dark" >1</a></span>
-                <span class="col-1"><a href="#" class="page-item link-dark" >2</a></span>
-                <span class="col-1"><a href="#" class="page-item link-dark" >3</a></span>
-                <span class="col-1"><a href="#" class="page-item link-dark" >4</a></span>
-                <span class="col-1"><a href="#" class="page-item link-dark" >5</a></span>
-                
-              </div>
+              
               
             </div>
           </div>
