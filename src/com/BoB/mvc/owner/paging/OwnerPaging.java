@@ -1,8 +1,8 @@
 package com.BoB.mvc.owner.paging;
 
-import com.BoB.mvc.customer.model.dto.PageInfoDTO;
+import com.BoB.mvc.owner.model.dto.PageInfoDTO;
 
-public class OwnerReviewReplyPageNation {
+public class OwnerPaging {
 
 	public static PageInfoDTO getPageInfo(int pageNo, int totalCount, int limit, int buttonAmount) {
 		

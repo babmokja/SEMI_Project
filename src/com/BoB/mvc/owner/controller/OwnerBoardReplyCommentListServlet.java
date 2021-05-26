@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.BoB.mvc.common.paging.PageNation;
 import com.BoB.mvc.owner.model.dto.PageInfoDTO;
 import com.BoB.mvc.owner.model.dto.ReviewBoardListDTO;
 import com.BoB.mvc.owner.model.service.OwnerService;
+import com.BoB.mvc.owner.paging.OwnerPaging;
 
 /**
  * Servlet implementation class OwnerBoardReplyCommentList
@@ -50,7 +50,7 @@ public class OwnerBoardReplyCommentListServlet extends HttpServlet {
 		int buttonAmount = 5;
 		
 		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
-		PageInfoDTO pageInfo = PageNation.getPageInfo(pageNo, totalCount, limit, buttonAmount);
+		PageInfoDTO pageInfo = OwnerPaging.getPageInfo(pageNo, totalCount, limit, buttonAmount);
 		
 		System.out.println(pageInfo);
 		
