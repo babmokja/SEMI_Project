@@ -5,14 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>BoB</title>
-<link rel="stylesheet" href="resources/css/customer/main.css">
-<link href="resources/css/customer/reset.css" type="text/css"
+<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/customer/main.css">
+<link href="${ pageContext.servletContext.contextPath }/resources/css/customer/reset.css" type="text/css"
 	rel="stylesheet">
-<link href="resources/css/customer/button.css" type="text/css"
+<link href="${ pageContext.servletContext.contextPath }/resources/css/customer/button.css" type="text/css"
 	rel="stylesheet">
-<link href="resources/css/customer/common_ah.css" type="text/css"
+<link href="${ pageContext.servletContext.contextPath }/resources/css/customer/common_ah.css" type="text/css"
 	rel="stylesheet">
-<link href="resources/css/customer/customer_main.css" type="text/css"
+<link href="${ pageContext.servletContext.contextPath }/resources/css/customer/customer_main.css" type="text/css"
 	rel="stylesheet">
 </head>
 
