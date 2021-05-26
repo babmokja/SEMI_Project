@@ -45,7 +45,7 @@
 	    )
 	    VALUES
 	    (
-<!--시퀀스 만들거임 아직 생성안함 값도 중복 안되서 가입 안됨! SEQ_USER_CODE.NEXTVAL -->136 
+             SEQ_USER_CODE.NEXTVAL  
 	       , ?
 	       , ?
 	       , ?
@@ -55,16 +55,172 @@
 	       , ?
 	       , 'N'
 	       , DEFAULT
-	       , 3<!--  역할코드도 확인 안되어서 확인후 수정할거임 -->
+	       , 1
 	       , 'N'
 	    )
-	
 
 	</entry>
-	
-	
-	
+	<entry key="selectUserById">
+	     SELECT
+	           A.USER_CODE
+             , A.USER_ID
+             , A.USER_PWD
+             , A.USER_NAME
+             , A.USER_PHONE
+             , A.USER_ADDRESS
+             , A.USER_EMAIL
+             , A.POINT
+          FROM USER_TABLE A
+         WHERE  A.USER_CODE = ?
+	</entry>
+	<entry key="modifyUser">
+	    UPDATE
+	          USER_TABLE A
+	      SET 
+	           A.USER_PWD = ? 
+             , A.USER_PHONE = ?
+             , A.USER_ADDRESS = ?
+             , A.USER_EMAIL = ?
+          WHERE A.USER_CODE = ?   
+	</entry>
+	<entry key="insertReviewContent">
+	    INSERT
+	        INTO REVIEW A
+	       (
+	         SATISFIED
+            ,REVIEW_CONTENT
+            ,ORDER_CODE
+            ,STORE_CODE
+            ,PICTURE_CODE
+            ,REVIEW_CODE
+	       )
+	       VALUES
+	       (
+	        ?
+	       ,?
+	       ,?  
+	       ,?
+	       ,?
+	       ,SEQ_REVIEW_CODE.NEXTVAL
+	       )
+	</entry>
+	<entry key="lastPicCode">
+	    SELECT 
+		       SEQ_PICTURE_CODE.CURRVAL
+		  FROM DUAL
+	</entry>
+	<entry key="selectTotalCount">
+	    SELECT 
+               COUNT(*)
+          FROM USER_BOARD A
+         WHERE A.VISIBLE_YN = 'Y'
+          AND  A.USER_CODE = ?
+	</entry>
+	<entry key="insertAttachment">
+	    INSERT 
+		    INTO PICTURE
+		   (
+		    ORIGIN_NAME
+		   ,PICTURE_CODE
+		   ,DELETE_YN
+		   ,UPLOAD_DATE
+		   )
+	       VALUES
+	       (
+	       ?
+	      ,SEQ_PICTURE_CODE.NEXTVAL 
+	      ,'N'
+	      ,SYSDATE
+		   )
+	</entry>
+    <entry key="selectBoardList">
+        SELECT 
+               A.RNUM
+             , A.BOARD_CODE
+             , A.BOARD_TITLE
+             , A.BOARD_CONTENT
+             , A.BOARD_DATE
+          FROM (SELECT ROWNUM RNUM
+                     , B.BOARD_CODE
+                     , B.BOARD_TITLE
+                     , B.BOARD_CONTENT
+                     , B.BOARD_DATE
+                  FROM (SELECT C.BOARD_CODE
+                             , C.BOARD_TITLE
+                             , C.BOARD_CONTENT
+                             , C.BOARD_DATE
+                          FROM USER_BOARD C
+                         WHERE C.VISIBLE_YN = 'Y'
+                           AND USER_CODE=?
+                         ORDER BY C.BOARD_CODE DESC
+                        ) B
+               ) A
+         WHERE A.RNUM BETWEEN ? AND ?
 
-     
+    </entry>
+    <entry key="insertBoard">
+        INSERT 
+          INTO USER_BOARD A
+        (
+          A.BOARD_CODE
+        , A.BOARD_DATE
+        , A.BOARD_TITLE
+        , A.BOARD_CONTENT
+        , A.USER_CODE
+        , A.VISIBLE_YN
+        )
+        VALUES
+        (
+          SEQ_BOARD_CODE.NEXTVAL
+        , SYSDATE
+        , ?
+        , ?
+        , ?
+        , 'Y'
+        )
+     </entry>
+	 <entry key="addPoint">
+	     UPDATE USER_TABLE A
+            SET POINT = A.POINT + 150
+          WHERE A.USER_CODE=?  
+	 </entry>
+	 <entry key="deleteId">
+	     
+	 </entry>
+	 <entry key="latestOrder">
+	     SELECT
+              A.ORDER_TIME
+             ,A.TYPE_YN
+             ,B.STORE_NAME
+             ,A.ORDER_PROCEED
+             ,A.OWNER_COMMENT 
+             ,A.ORDER_CODE
+             ,A.STORE_CODE
+        FROM  ORDER_TABLE A
+            , STORE_TABLE B
+       WHERE A.STORE_CODE = B.STORE_CODE
+        AND  A.USER_CODE = ?
+	 </entry>
+	 <entry key="idCheck">
+	     SELECT 
+                A.USER_ID
+          FROM  USER_table A
+          WHERE A.USER_ID = ?
+	 
+	 </entry>
+	 <entry key="readBoard">
+           SELECT
+              B.BOARD_TITLE 
+            , B.BOARD_CONTENT 
+            , B.BOARD_DATE 
+            , C.REPLY_CONTENT 
+            , C.REPLY_DATE  
+            , D.USER_NAME 
+            FROM USER_TOTAL_REPLY_BOARD A
+            JOIN USER_BOARD B ON (A.BOARD_CODE =B.BOARD_CODE)
+            JOIN USER_REPLY C ON(A.REPLY_CODE = C.REPLY_CODE)
+            JOIN USER_TABLE D ON(B.USER_CODE = D.USER_CODE)
+            WHERE A.BOARD_CODE =?	
+     </entry>
      
 </properties>

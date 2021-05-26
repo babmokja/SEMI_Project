@@ -450,6 +450,7 @@
 		SELECT
 		       *
 		  FROM OWNER_INQUIRY
+		 WHERE OWNER_CODE = ?
 	
 	</entry>
 	
@@ -472,7 +473,7 @@
 	      , SYSDATE
 	      , ?
 	      , 'N'
-	      , 1
+	      , ?
 	     )
 	     
 	       
