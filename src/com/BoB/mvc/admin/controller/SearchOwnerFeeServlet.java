@@ -22,22 +22,22 @@ public class SearchOwnerFeeServlet extends HttpServlet {
 		String month = request.getParameter("month-input");
 		int value = Integer.parseInt(request.getParameter("searchValue"));
 		
-		System.out.println(month);
-		System.out.println(value);
-		
+		/* 리스트로 조회 */
 		List<AdminBillDTO> OwnerFeeList = new ArrayList<>();
 		
 		OwnerFeeService ownerFeeService = new OwnerFeeService();
 		
 		OwnerFeeList = ownerFeeService.selectFeeList(month,value);
 		
+		/* 하나만 조회 */
+		List<AdminBillDTO> oneFeeList = new ArrayList<>();
+		oneFeeList = ownerFeeService.selectOneFee(value);
 		
-		System.out.println("OwnerFeeList : " + OwnerFeeList);
 		String path="";
 		
 		path = "/WEB-INF/views/admin/AdminOwnerBill.jsp";
 		request.setAttribute("OwnerFeeList", OwnerFeeList);
-		
+		request.setAttribute("oneFeeList", oneFeeList);
 
 		request.getRequestDispatcher(path).forward(request, response);
 	}

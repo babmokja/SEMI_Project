@@ -1,8 +1,8 @@
-package com.BoB.mvc.common.paging;
+package com.BoB.mvc.owner.paging;
 
 import com.BoB.mvc.customer.model.dto.PageInfoDTO;
 
-public class PageNation {
+public class OwnerReviewReplyPageNation {
 
 	public static PageInfoDTO getPageInfo(int pageNo, int totalCount, int limit, int buttonAmount) {
 		
@@ -11,7 +11,7 @@ public class PageNation {
 		int maxPage;      // 전체 페이지에서 가장 마지막 페이지
 		int startPage;    // 한번에 표시될 페이지 버튼의 시작할 페이지
 		int endPage;      // 한번에 표시될 페이지 버튼의 끝나는 페이지
-		int startRow;	// db사용할값
+		int startRow;
 		int endRow;
 		
 		/* 총 페이지 수 계산*/  

@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-    <link rel="stylesheet" href="resources/css/customer/main.css">
-    <link rel="stylesheet" href="resources/css/customer/review.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/customer/main.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/customer/review.css">
     <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -15,13 +16,13 @@
 	  </center>
       <center>
         <div class="section1">
-            <form class="reviewsec" action="${ pageContext.servletContext.contextPath }/review" encType="multipart/form-data">
+            <form class="reviewsec" action="${ pageContext.servletContext.contextPath }/review" method="post" encType="multipart/form-data">
                 <br>
                 <br>
-                <h1>사진과 함께 리뷰 작성시 포인트 적립 혜택!!</h1>
+               <label id=mainname style="height:50px;font-size:34px;font-weight: 800;">사진과 함께 리뷰 작성시 포인트 적립 혜택!!</label>
                 
                 <div id=emotion>
-                   <span class=emoji>
+                   <span class=emoji id = emoji style="display:initial">
                       <img src="resources/image/customer/good.png">
                        &nbsp;&nbsp;&nbsp;
                       <img src="resources/image/customer/okay.png">

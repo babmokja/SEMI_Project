@@ -27,11 +27,11 @@
         <div class="wrap">
             <div class="main_menu">
 
-                <li><a href="${ pageContext.servletContext.contextPath }/order/confirm"><img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/주문확인.png" alt="주문확인">주문확인</a></li>
-                <li><a href="${ pageContext.servletContext.contextPath }/"><img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/내정보관리.png" alt="내정보관리">내 정보관리</a></li>
+                <li><a href="${ pageContext.servletContext.contextPath }/owner/delivery"><img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/주문확인.png" alt="주문확인">주문확인</a></li>
+                <li><a href="${ pageContext.servletContext.contextPath }/menu/insert"><img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/내정보관리.png" alt="내정보관리">내 정보관리</a></li>
                 <li><a href="${ pageContext.servletContext.contextPath }/menu/all"><img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/내업소관리.png" alt="내업소관리">내 업소관리</a></li>
-                <li><a href="${ pageContext.servletContext.contextPath }/owner/delivery"><img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/PC주문관리.png" alt="PC주문관리">PC 주문관리</a></li>
-                <li><a href="${ pageContext.servletContext.contextPath }/owner/move/comment"><img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/리뷰관리.png" alt="리뷰관리">리뷰관리</a></li>
+                <li><a href="${ pageContext.servletContext.contextPath }/menu/insert"><img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/PC주문관리.png" alt="PC주문관리">PC 주문관리</a></li>
+                <li><a href="${ pageContext.servletContext.contextPath }/owner/replycomment"><img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/리뷰관리.png" alt="리뷰관리">리뷰관리</a></li>
 
             </div>
 
@@ -49,7 +49,7 @@
 
                 <button type="submit" id="login_btn">로그인</button>
                 <div class="sign_up_btn">
-                    <li><a href="${ pageContext.servletContext.contextPath }/owner/move/signin">회원가입</a></li>
+                    <li><a href="${ pageContext.servletContext.contextPath }/member/owner/regist">회원가입</a></li>
                 </div>
 
             </div>

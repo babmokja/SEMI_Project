@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.BoB.mvc.customer.model.dto.UserDTO;
 import com.BoB.mvc.customer.model.service.UserService;
@@ -48,9 +49,17 @@ public class UserRegistServlet extends HttpServlet {
 		System.out.println(requestUser);
 
 		int result = new UserService().registUser(requestUser);
+		String path="";
+		if(result > 0) {
+			path = "/WEB-INF/views/customer/CustomerMain.jsp";
+			request.setAttribute("successCode", "insertBoard");
+		} else {
+			path = "/WEB-INF/views/common/failed.jsp";
+			request.setAttribute("message", "회원가입 실패하셨습니다.");
+		}
 		
-		
-		
+		request.getRequestDispatcher(path).forward(request, response);
+
 		
 	}
 

@@ -32,7 +32,7 @@ import com.BoB.mvc.owner.model.service.OwnerService;
  * Servlet implementation class Owner_Modify
  */
 @WebServlet("/member/owner/modify")
-public class Owner_Modify extends HttpServlet {
+public class OwnerModifyServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -221,8 +221,11 @@ public class Owner_Modify extends HttpServlet {
 //				---사업자등록증---
 				PictureDTO pict1 = new PictureDTO();
 				pict1.setOriginName(fileList.get(0).get("originFileName"));
+//				System.out.println("변경전 파일이름 "+fileList.get(0).get("originFileName"));
 				pict1.setRevisedName(fileList.get(0).get("saveFileName"));
+//				System.out.println("변경후 파일이름 "+fileList.get(0).get("saveFileName"));
 				pict1.setRoute(fileList.get(0).get("savePath"));
+//				System.out.println("파일 경로 " + fileList.get(0).get("savePath"));
 				
 				System.out.println(pict1);
 				
@@ -279,7 +282,7 @@ public class Owner_Modify extends HttpServlet {
 				StoreInfoDTO store = new StoreInfoDTO();
 				store.setStoreName(parameter.get("storeName"));
 				store.setBusinessNum(Integer.parseInt(parameter.get("businessNum").replace("-","")));
-				store.setStoreXY(parameter.get("storeXY"));
+//				store.setStoreXY(parameter.get("storeXY"));
 				store.setCategory(parameter.get("category"));
 				store.setAddress(parameter.get("zip")  + "@" + parameter.get("addr1") + "@" + parameter.get("addr2"));
 				store.setTypeCode(Integer.parseInt(parameter.get("service")));
