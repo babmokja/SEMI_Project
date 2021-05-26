@@ -149,12 +149,6 @@
           	<tr>
             <td>사업자등록증 발급일자</td>
             <td><input type="date"size="25" name="issueDate" style="padding:4px;font-size:13px;border-radius: 10px;" value="${ sessionScope.lmDTO.issueDate }"   /> </td>
-            </tr>
-          	
-          	<tr>
-            <td>식당좌표</td>
-            <td><input type="text"size="25" value="${ sessionScope.storeInfoDTO.storeXY }" name="storeXY" style="padding:4px;font-size:13px;border-radius: 10px;" /> </td>
-         	
             <td>식당소개</td>
             <td><input type="text"size="25" value="${ sessionScope.storeInfoDTO.storeIntro }" name="storeIntro" style="padding:4px;font-size:13px;border-radius: 10px;"/> </td>
           	</tr>

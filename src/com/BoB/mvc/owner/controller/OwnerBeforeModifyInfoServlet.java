@@ -18,7 +18,7 @@ import com.BoB.mvc.owner.model.service.OwnerService;
  * Servlet implementation class OwnerModifyInfo
  */
 @WebServlet("/owner/modify")
-public class OwnerBeforeModifyInfo extends HttpServlet {
+public class OwnerBeforeModifyInfoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
