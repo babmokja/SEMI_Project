@@ -28,15 +28,14 @@
      
    }
    .menu-item {
-    color:black;
-     text-align : center;
+     text-align: center;
      font-size: 18px;
      font-weight: bold;
    }
 
    .menu-item-selected {
     
-     color: rgb(160, 153, 153);
+     color: #000;
    } 
 
    html, body {
@@ -144,10 +143,3 @@
           url(../font/Roboto-Bold.woff) format('woff'),
           url(../font/Roboto-Bold.otf) format('opentype'); }
 
-.logo {
-    float: left;
-    margin-left: 50px;
-    margin-top: 15px;
-    font-size: 35px;
-    font-weight: bolder;
- }          

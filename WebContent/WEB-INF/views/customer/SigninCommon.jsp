@@ -1,13 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+    
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-    <link rel="stylesheet" href="resources/css/customer/main.css">
-    <link rel="stylesheet" href="resources/css/customer/signin_common.css">
-    <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/customer/main.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/customer/signin_common.css">
+    <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <center>
@@ -224,7 +227,7 @@
                 </textarea>
                 
             </div>
-             <form  method="post">
+             <form name="join_form" method="post">
              <center> 
                 <input type="checkbox" name="agree" value="1" style="font-weight: 800; font-size: 20px;" /> 약관에 모두 동의합니다.<br>
               <input type="button" class="btn" value="회원가입" style="margin-bottom: 50px; margin-top: 30px;" onclick="signin_check();"  >
@@ -237,7 +240,8 @@
                 		    alert("약관 동의를 체크하세요.");
                 		    agree.focus();
                 		    return false;
-                } location.href = "${ pageContext.servletContext.contextPath }/SigninUser.jsp" 
+                      }document.join_form.submit();
+                 }
             </script>  
             
 
