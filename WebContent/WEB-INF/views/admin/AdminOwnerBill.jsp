@@ -143,13 +143,29 @@
     </table>
    </td>
   </tr>
+  
   <tr>
    <td width='100%'>
     <table cellpadding='0' cellspacing='0' width='700'>
-     
+     <tr align='justify'>
+      <td class='border_up' align='center' width='122' height='2'>합계금액</td>
+      <td class='border_up' align='center' width='108'>현 &nbsp; &nbsp; 금</td>
+      <td class='border_up' align='center' width='108'>수 &nbsp; &nbsp; 표</td>
+      <td class='border_up' align='center' width='108'>어 &nbsp; &nbsp; 음</td>
+      <td class='border_up' align='center' width='108'>외상미수금</td>
+      <td class='border_top' rowspan='2' align='center' width='143'>이 금액을 &nbsp;(청구) &nbsp;함</td>
+     </tr>
+     <tr>
+      <td class='border_up' align='center' width='122' height='25'><c:out value="${ intArray }원"/></td>
+      <td class='border_up' align='center' width='108'></td>
+      <td class='border_up' align='center' width='108'>&nbsp;</td>
+      <td class='border_up' align='center' width='108'>&nbsp;</td>
+      <td class='border_up' align='center' width='108'>&nbsp;</td>
+     </tr>
     </table>
    </td>
   </tr>
+ 
 </table>
 
 <br><br>
@@ -245,9 +261,9 @@
       	</c:forEach>
         </td>
         <td class='border_up_red' align='center' width='55'>업 &nbsp; 태</td>
-        <td class='border_up_red' align='center' width='148' colspan='1'>K 사업서비스</td>
+        <td class='border_up_red' align='center' width='148' colspan='1'>사업서비스</td>
         <td class='border_up_red' align='center' width='12' colspan='1'>종<br>목</td>
-        <td class='border_top_red' align='center' width='106' colspan='3'>L온라인정보제공</td>
+        <td class='border_top_red' align='center' width='106' colspan='3'>온라인정보제공</td>
        </tr>
       </table>
      </td>
@@ -286,13 +302,29 @@
       </table>
      </td>
     </tr>
+    
     <tr>
-     <td width='100%'>
-      <table cellpadding='0' cellspacing='0' width='700'>
-       
-      </table>
-     </td>
-    </tr>
+   <td width='100%'>
+    <table cellpadding='0' cellspacing='0' width='700'>
+     <tr align='justify'>
+      <td class='border_up_red' align='center' width='122' height='2'>합계금액</td>
+      <td class='border_up_red' align='center' width='108'>현 &nbsp; &nbsp; 금</td>
+      <td class='border_up_red' align='center' width='108'>수 &nbsp; &nbsp; 표</td>
+      <td class='border_up_red' align='center' width='108'>어 &nbsp; &nbsp; 음</td>
+      <td class='border_up_red' align='center' width='108'>외상미수금</td>
+      <td class='border_top_red' rowspan='2' align='center' width='143'>이 금액을 &nbsp;(청구) &nbsp;함</td>
+     </tr>
+     <tr>
+      <td class='border_up_red' align='center' width='122' height='25'><c:out value="${ intArray }원"/></td>
+      <td class='border_up_red' align='center' width='108'></td>
+      <td class='border_up_red' align='center' width='108'>&nbsp;</td>
+      <td class='border_up_red' align='center' width='108'>&nbsp;</td>
+      <td class='border_up_red' align='center' width='108'>&nbsp;</td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+  
   </table>
       
 
