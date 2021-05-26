@@ -493,44 +493,5 @@
                     WHERE A.BOARD_CODE =?
 	</entry>
 	
-	<entry key="selectTotalCount">
-		    
-		select
-	    count(*)
-	    from order_table a
-	    join store_table c on(a.store_code = c.store_code)
-	    join user_table d on(c.user_code = d.user_code)
-	    where d.user_code =?
-	</entry>
-	
-	<entry key="selectOrderList">
-	SELECT
-    A.RNUM,
-    a.order_code,
-    A.user_id,
-    a.order_time,
-    a.ORDER_PROCEED,
-    a.TOTAL_AMOUNT
-	    FROM (SELECT ROWNUM RNUM,
-                        B.order_code,
-                        B.user_id,
-                        B.order_time,
-                        B.ORDER_PROCEED,
-                        B.TOTAL_AMOUNT
-                        FROM(SELECT  
-                                    C.order_code,
-                                    D.user_id,
-                                    C.order_time,
-                                    C.ORDER_PROCEED,
-                                    C.TOTAL_AMOUNT
-                                        from order_table C
-                                        join user_table D on(C.user_code = D.user_code)
-                                        join store_table E on(C.store_code = E.store_code)
-                                        join user_table F on(E.user_code = F.user_code)
-                                        where F.user_code = ?
-                                        ORDER BY C.ORDER_CODE DESC
-                            )B
-                )A
-        WHERE A.RNUM BETWEEN ? AND ?
-	</entry>
+
 </properties>

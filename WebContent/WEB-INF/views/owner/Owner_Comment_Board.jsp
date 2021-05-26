@@ -299,6 +299,7 @@
 				
 				$tds[i].onclick = function() {
 					alert(this.parentNode.children[0].innerText);
+					location.href = "${ pageContext.servletContext.contextPath }/owner/detailreplycomment?no=" + no;
 				}
 				
 			}

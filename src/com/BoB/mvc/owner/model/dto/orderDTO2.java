@@ -2,7 +2,7 @@ package com.BoB.mvc.owner.model.dto;
 
 import java.util.Date;
 
-public class orderDTO {
+public class orderDTO2 {
 	
 	
 	private int orderNum;
@@ -11,7 +11,7 @@ public class orderDTO {
 	private String type;
 	private int price;
 	
-	public orderDTO() {
+	public orderDTO2() {
 		
 	}
 	
@@ -65,7 +65,7 @@ public class orderDTO {
 
 
 
-	protected orderDTO(int orderNum, String cusName, Date orderDate, String type, int price) {
+	protected orderDTO2(int orderNum, String cusName, Date orderDate, String type, int price) {
 		super();
 		this.orderNum = orderNum;
 		this.cusName = cusName;

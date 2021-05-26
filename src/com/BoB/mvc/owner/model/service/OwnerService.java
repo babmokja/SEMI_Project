@@ -12,16 +12,15 @@ import java.util.Map;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.BoB.mvc.customer.model.dto.PageInfoDTO;
 import com.BoB.mvc.owner.model.dao.OwnerDAO;
+import com.BoB.mvc.owner.model.dao.orderDAO;
 import com.BoB.mvc.owner.model.dto.LicenseManagerDTO;
 import com.BoB.mvc.owner.model.dto.OwnerDTO;
+import com.BoB.mvc.owner.model.dto.PageInfoDTO;
 import com.BoB.mvc.owner.model.dto.PictureDTO;
 import com.BoB.mvc.owner.model.dto.ReviewBoardListDTO;
 import com.BoB.mvc.owner.model.dto.SelectBeforeModifyDTO;
 import com.BoB.mvc.owner.model.dto.StoreInfoDTO;
-import com.BoB.mvc.owner.model.dto.orderDTO;
-import com.BoB.mvc.owner.model.dao.orderDAO;
 
 public class OwnerService {
 	
@@ -207,6 +206,25 @@ public class OwnerService {
 		return ReviewSearchList;
 		
 	}
+
+
+
+
+
+
+//	public ReviewBoardListDTO selectNoticeDetail(int no) {
+//		
+//		Connection con = getConnection();
+//		ReviewBoardListDTO reviewDetail = null;
+////		
+////		int result = ownerDAO.incrementReviewCount
+////		
+////		ReviewSearchList = ownerDAO.selectReviewList(con,condition, value, pageInfo);
+////		
+////		close(con);
+////		
+////		return ReviewSearchList;
+//	}
 	
 	
 	

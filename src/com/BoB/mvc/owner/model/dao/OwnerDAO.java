@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import com.BoB.mvc.common.config.ConfigLocation;
-import com.BoB.mvc.customer.model.dto.PageInfoDTO;
+import com.BoB.mvc.owner.model.dto.PageInfoDTO;
 import com.BoB.mvc.owner.model.dto.LicenseManagerDTO;
 import com.BoB.mvc.owner.model.dto.OwnerDTO;
 import com.BoB.mvc.owner.model.dto.PictureDTO;

@@ -24,20 +24,22 @@ public class OwnerBeforeModifyInfoServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		OwnerDTO dto = (OwnerDTO) session.getAttribute("ownerDTO");
-		String id = dto.getMemberId();
-		System.out.println("현재 로그인한 id는 " + dto.getMemberId());
 		
 		
-		if(id==null) {
+		if(dto==null) {
 			
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter writer = response.getWriter();
-			writer.println("<script>alert('로그인 후 이용가능합니다'); location.href='/WEB-INF/views/owner/main_store.jsp\';</script>");
+			writer.println("<script> location.href='${ pageContext.servletContext.contextPath }/main_store.jsp'; </script>");
+//			writer.println("<script>  </script>");
+			
 			writer.close();
 
 			
 		} else {
 			
+			String id = dto.getMemberId();
+			System.out.println("현재 로그인한 id는 " + dto.getMemberId());
 			
 			/* 사업자번호 ,이름, id */
 			OwnerService ownerService = new OwnerService();
