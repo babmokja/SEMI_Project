@@ -22,9 +22,9 @@
 
         <center>
         <div id= 'signin1' style="margin-top: 80px;">
-          <label class="bigbtn" value="밥묵자 회원가입" ></label>
+          <label class="bigbtn" value="밥묵자 회원가입" >밥묵자회원가입	</label>
            <form name="form" id = "form" method="post" action="${ pageContext.servletContext.contextPath }/member/user/signin">
-            <table style="margin-top:20px" >
+            <table style="margin-top: 70px;margin-left: 50px;" >
              <tr>
               <th><label id="font">아이디</label> </th>
                <td><input type="text" id="userId" name ="userId" size = "25"style="font-size:13px;border-radius: 10px; ">
