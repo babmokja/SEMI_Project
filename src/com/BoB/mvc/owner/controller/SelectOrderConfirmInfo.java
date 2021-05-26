@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.BoB.mvc.admin.dto.PageInfoDTO;
+import com.BoB.mvc.admin.dto.orderDTO2;
 import com.BoB.mvc.admin.paging.OrderPaging;
+import com.BoB.mvc.admin.service.AdminService;
 import com.BoB.mvc.owner.model.dto.OwnerDTO;
-import com.BoB.mvc.owner.model.dto.orderDTO;
-import com.BoB.mvc.owner.model.service.OwnerService;
 
 /**
  * Servlet implementation class SelectOrderConfirmInfo
@@ -27,6 +27,7 @@ public class SelectOrderConfirmInfo extends HttpServlet {
 		HttpSession session = request.getSession();
 		OwnerDTO ownerDTO = (OwnerDTO) session.getAttribute("ownerDTO");
 		int ownerNum = ownerDTO.getUserCode();
+		
 		System.out.println(ownerDTO.getUserCode());
 		
 		String currentPage = request.getParameter("currentPage");
@@ -40,7 +41,7 @@ public class SelectOrderConfirmInfo extends HttpServlet {
 			pageNo = 1;
 		}
 		
-		OwnerService ownerService = new OwnerService();
+		AdminService ownerService = new AdminService();
 		
 		int totalCount = ownerService.selectOrderCount(ownerNum);
 		
@@ -51,8 +52,9 @@ public class SelectOrderConfirmInfo extends HttpServlet {
 		int buttonAmount = 5;
 		PageInfoDTO pageInfo = OrderPaging.getPageInfo(pageNo, totalCount, limit, buttonAmount);
 		
-		List<orderDTO> orderList = ownerService.selectOrderList(pageInfo,ownerNum);
+		List<orderDTO2> orderList = ownerService.selectOrderList(pageInfo,ownerNum);
 		
+		System.out.println(orderList);
 		String path="";
 		path = "/WEB-INF/views/owner/OrderConfirm.jsp";
 		request.setAttribute("orderList", orderList);

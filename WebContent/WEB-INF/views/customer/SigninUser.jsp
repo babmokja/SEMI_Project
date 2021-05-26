@@ -1,17 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript" src="js/join_check.js?v=<%=new java.util.Date().getTime()%>"></script>
-    <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-latest.min.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <link rel="stylesheet" href="resources/css/customer/main.css">
-    <link rel="stylesheet" href="resources/css/customer/signin_user.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/customer/main.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/customer/signin_user.css">
 </head>
 <body>
    
@@ -19,16 +20,16 @@
         <jsp:include page="/WEB-INF/views/common/customer/header.jsp" />
       </center>
 
-  
+        <center>
         <div id= 'signin1' style="margin-top: 80px;">
-          <h1>밥묵자 간편 회원가입</h1><br>
+          <label class="bigbtn" value="밥묵자 회원가입" >밥묵자회원가입	</label>
            <form name="form" id = "form" method="post" action="${ pageContext.servletContext.contextPath }/member/user/signin">
-            <table style="margin-top:20px" >
+            <table style="margin-top: 70px;margin-left: 50px;" >
              <tr>
-              <th>아이디 </th>
-               <td><input type="text" name ="userId" size = "25"style="font-size:13px;border-radius: 10px; border:1px solid gray;">
-                 <input type="button" id="overlap" style="display:none;" >
-                 <label for="overlap">중복확인</label>
+              <th><label id="font">아이디</label> </th>
+               <td><input type="text" id="userId" name ="userId" size = "25"style="font-size:13px;border-radius: 10px; ">
+                 <input type="button" id="overlap" style="display:none;">
+                 <label for="overlap" id="checkId" >중복확인</label>
                </td>
              </tr>
            
@@ -51,13 +52,13 @@
           
              <tr> 
               <th>주민번호</th>
-                <td><input type="text" name ="userNo"size="25"
+                <td><input type="text" id="userNo" name ="userNo" size="25"
                        maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;"></td>
              </tr>
 
              <tr> 
                <th>휴대전화</th>
-                <td><input type="text" name="userPhone" size="25"
+                <td><input type="text" id= "userPhone"name="userPhone" size="25"
                        maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;"></td>
              </tr>
          
@@ -87,7 +88,7 @@
             
             <input type="submit" class="btn" value="제 출" style="margin-bottom: 50px;">
             
-            
+        </center>    
         </form>
         </div>
 
@@ -148,15 +149,7 @@
       }
   }
 </script>
-<script>
-    var emailRegExp = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
-    if (!emailRegExp.test(mail)) {
-               window.alert("이메일 형식이 올바르지 않습니다!");
-               form.mail.value = "";
-               form.mail.focus();
-               return false;
-    }
-</script>
+
 <script>
      const $searchZipCode = document.getElementById("searchZipCode");
      
@@ -171,17 +164,104 @@
             }      
 </script> 
 
-<script type="text/javascript"> 
-    var a = document.getElementById("join");  
-    a.addEventListener("submit" , function(e) {
-        if(a.name.value.length == 0){
-        	alert("이름을 입력해주세요 ")
-        	e.preventDefault();
-            a.name.focus();
-            return ;
-        }
-    });
-</script>    
+
+<script>
+function joinform_check() {
+	  //변수에 담아주기
+	  var uid = document.getElementById("userId");
+	  var pwd = document.getElementById("UserPwd");
+	  var uname = document.getElementById("userName");
+	  var mobile = document.getElementById("userPhone");
+	  var mail = document.getElementById("mail");
+	  var emailRegExp = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
+	  var userNo = document.getElementById("userNo"); 
+	  if (!emailRegExp.test(mail)) {
+	               window.alert("이메일 형식이 올바르지 않습니다!");
+	               form.mail.value = "";
+	               form.mail.focus();
+	               return false;
+	    }
+
+	  if (uid.value == "") { 
+	    alert("아이디를 입력하세요.");
+	    uid.focus(); 
+	    return false; 
+	  };
+
+	  if (pwd.value == "") {
+	    alert("비밀번호를 입력하세요.");
+	    pwd.focus();
+	    return false;
+	  };
+
+
+	  if (uname.value == "") {
+	    alert("이름을 입력하세요.");
+	    uname.focus();
+	    return false;
+	  };
+
+	  if (!female.checked && !male.checked) { //둘다 미체크시
+	    alert("성별을 선택해 주세요.");
+	    female.focus();
+	    return false;
+	  }
+
+	  var reg = /^[0-9]+/g; //숫자만 입력하는 정규식
+
+	  if (!reg.test(mobile.value)) {
+	    alert("전화번호는 숫자만 입력할 수 있습니다.");
+	    mobile.focus();
+	    return false;
+	  }
+	  if (!reg.test(userNo.value)) {
+		    alert("주민번호는 숫자만 입력할 수 있습니다.");
+		    mobile.focus();
+		    return false;
+		  }
+
+
+	  if (email_id.value == "") {
+	    alert("이메일 주소를 입력하세요.");
+	    email_id.focus();
+	    return false;
+	  }
+
+
+
+	 
+	  document.form.submit();    
+	}
+
+
+
+
+</script> 
+<script>
+	$("#checkId").click(function(){
+			         
+	const userId = document.getElementById("userId").value;
+			    	
+			         
+	$.ajax({
+	url: "${ pageContext.servletContext.contextPath }/user/check",
+	type: "get",
+	data : { userId: userId },
+	success: function(data, textStatus, xhr) {
+	     console.table(data);
+	     if(data == "1"){
+	     alert("중복된 아이디입니다.");
+	     }else {
+		 alert("사용가능한 아이디입니다.");
+			}
+		},
+		error: function(xhr, status, error) {
+		console.log(error);	            }
+			         });
+			      });
+			      
+			      
+</script>   
 
 
 </body>

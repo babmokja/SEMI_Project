@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -54,7 +55,41 @@
     
     <div class="top-1">
         
-        <div class="top">
+        
+        
+        
+        <!-- 검색 폼 -->
+		<form id="loginForm" action="${ pageContext.servletContext.contextPath }/owner/searchreplycomment" method="get">		
+			<div class="top" align="center">
+			
+										<!-- 선택한 카테고리 + 검색어 -->
+										
+				<c:choose>
+				    <c:when test="${ !empty requestScope.searchValue }">
+   					    <select id="searchCondition" name="searchCondition">
+							<option value="reviewContent" <c:if test="${requestScope.searchCondition eq 'reviewContent'}">selected</c:if>>제목</option>
+							<option value="satisfied" <c:if test="${requestScope.searchCondition eq 'satisfied'}">selected</c:if>>만족도</option>
+							<option value="userId" <c:if test="${requestScope.searchCondition eq 'userId'}">selected</c:if>>고객아이디</option>
+						</select>
+				        <input type="search" id="searchValue" name="searchValue" value="${ requestScope.searchValue }">
+				    </c:when>
+				    <c:otherwise>
+					    <select id="searchCondition" name="searchCondition">
+							<option value="reviewContent">제목</option>
+							<option value="satisfied">만족도</option>
+							<option value="userId">고객아이디</option>
+						</select>
+				        <input type="search" id="searchValue" name="searchValue" >
+				    </c:otherwise>
+				</c:choose>
+				<button type="submit" style="border: 1px solid black;">검색하기</button>
+			</div>
+		</form>
+        
+        
+        
+        
+       <!--  <div class="top">
             만족도,제목,고객아이디
             <select class="form-select" >
               <option selected>카테고리 선택</option>
@@ -62,9 +97,9 @@
               <option value="2">제목</option>
               <option value="3">고객아이디</option>
             </select>
-        </div>
+        </div> -->
 
-        <div class="top">
+        <!-- <div class="top">
             만족도,제목,고객아이디 입력
             <input class="form-control" type="text" >
             
@@ -73,7 +108,7 @@
         <div class="top">
             <br>
             <button type="button" class="btn btn-outline-secondary">검색하기</button>
-        </div>
+        </div> -->
     </div>
 
             <table> 
@@ -88,74 +123,99 @@
                     </tr>
                 </thead>
                 <tbody>
+                <c:forEach var="review" items="${ requestScope.reviewList }">
                     <tr>
-                        <td class="section_contest_first section_contest_1">1</td>
-                        <td class="section_contest_first section_contest_2">만족</td>
-                        <td class="section_contest_first section_contest_3"><a href="Owner_Comment_Write_Board.html">글제목11</a></td>
-                        <td class="section_contest_first section_contest_4">글쓴이</td>
-                        <td class="section_contest_first section_contest_5">2021.04.21 11:11:11</td>
-                        <td class="section_contest_first section_contest_6">2021.04.21 11:11:11</td>
+                        <td class="section_contest_first section_contest_1">${ review.rowNum }</td>
+                        <td class="section_contest_first section_contest_2">${ review.satisfied }</td>
+                        <td class="section_contest_first section_contest_3"><!-- <a href="Owner_Comment_Write_Board.html"> -->${ review.reviewContent }</a></td>
+                        <td class="section_contest_first section_contest_4">${ review.userId }</td>
+                        <td class="section_contest_first section_contest_5">${ review.replyDate }</td>
+                        <td class="section_contest_first section_contest_6">${ review.orderTime }</td>
                     </tr>
-                    <tr>
-                        <td class="section_contest_two section_contest_1">2</td>
-                        <td class="section_contest_two section_contest_2">보통</td>
-                        <td class="section_contest_two section_contest_3">글제목22</td>
-                        <td class="section_contest_two section_contest_4">글쓴이</td>
-                        <td class="section_contest_two section_contest_5">2021.04.21 11:11:11</td>
-                        <td class="section_contest_first section_contest_6">2021.04.21 11:11:11</td>
-                    </tr>
-                    <tr>
-                        <td class="section_contest_two section_contest_1">3</td>
-                        <td class="section_contest_two section_contest_2">불만족</td>
-                        <td class="section_contest_two section_contest_3">글제목33</td>
-                        <td class="section_contest_two section_contest_4">글쓴이</td>
-                        <td class="section_contest_two section_contest_5">2021.04.21 11:11:11</td>
-                        <td class="section_contest_first section_contest_6">2021.04.21 11:11:11</td>
-                    </tr>
-                    <tr>
-                        <td class="section_contest_two section_contest_1">4</td>
-                        <td class="section_contest_two section_contest_2">만족</td>
-                        <td class="section_contest_two section_contest_3">글제목44</td>
-                        <td class="section_contest_two section_contest_4">글쓴이</td>
-                        <td class="section_contest_two section_contest_5">2021.04.21 11:11:11</td>
-                        <td class="section_contest_first section_contest_6">2021.04.21 11:11:11</td>
-                    </tr>
-                    <tr>
-                        <td class="section_contest_two section_contest_1">5</td>
-                        <td class="section_contest_two section_contest_2">만족</td>
-                        <td class="section_contest_two section_contest_3">글제목55</td>
-                        <td class="section_contest_two section_contest_4">글쓴이</td>
-                        <td class="section_contest_two section_contest_5">2021.04.21 11:11:11</td>
-                        <td class="section_contest_first section_contest_6">2021.04.21 11:11:11</td>
-                    </tr>
-                    <tr>
-                        <td class="section_contest_two section_contest_1">6</td>
-                        <td class="section_contest_two section_contest_2">만족</td>
-                        <td class="section_contest_two section_contest_3">글제목66</td>
-                        <td class="section_contest_two section_contest_4">글쓴이</td>
-                        <td class="section_contest_two section_contest_5">2021.04.21 11:11:11</td>
-                        <td class="section_contest_first section_contest_6">2021.04.21 11:11:11</td>
-                    </tr>
-                    <tr>
-                        <td class="section_contest_two section_contest_1">7</td>
-                        <td class="section_contest_two section_contest_2">만족</td>
-                        <td class="section_contest_two section_contest_3">글제목77</td>
-                        <td class="section_contest_two section_contest_4">글쓴이</td>
-                        <td class="section_contest_two section_contest_5">2021.04.21 11:11:11</td>
-                        <td class="section_contest_first section_contest_6">2021.04.21 11:11:11</td>
-                    </tr>
+
                     
+                </c:forEach>
                 </tbody>
             </table>
 
-            <div class="center clearfix">
+
+
+
+
+			<div class="center clearfix" align="center">
+			<c:choose>
+			    <c:when test="${ empty requestScope.searchValue }">
+				    <button class="button button_space" id="startPage"><<</button>
+	
+					<c:if test="${ requestScope.pageInfo.pageNo <= 1 }">
+						<button class="button button_space" disabled><</button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo > 1 }">
+						<button class="button button_space" id="prevPage"><</button>
+					</c:if>
+					<c:forEach var="p" begin="${ requestScope.pageInfo.startPage }" end="${ requestScope.pageInfo.endPage }" step="1">
+						<c:if test="${ requestScope.pageInfo.pageNo eq p }">
+							<button class="button button_space" disabled><c:out value="${ p }"/></button>
+						</c:if>
+						<c:if test="${ requestScope.pageInfo.pageNo ne p }">
+							<button class="button button_space" onclick="pageButtonAction(this.innerText);"><c:out value="${ p }"/></button>
+						</c:if>
+					</c:forEach>
+					
+					<c:if test="${ requestScope.pageInfo.pageNo >= requestScope.pageInfo.maxPage }">
+						<button class="button button_space" disabled>></button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo < requestScope.pageInfo.maxPage }">
+						<button class="button button_space" id="nextPage">></button>
+					</c:if>
+					
+					<button class="button button_space" id="maxPage">>></button> 
+			     </c:when>
+			     
+			     
+			    <c:otherwise>
+   				    <button id="searchStartPage" class="button button_space"><<</button>
+	
+					<c:if test="${ requestScope.pageInfo.pageNo <= 1 }">
+						<button class="button button_space" disabled><</button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo > 1 }">
+						<button class="button button_space" id="searchPrevPage"><</button>
+					</c:if>
+		
+					<c:forEach var="p" begin="${ requestScope.pageInfo.startPage }" end="${ requestScope.pageInfo.endPage }" step="1">
+						<c:if test="${ requestScope.pageInfo.pageNo eq p }">
+							<button class="button button_space" disabled><c:out value="${ p }"/></button>
+						</c:if>
+						<c:if test="${ requestScope.pageInfo.pageNo ne p }">
+							<button class="button button_space" onclick="seachPageButtonAction(this.innerText);"><c:out value="${ p }"/></button>
+						</c:if>
+					</c:forEach>
+					
+					<c:if test="${ requestScope.pageInfo.pageNo >= requestScope.pageInfo.maxPage }">
+						<button class="button button_space" disabled>></button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo < requestScope.pageInfo.maxPage }">
+						<button class="button button_space" id="searchNextPage">></button>
+					</c:if>
+					
+					<button class="button button_space" id="searchMaxPage">>></button> 
+			    </c:otherwise>
+			</c:choose>   
+		</div>
+
+
+
+
+
+            <!-- <div class="center clearfix">
                 <div class="button button_space">1</div>
                 <div class="button button_space">2</div>
                 <div class="button button_space">3</div>
                 <div class="button button_space">4</div>
                 <div class="button">5</div>
 
-            </div>
+            </div> -->
             
     </section>
 
@@ -163,5 +223,95 @@
     <footer>
         <address class="footer"> Copyright &copy; BABMOKJA All Right Reserved.</address>
     </footer>
+    <script>
+		const link = "${ pageContext.servletContext.contextPath }/owner/replycomment";
+		const searchLink = "${ pageContext.servletContext.contextPath }/owner/searchreplycomment";
+			
+		if(document.getElementById("startPage")) {
+			const $startPage = document.getElementById("startPage");
+			$startPage.onclick = function() {
+				location.href = link + "?currentPage=1";
+			}
+		}
+		
+		if(document.getElementById("prevPage")) {
+			const $prevPage = document.getElementById("prevPage");
+			$prevPage.onclick = function() {
+				location.href = link + "?currentPage=${ requestScope.pageInfo.pageNo - 1 }";
+			}
+		}
+		
+		if(document.getElementById("nextPage")) {
+			const $nextPage = document.getElementById("nextPage");
+			$nextPage.onclick = function() {
+				location.href = link + "?currentPage=${ requestScope.pageInfo.pageNo + 1 }";
+			}
+		}
+		
+		if(document.getElementById("maxPage")) {
+			const $maxPage = document.getElementById("maxPage");
+			$maxPage.onclick = function() {
+				location.href = link + "?currentPage=${ requestScope.pageInfo.maxPage }";
+			}
+		}
+		
+		if(document.getElementById("searchStartPage")) {
+			const $searchStartPage = document.getElementById("searchStartPage");
+			$searchStartPage.onclick = function() {
+				location.href = searchLink + "?currentPage=1&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+		if(document.getElementById("searchPrevPage")) {
+			const $searchPrevPage = document.getElementById("searchPrevPage");
+			$searchPrevPage.onclick = function() {
+				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.pageNo - 1 }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+		if(document.getElementById("searchNextPage")) {
+			const $searchNextPage = document.getElementById("searchNextPage");
+			$searchNextPage.onclick = function() {
+				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.pageNo + 1 }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+		if(document.getElementById("searchMaxPage")) {
+			const $searchMaxPage = document.getElementById("searchMaxPage");
+			$searchMaxPage.onclick = function() {
+				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.maxPage }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+		if(document.getElementsByTagName("td")) {
+			
+			const $tds = document.getElementsByTagName("td");
+			for(let i = 0; i < $tds.length; i++) {
+				
+				/* $tds[i].onmouseenter = function() {
+					this.parentNode.style.backgroundColor = "orangered";
+					this.parentNode.style.cursor = "pointer";
+				}
+				
+				$tds[i].onmouseout = function() {
+					this.parentNode.style.backgroundColor = "black";
+				} */
+				
+				$tds[i].onclick = function() {
+					alert(this.parentNode.children[0].innerText);
+					location.href = "${ pageContext.servletContext.contextPath }/owner/detailreplycomment?no=" + no;
+				}
+				
+			}
+			
+		}  
+		
+		function pageButtonAction(text) {
+			location.href = link + "?currentPage=" + text;
+		}
+		function seachPageButtonAction(text) {
+			location.href = searchLink + "?currentPage=" + text + "&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+		}
+	</script>
 </body>
 </html>

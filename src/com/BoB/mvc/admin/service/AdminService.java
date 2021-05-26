@@ -17,6 +17,7 @@ import com.BoB.mvc.admin.dto.PageInfoDTO;
 import com.BoB.mvc.admin.dto.UserDetailDTO;
 import com.BoB.mvc.admin.dto.cartDTO;
 import com.BoB.mvc.admin.dto.orderDTO;
+import com.BoB.mvc.admin.dto.orderDTO2;
 import com.BoB.mvc.admin.dto.orderDetailDTO;
 import com.BoB.mvc.admin.dto.ownerDTO;
 import com.BoB.mvc.admin.dto.ownerSalesDTO;
@@ -295,4 +296,23 @@ public class AdminService {
 		
 		return salesList;
 	}
+	
+	public int selectOrderCount(int ownerNum) {
+	      Connection con = getConnection();
+	      int totalCount = OrderDAO.selectTotalCount(con,ownerNum);
+	      close(con);
+	      
+	      return totalCount;
+	   }
+	
+	
+	public List<orderDTO2> selectOrderList(PageInfoDTO pageInfo, int ownerNum) {
+		
+	      Connection con = getConnection();
+	      
+	      List<orderDTO2> orderList = OrderDAO.selectOrderList(con,pageInfo,ownerNum);
+	      close(con);
+	      
+	      return orderList;
+	   }
 }

@@ -12,15 +12,15 @@ import java.util.Map;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.BoB.mvc.admin.dto.PageInfoDTO;
 import com.BoB.mvc.owner.model.dao.OwnerDAO;
+import com.BoB.mvc.owner.model.dao.orderDAO;
 import com.BoB.mvc.owner.model.dto.LicenseManagerDTO;
 import com.BoB.mvc.owner.model.dto.OwnerDTO;
+import com.BoB.mvc.owner.model.dto.PageInfoDTO;
 import com.BoB.mvc.owner.model.dto.PictureDTO;
+import com.BoB.mvc.owner.model.dto.ReviewBoardListDTO;
 import com.BoB.mvc.owner.model.dto.SelectBeforeModifyDTO;
 import com.BoB.mvc.owner.model.dto.StoreInfoDTO;
-import com.BoB.mvc.owner.model.dto.orderDTO;
-import com.BoB.mvc.owner.model.dao.orderDAO;
 
 public class OwnerService {
 	
@@ -37,7 +37,7 @@ public class OwnerService {
 	public int registOwner(Map<String, PictureDTO> picture, LicenseManagerDTO lm, OwnerDTO owner, StoreInfoDTO store) {
 		
 		Connection con = getConnection();
-		int result4 = 0;
+		int result5 = 0;
 		
 		int result1 = ownerDAO.insertPicture(con, picture);
 		System.out.println("result1 : "+ result1);
@@ -54,15 +54,19 @@ public class OwnerService {
 		if(result1==2 && result2>0&&result3>0) {commit(con);}
 		else {rollback(con);}
 		
-		result4 = ownerDAO.insertStore(con,store,picture,owner,lm);
+		int result4 = ownerDAO.insertStore(con,store,picture,owner,lm);
 		System.out.println("result4"+result4);
 		if(result1==2 && result2>0&&result3>0&&result4>0) {commit(con);}
 		else {rollback(con);}
-					
+		
+		result5 = ownerDAO.insertPICtable(con, store, picture, owner, lm);
+		System.out.println("result5"+result5);
+		if(result1==2 && result2>0&&result3>0&&result4>0&&result5>0) {commit(con);}
+		else {rollback(con);}
 		
 		close(con);
 		
-		return result4;
+		return result5;
 	}
 
 
@@ -123,22 +127,22 @@ public class OwnerService {
 		Connection con = getConnection();
 		int result4 = 0;
 		
-		int result1 = ownerDAO.modifyPicture(con, picture,lm,storeInfoDTO);
+		int result1 = ownerDAO.modifyPicture(con, picture,lm,storeInfoDTO,ownerDTO,lmDTO);
 		System.out.println("result1 : "+ result1);
 		if(result1==2) {commit(con);}
 		else {rollback(con);}
 		
-		int result2 = ownerDAO.modifyLicenseManager(con,lm,picture);
+		int result2 = ownerDAO.modifyLicenseManager(con,lm,picture,lmDTO,storeInfoDTO);
 		System.out.println("result2 : " + result2);
 		if(result1==2 && result2>0) {commit(con);}
 		else {rollback(con);}
 			
-		int result3 = ownerDAO.modifyOwner(con, owner,ownerDTO);
+		int result3 = ownerDAO.modifyOwner(con, owner,ownerDTO,lmDTO);
 		System.out.println("result3"+result3);
 		if(result1==2 && result2>0&&result3>0) {commit(con);}
 		else {rollback(con);}
 		
-		result4 = ownerDAO.modifyStore(con,store,picture,owner,lm);
+		result4 = ownerDAO.modifyStore(con,store,picture,owner,lm,storeInfoDTO);
 		System.out.println("result4"+result4);
 		if(result1==2 && result2>0&&result3>0&&result4>0) {commit(con);}
 		else {rollback(con);}
@@ -152,9 +156,12 @@ public class OwnerService {
 
 
 
-	public int selectOrderCount(int ownerNum) {
+	public int selectReviewReplyTotalCount() {
+		
 		Connection con = getConnection();
-		int totalCount = orderDAO.selectTotalCount(con,ownerNum);
+		
+		int totalCount = ownerDAO.selectReviewReplyTotalCount(con);
+		
 		close(con);
 		
 		return totalCount;
@@ -162,14 +169,62 @@ public class OwnerService {
 
 
 
-	public List<orderDTO> selectOrderList(PageInfoDTO pageInfo, int ownerNum) {
+	public List<ReviewBoardListDTO> selectReviewList(PageInfoDTO pageInfo) {
+		
 		Connection con = getConnection();
 		
-		List<orderDTO> orderList =orderDAO.selectOrderList(con,pageInfo,ownerNum);
+		List<ReviewBoardListDTO> ReviewList = ownerDAO.selectReviewList(con,pageInfo);
+		
 		close(con);
 		
-		return orderList;
+		return ReviewList;
 	}
+
+
+
+	public int selectReviewReplyTotalCount(String condition, String value) {
+		
+		Connection con = getConnection();
+		
+		int totalsearchcount = ownerDAO.selectReviewList(con,condition,value);
+		
+		close(con);
+		
+		return totalsearchcount;
+	}
+
+
+
+	public List<ReviewBoardListDTO> selectReviewList(String condition, String value, PageInfoDTO pageInfo) {
+		
+		Connection con = getConnection();
+		
+		List<ReviewBoardListDTO> ReviewSearchList = ownerDAO.selectReviewList(con,condition, value, pageInfo);
+		
+		close(con);
+		
+		return ReviewSearchList;
+		
+	}
+
+
+
+
+
+
+//	public ReviewBoardListDTO selectNoticeDetail(int no) {
+//		
+//		Connection con = getConnection();
+//		ReviewBoardListDTO reviewDetail = null;
+////		
+////		int result = ownerDAO.incrementReviewCount
+////		
+////		ReviewSearchList = ownerDAO.selectReviewList(con,condition, value, pageInfo);
+////		
+////		close(con);
+////		
+////		return ReviewSearchList;
+//	}
 	
 	
 	

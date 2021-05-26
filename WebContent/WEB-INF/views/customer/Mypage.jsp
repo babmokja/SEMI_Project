@@ -1,14 +1,15 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-    <link rel="stylesheet" href="resources/css/customer/main.css">
-    <link rel="stylesheet" href="resources/css/customer/mypage.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/customer/main.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/customer/mypage.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
     
@@ -19,52 +20,56 @@
                     <div>
                         <a href="#;" class="logo">babmokja</a>
                     </div>
+                    
                     <div class="sq">
-                        <div class="join">
-                            <a href="#;" class="join_icon">회원가입</a>
-                        </div>
-                        <div class="logout">
-                            <a href="#;" class="logout_icon">로그아웃</a>
-                        </div>
-                        <div class="login">
-                            <a href="#;" class="login_icon">로그인</a>
-                        </div>
+                        <c:if test="${ !empty sessionScope.loginUser }"> 
                         <div class="mypage">
-                            <a href="#;" class="mypage_icon"><img src="resources/image/customer/user.png" alt="이미지없음"></a>
+                            <a href="${ pageContext.servletContext.contextPath}/user/mypage" class="mypage_icon">
+                              <img src="${ pageContext.servletContext.contextPath }/resources/image/customer/user.png" alt="이미지없음"></a>
                         </div>
+                         <div class="logout">
+                            <a href="${ pageContext.servletContext.contextPath }/user/logout" class="logout_icon">로그아웃</a>
+                        </div>
+                     </c:if>   
                     </div>
+                    
                 </div>
                 <div>
-                    <a href="#;" class="title">너의 밥먹는건 우리가 책임진다</a>
+                    <a href="${ pageContext.servletContext.contextPath }" class="title">너의 밥먹는건 우리가 책임진다</a>
                 </div>
                 <div class="searchbox">
-                    <a href="#;">
-                        <img src="resources/image/customer/magnifying.png" alt="이미지없음" id="icon">
+                    <a href="${ pageContext.servletContext.contextPath }/store/list">
+                        <img src="${ pageContext.servletContext.contextPath }/resources/image/customer/magnifying.png" alt="이미지없음" id="icon">
                     </a>
                     <input type="text" class="searchpoint">
                 </div>
+                       
+
+
+                       
+                       
                         <div class="nav">
                             <div class="a">
-                                <a href="#;" class="a" id="kor">한식</a>
+                                <a href="${ pageContext.servletContext.contextPath }/store/list?cate=kor&type=1&order=congestion&currentPage=1" class="a" id="kor">한식</a>
                            </div>
                            <div class="a">
                               <span>
-                                <a href="#;" class="a" id="fra">프랜차이즈</a>
+                                <a href="${ pageContext.servletContext.contextPath }/store/list?cate=fra&type=1&order=congestion&currentPage=1" class="a" id="fra">프랜차이즈</a>
                              </span>
                            </div>
                            <div class="a">
                               <span>
-                                <a href="#;" class="a" id="chi">중식</a>
+                                <a href="${ pageContext.servletContext.contextPath }/store/list?cate=chi&type=1&order=congestion&currentPage=1" class="a" id="chi">중식</a>
                               </span>
                             </div>
                             <div class="a">
                             <span>
-                                <a href="#;" class="a" id="jap">일식</a>
+                                <a href="${ pageContext.servletContext.contextPath }/store/list?cate=jap&type=1&order=congestion&currentPage=1" class="a" id="jap">일식</a>
                             </span>
                             </div>
                             <div class="a">
                             <span>
-                                <a href="#;" class="a" id="ame">양식</a>
+                                <a href="${ pageContext.servletContext.contextPath }/store/list?cate=ame&type=1&order=congestion&currentPage=1" class="a" id="ame">양식</a>
                             </span>
                             </div>
                         </div>
@@ -79,16 +84,17 @@
         
         <section id="section1">
         <div class ="myinformation" ><br><br>
-        <label class='name'>[name]님 안녕하세요</label>
+        <label class='name' style="margin-left:50px">${ sessionScope.loginUser.name }님 안녕하세요</label>
         <br><br><br><br><br><br>
         <h1>밥묵자 회원정보 </h1>
         <br>
         <span style="float: right;font-size: larger;font-weight: 500;  margin-right:-20px; margin-top:10px">회원정보를 수정하시면<br>수정하기 버튼을<br>눌러주세요</span>
-        <img src="resources/image/customer/user.png" width="150px" height="150px" style="margin-top: 10px;">
+        <img src="${ pageContext.servletContext.contextPath }/resources/image/customer/user.png" width="150px" height="150px" style="margin-top: 10px;">
 
          <br>
-         <input type="button" value="수정하기" class="smallbtn" onclick="location.href='modifyInfo_user.html'"  >
-        
+             <button class="smallbtn" onclick="location.href='${ pageContext.servletContext.contextPath }/user/modify">정보수정</button>
+<%--          <input type="button" value="수정하기" class="smallbtn" ><a href="${ pageContext.servletContext.contextPath }/user/modify"></a></input> --%>
+      
           
          </div>
 
@@ -100,15 +106,16 @@
        <br><br><br><br><br><br><br>     
        <label class='pointlabel'>밥묵자 포인트</label>
        <br><br>
-       <span style="font-size: larger;font-weight: 500; margin-right:-65px; width=105px; float:right;">현재 포인트<br>[0000]P</span> 
-       <img src="resources/image/customer/point.png" id = "mypoint" width="150px" height="150px"style="margin-left: 150px; " >
+       <span style="font-size: larger;font-weight: 500; margin-right:-65px; width=105px; float:right;">현재 포인트<br><label>${ sessionScope.loginUser.point }</label></span> 
+       <img src="${ pageContext.servletContext.contextPath }/resources/image/customer/point.png" id = "mypoint" width="150px" height="150px"style="margin-left: 150px; " >
        
-       <input type="button"id="modal_open_btn"  style="margin-left: 163px;" value="상세보기" class="smallbtn" >
-       </div>
-
-     <input type="button" value="1대1 문의하기" class='question'onclick="location.href='request_board_list.html'" >
-
-    </section>
+<!--        <input type="button"id="modal_open_btn"  style="margin-left: 163px;" value="상세보기" class="smallbtn" > -->
+       
+       </div>  
+             <button class='question' onclick="location.href='${ pageContext.servletContext.contextPath }/board/list">1대1문의하기</button>                                         
+<%--       <input type="button" value="1대1 문의하기" class='question' ><a href="${ pageContext.servletContext.contextPath }/board/list"/></input> --%>
+     </section> 
+    
   
         
 
@@ -124,105 +131,27 @@
               <th style="padding-left: 20px;" >주문상태</th>
               <th>상세보기</th>  
               <th>리뷰작성</th> 
-              <th>주문취소</th>    
+<!--               <th>주문취소</th>  -->   
            </tr>
          </thead>
        
-      
-        <tbody >
-            <tr>
-                <td >2020/3/9999</td>
-                <td  >배달</td>
-                <td >빽다방강남역점</td>
-                <td style="text-align: right;" >취소</td>
-                <td><input type="button"  value="더보기" class="modal_open_btn2" ></td>
-                <td> <input type="button" value="리뷰쓰기" class="btn_review" onclick="location.href='review.html'" ></td>
-                <td><input type="button"  value="취소"  class="modal_open_btn3"  ></td>
-            </tr>
 
-            <tr>
-                <td >2020/3/9999</td>
-                <td  >배달</td>
-                <td >빽다방강남역점</td>
-                <td style="text-align: right;" >취소</td>
-                <td><input type="button"  value="더보기" class="modal_open_btn2" ></td>
-                <td> <input type="button" value="리뷰쓰기" class="btn_review" onclick="location.href='review.html'" ></td>
-                <td><input type="button"  value="취소"  class="modal_open_btn3"  ></td>
+        <tbody >
+            <c:forEach var="order" items="${ requestScope.orderdto}">
+            <tr>      
+                <td >${ order.orderDate }</td>
+                <td  >${ order.orderType }</td>
+                <td >${ order.storeName }</td>
+                <td style="text-align: right;" >${ order.proceed }</td>
+                <td><input type="button"  value="더보기" class="modal_open_btn2" /></td>
+                <td>
+                <button class="btn_review" onclick="location.href='${ pageContext.servletContext.contextPath }/review?order=${order.orderCode}&store=${order.storeCode}'">리뷰작성</button>  
+               
+                </td>
+<!--                 <td><input type="button"  value="취소"  class="modal_open_btn3"  ></td> -->
             </tr>
-            <tr>
-                <td >2020/3/9999</td>
-                <td  >배달</td>
-                <td >빽다방강남역점</td>
-                <td style="text-align: right;" >취소</td>
-                <td><input type="button"  value="더보기" class="modal_open_btn2" ></td>
-                <td> <input type="button" value="리뷰쓰기" class="btn_review" onclick="location.href='review.html'" ></td>
-                <td><input type="button"  value="취소"  class="modal_open_btn3"  ></td>
-            </tr>
-            <tr>
-                <td >2020/3/9999</td>
-                <td  >배달</td>
-                <td >빽다방강남역점</td>
-                <td style="text-align: right;" >취소</td>
-                <td><input type="button"  value="더보기" class="modal_open_btn2" ></td>
-                <td> <input type="button" value="리뷰쓰기" class="btn_review" onclick="location.href='review.html'" ></td>
-                <td><input type="button"  value="취소"  class="modal_open_btn3"  ></td>
-            </tr>
-            <tr>
-                <td >2020/3/9999</td>
-                <td  >배달</td>
-                <td >빽다방강남역점</td>
-                <td style="text-align: right;" >취소</td>
-                <td><input type="button"  value="더보기" class="modal_open_btn2" ></td>
-                <td> <input type="button" value="리뷰쓰기" class="btn_review" onclick="location.href='review.html'" ></td>
-                <td><input type="button"  value="취소"  class="modal_open_btn3"  ></td>
-            </tr>
-            <tr>
-                <td >2020/3/9999</td>
-                <td  >배달</td>
-                <td >빽다방강남역점</td>
-                <td style="text-align: right;" >취소</td>
-                <td><input type="button"  value="더보기" class="modal_open_btn2" ></td>
-                <td> <input type="button" value="리뷰쓰기" class="btn_review" onclick="location.href='review.html'" ></td>
-                <td><input type="button"  value="취소"  class="modal_open_btn3"  ></td>
-            </tr>
-            <tr>
-                <td >2020/3/9999</td>
-                <td  >배달</td>
-                <td >빽다방강남역점</td>
-                <td style="text-align: right;" >취소</td>
-                <td><input type="button"  value="더보기" class="modal_open_btn2" ></td>
-                <td> <input type="button" value="리뷰쓰기" class="btn_review" onclick="location.href='review.html'" ></td>
-                <td><input type="button"  value="취소"  class="modal_open_btn3"  ></td>
-            </tr>
-            <tr>
-                <td >2020/3/9999</td>
-                <td  >배달</td>
-                <td >빽다방강남역점</td>
-                <td style="text-align: right;" >취소</td>
-                <td><input type="button"  value="더보기" class="modal_open_btn2" ></td>
-                <td> <input type="button" value="리뷰쓰기" class="btn_review" onclick="location.href='review.html'" ></td>
-                <td><input type="button"  value="취소"  class="modal_open_btn3"  ></td>
-            </tr>
-            <tr>
-                <td >2020/3/9999</td>
-                <td  >배달</td>
-                <td >빽다방강남역점</td>
-                <td style="text-align: right;" >취소</td>
-                <td><input type="button"  value="더보기" class="modal_open_btn2" ></td>
-                <td> <input type="button" value="리뷰쓰기" class="btn_review" onclick="location.href='review.html'" ></td>
-                <td><input type="button"  value="취소"  class="modal_open_btn3"  ></td>
-            </tr>
-            <tr>
-                <td >2020/3/9999</td>
-                <td  >배달</td>
-                <td >빽다방강남역점</td>
-                <td style="text-align: right;" >취소</td>
-                <td><input type="button"  value="더보기" class="modal_open_btn2" ></td>
-                <td> <input type="button" value="리뷰쓰기" class="btn_review" onclick="location.href='review.html'" ></td>
-                <td><input type="button"  value="취소"  class="modal_open_btn3"  ></td>
-            </tr>
-           
-        
+            </c:forEach>
+         
         </tbody>
    
     </table> 
@@ -231,29 +160,27 @@
     </section>
      
 
-
-
-
     <div class="modal2">
         <div class="modal_content2">
-            <label align= "center">취소면 취소사유<br>접수완료면 얼마나 걸릴예정인지 </label>
+
+            <label align= "center">${ order.ownerComment } </label>
             <button type="button" class="modal_close_btn2">확인</button>
-       
+        
         </div>
       <div class="modal_layer2"></div>
-      <script>
-        $(document).ready(function(){
-           $('.modal_open_btn2').click(function(){
-           $('.modal2').show();
-           $('modal_layer2').show();
-         });
+         <script>
+           $(document).ready(function(){
+               $('.modal_open_btn2').click(function(){
+                   $('.modal2').show();
+                   $('modal_layer2').show();
+               });
            $('.modal_close_btn2').click(function(){
-           $('.modal2').hide();
+                $('.modal2').hide();
            $('modal_layer2').hide();
-          });
-        });
+            });
+         });
 
-    </script>
+       </script>
     </div>
 
     <div class="modal3">

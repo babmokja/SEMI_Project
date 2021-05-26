@@ -6,12 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>주문확인</title>
-    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/order.css">
-    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/main.css">
-    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/semi_store/bootstrap.min.css">
+<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/order.css">
+        <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/main.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/semi_store/bootstrap.min.css">
 </head>
-<body>
-    <aside class="aside">
+
+<aside class="aside" style="float:left;">
        <div class="aside_top2"><a href="${ pageContext.servletContext.contextPath }/main" 
         style="text-decoration: none;
    		color: black;
@@ -20,6 +20,8 @@
         <div class="aside_top">주문확인</div>
        
     </aside>
+<body>
+    
 
     <section class="section">
 
@@ -57,17 +59,14 @@
             
 
        
-        <div class="space"></div>
-
-
-            <table> 
+       <table> 
                 <thead>
                     <tr>
                         <th class="section_contest section_contest_1">주문번호</th>
-                        <th class="section_contest section_contest_2">고객아이디(고객명)</th>
-                        <th class="section_contest section_contest_3">주문일자</th>
-                        <th class="section_contest section_contest_4">주문상태</th>
-                        <th class="section_contest section_contest_4">금액</th>
+                        <th class="section_contest section_contest_1">고객아이디(고객명)</th>
+                        <th class="section_contest section_contest_1">주문일자</th>
+                        <th class="section_contest section_contest_1">주문상태</th>
+                        <th class="section_contest section_contest_1">금액</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -85,6 +84,10 @@
                     
                 </tbody>
             </table>
+       
+
+
+           
         <div class="text-center">
            
                 	

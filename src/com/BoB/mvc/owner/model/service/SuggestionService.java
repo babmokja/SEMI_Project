@@ -18,11 +18,11 @@ public class SuggestionService {
 	public SuggestionService(){
 		suggestionDAO = new SuggestionDAO();
 	}
-	public List<SuggestionDTO> selectAllSuggestion() {
+	public List<SuggestionDTO> selectAllSuggestion(int ownerCode) {
 
 		Connection con = getConnection();
 		
-		List<SuggestionDTO> suggestionList = suggestionDAO.selectAllList(con);
+		List<SuggestionDTO> suggestionList = suggestionDAO.selectAllList(con, ownerCode);
 		
 		close(con);
 		

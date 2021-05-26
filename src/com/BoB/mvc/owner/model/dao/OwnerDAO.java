@@ -8,14 +8,19 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
 import com.BoB.mvc.common.config.ConfigLocation;
+import com.BoB.mvc.owner.model.dto.PageInfoDTO;
 import com.BoB.mvc.owner.model.dto.LicenseManagerDTO;
 import com.BoB.mvc.owner.model.dto.OwnerDTO;
 import com.BoB.mvc.owner.model.dto.PictureDTO;
+import com.BoB.mvc.owner.model.dto.ReviewBoardListDTO;
 import com.BoB.mvc.owner.model.dto.SelectBeforeModifyDTO;
 import com.BoB.mvc.owner.model.dto.StoreInfoDTO;
 
@@ -276,8 +281,8 @@ public class OwnerDAO {
 				loginMember.setResidentNum(rset.getString("USER_NO"));
 				
 			
+				loginmap.put("loginMember", loginMember);
 			}
-			loginmap.put("loginMember", loginMember);
 				
 				System.out.println(loginMember);
 			
@@ -302,8 +307,8 @@ public class OwnerDAO {
 				loginStore.setAddress(rset2.getString("STORE_ADDR"));
 				loginStore.setStoreIntro(rset2.getString("STORE_INFO"));
 				
+				loginmap.put("loginStore", loginStore);
 			}
-			loginmap.put("loginStore", loginStore);
 			System.out.println(loginStore);
 			
 			pstmt3 = con.prepareStatement(query3);
@@ -325,8 +330,8 @@ public class OwnerDAO {
 				loginLManager.setBISICODE(rset3.getInt("BISI_CODE"));
 				loginLManager.setPictureCode(rset3.getInt("PICTURE_CODE"));
 				
+				loginmap.put("loginLManager", loginLManager);
 			}
-			loginmap.put("loginLManager", loginLManager);
 			System.out.println(loginLManager);
 			
 			
@@ -420,7 +425,7 @@ public class OwnerDAO {
 
 
 
-	public int modifyPicture(Connection con, Map<String, PictureDTO> picture, LicenseManagerDTO lm, StoreInfoDTO storeInfoDTO) {
+	public int modifyPicture(Connection con, Map<String, PictureDTO> picture, LicenseManagerDTO lm, StoreInfoDTO storeInfoDTO, OwnerDTO ownerDTO, LicenseManagerDTO lmDTO) {
 		
 		PreparedStatement pstmt1 = null;
 		PreparedStatement pstmt2 = null;
@@ -435,12 +440,10 @@ public class OwnerDAO {
 			pstmt1 =con.prepareStatement(query1);
 			
 			
-//			2개 동시에 넣는방법?
-			
 			pstmt1.setString(1, picture.get("pict1").getOriginName());
 			pstmt1.setString(2, picture.get("pict1").getRevisedName());
 			pstmt1.setString(3, picture.get("pict1").getRoute());
-			pstmt1.setInt(4, storeInfoDTO.getStoreCode());
+			pstmt1.setInt(4, ownerDTO.getUserCode());
 			
 			result1 =pstmt1.executeUpdate();
 			
@@ -449,7 +452,7 @@ public class OwnerDAO {
 			pstmt2.setString(1, picture.get("pict2").getOriginName());
 			pstmt2.setString(2, picture.get("pict2").getRevisedName());
 			pstmt2.setString(3, picture.get("pict2").getRoute());
-			pstmt2.setInt(4, storeInfoDTO.getStoreCode());
+			pstmt2.setInt(4, ownerDTO.getUserCode());
 			
 			result2 = pstmt2.executeUpdate();
 			
@@ -467,7 +470,7 @@ public class OwnerDAO {
 
 
 
-	public int modifyLicenseManager(Connection con, LicenseManagerDTO lm, Map<String, PictureDTO> picture) {
+	public int modifyLicenseManager(Connection con, LicenseManagerDTO lm, Map<String, PictureDTO> picture, LicenseManagerDTO lmDTO, StoreInfoDTO storeInfoDTO) {
 		
 		PreparedStatement pstmt = null;
 		
@@ -485,7 +488,7 @@ public class OwnerDAO {
 			pstmt.setString(6, lm.getMajor());
 			pstmt.setString(7, lm.getMainAddress());
 			pstmt.setDate(8, lm.getIssueDate());
-			pstmt.setInt(9, lm.getBISICODE());
+			pstmt.setInt(9, storeInfoDTO.getStoreCode());
 			
 			result2 = pstmt.executeUpdate();
 			
@@ -504,7 +507,7 @@ public class OwnerDAO {
 
 
 
-	public int modifyOwner(Connection con, OwnerDTO owner, OwnerDTO ownerDTO) {
+	public int modifyOwner(Connection con, OwnerDTO owner, OwnerDTO ownerDTO, LicenseManagerDTO lmDTO) {
 		
 		PreparedStatement pstmt = null;
 		
@@ -520,7 +523,8 @@ public class OwnerDAO {
 			pstmt.setString( 2 , owner.getPhone());
 			pstmt.setString( 3 , owner.getAddress());
 			pstmt.setString( 4 , owner.getEmail());
-			pstmt.setInt( 5 , owner.getRoleCode());
+			pstmt.setInt( 5 , ownerDTO.getRoleCode());
+			pstmt.setString(6, ownerDTO.getResidentNum());
 			
 			result3 = pstmt.executeUpdate();
 			
@@ -536,7 +540,7 @@ public class OwnerDAO {
 
 
 	public int modifyStore(Connection con, StoreInfoDTO store, Map<String, PictureDTO> picture, OwnerDTO owner,
-			LicenseManagerDTO lm) {
+			LicenseManagerDTO lm, StoreInfoDTO storeInfoDTO) {
 		
 		PreparedStatement pstmt = null;
 		
@@ -548,11 +552,11 @@ public class OwnerDAO {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString( 1 , store.getStoreName());
-			pstmt.setString( 2 , store.getStoreXY());
-			pstmt.setString( 3 , store.getCategory());
-			pstmt.setInt(4, store.getTypeCode());
-			pstmt.setString( 5 , store.getAddress());
-			pstmt.setString( 6 , store.getStoreIntro());
+			pstmt.setString( 2 , store.getCategory());
+			pstmt.setInt(3, storeInfoDTO.getTypeCode());
+			pstmt.setString(4 , store.getAddress());
+			pstmt.setString( 5 , store.getStoreIntro());
+			pstmt.setInt(6, storeInfoDTO.getStoreCode() );
 			
 			result4 = pstmt.executeUpdate();
 			
@@ -564,6 +568,178 @@ public class OwnerDAO {
 		
 		return result4;
 		
+	}
+
+
+
+	public int selectReviewReplyTotalCount(Connection con) {
+		
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		int totalCount = 0;
+		
+		String query = prop.getProperty("selectReviewReplyTotalCount");
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()) {
+				totalCount = rset.getInt("COUNT(*)");
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		
+		return totalCount;
+	}
+
+
+
+	public List<ReviewBoardListDTO> selectReviewList(Connection con, PageInfoDTO pageInfo) {
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		List<ReviewBoardListDTO> reviewList = null;
+		
+		String query = prop.getProperty("selectReviewList");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, pageInfo.getStartRow());
+			pstmt.setInt(2, pageInfo.getEndRow());
+			
+			rset = pstmt.executeQuery();
+			
+			reviewList = new ArrayList<>();
+			
+			while(rset.next()) {
+				ReviewBoardListDTO review = new ReviewBoardListDTO();
+				review.setRowNum(rset.getInt("RNUM"));
+				review.setSatisfied(rset.getInt("SATISFIED"));
+				review.setReviewContent(rset.getString("REVIEW_CONTENT"));
+				review.setUserId(rset.getString("USER_ID"));
+				review.setReplyDate(rset.getDate("REPLY_DATE"));
+				review.setOrderTime(rset.getDate("ORDER_TIME"));
+				
+				reviewList.add(review);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return reviewList;
+	}
+
+
+
+	public int selectReviewList(Connection con, String condition, String value) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		
+		String query = null;
+		int reviewCount = 0;
+		
+		try {
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, value);
+			
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				reviewCount = rset.getInt("COUNT(*)");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return reviewCount;
+	}
+
+
+
+	public List<ReviewBoardListDTO> selectReviewList(Connection con, String condition, String value,
+			PageInfoDTO pageInfo) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		
+		String query = null;
+		List<ReviewBoardListDTO> reviewSearchList = null;
+		
+		if(condition.equals("satisfied")) {
+			
+			query = prop.getProperty("searchsatisfiedBoardCount");
+		}else if(condition.equals("reviewContent")) {
+			
+			query = prop.getProperty("searchreviewContentBoardCount");
+		}else if(condition.equals("userId")) {
+			
+			query = prop.getProperty("searchuserIdBoardCount");
+		}
+		
+		if(value.equals("보통")) {
+			value = "1" ;
+		} else if(value.equals("좋음")) {
+			value = "2" ;
+		} else if(value.equals("매우좋음")) {
+			value = "3" ;
+		}
+		
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, value);
+			pstmt.setInt(2, pageInfo.getStartRow());
+			pstmt.setInt(3, pageInfo.getEndRow());
+			
+			rset = pstmt.executeQuery();
+			
+			reviewSearchList = new ArrayList<>();
+			
+			while(rset.next()) {
+				ReviewBoardListDTO review = new ReviewBoardListDTO();
+				review.setRowNum(rset.getInt("RNUM"));
+				review.setSatisfied(rset.getInt("SATISFIED"));
+				review.setReviewContent(rset.getString("REVIEW_CONTENT"));
+				review.setUserId(rset.getString("USER_ID"));
+				review.setReplyDate(rset.getDate("REPLY_DATE"));
+				review.setOrderTime(rset.getDate("ORDER_TIME"));
+				
+				reviewSearchList.add(review);
+				
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return reviewSearchList;
 	}
 
 

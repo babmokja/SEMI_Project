@@ -1,16 +1,138 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-	
+	<entry key="selectReviewList">
+		SELECT A.RNUM
+		     , A.SATISFIED
+		     , A.REVIEW_CONTENT
+		     , A.USER_ID
+		     , A.REPLY_DATE
+		     , A.ORDER_TIME
+		  FROM (SELECT  ROWNUM RNUM
+				      , B.SATISFIED
+				      , B.REVIEW_CONTENT
+				      , B.USER_ID
+				      , B.REPLY_DATE
+				      , B.ORDER_TIME
+				   FROM (SELECT
+						        R.SATISFIED
+						      , R.REVIEW_CONTENT
+						      , UT.USER_ID
+						      , Y.REPLY_DATE
+						      , OT.ORDER_TIME
+					       FROM REVIEW R
+					       JOIN TOTAL_REVIEW T ON(R.REVIEW_CODE = T.REVIEW_CODE)
+					       JOIN REVIEW_REPLY Y ON(T.REPLY_CODE = Y.REPLY_CODE)
+					       JOIN ORDER_TABLE OT ON(R.ORDER_CODE = OT.ORDER_CODE)
+					       JOIN USER_TABLE UT ON(OT.USER_CODE = UT.USER_CODE)
+				       ) B
+		       ) A
+		 WHERE A.RNUM BETWEEN ? AND ? 
+	</entry>
+	<entry key="selectReviewReplyTotalCount">
+		SELECT COUNT(*)
+		  FROM REVIEW
+	</entry>
+	<entry key="searchsatisfiedBoardCount">
+		SELECT A.RNUM
+		     , A.SATISFIED
+		     , A.REVIEW_CONTENT
+		     , A.USER_ID
+		     , A.REPLY_DATE
+		     , A.ORDER_TIME
+		  FROM (SELECT  ROWNUM RNUM
+				      , B.SATISFIED
+				      , B.REVIEW_CONTENT
+				      , B.USER_ID
+				      , B.REPLY_DATE
+				      , B.ORDER_TIME
+				   FROM (SELECT
+						        R.SATISFIED
+						      , R.REVIEW_CONTENT
+						      , UT.USER_ID
+						      , Y.REPLY_DATE
+						      , OT.ORDER_TIME
+					       FROM REVIEW R
+					       JOIN TOTAL_REVIEW T ON(R.REVIEW_CODE = T.REVIEW_CODE)
+					       JOIN REVIEW_REPLY Y ON(T.REPLY_CODE = Y.REPLY_CODE)
+					       JOIN ORDER_TABLE OT ON(R.ORDER_CODE = OT.ORDER_CODE)
+					       JOIN USER_TABLE UT ON(OT.USER_CODE = UT.USER_CODE)
+				       ) B
+		 WHERE B.SATISFIED LIKE '%' || ? || '%'
+		       ) A
+		 WHERE A.RNUM BETWEEN ? AND ? 
+	</entry>
+	<entry key="searchreviewContentBoardCount">
+		SELECT A.RNUM
+		     , A.SATISFIED
+		     , A.REVIEW_CONTENT
+		     , A.USER_ID
+		     , A.REPLY_DATE
+		     , A.ORDER_TIME
+		  FROM (SELECT  ROWNUM RNUM
+				      , B.SATISFIED
+				      , B.REVIEW_CONTENT
+				      , B.USER_ID
+				      , B.REPLY_DATE
+				      , B.ORDER_TIME
+				   FROM (SELECT
+						        R.SATISFIED
+						      , R.REVIEW_CONTENT
+						      , UT.USER_ID
+						      , Y.REPLY_DATE
+						      , OT.ORDER_TIME
+					       FROM REVIEW R
+					       JOIN TOTAL_REVIEW T ON(R.REVIEW_CODE = T.REVIEW_CODE)
+					       JOIN REVIEW_REPLY Y ON(T.REPLY_CODE = Y.REPLY_CODE)
+					       JOIN ORDER_TABLE OT ON(R.ORDER_CODE = OT.ORDER_CODE)
+					       JOIN USER_TABLE UT ON(OT.USER_CODE = UT.USER_CODE)
+				       ) B
+		 WHERE B.REVIEW_CONTENT LIKE '%' || ? || '%'
+		       ) A
+		 WHERE A.RNUM BETWEEN ? AND ? 
+	</entry>
+	<entry key="searchuserIdBoardCount">
+		SELECT A.RNUM
+		     , A.SATISFIED
+		     , A.REVIEW_CONTENT
+		     , A.USER_ID
+		     , A.REPLY_DATE
+		     , A.ORDER_TIME
+		  FROM (SELECT  ROWNUM RNUM
+				      , B.SATISFIED
+				      , B.REVIEW_CONTENT
+				      , B.USER_ID
+				      , B.REPLY_DATE
+				      , B.ORDER_TIME
+				   FROM (SELECT
+						        R.SATISFIED
+						      , R.REVIEW_CONTENT
+						      , UT.USER_ID
+						      , Y.REPLY_DATE
+						      , OT.ORDER_TIME
+					       FROM REVIEW R
+					       JOIN TOTAL_REVIEW T ON(R.REVIEW_CODE = T.REVIEW_CODE)
+					       JOIN REVIEW_REPLY Y ON(T.REPLY_CODE = Y.REPLY_CODE)
+					       JOIN ORDER_TABLE OT ON(R.ORDER_CODE = OT.ORDER_CODE)
+					       JOIN USER_TABLE UT ON(OT.USER_CODE = UT.USER_CODE)
+				       ) B
+		 WHERE B.USER_ID LIKE '%' || ? || '%'
+		       ) A
+		 WHERE A.RNUM BETWEEN ? AND ? 
+	</entry>
 	<entry key="modifyPictures">
 		  UPDATE PICTURE P
 		    SET P.ORIGIN_NAME = ?,
-		        P.UPLOAD_DATE = SYSDATE
+		        P.UPLOAD_DATE = SYSDATE,
 		        P.REVISED_NAME = ?,
 		        P.ROUTE = ?
-          WHERE P.PICTURE_CODE = (SELECT MAX(S.PICTURE_CODE)
-                                    FROM STORE_PIC_TABLE S
-                                   WHERE S.STORE_CODE = ?);
+          WHERE P.PICTURE_CODE = ( SELECT
+          							 	  C.PICTURE_CODE
+						             FROM STORE_TABLE A
+						             JOIN LICENSE_MANAGE B ON(A.BUSINESS_REGIST_CODE = B.BISI_CODE)
+						             JOIN PICTURE C ON(B.PICTURE_CODE = C.PICTURE_CODE)
+						             JOIN USER_TABLE D ON (A.USER_CODE = D.USER_CODE)
+						            WHERE D.USER_CODE = ?)
 	</entry>
 	<entry key="modifyPictures2">
 		  UPDATE PICTURE P
@@ -18,9 +140,13 @@
 		        P.UPLOAD_DATE = SYSDATE,
 		        P.REVISED_NAME = ?,
 		        P.ROUTE = ?
-          WHERE P.PICTURE_CODE = (SELECT MAX(S.PICTURE_CODE)-1
-                                    FROM STORE_PIC_TABLE S
-                                   WHERE S.STORE_CODE = ?);
+          WHERE P.PICTURE_CODE = ( SELECT
+          							 	  C.PICTURE_CODE+1
+						             FROM STORE_TABLE A
+						             JOIN LICENSE_MANAGE B ON(A.BUSINESS_REGIST_CODE = B.BISI_CODE)
+						             JOIN PICTURE C ON(B.PICTURE_CODE = C.PICTURE_CODE)
+						             JOIN USER_TABLE D ON (A.USER_CODE = D.USER_CODE)
+						            WHERE D.USER_CODE = ?)
 	</entry>
 	<!-- <entry key="modifyBISIPictures">
 		 UPDATE PICTURE P
@@ -46,34 +172,40 @@
 	</entry> -->
 	<entry key="modifyLicenseManager">
 	UPDATE LICENSE_MANAGE L
-	   SET L.STORE_NAME = ?,
-		   L.BISI_DIV = ?,
-		   L.OPEN_DATE = ?,
-		   L.STORE_ADDRESS = ?,
-		   L.COMPANY = ?,
-		   L.ITEM = ?,
-		   L.MAIN_ADDRESS = ?,
-		   L.LIC_DATE = ?,
-		   L.BISI_CODE = ?
-	)
+	   SET 
+	   	   L.STORE_NAME = ?
+		 , L.BISI_DIV = ?
+		 , L.OPEN_DATE = ?
+		 , L.STORE_ADDRESS = ?
+		 , L.COMPANY = ?
+		 , L.ITEM = ?
+		 , L.MAIN_ADDRESS = ?
+		 , L.LIC_DATE = ?
+	 WHERE L.BISI_CODE = (SELECT
+	 							 S.BUSINESS_REGIST_CODE
+	 						FROM STORE_TABLE S
+	 					   WHERE STORE_CODE = ?)
 	</entry>
 	<entry key="modifyOwner">
 		UPDATE USER_TABLE U
-	  	   SET U.USER_PWD = ?,
-	  	   	   U.USER_PHONE = ?,
-			   U.USER_ADDRESS = ?,
-			   U.USER_EMAIL = ?,
-			   U.ROLE_CODE = ?
+	  	   SET 
+	  	   	   U.USER_PWD = ?
+	  	   	 , U.USER_PHONE = ?
+			 , U.USER_ADDRESS = ?
+			 , U.USER_EMAIL = ?
+			 , U.ROLE_CODE = ?
+		 WHERE U.USER_NO = ?
 	</entry>
 	<entry key="modifyStore">
 	UPDATE STORE_TABLE S
-	   SET S.STORE_NAME = ?,
-		   S.STORE_XY = ?,
-		   S.CATEGORY = ?,
-		   S.ENROLL_DATE = SYSDATE,
-		   S.TYPE_CODE = ?,
-		   S.STORE_ADDR = ?,
-		   S.STORE_INFO = ?
+	   SET 
+	       S.STORE_NAME = ?
+		 , S.CATEGORY = ?
+		 , S.ENROLL_DATE = SYSDATE
+		 , S.TYPE_CODE = ?
+		 , S.STORE_ADDR = ?
+		 , S.STORE_INFO = ?
+	 WHERE S.STORE_CODE = ?
 	</entry>
 	
 	
@@ -118,7 +250,7 @@
 	, ?
 	, ?
 	, SEQ_LMANAGER.NEXTVAL
-	, SEQ_PICTURE.CURRVAL
+	, SEQ_PICTURE.CURRVAL-1
 	)
 	</entry>
 	<entry key="registOwner">
@@ -318,6 +450,7 @@
 		SELECT
 		       *
 		  FROM OWNER_INQUIRY
+		 WHERE OWNER_CODE = ?
 	
 	</entry>
 	
@@ -340,7 +473,7 @@
 	      , SYSDATE
 	      , ?
 	      , 'N'
-	      , 1
+	      , ?
 	     )
 	     
 	       
@@ -361,44 +494,5 @@
                     WHERE A.BOARD_CODE =?
 	</entry>
 	
-	<entry key="selectTotalCount">
-		    
-		select
-	    count(*)
-	    from order_table a
-	    join store_table c on(a.store_code = c.store_code)
-	    join user_table d on(c.user_code = d.user_code)
-	    where d.user_code =?
-	</entry>
-	
-	<entry key="selectOrderList">
-	SELECT
-    A.RNUM,
-    a.order_code,
-    A.user_id,
-    a.order_time,
-    a.ORDER_PROCEED,
-    a.TOTAL_AMOUNT
-	    FROM (SELECT ROWNUM RNUM,
-                        B.order_code,
-                        B.user_id,
-                        B.order_time,
-                        B.ORDER_PROCEED,
-                        B.TOTAL_AMOUNT
-                        FROM(SELECT  
-                                    C.order_code,
-                                    D.user_id,
-                                    C.order_time,
-                                    C.ORDER_PROCEED,
-                                    C.TOTAL_AMOUNT
-                                        from order_table C
-                                        join user_table D on(C.user_code = D.user_code)
-                                        join store_table E on(C.store_code = E.store_code)
-                                        join user_table F on(E.user_code = F.user_code)
-                                        where F.user_code = ?
-                                        ORDER BY C.ORDER_CODE DESC
-                            )B
-                )A
-        WHERE A.RNUM BETWEEN ? AND ?
-	</entry>
+
 </properties>

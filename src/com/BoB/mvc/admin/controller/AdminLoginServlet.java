@@ -38,9 +38,12 @@ public class AdminLoginServlet extends HttpServlet {
 				session.setAttribute("loginAdmin", loginAdmin);
 				
 				
-				System.out.println("request.getContextPath() : " + request.getContextPath());
-				response.sendRedirect(request.getContextPath());
-				
+				//System.out.println("request.getContextPath() : " + request.getContextPath());
+				//response.sendRedirect(request.getContextPath());
+				String path="";
+				path = "/WEB-INF/views/admin/main_manager.jsp";
+				request.setAttribute("message", "성공");
+				request.getRequestDispatcher(path).forward(request, response);
 				
 			} else {
 				
