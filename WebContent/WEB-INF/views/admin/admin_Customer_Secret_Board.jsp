@@ -101,7 +101,7 @@
 					<tr>
 						<td class="section_contest_first section_contest_1"><c:out value="${ board.boardCode }"/></td>
                         <td class="section_contest_first section_contest_2">건의</td>
-                        <td class="section_contest_first section_contest_3"><a href="${pageContext.servletContext.contextPath}/admin/customer/comment"><c:out value="${ board.boardTitle }"/></a></td>
+                        <td class="section_contest_first section_contest_3"><a href="${pageContext.servletContext.contextPath}/admin/customer/comment?boardCode=${ board.boardCode }">aaa</a></td>
                         <td class="section_contest_first section_contest_4"><c:out value="${ board.userName }"/></td>
                         <td class="section_contest_first section_contest_5"><c:out value="${ board.boardDate }"/></td>
 					</tr>
