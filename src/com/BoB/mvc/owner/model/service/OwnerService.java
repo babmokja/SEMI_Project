@@ -20,13 +20,16 @@ import com.BoB.mvc.owner.model.dto.PictureDTO;
 import com.BoB.mvc.owner.model.dto.ReviewBoardListDTO;
 import com.BoB.mvc.owner.model.dto.SelectBeforeModifyDTO;
 import com.BoB.mvc.owner.model.dto.StoreInfoDTO;
+import com.BoB.mvc.owner.model.dto.orderDTO;
+import com.BoB.mvc.owner.model.dao.orderDAO;
 
 public class OwnerService {
 	
 	private final OwnerDAO ownerDAO;
+	private orderDAO orderDAO;
 	
 	public OwnerService() {
-		
+		orderDAO = new orderDAO();
 		ownerDAO = new OwnerDAO();
 	}
 

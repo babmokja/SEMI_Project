@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment/>
+
+
+<entry key="selectfee1">
+   SELECT
+           A.OWNER_NO
+         , B.STORE_NAME
+         , B.STORE_ADDRESS
+         , B.COMPANY
+         , B.ITEM
+         , D.USER_NAME
+         , E.ORDER_TIME
+         , E.TOTAL_AMOUNT
+      FROM STORE_TABLE A
+      JOIN LICENSE_MANAGE B
+        ON(A.BUSINESS_REGIST_CODE = B.BISI_CODE)
+      JOIN TOTAL_PAYMENT_LIST C
+        ON(A.STORE_CODE = C.STORE_CODE)
+      JOIN USER_TABLE D
+        ON(A.USER_CODE = D.USER_CODE)
+              JOIN ORDER_TABLE E
+        ON(A.STORE_CODE  = E.STORE_CODE )
+     WHERE A.USER_CODE = ? AND 
+           E.ORDER_TIME LIKE CONCAT(?,'%')
+</entry>
+
+<entry key="oneselectfee">
+	
+	SELECT
+           A.OWNER_NO
+         , B.STORE_NAME
+         , B.STORE_ADDRESS
+         , B.COMPANY
+         , B.ITEM
+         , D.USER_NAME
+         , E.ORDER_TIME
+         , E.TOTAL_AMOUNT
+      FROM STORE_TABLE A
+      JOIN LICENSE_MANAGE B
+        ON(A.BUSINESS_REGIST_CODE = B.BISI_CODE)
+      JOIN TOTAL_PAYMENT_LIST C
+        ON(A.STORE_CODE = C.STORE_CODE)
+      JOIN USER_TABLE D
+        ON(A.USER_CODE = D.USER_CODE)
+      JOIN ORDER_TABLE E
+        ON(A.STORE_CODE  = E.STORE_CODE )
+     WHERE A.USER_CODE = ? AND ROWNUM=1
+</entry>
+
+</properties>

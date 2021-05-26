@@ -30,7 +30,10 @@
               <li class="nav-item title">
                 	메뉴 관리  
               </li>
+              
             </ul>
+              <div class="aside_top3"><a href="${ pageContext.servletContext.contextPath }/menu/all">메뉴 관리</a></div>
+        <div class="aside_top4"><a href="${ pageContext.servletContext.contextPath }/owner/sales/day">매출 관리</a></div>
             
             
           </div>
@@ -40,31 +43,31 @@
           
           <div class="row">
             <span class="col-2 menu-item menu-item-selected">
-                <img src="resources/image/owner/item1.svg" />
-                &nbsp;&nbsp;&nbsp;주문확인
+                <img src="${ pageContext.servletContext.contextPath }/resources/image/owner/item1.svg" />
+                &nbsp;&nbsp;&nbsp;<a href="${ pageContext.servletContext.contextPath }/order/confirm">주문확인</a>
               </span>
               <span class="col-2 menu-item  ">
-                <img src="resources/image/owner/item2.png" />
+                <img src="${ pageContext.servletContext.contextPath }/resources/image/owner/item2.png" />
                 &nbsp;&nbsp;&nbsp; 내 정보관리
               </span>
               <span class="col-2 menu-item">
-                <img src="resources/image/owner/item3.png" />
+                <img src="${ pageContext.servletContext.contextPath }/resources/image/owner/item3.png" />
                 
-                &nbsp;&nbsp;&nbsp; <a class="text-dark" href="../../semi_board_sales/company/Owner_Sales_day_Board.html">내 업소 관리</a>
+                &nbsp;&nbsp;&nbsp; <a class="text-dark" href="${ pageContext.servletContext.contextPath }/menu/all">내 업소 관리</a>
               </span>
               <span class="col-2 menu-item">
-                <img class="img-fluid" src="resources/image/owner/PC주문관리.png" width="40px" height="40px" />
-                &nbsp;&nbsp;&nbsp;<a class="text-dark" href="${ pageContext.servletContext.contextPath }/owner/delivery">pc주문현황</a>
+                <img class="img-fluid" src="${ pageContext.servletContext.contextPath }/resources/image/owner/computer.png" />
+                &nbsp;&nbsp;&nbsp;<a class="text-dark" href="${ pageContext.servletContext.contextPath }/owner/delivery">PC주문현황</a>
               </span>
   
               <span class="col-2 menu-item">
-                  <span class="imagesize"><img src="resources/image/owner/item4.svg" /></span>
-                  &nbsp;&nbsp;&nbsp; <a class="text-dark" href="../../semi_board/company/Owner_Comment_Board.html">리뷰관리</a>
+                  <span class="imagesize"><img src="${ pageContext.servletContext.contextPath }/image/owner/item4.svg" /></span>
+                  &nbsp;&nbsp;&nbsp; <a class="text-dark" href="../../semi_board (업체용 게시판)/company/Owner_Comment_Board.html">리뷰관리</a>
                 </span>
   
                 <span class="col-2 menu-item">
-                  <img src="resources/image/owner//item4.svg" />
-                  &nbsp;&nbsp;&nbsp; <a class="text-dark" href="../../semi_board/company/Owner_Seggestion_Board.html">1:1 문의하기</a>
+                  <img src="${ pageContext.servletContext.contextPath }/image/owner/item4.svg" />
+                  &nbsp;&nbsp;&nbsp; <a class="text-dark" href="${ pageContext.servletContext.contextPath }/suggestion/list">1:1 문의하기</a>
                 </span>
         </div>
           
@@ -127,13 +130,11 @@
                       <option value="N" >품절</option>
                     </select></td>
                     <td><input class="form-control" type="text" value= <c:out value ="${menu.menuExplain}" /> ></td>
-                    <td><a href="#"><img src="resources/image/owner/pic.png" /></a></td>
+                    <td><input type="file"></td>
                     <td><a href="#"><img src="resources/image/owner/delete.png" /></a></td>
                   </tr>
                 </c:forEach>
                 
-                
-                <form action="${pageContext.servletContext.contextPath}/menu/insert" method="post">
 	                  <tr>
  	                    <td><input class="form-control" name="menuCode" type="text" value=""/></td>
 	                    <td><input class="form-control" type="text" name="menuName" value="갈비천왕(순살)"/></td>
@@ -145,6 +146,7 @@
 	                    </select></td>
 	                    <td><input class="form-control" type="text" value="달콤한 갈비양념이 제대로!치킨의 새로운 지존"></td>
 	                    <!-- <td><input type=><a href="#"><img src="../images/pic.png" /></a></td> -->
+	                    <td><input type="file"></td>
 	                    <td><a href="#"><img src="../images/delete.png" /></a></td>
 	                  </tr>
              		 
@@ -157,12 +159,12 @@
 			           <!--  <button type="submit"></button> -->
 			            
 			          </div>
-                  </form>
                       
                   
                 </tbody>
               </table>
               
+                  </form>
 
               
             </div>

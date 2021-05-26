@@ -29,7 +29,7 @@
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item logo">
-                bakmokja
+                <a href="${pageContext.servletContext.contextPath}/link/admin/login" class="link-dark">babmokja</a>
               </li>
               <li class="nav-item title">
                 업소 관리   
@@ -44,7 +44,7 @@
               </li>
               
               <li class="nav-item sublogo">
-                이용료 정산내역 조회
+                <a href="${pageContext.servletContext.contextPath}/admin/fee" >이용료 정산내역 조회</a>
                 <hr class="end-line">
               </li>
 

@@ -16,6 +16,14 @@ import com.BoB.mvc.customer.model.service.UserService;
  */
 @WebServlet("/user/login")
 public class UserLoginServlet extends HttpServlet {
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("check");
+		String path = "/WEB-INF/views/customer/Login.jsp";
+		
+		request.getRequestDispatcher(path).forward(request, response);
+				
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = request.getParameter("userId");
@@ -33,16 +41,15 @@ public class UserLoginServlet extends HttpServlet {
 		UserDTO loginUser = userService.loginCheck(requestUser);
 		String path = "";
 		if(loginUser != null) {
-			path = "/WEB-INF/views/common/success.jsp";
+			path = "/WEB-INF/views/customer/CustomerMain.jsp";
 			request.setAttribute("successCode", "signin");
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", loginUser);
 			
-//			System.out.println("request.getContextPath() : " + request.getContextPath());
-//			response.sendRedirect(request.getContextPath());
 		} else {
 			request.setAttribute("message", "로그인 실패!");
-			request.getRequestDispatcher("/WEB-INF/views/common/failed.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/customer/Login.jsp").forward(request, response);
+            
 		}
 		
 		request.getRequestDispatcher(path).forward(request, response);

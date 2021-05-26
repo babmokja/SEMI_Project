@@ -384,7 +384,7 @@
 	       *
 	  FROM MENU
 	</entry>
-	<entry key="insertNewMenu">
+		<entry key="insertNewMenu">
 		INSERT
 		  INTO MENU
 		VALUES
@@ -398,6 +398,7 @@
 		, ?
 		)
 	</entry>
+	
 	<entry key="insertPicture">
 	    INSERT
 	      INTO PICTURE
@@ -411,9 +412,125 @@
 	   , ?
 	    )
 	</entry>
+	
 	<entry key="selectPictureSequence">
 	    SELECT
 	           SEQ_PICTURE_CODE.CURRVAL
 	      FROM DUAL
+	</entry>
+	
+	<entry key="selectDailySales">
+	    SELECT * 
+	      FROM ORDER_TABLE   
+	     WHERE EXTRACT(MONTH FROM (ORDER_TIME))=?
+	    ORDER BY ORDER_TIME
+
+	</entry>
+	
+	<entry key="selectAllSales">
+	    SELECT *
+	      FROM ORDER_TABLE
+	     ORDER BY ORDER_TIME
+	
+	</entry>
+	
+	<entry key="selectMonthlySales">
+	    SELECT
+               EXTRACT(MONTH FROM (ORDER_TIME)) as "MONTH"
+             , count(ORDER_CODE) as "COUNT"
+             , sum(TOTAL_AMOUNT) as "TOTAL"
+          FROM ORDER_TABLE
+         GROUP BY EXTRACT(MONTH FROM (ORDER_TIME))
+         ORDER BY EXTRACT(MONTH FROM (ORDER_TIME))
+	
+	</entry>
+	
+	<entry key = "selectAllSuggestion">
+	
+		SELECT
+		       *
+		  FROM OWNER_INQUIRY
+	
+	</entry>
+	
+	<entry key="InsertSuggestion">
+	     INSERT
+	       INTO OWNER_INQUIRY
+	     (
+	       BOARD_CODE
+	     , BOARD_TITLE
+	     , BOARD_DATE
+	     , BOARD_CONTENT
+	     , VISIBLE_YN
+	     , OWNER_CODE
+	     
+	     )
+	     VALUES
+	     (
+	       SEQ_SUGGESTION_NO.NEXTVAL
+	      , ?
+	      , SYSDATE
+	      , ?
+	      , 'N'
+	      , 1
+	     )
+	     
+	       
+	</entry>
+	
+	<entry key="SuggestionDetail">
+	        SELECT
+                    B.BOARD_TITLE as "boardTitle"
+                  , B.BOARD_CONTENT as "boardContent"
+                  , B.BOARD_DATE as "boardDate"
+                  , M.REPLY_CONTENT as "replyContent"
+                  , M.REPLY_DATE  as "replyDate"
+                  , U.USER_NAME as "userName"
+                    FROM STORE_REPLY_BOARD A
+                    JOIN OWNER_INQUIRY B ON (A.BOARD_CODE =B.BOARD_CODE)
+                    JOIN OWNER_REPLY_MANAGE M ON(A.REPLY_CODE = M.REPLY_CODE)
+                    JOIN USER_TABLE U ON(B.OWNER_CODE = U.USER_CODE)
+                    WHERE A.BOARD_CODE =?
+	</entry>
+	
+	<entry key="selectTotalCount">
+		    
+		select
+	    count(*)
+	    from order_table a
+	    join store_table c on(a.store_code = c.store_code)
+	    join user_table d on(c.user_code = d.user_code)
+	    where d.user_code =?
+	</entry>
+	
+	<entry key="selectOrderList">
+	SELECT
+    A.RNUM,
+    a.order_code,
+    A.user_id,
+    a.order_time,
+    a.ORDER_PROCEED,
+    a.TOTAL_AMOUNT
+	    FROM (SELECT ROWNUM RNUM,
+                        B.order_code,
+                        B.user_id,
+                        B.order_time,
+                        B.ORDER_PROCEED,
+                        B.TOTAL_AMOUNT
+                        FROM(SELECT  
+                                    C.order_code,
+                                    D.user_id,
+                                    C.order_time,
+                                    C.ORDER_PROCEED,
+                                    C.TOTAL_AMOUNT
+                                        from order_table C
+                                        join user_table D on(C.user_code = D.user_code)
+                                        join store_table E on(C.store_code = E.store_code)
+                                        join user_table F on(E.user_code = F.user_code)
+                                        where F.user_code = ?
+                                        ORDER BY C.ORDER_CODE DESC
+                            )B
+                )A
+        WHERE A.RNUM BETWEEN ? AND ?
 	</entry>
 </properties>
