@@ -19,7 +19,7 @@
 
 	<div class="header">
             <span>babmokja</span>
-            <li id="qus_btn"><a href="${ pageContext.servletContext.contextPath }//suggestion/list">1대1 문의하기</a></li>
+            <li id="qus_btn"><a href="${ pageContext.servletContext.contextPath }/suggestion/list">1대1 문의하기</a></li>
             <li id="info_enroll"><a href="../../semi_board/company/sign_up_info.html"> 입점 안내</a></li>
             <p>사장님 사이트</p>
     </div>

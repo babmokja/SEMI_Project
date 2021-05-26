@@ -29,7 +29,7 @@ public class SuggestionDAO {
 		}
 	}
 
-	public List<SuggestionDTO> selectAllList(Connection con) { 
+	public List<SuggestionDTO> selectAllList(Connection con, int ownerCode) { 
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -41,6 +41,7 @@ public class SuggestionDAO {
 		try {
 			suggestionList = new ArrayList<>();
 			pstmt= con.prepareStatement(query);
+			pstmt.setInt(1, ownerCode);
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
@@ -76,6 +77,7 @@ public class SuggestionDAO {
 			
 			pstmt.setString(1, suggestionDTO.getBoardTitle());
 			pstmt.setString(2, suggestionDTO.getBoardContent());
+			pstmt.setInt(3, suggestionDTO.getOwnerCode());
 			
 			result = pstmt.executeUpdate();
 			

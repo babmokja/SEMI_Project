@@ -57,18 +57,6 @@
      
         <div class="top-1">
         
-              
-
-              <div class="top">
-                제목 입력
-                <input class="form-control" type="text" >
-                
-              </div>
-              
-              <div class="top">
-                <br>
-                <button type="button" class="btn btn-outline-secondary">검색하기</button>
-              </div>
         </div>
         <form action="${ pageContext.servletContext.contextPath }/suggestion/insert" method="GET">
 
