@@ -75,8 +75,8 @@ public class OrderDAO {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, pageInfo.getStartRow());
 			pstmt.setInt(2, pageInfo.getEndRow());
-			System.out.println(pageInfo.getStartRow());
-			System.out.println(pageInfo.getEndRow());
+			System.out.println("start :"+pageInfo.getStartRow());
+			System.out.println("end :"+pageInfo.getEndRow());
 			rset = pstmt.executeQuery();
 			
 			orderList = new ArrayList<>();
@@ -255,11 +255,11 @@ public class OrderDAO {
 	}
 
 	
-	public int selectTotalCount(Connection con, int ownerNum) {
+	public int selectTotalCount2(Connection con, int ownerNum) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		int totalCount = 0;
-		String query = prop.getProperty("selectTotalCount1");
+		String query = prop.getProperty("selectTotalCount2");
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, ownerNum);
@@ -282,12 +282,12 @@ public class OrderDAO {
 		
 	}
 
-	public List<orderDTO2> selectOrderList(Connection con, PageInfoDTO pageInfo, int ownerNum) {
+	public List<orderDTO2> selectOrderList2(Connection con, PageInfoDTO pageInfo, int ownerNum) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		List<orderDTO2> orderList = null;
 		
-		String query = prop.getProperty("selectOrderList1");
+		String query = prop.getProperty("selectOrderList2");
 		
 		try {
 			pstmt = con.prepareStatement(query);

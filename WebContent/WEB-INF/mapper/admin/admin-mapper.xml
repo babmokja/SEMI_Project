@@ -967,7 +967,7 @@
             WHERE A.RNUM BETWEEN ? AND ?  
 	</entry>
 	
-		<entry key="selectTotalCount1">
+		<entry key="selectTotalCount2">
 		    
 		select
 	    count(*)
@@ -977,7 +977,7 @@
 	    where d.user_code =?
 	</entry>
 	
-	<entry key="selectOrderList1">
+	<entry key="selectOrderList2">
 	SELECT
     A.RNUM,
     a.order_code,

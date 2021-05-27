@@ -297,20 +297,20 @@ public class AdminService {
 		return salesList;
 	}
 	
-	public int selectOrderCount(int ownerNum) {
+	public int selectOrderCount2(int ownerNum) {
 	      Connection con = getConnection();
-	      int totalCount = OrderDAO.selectTotalCount(con,ownerNum);
+	      int totalCount = OrderDAO.selectTotalCount2(con,ownerNum);
 	      close(con);
 	      
 	      return totalCount;
 	   }
 	
 	
-	public List<orderDTO2> selectOrderList(PageInfoDTO pageInfo, int ownerNum) {
+	public List<orderDTO2> selectOrderList2(PageInfoDTO pageInfo, int ownerNum) {
 		
 	      Connection con = getConnection();
 	      
-	      List<orderDTO2> orderList = OrderDAO.selectOrderList(con,pageInfo,ownerNum);
+	      List<orderDTO2> orderList = OrderDAO.selectOrderList2(con,pageInfo,ownerNum);
 	      close(con);
 	      
 	      return orderList;

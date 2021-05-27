@@ -43,7 +43,7 @@ public class SelectOrderConfirmInfo extends HttpServlet {
 		
 		AdminService ownerService = new AdminService();
 		
-		int totalCount = ownerService.selectOrderCount(ownerNum);
+		int totalCount = ownerService.selectOrderCount2(ownerNum);
 		
 		System.out.println(totalCount);
 		/* 한 페이지에 보여 줄 게시물 수 */
@@ -52,7 +52,7 @@ public class SelectOrderConfirmInfo extends HttpServlet {
 		int buttonAmount = 5;
 		PageInfoDTO pageInfo = OrderPaging.getPageInfo(pageNo, totalCount, limit, buttonAmount);
 		
-		List<orderDTO2> orderList = ownerService.selectOrderList(pageInfo,ownerNum);
+		List<orderDTO2> orderList = ownerService.selectOrderList2(pageInfo,ownerNum);
 		
 		System.out.println(orderList);
 		String path="";
