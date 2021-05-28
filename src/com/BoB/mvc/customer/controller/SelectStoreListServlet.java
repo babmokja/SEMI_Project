@@ -28,12 +28,11 @@ public class SelectStoreListServlet extends HttpServlet {
 		String order = request.getParameter("order");
 		String currentPage = request.getParameter("currentPage");
 		int pageNo = 1;
+		int storeId = 0;
 		
 		if(currentPage != null && !"".equals(currentPage)) {
 			pageNo = Integer.parseInt(currentPage);
 		}
-		
-		System.out.println("================================================="+pageNo);
 		
 		if(pageNo <= 0) {
 			pageNo = 1;
@@ -49,12 +48,11 @@ public class SelectStoreListServlet extends HttpServlet {
 		int buttonAmount = 5;
 		
 		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
-		System.out.println("currentPage" + currentPage);
 		PageInfoDTO pageInfo = PageNation.getPageInfo(pageNo, totalCount, limit, buttonAmount);
 		
 		/* 결과값을 반환 받자 */
 		/* 반환값은 뭘로 받지???? 객체로받을까 , 리스트을받을까? 정수받을까?.... --> 내가 뭘 조회하고있지?또는 무슨작업중이지?*/
-		List<StoreListDTO> selectedStore = storelistService.selectStore(cate, type, order, pageInfo);
+		List<StoreListDTO> selectedStore = storelistService.selectStore(cate, type, order, pageInfo, storeId);
 		
 		for(StoreListDTO stolist : selectedStore) {
 			System.out.println(stolist);
@@ -66,9 +64,8 @@ public class SelectStoreListServlet extends HttpServlet {
 			path = "/WEB-INF/views/customer/StoreList.jsp";
 			request.setAttribute("selectedStore", selectedStore);
 			request.setAttribute("pageInfo", pageInfo);
-			
 		} else {
-			path = "/WEB-INF/views/common/failed.jsp";
+			path = "/WEB-INF/views/common/customer/failed.jsp";
 			request.setAttribute("message", "식당 목록 조회 실패!");
 		}
 		

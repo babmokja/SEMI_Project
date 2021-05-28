@@ -18,22 +18,6 @@ import com.BoB.mvc.customer.model.dto.PageInfoDTO;
 import com.BoB.mvc.customer.model.dto.StoreListDTO;
 
 public class StoreListDAO {
-	
-	/* Properties 객체를 이용해서 쿼리문을 조회해서 사용한다. 
-	 * 기본생성자를 통해서 쿼리문을 조회해온다.
-	 * */
-	
-	private Properties prop = new Properties();
-	
-	public StoreListDAO() {
-		
-		/*
-		 * try { prop.loadFromXML(new
-		 * FileInputStream(ConfigLocation.MAPPER_LOCATION+"storelist.xml"));
-		 * }catch(IOException e) { e.printStackTrace(); }
-		 */
-		
-	}
 
 	/**
 	 * 식당 리스트 조회
@@ -42,9 +26,10 @@ public class StoreListDAO {
 	 * @param cate 
 	 * @param order 
 	 * @param pageInfo 
+	 * @param storeId 
 	 * @return
 	 */
-	public List<StoreListDTO> selectStore(Connection con, String cate, String type, String order, PageInfoDTO pageInfo) {
+	public List<StoreListDTO> selectStore(Connection con, String cate, String type, String order, PageInfoDTO pageInfo, int storeId) {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -54,20 +39,21 @@ public class StoreListDAO {
 		StringBuilder sb = new StringBuilder();
 		
 		sb.append("SELECT B.*\r\n"
-				+ "FROM(SELECT ROWNUM RNUM, C.*\r\n"
-				+ "FROM ( SELECT A.STORE_NAME AS NAME, A.STORE_ADDR AS ADDRESS\r\n"
-				+ "    , D.ROUTE AS PHOTO, ROUND(AVG(C.SATISFIED),1) AS STAR\r\n"
-				+ "    , COUNT(C.SATISFIED) AS CONGESTION, COUNT(B.ORDER_PROCEED) AS REVIEWCNT \r\n"
-				+ "	FROM STORE_TABLE A\r\n"
-				+ "	JOIN ORDER_TABLE B\r\n"
-				+ "	ON A.STORE_CODE = B.STORE_CODE\r\n"
-				+ "	JOIN REVIEW C\r\n"
-				+ "	ON A.STORE_CODE = C.STORE_CODE\r\n"
-				+ "    JOIN PICTURE D\r\n"
-				+ "    ON A.PICTURE_CODE = D.PICTURE_CODE\r\n");
+				+ "FROM(\r\n"
+				+ "SELECT ROWNUM RNUM, C.*\r\n"
+				+ "FROM(\r\n"
+				+ "SELECT A.STORE_CODE, A.STORE_NAME AS NAME, A.STORE_ADDR AS ADDRESS\r\n"
+				+ ", D.ROUTE AS PHOTO, ROUND(AVG(C.SATISFIED),1) AS STAR\r\n"
+				+ ", COUNT(C.SATISFIED) AS CONGESTION, COUNT(B.ORDER_PROCEED) AS REVIEWCNT\r\n"
+				+ "FROM STORE_TABLE A\r\n"
+				+ "JOIN ORDER_TABLE B\r\n"
+				+ "ON A.STORE_CODE = B.STORE_CODE\r\n"
+				+ "JOIN REVIEW C\r\n"
+				+ "ON A.STORE_CODE = C.STORE_CODE\r\n"
+				+ "JOIN PICTURE D\r\n"
+				+ "ON C.PICTURE_CODE = D.PICTURE_CODE\r\n");
 				
 		/* sb.append("WHERE CATEGORY= " + cate + "AND TYPE_CODE = " + type); */
-		
 		
 		switch(cate) {
 		case "kor":
@@ -107,7 +93,7 @@ public class StoreListDAO {
 			break;
 		}
 		
-		sb.append("GROUP BY A.STORE_NAME, A.STORE_ADDR, D.ROUTE\r\n");
+		sb.append("GROUP BY A.STORE_CODE, A.STORE_NAME, A.STORE_ADDR, D.ROUTE\r\n");
 		
 		switch(order) {
 		case "congestion":
@@ -130,7 +116,6 @@ public class StoreListDAO {
 		sb.append(pageInfo.getStartRow() + " AND " + pageInfo.getEndRow());
 		
 		String query = sb.toString();
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -148,6 +133,7 @@ public class StoreListDAO {
 				store.setReviewCnt(rset.getInt("REVIEWCNT"));
 				store.setPhoto(rset.getString("PHOTO"));
 				store.setAddress(rset.getString("ADDRESS"));
+				store.setStoreId(Integer.toString(rset.getInt("STORE_CODE")));
 				
 				selectedStore.add(store);
 				
@@ -178,15 +164,17 @@ public class StoreListDAO {
 		StringBuilder sb = new StringBuilder();
 		
 		sb.append("SELECT COUNT(*)\r\n"
-				+ "FROM (\r\n"
-				+ "SELECT A.STORE_NAME AS NAME, A.STORE_ADDR AS ADDRESS, D.ROUTE AS PHOTO, ROUND(AVG(C.SATISFIED),1) AS STAR , COUNT(C.SATISFIED) AS CONGESTION, COUNT(B.ORDER_PROCEED) AS REVIEWCNT\r\n"
+				+ "FROM(\r\n"
+				+ "SELECT A.STORE_CODE, A.STORE_CODE, A.STORE_NAME AS NAME, A.STORE_ADDR AS ADDRESS\r\n"
+				+ ", D.ROUTE AS PHOTO, ROUND(AVG(C.SATISFIED),1) AS STAR\r\n"
+				+ ", COUNT(C.SATISFIED) AS CONGESTION, COUNT(B.ORDER_PROCEED) AS REVIEWCNT\r\n"
 				+ "FROM STORE_TABLE A\r\n"
 				+ "JOIN ORDER_TABLE B\r\n"
 				+ "ON A.STORE_CODE = B.STORE_CODE\r\n"
 				+ "JOIN REVIEW C\r\n"
 				+ "ON A.STORE_CODE = C.STORE_CODE\r\n"
 				+ "JOIN PICTURE D\r\n"
-				+ "ON A.PICTURE_CODE = D.PICTURE_CODE\r\n");
+				+ "ON C.PICTURE_CODE = D.PICTURE_CODE\r\n");
 		
 		switch(cate) {
 		case "kor":
@@ -226,10 +214,9 @@ public class StoreListDAO {
 			break;
 		}
 		
-		sb.append("GROUP BY A.STORE_NAME, A.STORE_ADDR, D.ROUTE)");
+		sb.append("GROUP BY A.STORE_CODE, A.STORE_NAME, A.STORE_ADDR, D.ROUTE)");
 		
 		String query = sb.toString();
-		System.out.println(query);
 		
 		try {
 			pstmt = con.prepareStatement(query);

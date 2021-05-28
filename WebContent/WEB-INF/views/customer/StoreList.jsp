@@ -58,14 +58,14 @@ function init(){
 	const selectedType = url.searchParams.get("type");
 	
 	if(selectedType == "1"){
-		console.log("debug 1");
+
 		// 픽업 버튼에 선택 css 추가
 		pick.classList.add("on");
 		// 배달 버튼에 선택 안됨 css 추가
 		deliver.classList.add("off");
 	}
 	else if(selectedType == "2"){
-		console.log("debug 2");
+
 		// 픽업 버튼에 선택 안됨 css 추가
 		pick.classList.add("off");
 		// 배달 버튼에 선택 css 추가
@@ -111,20 +111,6 @@ function kakao_api(address){
 			map.setCenter(coords);
 		} 
 	});
-}
-
-function detailPage(){
-	
-	const root_url = "${ pageContext.servletContext.contextPath }/store/detail";
-	
-	const url = new URL(document.URL);
-	
-	const urlStoreId = url.searchParams.get("storeId");
-	
-	var move_url = root_url + "?storeId=" + urlStoreId;
-	
-	location.href = move_url;
-	
 }
 
 function orderChange(order){
@@ -186,34 +172,34 @@ function orderChange(order){
 			<br><br><br><br><br><br>
 
 			<c:forEach var="store" items="${ requestScope.selectedStore }" varStatus="status">
-				<div class="store">
-					<table>
-						<tr>
-							<td onclick="click_rest('tr_rest_${status.index}')" id="tr_rest_${status.index}"> 
-								<img id="store_photo_choice" src="${ store.photo }">
-							</td>
-							<td>
-								<div class="restaurants-info">
-									<div class="restaurant-name" title="가게이름">
-										<c:out value="${ store.storeName }" />
+					<div class="store">
+						<table>
+							<tr>
+								<td onclick="click_rest('tr_rest_${status.index}')" id="tr_rest_${status.index}"> 
+									<img id="store_photo_choice" src="${ store.photo }">
+								</td>
+								<td>
+									<div class="restaurants-info">
+										<div class="restaurant-name" title="가게이름">
+											<c:out value="${ store.storeName }" />
+										</div>
+										<div class="congestion" title="혼잡도">
+											<label id="congestion"> <c:out value="${ store.congestion }" /> </label>
+										</div>
+										<label id="name_tr_rest_${status.index}" disabled></label>
+										<div class="stars_reviw">
+											<span class="ico-star1">★ <c:out value="${ store.star }" /></span> 
+											<span class="break-line"> | </span> 
+											<span class="reviw-num">리뷰 <c:out value="${ store.reviewCnt }" /> 건</span>
+										</div>
+										<div class="choice">
+											<button id="store_choice" class="store_choice"><a href="${ pageContext.servletContext.contextPath }/store/detail?storeId=${ store.storeId }">선택</a></button>
+										</div>
 									</div>
-									<div class="congestion" title="혼잡도">
-										<label id="congestion"> <c:out value="${ store.congestion }" /> </label>
-									</div>
-									<label id="name_tr_rest_${status.index}" disabled></label>
-									<div class="stars_reviw">
-										<span class="ico-star1">★ <c:out value="${ store.star }" /></span> 
-										<span class="break-line"> | </span> 
-										<span class="reviw-num">리뷰 <c:out value="${ store.reviewCnt }" /> 건</span>
-									</div>
-									<div class="choice">
-										<button id="store_choice" onclick="detailPage()" class="store_choice">선택</button>
-									</div>
-								</div>
-							</td>
-						</tr>
-					</table>
-				</div>
+								</td>
+							</tr>
+						</table>
+					</div>
 			</c:forEach>
 			<br>
 		</div>

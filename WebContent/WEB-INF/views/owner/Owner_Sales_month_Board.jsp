@@ -90,16 +90,6 @@
                 </tbody>
             </table>
 
-
-            <div class="center clearfix">
-                <div class="button button_space">1</div>
-                <div class="button button_space">2</div>
-                <div class="button button_space">3</div>
-                <div class="button button_space">4</div>
-                <div class="button">5</div>
- <!--                <p class="total">-월달 총 [---,---,---]원<br>판매 하셨습니다.</p> -->
-            </div>
-            
         </div>
     </section>
 

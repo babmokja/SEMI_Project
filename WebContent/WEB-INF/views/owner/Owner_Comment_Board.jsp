@@ -89,26 +89,26 @@
         
         
         
-       <!--  <div class="top">
-            만족도,제목,고객아이디
-            <select class="form-select" >
-              <option selected>카테고리 선택</option>
-              <option value="1">만족도</option>
-              <option value="2">제목</option>
-              <option value="3">고객아이디</option>
-            </select>
-        </div> -->
-
-        <!-- <div class="top">
-            만족도,제목,고객아이디 입력
-            <input class="form-control" type="text" >
-            
-        </div>
-          
-        <div class="top">
-            <br>
-            <button type="button" class="btn btn-outline-secondary">검색하기</button>
-        </div> -->
+				       <!--  <div class="top">
+				            만족도,제목,고객아이디
+				            <select class="form-select" >
+				              <option selected>카테고리 선택</option>
+				              <option value="1">만족도</option>
+				              <option value="2">제목</option>
+				              <option value="3">고객아이디</option>
+				            </select>
+				        </div> -->
+				
+				        <!-- <div class="top">
+				            만족도,제목,고객아이디 입력
+				            <input class="form-control" type="text" >
+				            
+				        </div>
+				          
+				        <div class="top">
+				            <br>
+				            <button type="button" class="btn btn-outline-secondary">검색하기</button>
+				        </div> -->
     </div>
 
             <table> 
@@ -122,20 +122,20 @@
                         <th class="section_contest section_contest_6">주문일</th>
                     </tr>
                 </thead>
-                <tbody>
                 <c:forEach var="review" items="${ requestScope.reviewList }">
+                <tbody>
                     <tr>
                         <td class="section_contest_first section_contest_1">${ review.rowNum }</td>
                         <td class="section_contest_first section_contest_2">${ review.satisfied }</td>
-                        <td class="section_contest_first section_contest_3"><!-- <a href="Owner_Comment_Write_Board.html"> -->${ review.reviewContent }</a></td>
+                        <td class="section_contest_first section_contest_3">${ review.reviewContent }</a></td>
                         <td class="section_contest_first section_contest_4">${ review.userId }</td>
                         <td class="section_contest_first section_contest_5">${ review.replyDate }</td>
                         <td class="section_contest_first section_contest_6">${ review.orderTime }</td>
                     </tr>
 
                     
-                </c:forEach>
                 </tbody>
+                </c:forEach>
             </table>
 
 
@@ -220,9 +220,13 @@
     </section>
 
     </div>
+    
+    
     <footer>
         <address class="footer"> Copyright &copy; BABMOKJA All Right Reserved.</address>
     </footer>
+    
+    
     <script>
 		const link = "${ pageContext.servletContext.contextPath }/owner/replycomment";
 		const searchLink = "${ pageContext.servletContext.contextPath }/owner/searchreplycomment";
@@ -298,9 +302,11 @@
 				} */
 				
 				$tds[i].onclick = function() {
-					alert(this.parentNode.children[0].innerText);
-					location.href = "${ pageContext.servletContext.contextPath }/owner/detailreplycomment?no=" + no;
-				}
+					/* alert(this.parentNode.children[0].innerText); */
+					 var boardCode = $tds[0].innerHTML; 
+	    			
+					location.href = "${ pageContext.servletContext.contextPath }/owner/detailcomment?boardCode="+ boardCode;
+				} 
 				
 			}
 			

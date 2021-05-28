@@ -1,6 +1,7 @@
 package com.BoB.mvc.owner.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -8,9 +9,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.BoB.mvc.owner.model.dto.LicenseManagerDTO;
+import com.BoB.mvc.owner.model.dto.OwnerDTO;
 import com.BoB.mvc.owner.model.dto.PageInfoDTO;
 import com.BoB.mvc.owner.model.dto.ReviewBoardListDTO;
+import com.BoB.mvc.owner.model.dto.StoreInfoDTO;
 import com.BoB.mvc.owner.model.service.OwnerService;
 import com.BoB.mvc.owner.paging.OwnerPaging;
 
@@ -21,6 +26,23 @@ import com.BoB.mvc.owner.paging.OwnerPaging;
 public class OwnerBoardReplyCommentListServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		OwnerDTO ownerDTO = (OwnerDTO) session.getAttribute("ownerDTO");
+		LicenseManagerDTO lmDTO = (LicenseManagerDTO) session.getAttribute("lmDTO");
+		StoreInfoDTO storeDTO = (StoreInfoDTO) session.getAttribute("storeInfoDTO");
+		
+		
+		if(ownerDTO==null) {
+			
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter writer = response.getWriter();
+			writer.println("<script> location.href='${ pageContext.servletContext.contextPath }/main_store.jsp'; </script>");
+			
+			writer.close();
+
+			
+		} else {
 		
 		/* 프론트에서 넘어져오는 값 */
 		String currentPage = request.getParameter("currentPage");
@@ -40,7 +62,7 @@ public class OwnerBoardReplyCommentListServlet extends HttpServlet {
 		/* 전체 게시물 수가 필요 */
 		/* 데이터베이스에서 먼저 전체 게시물 수를 조회 */
 		OwnerService ownerService = new OwnerService();
-		int totalCount = ownerService.selectReviewReplyTotalCount();
+		int totalCount = ownerService.selectReviewReplyTotalCount(storeDTO);
 		
 		System.out.println("totalCount 체크 : " + totalCount);
 		
@@ -55,7 +77,7 @@ public class OwnerBoardReplyCommentListServlet extends HttpServlet {
 		System.out.println(pageInfo);
 		
 		/* 조회 해온다. */
-		List<ReviewBoardListDTO> reviewList = ownerService.selectReviewList(pageInfo);
+		List<ReviewBoardListDTO> reviewList = ownerService.selectReviewList(pageInfo,storeDTO);
 		
 		System.out.println("reviewList : " + reviewList);
 		
@@ -72,6 +94,6 @@ public class OwnerBoardReplyCommentListServlet extends HttpServlet {
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 
-		
+	}
 		
 }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<entry key="insertMenu">
+	INSERT INTO BASKET
+	VALUES 
+	(
+	  ?
+	, ?
+	, ?
+	, EX_SEQ.NEXTVAL
+	, ?
+	)
+	</entry>
+	
+	<entry key="selectPointById">
+	SELECT A.POINT AS POINT
+    FROM USER_TABLE A
+    WHERE A.USER_CODE = ?
+	</entry>
+	
+	<entry key="selectBasketById">
+    SELECT B.STORE_NAME AS STORENAME, C.MENU_NAME AS MENUNAME, A.AMOUNT AS AMOUNT, C.PRICE AS PRICE
+    FROM BASKET A
+    JOIN STORE_TABLE B
+    ON A.STORE_CODE = B.STORE_CODE
+    JOIN MENU C
+    ON A.MENU_CODE = C.MENU_CODE
+    WHERE A.USER_CODE = ?
+	</entry>
+	
+</properties>

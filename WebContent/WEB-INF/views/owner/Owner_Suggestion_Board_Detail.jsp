@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,32 +53,28 @@
                 </span>
         </div>
      
-        <!-- 버튼 -->
-
         <div class="wrap">
           <div class="gap">
             <div class="content">
               <div class="title">
-                <h2>글제목 예시입니다.</h2>
+                <h2>${ suggestionDetail.boardTitle }</h2>
               </div>
               <div class="small-title">
-                <p>글쓴이 <span>| 2021.04.21 11:11:11</span></p>
+                <p>글쓴이 <span>| ${ suggestionDetail.boardDate }</span></p>
               </div>
               <div class="under-line"></div>
-              <p class="container">안녕하세요 ooo입니다. 이런이런 사연이 있었는데 건의를 할려고 글을 남깁니다.</p>
+              <p class="container">${ suggestionDetail.boardContent }</p>
               <div class="coment-count">
                 <p>댓글 1개</p>
               </div>
               <div class="under-line"></div>
               <div class="coment clearfix">
                 <div class="name">관리자</div>
-                <div class="text-wrap">답변 댓글 예시입니다.</div>
-                <div class="date-wrap">2021.04.21 11:11:11</div>
+                <div class="text-wrap">${ suggestionDetail.replyContent }</div>
+                <div class="date-wrap">${ suggestionDetail.replyDate }</div>
               </div>
               <div class="under-line line-gap"></div>
               <div class="under-line"></div>
-             
-  
 
             </div>
           </div>

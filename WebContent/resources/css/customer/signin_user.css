@@ -134,3 +134,11 @@ footer{
 	
 	
 }
+
+input[type=text], input[type=password] { 
+	
+	margin-bottom : 15px;
+	margin-left : 15px;
+	width : 250px;
+}
+

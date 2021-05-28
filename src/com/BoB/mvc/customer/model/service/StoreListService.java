@@ -23,15 +23,16 @@ public class StoreListService {
 	 * @param cate 카테고리
 	 * @param order 
 	 * @param pageInfo 
+	 * @param storeId 
 	 * @return
 	 */
-	public List<StoreListDTO> selectStore(String cate, String type, String order, PageInfoDTO pageInfo) {
+	public List<StoreListDTO> selectStore(String cate, String type, String order, PageInfoDTO pageInfo, int storeId) {
 		
 		/* Connection 생성 */
 		Connection con = getConnection();
 		
 		/* Connection과 함께 정보를 전달하여 조회를 한다. */
-		List<StoreListDTO> selectedStore = storelistDAO.selectStore(con, cate, type, order, pageInfo);
+		List<StoreListDTO> selectedStore = storelistDAO.selectStore(con, cate, type, order, pageInfo, storeId);
 		
 		/* Connection을 닫는다. */
 		close(con);

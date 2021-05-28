@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,13 +15,14 @@ import java.util.Map;
 import java.util.Properties;
 
 import com.BoB.mvc.common.config.ConfigLocation;
-import com.BoB.mvc.owner.model.dto.PageInfoDTO;
 import com.BoB.mvc.owner.model.dto.LicenseManagerDTO;
 import com.BoB.mvc.owner.model.dto.OwnerDTO;
+import com.BoB.mvc.owner.model.dto.PageInfoDTO;
 import com.BoB.mvc.owner.model.dto.PictureDTO;
 import com.BoB.mvc.owner.model.dto.ReviewBoardListDTO;
 import com.BoB.mvc.owner.model.dto.SelectBeforeModifyDTO;
 import com.BoB.mvc.owner.model.dto.StoreInfoDTO;
+import com.BoB.mvc.owner.model.dto.SuggestionDTO;
 
 public class OwnerDAO {
 
@@ -224,6 +224,7 @@ public class OwnerDAO {
 			pstmt.setString(1, requestMember.getMemberId());
 			
 			rset = pstmt.executeQuery();
+			
 			
 			if(rset.next()) {
 				encPwd = rset.getString("USER_PWD");
@@ -572,9 +573,9 @@ public class OwnerDAO {
 
 
 
-	public int selectReviewReplyTotalCount(Connection con) {
+	public int selectReviewReplyTotalCount(Connection con, StoreInfoDTO storeDTO) {
 		
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
 		int totalCount = 0;
@@ -582,8 +583,9 @@ public class OwnerDAO {
 		String query = prop.getProperty("selectReviewReplyTotalCount");
 		
 		try {
-			stmt = con.createStatement();
-			rset = stmt.executeQuery(query);
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, storeDTO.getStoreCode());
+			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
 				totalCount = rset.getInt("COUNT(*)");
@@ -592,7 +594,7 @@ public class OwnerDAO {
 			e.printStackTrace();
 		} finally {
 			close(rset);
-			close(stmt);
+			close(pstmt);
 		}
 		
 		
@@ -601,7 +603,7 @@ public class OwnerDAO {
 
 
 
-	public List<ReviewBoardListDTO> selectReviewList(Connection con, PageInfoDTO pageInfo) {
+	public List<ReviewBoardListDTO> selectReviewList(Connection con, PageInfoDTO pageInfo, StoreInfoDTO storeDTO) {
 		
 		PreparedStatement pstmt = null;
 		
@@ -613,8 +615,9 @@ public class OwnerDAO {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, pageInfo.getStartRow());
-			pstmt.setInt(2, pageInfo.getEndRow());
+			pstmt.setInt(1, storeDTO.getStoreCode());
+			pstmt.setInt(2, pageInfo.getStartRow());
+			pstmt.setInt(3, pageInfo.getEndRow());
 			
 			rset = pstmt.executeQuery();
 			
@@ -676,8 +679,8 @@ public class OwnerDAO {
 
 
 
-	public List<ReviewBoardListDTO> selectReviewList(Connection con, String condition, String value,
-			PageInfoDTO pageInfo) {
+	public List<ReviewBoardListDTO> selectSearchReviewList(Connection con, String condition, String value,
+			PageInfoDTO pageInfo, StoreInfoDTO storeDTO) {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -708,9 +711,10 @@ public class OwnerDAO {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, value);
-			pstmt.setInt(2, pageInfo.getStartRow());
-			pstmt.setInt(3, pageInfo.getEndRow());
+			pstmt.setInt(1, storeDTO.getStoreCode());
+			pstmt.setString(2, value);
+			pstmt.setInt(3, pageInfo.getStartRow());
+			pstmt.setInt(4, pageInfo.getEndRow());
 			
 			rset = pstmt.executeQuery();
 			
@@ -740,6 +744,40 @@ public class OwnerDAO {
 		
 		
 		return reviewSearchList;
+	}
+
+
+
+	public ReviewBoardListDTO selectCommentDetail(Connection con, String boardNo) {
+		
+		PreparedStatement pstmt = null;
+		
+		ReviewBoardListDTO reviewDetail = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("CommentDetail");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, Integer.parseInt(boardNo));
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				reviewDetail = new ReviewBoardListDTO();
+				reviewDetail.setReviewContent(rset.getString("REVIEW_CONTENT"));
+				reviewDetail.setUserId(rset.getString("USER_ID"));
+				reviewDetail.setReplyDate(rset.getDate("REPLY_DATE"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+	
+		
+		return reviewDetail;
 	}
 
 

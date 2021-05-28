@@ -69,26 +69,91 @@
                         <th class="section_contest section_contest_5">작성일</th>
                     </tr>
                 </thead>
-                <tbody>
                 	<c:forEach items="${ requestScope.suggestionList }" var="sugList" >
+                <tbody>
                     <tr>
                         <td class="section_contest_first section_contest_1" id="boardCode" name ="boardCode">${sugList.boardCode}</td>
-                        <td class="section_contest_first section_contest_3" name ="boardTitle"><a href="${ pageContext.servletContext.contextPath }/suggestion/detail">${sugList.boardTitle}</a></td>
+                        <td class="section_contest_first section_contest_3" name ="boardTitle">${sugList.boardTitle}</a></td>
                         <td class="section_contest_first section_contest_5" name = "boardDate">${sugList.boardDate}</td>
+                        
                     </tr>      
-                    </c:forEach>              
                 </tbody>
+                    </c:forEach>              
             </table>
-            <div class="center clearfix">
+           <%--  <div class="center clearfix">
                 <div class="button button_space">1</div>
                 <div class="button button_space">2</div>
                 <div class="button button_space">3</div>
                 <div class="button button_space">4</div>
                 <div class="button">5</div>
                 <div class="button3"><a href="${ pageContext.servletContext.contextPath }/suggestion/insert"><button type="button">글작성</button></a></div>
-            </div>
+            </div> --%>
 
             </form>
+            
+            <div class="center clearfix" align="center">
+			<c:choose>
+			    <c:when test="${ empty requestScope.searchValue }">
+				    <button class="button button_space" id="startPage"><<</button>
+	
+					<c:if test="${ requestScope.pageInfo.pageNo <= 1 }">
+						<button class="button button_space" disabled><</button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo > 1 }">
+						<button class="button button_space" id="prevPage"><</button>
+					</c:if>
+					<c:forEach var="p" begin="${ requestScope.pageInfo.startPage }" end="${ requestScope.pageInfo.endPage }" step="1">
+						<c:if test="${ requestScope.pageInfo.pageNo eq p }">
+							<button class="button button_space" disabled><c:out value="${ p }"/></button>
+						</c:if>
+						<c:if test="${ requestScope.pageInfo.pageNo ne p }">
+							<button class="button button_space" onclick="pageButtonAction(this.innerText);"><c:out value="${ p }"/></button>
+						</c:if>
+					</c:forEach>
+					
+					<c:if test="${ requestScope.pageInfo.pageNo >= requestScope.pageInfo.maxPage }">
+						<button class="button button_space" disabled>></button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo < requestScope.pageInfo.maxPage }">
+						<button class="button button_space" id="nextPage">></button>
+					</c:if>
+					
+					<button class="button button_space" id="maxPage">>></button> 
+			     </c:when>
+			     
+			     
+			    <c:otherwise>
+   				    <button id="searchStartPage" class="button button_space"><<</button>
+	
+					<c:if test="${ requestScope.pageInfo.pageNo <= 1 }">
+						<button class="button button_space" disabled><</button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo > 1 }">
+						<button class="button button_space" id="searchPrevPage"><</button>
+					</c:if>
+		
+					<c:forEach var="p" begin="${ requestScope.pageInfo.startPage }" end="${ requestScope.pageInfo.endPage }" step="1">
+						<c:if test="${ requestScope.pageInfo.pageNo eq p }">
+							<button class="button button_space" disabled><c:out value="${ p }"/></button>
+						</c:if>
+						<c:if test="${ requestScope.pageInfo.pageNo ne p }">
+							<button class="button button_space" onclick="seachPageButtonAction(this.innerText);"><c:out value="${ p }"/></button>
+						</c:if>
+					</c:forEach>
+					
+					<c:if test="${ requestScope.pageInfo.pageNo >= requestScope.pageInfo.maxPage }">
+						<button class="button button_space" disabled>></button>
+					</c:if>
+					<c:if test="${ requestScope.pageInfo.pageNo < requestScope.pageInfo.maxPage }">
+						<button class="button button_space" id="searchNextPage">></button>
+					</c:if>
+					
+					<button class="button button_space" id="searchMaxPage">>></button> 
+			    </c:otherwise>
+			</c:choose>
+			        <div class="button3"><a href="${ pageContext.servletContext.contextPath }/suggestion/insert"><button type="button">글작성</button></a></div>
+			
+		</div>
             
 
     </section>
@@ -97,14 +162,107 @@
         <address class="footer"> Copyright &copy; BABMOKJA All Right Reserved.</address>
     </footer>
     
-        <script>
+    <script>
+		const link = "${ pageContext.servletContext.contextPath }/owner/replycomment";
+		const searchLink = "${ pageContext.servletContext.contextPath }/owner/searchreplycomment";
+			
+		if(document.getElementById("startPage")) {
+			const $startPage = document.getElementById("startPage");
+			$startPage.onclick = function() {
+				location.href = link + "?currentPage=1";
+			}
+		}
+		
+		if(document.getElementById("prevPage")) {
+			const $prevPage = document.getElementById("prevPage");
+			$prevPage.onclick = function() {
+				location.href = link + "?currentPage=${ requestScope.pageInfo.pageNo - 1 }";
+			}
+		}
+		
+		if(document.getElementById("nextPage")) {
+			const $nextPage = document.getElementById("nextPage");
+			$nextPage.onclick = function() {
+				location.href = link + "?currentPage=${ requestScope.pageInfo.pageNo + 1 }";
+			}
+		}
+		
+		if(document.getElementById("maxPage")) {
+			const $maxPage = document.getElementById("maxPage");
+			$maxPage.onclick = function() {
+				location.href = link + "?currentPage=${ requestScope.pageInfo.maxPage }";
+			}
+		}
+		
+		if(document.getElementById("searchStartPage")) {
+			const $searchStartPage = document.getElementById("searchStartPage");
+			$searchStartPage.onclick = function() {
+				location.href = searchLink + "?currentPage=1&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+		if(document.getElementById("searchPrevPage")) {
+			const $searchPrevPage = document.getElementById("searchPrevPage");
+			$searchPrevPage.onclick = function() {
+				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.pageNo - 1 }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+		if(document.getElementById("searchNextPage")) {
+			const $searchNextPage = document.getElementById("searchNextPage");
+			$searchNextPage.onclick = function() {
+				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.pageNo + 1 }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+		if(document.getElementById("searchMaxPage")) {
+			const $searchMaxPage = document.getElementById("searchMaxPage");
+			$searchMaxPage.onclick = function() {
+				location.href = searchLink + "?currentPage=${ requestScope.pageInfo.maxPage }&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+			}
+		}
+		
+		if(document.getElementsByTagName("td")) {
+			
+			const $tds = document.getElementsByTagName("td");
+			for(let i = 0; i < $tds.length; i++) {
+				
+				/* $tds[i].onmouseenter = function() {
+					this.parentNode.style.backgroundColor = "orangered";
+					this.parentNode.style.cursor = "pointer";
+				}
+				
+				$tds[i].onmouseout = function() {
+					this.parentNode.style.backgroundColor = "black";
+				} */
+				
+				 $tds[i].onclick = function() {
+					/* alert(this.parentNode.children[0].innerText); */
+					 var boardCode = $tds[0].innerHTML; 
+	    			
+					location.href = "${ pageContext.servletContext.contextPath }/suggestion/detail?boardCode="+ boardCode;
+				} 
+				
+			}
+			
+		}  
+		
+		function pageButtonAction(text) {
+			location.href = link + "?currentPage=" + text;
+		}
+		function seachPageButtonAction(text) {
+			location.href = searchLink + "?currentPage=" + text + "&searchCondition=${ requestScope.searchCondition}&searchValue=${ requestScope.searchValue}";
+		}
+	</script>
+    
+        <!-- <script>
     	$("#boardCode").change(function(){
     		var boardCode = $("#boardCode").val();
     			
-    		location.href="${ pageContext.servletContext.contextPath }/owner/sales/day?boardNum="+ boardCode;
+    		location.href="${ pageContext.servletContext.contextPath }/suggestion/detail?boardNum="+ boardCode;
     		
     	});
     	
-    </script>
+    </script> -->
 </body>
 </html>

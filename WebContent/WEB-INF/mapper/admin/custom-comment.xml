@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment/>
+
+<entry key="customerComment">
+
+SELECT
+       A.BOARD_CODE
+     , A.BOARD_TITLE
+     , A.BOARD_DATE
+     , A.BOARD_CONTENT
+     , B.USER_NAME
+  FROM USER_BOARD A
+  JOIN USER_TABLE B
+    ON(A.USER_CODE = B.USER_CODE)
+ WHERE A.BOARD_CODE = ?
+	
+</entry>
+
+<entry key="adminComment">
+
+SELECT
+
+      	C.USER_NAME
+      , B.REPLY_CONTENT
+      , B.REPLY_DATE
+      , B.REPLY_CODE
+  FROM USER_TOTAL_REPLY_BOARD A
+  JOIN USER_REPLY B ON (A.REPLY_CODE = B.REPLY_CODE)
+  JOIN (
+            SELECT
+            *
+            FROM USER_BOARD R
+            JOIN USER_TABLE E ON (R.USER_CODE = E.USER_CODE)
+       ) C
+  ON (C.BOARD_CODE = A.BOARD_CODE)
+  WHERE A.BOARD_CODE = ?
+
+</entry>
+
+<entry key="adminCommentadd">
+	
+	INSERT
+	  INTO USER_REPLY
+	VALUES
+	(
+	 ?
+	, SYSDATE
+	, ?
+	, ?
+	)
+
+</entry>
+
+<entry key="ownerComment">
+SELECT
+        B.BOARD_TITLE
+      , B.BOARD_DATE
+      , B.BOARD_CONTENT
+      , C.USER_NAME
+      , B.BOARD_CODE
+   FROM STORE_REPLY_BOARD A
+   JOIN OWNER_INQUIRY B ON (A.BOARD_CODE = B.BOARD_CODE)
+   JOIN(
+            SELECT
+            *
+            FROM OWNER_REPLY_MANAGE R
+            JOIN USER_TABLE E ON (R.USER_CODE = E.USER_CODE)
+        ) C
+     ON (C.REPLY_CODE = A.REPLY_CODE)
+  WHERE A.BOARD_CODE = ?
+</entry>
+
+<entry key="selectOwnerReply">
+	SELECT
+        C.USER_NAME
+      , C.REPLY_CONTENT
+      , C.REPLY_DATE
+      , C.REPLY_CODE
+   FROM STORE_REPLY_BOARD A
+   JOIN OWNER_INQUIRY B ON (A.BOARD_CODE = B.BOARD_CODE)
+   JOIN(
+            SELECT
+            *
+            FROM OWNER_REPLY_MANAGE R
+            JOIN USER_TABLE E ON (R.USER_CODE = E.USER_CODE)
+        ) C
+     ON (C.REPLY_CODE = A.REPLY_CODE)
+  WHERE A.BOARD_CODE = ?
+</entry>
+
+<entry key="insertStoreReply">
+	INSERT
+	  INTO STORE_REPLY_BOARD A
+	VALUES
+	(
+	  ?
+	, SEQ_REPLY_NO.CURRVAL
+	)
+</entry>
+
+<entry key="insertOwnerReply">
+	INSERT
+	  INTO OWNER_REPLY_MANAGE A
+	VALUES
+	(
+	  ?
+	, SYSDATE
+	, SEQ_REPLY_NO.NEXTVAL
+	, 3
+	)
+</entry>
+
+<entry key="insertTotalUserReply">
+	INSERT
+	  INTO USER_TOTAL_REPLY_BOARD A
+	VALUES
+	(
+	  ?
+	, SEQ_REPLY_NO.CURRVAL
+	)
+</entry>
+
+<entry key="insertUserReply">
+	INSERT
+	  INTO USER_REPLY A
+	VALUES
+	(
+	  ?
+	, SYSDATE
+	, SEQ_REPLY_NO.NEXTVAL
+	, 3
+	)
+</entry>
+
+</properties>

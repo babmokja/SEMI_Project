@@ -1,37 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>PC 주문 관리</title>
-  <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/reset_jh.css">
-    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/button_jh.css">
-    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/common_jh.css">
-    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/delivery_jh.css">
-    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/common_main_jh.css">
-    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/bootstrap.min.css">
-    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/success_modalpop_jh.css">
+  <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/semi_store/reset.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/semi_store/button.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/semi_store/common.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/semi_store/delivery.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/semi_store/common_main.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/semi_store/bootstrap.min.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/semi_store/success_modalpop.css">
 
-    <script src="resources/js/owner/semi_store_js/function_sc.js"></script>
+    <script src="${ pageContext.servletContext.contextPath }/resources/js/owner/semi_store_js/function_sc.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="resources/js/owner/semi_store_js/clickevent.js"></script>
+    <script src="${ pageContext.servletContext.contextPath }/resources/js/owner/semi_store_js/clickevent.js"></script>
 
 
 </head>
 
 <body>
     <aside>
-        <a href="${ pageContext.servletContext.contextPath }/main_store" id="logo" class="link-dark">BABMOKJA</a>
+        <a id="logo" class="link-dark" href="${ pageContext.servletContext.contextPath }/main" 
+        style="text-decoration: none;
+   		color: black;
+    	font-style: normal;
+    	font-weight: bolder;}"> babmokja </a>
         <p>Menu</p>
 
 
         <nav>
             <ul class="sidebar">
-                <li class="on"><a href="#;"><img src="resources/image/owner/delivery_pic.png" alt="배달" width="50px" height="50px">배
+                <li class="on"><a href="#;"><img src="${ pageContext.servletContext.contextPath }/resources/image/owner/delivery_pic.png" alt="배달" width="50px" height="50px">배
                         달</a></li>
-                <li><a href="${ pageContext.servletContext.contextPath }/pick_up"><img src="resources/image/owner/pick_up.png" alt="픽업" width="50px" height="50px">픽 업</a>
+                <li><a href="${ pageContext.servletContext.contextPath }/pick_up"><img src="${ pageContext.servletContext.contextPath }/resources/image/owner/pick_up.png" alt="픽업" width="50px" height="50px">픽 업</a>
                 </li>
 
             </ul>
@@ -45,13 +50,17 @@
                 고객 만족센터 : babmokja@babmokja.co.kr<br><br>
 
 
-                고객센터: 02-123-4567
+                고객센터: 02-123-4444
                 (24시간, 연중무휴)<br>
 
                 Copyright &copy; BABMOKJA All Right Reserved.
             </span>
         </div>
     </aside>
+    
+    
+    
+    
 
     <div id="wrap">
         <div class="float-wrap">
@@ -59,31 +68,31 @@
             <br>
             <div class="row bg-white">
                 <span class="col-2 menu-item menu-item-selected">
-                    <img class="img-fluid" src="resources/image/owner/item1.svg" />
-                    &nbsp;&nbsp;&nbsp;주문확인
-                </span>
-                <span class="col-2 menu-item  ">
-                    <img class="img-fluid" src="resources/image/owner/item2.png" />
-                    &nbsp;&nbsp;&nbsp; 내 정보관리
-                </span>
+                <img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/item1.svg" />
+                &nbsp;&nbsp;&nbsp;<a href="order.html">주문확인</a>
+              </span>
+              <span class="col-2 menu-item  ">
+                <img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/item2.png" />
+                &nbsp;&nbsp;&nbsp; 내 정보관리
+              </span>
+              <span class="col-2 menu-item">
+                <img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/item3.png" />
+                
+                &nbsp;&nbsp;&nbsp; <a class="text-dark" href="${ pageContext.servletContext.contextPath }/menu/all">내 업소 관리</a>
+              </span>
+              <span class="col-2 menu-item">
+                <img class="img-fluid" src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/PC주문관리.png" />
+                &nbsp;&nbsp;&nbsp;<a class="text-dark" href="${ pageContext.servletContext.contextPath }/owner/delivery">PC주문현황</a>
+              </span>
+  
+              <span class="col-2 menu-item">
+                  <span class="imagesize"><img src="${ pageContext.servletContext.contextPath }/image/owner/semi_store/item4.svg" /></span>
+                  &nbsp;&nbsp;&nbsp; <a class="text-dark" href="../../semi_board (업체용 게시판)/company/Owner_Comment_Board.html">리뷰관리</a>
+               </span>
+  
                 <span class="col-2 menu-item">
-                    <img class="img-fluid" src="resources/image/owner/item3.png" />
-
-                    &nbsp;&nbsp;&nbsp; <a class="text-dark"
-                        href="../../semi_board_sales/company/Owner_Sales_day_Board.html">내 업소 관리</a>
-                </span>
-                <span class="col-2 menu-item">
-                    <img class="img-fluid" src="resources/image/owner/PC주문관리.png" />
-                    &nbsp;&nbsp;&nbsp;<a class="text-dark" href="../views/delivery.html">pc주문현황</a>
-                </span>
-                <span class="col-2 menu-item">
-                    <span class="imagesize"><img class="img-fluid" src="resources/image/owner/item4.svg" /></span>
-                    &nbsp;&nbsp;&nbsp; <a class="text-dark" href="../../semi_board/company/Owner_Comment_Board.html">리뷰관리</a>
-                </span>
-
-                <span class="col-2 menu-item">
-                    <img class="img-fluid" src="resources/image/owner/item4.svg" />
-                    &nbsp;&nbsp;&nbsp; <a class="text-dark" href="../../semi_board/company/Owner_Seggestion_Board.html">1:1 문의하기</a>
+                  <img src="${ pageContext.servletContext.contextPath }/image/owner/item4.svg" />
+                  &nbsp;&nbsp;&nbsp; <a class="text-dark" href="${ pageContext.servletContext.contextPath }/suggestion/list">1:1 문의하기</a>
                 </span>
             </div>
 
@@ -94,290 +103,84 @@
                     <li id="tab3"><a href="#tab3">배달 완료</a></li>
                 </ul>
                 <main>
-                    <div class="content-wrap">
-                        <div class="content-info" id="tab1">
-                            <div>
-                                <input type="text" placeholder="고객번호(고객명)" readonly>
-                                <ul>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                </ul>
-                                <p>총 가격 : </p><input type="text" placeholder="50,000원" readonly>
-                                <div class="content-btn">
-                                    <a href="#;">주문 승인</a>
-                                    <a href="#;">주문 거절</a>
-                                </div>
-                            </div>
-                        </div>
+	
+                     <div class="content-wrap">
+                   		 <c:forEach items="${requestScope.deliveryList }" var= "delivery">
+                     <c:choose>
+                     	<c:when test="${ delivery.orderProceed eq '미승인' }">
+	                        <div class="content-info" id="tab1">
+	                            <div>
+	                                <input name="userId" type="text" value=<c:out value ="${ delivery.userId }(${delivery.userName })"/> readonly>
+	                                <ul>
+	                                <c:forEach items="${requestScope.cartList }" var = "cart">
+	                                     <li>${cart.menuName }  ${cart.amount }</li>
+	                                </c:forEach>
+	                                </ul>
+	                                <p>총 가격 : </p><input type="text" name="totalPrice" value="${ delivery.totalPrice}" readonly>
+	                                <div class="content-btn">
+	                                    <a>주문 승인</a>
+	                                    <a>주문 거절</a>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        </c:when>
+                     </c:choose>
+                        </c:forEach>
+                     </div>
 
-                        <div class="content-info">
-                            <div>
-                                <input type="text" placeholder="고객번호(고객명)" readonly>
-                                <ul>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                </ul>
-                                <p>총 가격 : </p><input type="text" placeholder="50,000원" readonly>
-                                <div class="content-btn">
-                                    <a href="#;">주문 승인</a>
-                                    <a href="#;">주문 거절</a>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="content-info">
-                            <div>
-                                <input type="text" placeholder="고객번호(고객명)" readonly>
-                                <ul>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                </ul>
-                                <p>총 가격 : </p><input type="text" placeholder="50,000원" readonly>
-                                <div class="content-btn">
-                                    <a href="#;">주문 승인</a>
-                                    <a href="#;">주문 거절</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="content-info">
-                            <div>
-                                <input type="text" placeholder="고객번호(고객명)" readonly>
-                                <ul>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                </ul>
-                                <p>총 가격 : </p><input type="text" placeholder="50,000원" readonly>
-                                <div class="content-btn">
-                                    <a href="#;">주문 승인</a>
-                                    <a href="#;">주문 거절</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="content-info">
-                            <div>
-                                <input type="text" placeholder="고객번호(고객명)" readonly>
-                                <ul>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                </ul>
-                                <p>총 가격 : </p><input type="text" placeholder="50,000원" readonly>
-                                <div class="content-btn">
-                                    <a href="#;">주문 승인</a>
-                                    <a href="#;">주문 거절</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="content-info">
-                            <div>
-                                <input type="text" placeholder="고객번호(고객명)" readonly>
-                                <ul>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                </ul>
-                                <p>총 가격 : </p><input type="text" placeholder="50,000원" readonly>
-                                <div class="content-btn">
-                                    <a href="#;">주문 승인</a>
-                                    <a href="#;">주문 거절</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <!-- ---------------------배송---------------------- -->
-                    <div class="content-wrap">
+                   
+                  <div class="content-wrap">
+                    <c:forEach items="${requestScope.deliveryList }" var= "delivery">
+                    <c:choose>
+                     	<c:when test="${ delivery.orderProceed eq ' 승인' }">
                         <div class="content-info" id="tab2">
                             <div>
-                                <input type="text" placeholder="고객번호(고객명)" readonly>
+                                <input type="text" placeholder="고객번호(고객명)" value = "${ delivery.userId }" readonly>
                                 <ul>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                    <li>0000</li>
+                                <c:forEach items="${requestScope.cartList }" var = "cart">
+                                    <li>${cart.menuName }  ${cart.amount }</li>
+                                </c:forEach>
                                 </ul>
-                                <p>총 가격 : </p><input type="text" placeholder="50,000원" readonly>
+                                <p>총 가격 : </p><input type="text" value="${ delivery.totalPrice}" readonly>
                                 <div class="content-btn1">
-                                    <a href="#;">배송&nbsp;진행</a>
+                                    <a href="#;">배송 진행</a>
                                 </div>
                             </div>
                         </div>
+                        </c:when>
+                        </c:choose>
+                        </c:forEach>
+                     </div>
 
-                        <div class="content-info">
-                            <div id="content-info">
-                                <input type="text" placeholder="고객번호(고객명)" readonly>
-                                <ul>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                </ul>
-                                <p>총 가격 : </p><input type="text" placeholder="50,000원" readonly>
-                                <div class="content-btn1">
-                                    <a href="#;">배송&nbsp;진행</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="content-info">
-                            <div>
-                                <input type="text" placeholder="고객번호(고객명)" readonly>
-                                <ul>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                </ul>
-                                <p>총 가격 : </p><input type="text" placeholder="50,000원" readonly>
-                                <div class="content-btn1">
-                                    <a href="#;">배송&nbsp;진행</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="content-info">
-                            <div>
-                                <input type="text" placeholder="고객번호(고객명)" readonly>
-                                <ul>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                </ul>
-                                <p>총 가격 : </p><input type="text" placeholder="50,000원" readonly>
-                                <div class="content-btn1">
-                                    <a href="#;">배송&nbsp;진행</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="content-info">
-                            <div>
-                                <input type="text" placeholder="고객번호(고객명)" readonly>
-                                <ul>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                </ul>
-                                <p>총 가격 : </p><input type="text" placeholder="50,000원" readonly>
-                                <div class="content-btn1">
-                                    <a href="#;">배송&nbsp;진행</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="content-info">
-                            <div>
-                                <input type="text" placeholder="고객번호(고객명)" readonly>
-                                <ul>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                </ul>
-                                <p>총 가격 : </p><input type="text" placeholder="50,000원" readonly>
-                                <div class="content-btn1">
-                                    <a href="#;">배송&nbsp;진행</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <!------------------------ 배송완료 ------------------------->
-                    <div class="content-wrap">
+                        
+                        <div class="content-wrap">
+                    <c:forEach items="${requestScope.deliveryList }" var= "delivery">
+                    <c:choose>
+                     	<c:when test="${ delivery.orderProceed eq '완료' }">
                         <div class="content-info" id="tab3">
                             <div>
-                                <input type="text" placeholder="고객번호(고객명)" readonly>
+                                <input type="text" placeholder="고객번호(고객명)" value = "${ delivery.userId }" readonly>
                                 <ul>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                    <li>0000</li>
+	                                <c:forEach items="${requestScope.cartList }" var = "cart">
+	                                    <li>${cart.menuName }  ${cart.amount }</li>
+	                                </c:forEach>
                                 </ul>
-                                <p>총 가격 : </p><input type="text" placeholder="50,000원" readonly>
+                                <p>총 가격 : </p><input type="text" value="${ delivery.totalPrice}" readonly>
                                 <div class="content-btn2">
-                                    <a href="">배송&nbsp;완료</a>
+                                    <a href="">배송 완료</a>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="content-info">
-                            <div id="content-info">
-                                <input type="text" placeholder="고객번호(고객명)" readonly>
-                                <ul>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                </ul>
-                                <p>총 가격 : </p><input type="text" placeholder="50,000원" readonly>
-                                <div class="content-btn2">
-                                    <a href="">배송&nbsp;완료</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="content-info">
-                            <div>
-                                <input type="text" placeholder="고객번호(고객명)" readonly>
-                                <ul>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                </ul>
-                                <p>총 가격 : </p><input type="text" placeholder="50,000원" readonly>
-                                <div class="content-btn2">
-                                    <a href="">배송&nbsp;완료</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="content-info">
-                            <div>
-                                <input type="text" placeholder="고객번호(고객명)" readonly>
-                                <ul>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                </ul>
-                                <p>총 가격 : </p><input type="text" placeholder="50,000원" readonly>
-                                <div class="content-btn2">
-                                    <a href="">배송&nbsp;완료</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="content-info">
-                            <div>
-                                <input type="text" placeholder="고객번호(고객명)" readonly>
-                                <ul>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                </ul>
-                                <p>총 가격 : </p><input type="text" placeholder="50,000원" readonly>
-                                <div class="content-btn2">
-                                    <a href="">배송&nbsp;완료</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="content-info">
-                            <div>
-                                <input type="text" placeholder="고객번호(고객명)" readonly>
-                                <ul>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                    <li>0000</li>
-                                </ul>
-                                <p>총 가격 : </p><input type="text" placeholder="50,000원" readonly>
-                                <div class="content-btn2">
-                                    <a href="">배송&nbsp;완료</a>
-                                </div>
-                            </div>
-                        </div>
+                        </c:when>
+                        </c:choose>
+                        </c:forEach>
+                     </div>
+       		     </main>
                     </div>
 
-            </div>
-            </main>
 
 
         </div>
@@ -386,19 +189,26 @@
 
     <div class="modal_wrap"></div>
     <!-- 소요 시간 팝업 -->
-    <div id="sc_modal">
-        <p class="modal_title">배달 소요 시간 선택</p>
-        <div class="time_list">
-            <ul>
-                <li><a> 30 분 ~ 40 분</a></li>
-                <li><a> 40 분 ~ 50 분</a></li>
-                <li><a> 50 분 ~ 60 분</a></li>
-            </ul>
-        </div>
-        <button type="submit" id="time_btn">선택 완료</button>
+    
+	<form action="${ pageContext.servletContext.contextPath }/update/time" method="post">
+    	<div id="sc_modal">
+      	  <p class="modal_title">배달 소요 시간 선택</p>
+      	  
+	       <div class="time_list">
+	            <ul>
+	                <li class="time" name="time"><a name="time"> 30 분 ~ 40 분</a></li>
+	                <li class="time" name="time"><a name="time"> 40 분 ~ 50 분</a></li>
+	                <li class="time" name="time"><a name="time"> 50 분 ~ 60 분</a></li>
+	            </ul>
+	            <input type="hidden" id="selection" name="selection">
+	       </div>
+	       
+        <button type="submit" id="time_btn" >선택 완료</button>
         <a class="modal_closebtn">
-            <img src="../image/close.png" alt="닫기" width="50px" height="50px"></a>
-    </div>
+            <img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/close.png" alt="닫기" width="50px" height="50px"></a>
+    	</div>
+    	
+    </form>
 
     <!-- 거절 팝업 -->
     <div id="sc_modal2">
@@ -415,13 +225,13 @@
         <button type="submit" class="choice_okbtn">선택 완료</button>
 
         <a class="modal_closebtn">
-            <img src="../image/close.png" alt="닫기" width="50px" height="50px"></a>
+            <img src="${ pageContext.servletContext.contextPath }/resources/image/owner/close.png" alt="닫기" width="50px" height="50px"></a>
     </div>
 
     <!-- 거절 진행 팝업 -->
     <div class="sc_modal_process">
         <div>
-            <img src="../image/경고.png" alt="경고!!" width="90px" height="105px">
+            <img src="${ pageContext.servletContext.contextPath }/resources/image/owner/warning.png" alt="경고!!" width="90px" height="105px">
             <p>주문 거절을 진행하시겠습니까?</p>
         </div>
 
@@ -434,7 +244,7 @@
 
     <div class="sc_modal_process2">
         <div>
-            <img src="../image/경고.png" alt="경고!!" width="90px" height="105px">
+            <img src="${ pageContext.servletContext.contextPath }/resources/image/owner/warning.png" alt="경고!!" width="90px" height="105px">
             <p>배달을 진행하시겠습니까?</p>
         </div>
 
@@ -444,7 +254,7 @@
         </div>
 
     </div>
-    <script src="../js/modal.js"></script>
+    <script src="${ pageContext.servletContext.contextPath }/resources/js/owner/semi_store_js/modal.js"></script>
 
     <script>
         $(function () {
@@ -474,7 +284,7 @@
                     $(".content-wrap")[2].style.display = "flex";
                 }
             });
-        });
+        }); 
 
     // $(function(){
     //     $(".sidebar>li").on('click',function(e){

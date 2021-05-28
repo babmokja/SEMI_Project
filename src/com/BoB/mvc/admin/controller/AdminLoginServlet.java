@@ -8,57 +8,45 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import com.BoB.mvc.admin.dto.AdminDTO;
 import com.BoB.mvc.admin.service.AdminLoginService;
 @WebServlet("/admin/login")
 public class AdminLoginServlet extends HttpServlet {
-	
-	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String adminId = request.getParameter("adminId");
 		String adminPwd = request.getParameter("adminPwd");
 		
-		
-		AdminDTO adminmember = new AdminDTO();
-		
-		
 		AdminLoginService adminservice = new AdminLoginService();
+
+		AdminDTO loginAdmin = adminservice.loginCheck(adminId, adminPwd);
 		
-		int roleCode = adminservice.selectRoleCode(adminId);
+		String path = "";
 		
-		
-		if(adminId.equals("admin")  && adminPwd.equals("admin")) {
+		if(loginAdmin != null) {
 			
-			if(roleCode == 3) {
-				AdminDTO loginAdmin = adminservice.loginCheck(adminId,adminPwd);
-	
+			if(adminservice.selectRoleCode(adminId) == 3) {
+				
 				HttpSession session = request.getSession();
 				session.setAttribute("loginAdmin", loginAdmin);
-				
-				
-				//System.out.println("request.getContextPath() : " + request.getContextPath());
-				//response.sendRedirect(request.getContextPath());
-				String path="";
+				request.setAttribute("message", "로그인 성공");
 				path = "/WEB-INF/views/admin/main_manager.jsp";
-				request.setAttribute("message", "성공");
-				request.getRequestDispatcher(path).forward(request, response);
-				
 			} else {
 				
-				System.out.println("관리자가 아님");
-				
+				request.setAttribute("message", "관리자가 아닙니다.");
+				path = "/WEB-INF/views/common/failed.jsp";
 			  }
 		}
 		else {
+			
 			request.setAttribute("message", "로그인실패");
-			request.getRequestDispatcher("/WEB-INF/views/common/failed.jsp").forward(request, response);
+			path = "/WEB-INF/views/common/failed.jsp";
 		}
 		
-		
-			
-	
+		request.getRequestDispatcher(path).forward(request, response);
 				
 	}
 

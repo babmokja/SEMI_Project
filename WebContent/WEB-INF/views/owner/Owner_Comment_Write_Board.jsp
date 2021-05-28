@@ -4,16 +4,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="resources/css/owner/semi_board/Owner_Comment_Write_Board.css">
-    <link rel="stylesheet" href="resources/css/owner/semi_board/main.css">
-    <link rel="stylesheet" href="resources/css/owner/semi_board/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owner/semi_board/Owner_Comment_Write_Board.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owner/semi_board/main.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owner/semi_board/bootstrap.min.css">
 
     <title>Document</title>
 </head>
 <body>
-    <aside class="aside">
+    <aside class="aside" style="width:340px;">
         <div class="aside_top2">BABMOKJA </div>
-        <div class="aside_top">업체 댓글달기 </div>
+        <div class="aside_top" style="width:100%; font-size: 40px;">업체 댓글달기 </div>
     </aside>
   
     <section id="section">
@@ -53,18 +53,18 @@
           <div class="gap">
             <div class="content">
               <div class="title">
-                <h2>글제목 예시입니다.</h2>
+                <h2>${ commentDetail.reviewContent }</h2>
               </div>
               <div class="small-title">
-                <p>글쓴이 <span>| 2021.04.21 11:11:11</span></p>
+                <p>${ commentDetail.userId } <span>| ${ commentDetail.replyDate }</span></p>
               </div>
               <div class="under-line"></div>
-              <p class="container">안녕하세요 ooo입니다. 이런이런 사연이 있었는데 건의를 할려고 댓글을 남깁니다.</p>
+              <p class="container">${ commentDetail.reviewContent }</p>
               <div class="coment-count">
-                <p>댓글 1개</p>
+                <p></p>
               </div>
               <div class="under-line"></div>
-              <div class="coment clearfix">
+              <!-- <div class="coment clearfix">
                 <div class="name">관리자</div>
                 <div class="text-wrap">답변 댓글 예시입니다.</div>
                 <div class="date-wrap">2021.04.21 11:11:11</div>
@@ -76,7 +76,7 @@
                 <textarea name="" id="" cols="30" rows="10"></textarea>
                 <button><a href="Owner_Comment_Board.html">댓글작성</a></button>
               </form>
-              <div class="under-line"></div>
+              <div class="under-line"></div> -->
 
             </div>
           </div>

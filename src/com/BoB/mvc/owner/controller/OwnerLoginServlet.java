@@ -1,6 +1,7 @@
 package com.BoB.mvc.owner.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,6 +53,12 @@ public class OwnerLoginServlet extends HttpServlet {
 			session.setAttribute("ownerDTO", ownerDTO);
 			session.setAttribute("lmDTO", lmDTO);
 			session.setAttribute("storeInfoDTO", storeInfoDTO);
+			
+//			response.setContentType("text/html; charset=UTF-8");
+//			PrintWriter writer = response.getWriter();
+//			writer.println("<script> location.href='${ pageContext.servletContext.contextPath }/main_store.jsp'; </script>");
+//			
+//			writer.close();
 			
 			System.out.println("request.getContextPath() : " + request.getContextPath());
 			request.getRequestDispatcher("/WEB-INF/views/owner/main_store.jsp").forward(request, response);			

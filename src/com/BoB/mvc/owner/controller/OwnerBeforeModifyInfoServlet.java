@@ -30,8 +30,8 @@ public class OwnerBeforeModifyInfoServlet extends HttpServlet {
 			
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter writer = response.getWriter();
-			writer.println("<script> location.href='${ pageContext.servletContext.contextPath }/main_store.jsp'; </script>");
-//			writer.println("<script>  </script>");
+			
+			writer.println("<script> alert('로그인 후 사용 바랍니다'); location.href='${ pageContext.servletContext.contextPath }/WEB-INF/views/owner/main_store.jsp'; </script>");
 			
 			writer.close();
 

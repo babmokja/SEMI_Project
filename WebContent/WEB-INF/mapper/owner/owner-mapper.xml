@@ -494,5 +494,78 @@
                     WHERE A.BOARD_CODE =?
 	</entry>
 	
+	<entry key="selectTotalCount">
+		    
+		select
+	    count(*)
+	    from order_table a
+	    join store_table c on(a.store_code = c.store_code)
+	    join user_table d on(c.user_code = d.user_code)
+	    where d.user_code =?
+	</entry>
+	
+	<entry key="selectOrderList">
+	SELECT
+    A.RNUM,
+    a.order_code,
+    A.user_id,
+    a.order_time,
+    a.ORDER_PROCEED,
+    a.TOTAL_AMOUNT
+	    FROM (SELECT ROWNUM RNUM,
+                        B.order_code,
+                        B.user_id,
+                        B.order_time,
+                        B.ORDER_PROCEED,
+                        B.TOTAL_AMOUNT
+                        FROM(SELECT  
+                                    C.order_code,
+                                    D.user_id,
+                                    C.order_time,
+                                    C.ORDER_PROCEED,
+                                    C.TOTAL_AMOUNT
+                                        from order_table C
+                                        join user_table D on(C.user_code = D.user_code)
+                                        join store_table E on(C.store_code = E.store_code)
+                                        join user_table F on(E.user_code = F.user_code)
+                                        where F.user_code = ?
+                                        ORDER BY C.ORDER_CODE DESC
+                            )B
+                )A
+        WHERE A.RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="DeliveryBasicInfo">
+	       SELECT
+			    A.ORDER_CODE,
+			    A.USER_CODE,
+			    B.USER_NAME,
+			    A.ORDER_PROCEED,
+			    A.OWNER_COMMENT,
+			    A.ORDER_TIME,
+			    A.TYPE_YN
 
+		    FROM ORDER_TABLE A
+		    JOIN USER_TABLE B ON(A.USER_CODE = B.USER_CODE)
+		    JOIN STORE_TABLE C ON(A.STORE_CODE = C.STORE_CODE)
+		    JOIN USER_TABLE D ON(C.USER_CODE = D.USER_CODE)
+		    WHERE D.USER_CODE = ?
+		      AND A.TYPE_YN = '배달'
+	     
+	</entry>
+	
+	<entry key="DeliveryOrderList">
+			SELECT 
+				    A.ORDER_CODE,
+				    C.MENU_NAME,
+				    B.AMOUNT,
+				    C.PRICE
+		      FROM ORDER_DETAIL A
+		      JOIN BASKET B ON (A.CART_CODE = B.CART_CODE)
+		      JOIN MENU C ON (B.MENU_CODE = C.MENU_CODE)
+		      JOIN ORDER_TABLE D ON(A.ORDER_CODE = D.ORDER_CODE)
+		      JOIN STORE_TABLE E ON (D.STORE_CODE = E.STORE_CODE)
+		      JOIN USER_TABLE F ON (E.USER_CODE = F.USER_CODE)
+		      WHERE F.USER_CODE = ?
+	</entry>
 </properties>

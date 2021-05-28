@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.BoB.mvc.owner.model.dto.CartListDTO;
 import com.BoB.mvc.owner.model.dto.DeliveryDTO;
 import com.BoB.mvc.owner.model.dto.OwnerDTO;
 import com.BoB.mvc.owner.model.dto.SuggestionDTO;
@@ -40,24 +41,27 @@ public class PcCheckListServlet extends HttpServlet {
 
 			
 		} else {
+			String path ="";
 			
-		
-		
-		String path ="";
-		
-		List<DeliveryDTO> deliveryList = new PCProcessService().selectAllOrderProcess(ownerCode);
-		
-		if(deliveryList !=null) {
-			path="/WEB-INF/views/owner/delivery.jsp";
-			request.setAttribute("deliveryList: ", deliveryList);
-		}else {
-			path="/WEB-INF/views/common/faild.jsp";
-			request.setAttribute("message", "주문진행 목록을 불러오는데 실패하셨습니다. 다시 페이지를 시작해주세요!");
+			List<DeliveryDTO> deliveryList = new PCProcessService().selectAllOrderProcess(ownerCode);
+			List<CartListDTO> cartList = new PCProcessService().selectMenuList(ownerCode);
+			System.out.println("deliveryList: "+ deliveryList);
+			System.out.println("cartList: "+ cartList);
+			
+			if(deliveryList !=null) {
+				path="/WEB-INF/views/owner/delivery.jsp";
+				request.setAttribute("deliveryList", deliveryList);
+				request.setAttribute("cartList", cartList);
+				System.out.println("여기??? 오나???");
+				
+			}else {
+				path="/WEB-INF/views/common/faild.jsp";
+				request.setAttribute("message", "주문진행 목록을 불러오는데 실패하셨습니다. 다시 페이지를 시작해주세요!");
+			}
+			
+			request.getRequestDispatcher(path).forward(request, response);
+			}
 		}
-	
-		request.getRequestDispatcher(path).forward(request, response);
-	}
-}
 	}
 
 

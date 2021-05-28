@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +8,7 @@
     <link rel="stylesheet" href="/SEMI_Project/resources/css/admin/admin_Owner_SecretWrite_Board.css">
     <link rel="stylesheet" href="/SEMI_Project/resources/css/admin/main1.css">
     <link rel="stylesheet" href="/SEMI_Project/resources/css/admin/bootstrap.min.css">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -41,39 +42,39 @@
           <div class="gap">
             <div class="content">
               <div class="title">
-                <h2>글제목 예시입니다.</h2>
+                <h2>${ requestScope.ownerComment.boardTitle }</h2>
               </div>
 
               <div class="small-title">
-                <p>글쓴이 <span>| 2021.04.21 11:11:11</span></p>
+                <p>${ requestScope.ownerComment.userName }<span>| ${ requestScope.ownerComment.boardDate }</span></p>
               </div>
 
               <div class="under-line"></div>
 
-              <p class="container">안녕하세요 ooo입니다. 이런이런 사연이 있었는데 건의를 할려고 글을 남깁니다.</p>
+              <p class="container">${ requestScope.ownerComment.boardContent }</p>
 
-              <div class="coment-count"><p>댓글 1개</p></div>
+              <div class="coment-count"><p></p></div>
 
               <div class="under-line"></div>
 
-              <div class="coment clearfix">
-
-                <div class="name">관리자</div>
-                <div class="text-wrap">답변 댓글 예시입니다.</div>
-                <div class="date-wrap">2021.04.21 11:11:11</div>
+              <div id="commentArea" class="coment clearfix">
+				<c:forEach var="reply" items="${ requestScope.replyList }">
+	                <div class="name">${ reply.userName }</div>
+	                <div class="text-wrap">${ reply.replyContent }</div>
+	                <div class="date-wrap">${ reply.replyDate }</div>
+				</c:forEach>
               </div>
 
               <div class="under-line line-gap"></div>
 
               <div class="under-line"></div>
-
-              <form action="#" name="asd" method="get" class="clearfix">
+				<form action="${pageContext.servletContext.contextPath}/admin/owner/insertReply" method="post">
                 <div class="name">관리자</div>
-                <textarea name="" id="" cols="30" rows="10"></textarea>
-                <div class="comment_button"><button><a href="${pageContext.servletContext.contextPath}/admin/owner/board">댓글 작성</a></button></div>
-                <div class="menu_button"><button><a href="${pageContext.servletContext.contextPath}/admin/owner/board">목록으로<br> 돌아가기</a></button></div>
-              </form>
-
+                <textarea id="content" name="content" cols="30" rows="10"></textarea>
+                <input type="hidden" name="boardCode" value="${ requestScope.ownerComment.boardCode }">
+                <div id="reply" class="comment_button"><button type="submit">댓글 작성</button></div>
+                <div class="menu_button"><button type="button"><a href="${pageContext.servletContext.contextPath}/admin/owner/board">목록으로<br> 돌아가기</a></button></div>
+				</form>
               <div class="under-line"></div>
 
             </div>

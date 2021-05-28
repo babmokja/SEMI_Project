@@ -1,266 +1,222 @@
-function PopUp1(){
-    var pop1 = document.querySelector(".bg");
-    var pop2 = document.querySelector(".menuwrap");
+// 메뉴담기모달 떠야함
+function PopUp1(check) {
+	var pop1 = document.querySelector(".bg");
+	var pop2 = check.parentElement.parentElement.nextElementSibling.nextElementSibling;
 
-    
-    pop1.style.display='block';
-    pop2.style.display='block';
-    document.querySelector(".spinner").value="1";
-    
-    
+	pop1.style.display = 'block';
+	pop2.style.display = 'block';
+	document.querySelector(".spinner").value = "1";
 }
-function PopUp2(){
-    var pop1 = document.querySelector(".bg2");
-    var pop2 = document.querySelector(".menuwrap2");
 
-    document.querySelector(".spinner2").value ="1";
+// 시간 선택하는 주문 모달 끄기
+function reservePopup(check) {
+	var pop1 = document.querySelector(".bg");
+	var pop2 = document.querySelector(".medal");
 
-    pop1.style.display='block';
-    pop2.style.display='block';
-
-    
-}
-function PopUp3(){
-    var pop1 = document.querySelector(".bg3");
-    var pop2 = document.querySelector(".menuwrap3");
-
-    document.querySelector(".spinner3").value ="1";
-
-    pop1.style.display='block';
-    pop2.style.display='block';
+	pop1.style.display = 'none';
+	pop2.style.display = 'none';
 
 }
 
-function reservePopup(){
-  var pop1 = document.querySelector(".bg");
-  var pop2 = document.querySelector(".medal");
+// 주문표에 추가
+function makeTable1(check) {
 
-  
-  pop1.style.display='none';
-  pop2.style.display='none';
-  
-  }
-// function makeTable() {
-//     document.getElementsByClassName("menuwrap").style.display = 'none';
-//     document.querySelector(".bg").style.display = 'none';
+	var menuName = check.parentElement.children[2].innerText;
+	var price = Number.parseInt(check.parentElement.children[3].children[0].innerText);
 
-//     var m =document.getElementById("maketable");
+	var cnt = 1;
+	var menuCode = Number.parseInt(check.parentElement.children[6].innerText);
 
-//     // m.write("<table border= 1px solid black>");
-//     // m.write("<tr height = '50px'>");
-//     // m.write("<td width = '50px'></td>");
-//     // m.write("</tr>");
-//     // m.write("</table>");
-//     "<tr>"
-//     <td colspan="4" ><div class="allmenu"></div></td>
-//     </tr>
-//     <tr>
-//         <td>가격</td>
-//         <td><div class="menuprice"></div></td>
-//         <td>개수</td>
-//         <td><div class="menucount"></div></td>
-//     </tr>";
+	if (document.getElementsByClassName('maketable')[0].innerHTML == "") {
 
-function makeTable1() {
-  if(!document.getElementById("insert_menu1")){
-    // table element 찾기
-    var table = document.getElementById('maketable');
-    
-    // 새 행(Row) 추가
-    var addmenu = table.insertRow(0);
-    addmenu.id = "insert_menu1";
-    // addmenu.setAttribute("id","insert_menu1",0);
-    var addmenu2 = table.insertRow(1);
-    // addmenu2.setAttribute("id","insert_menu1_desc",0);
-    addmenu2.id="insert_menu1_desc";
+		// table element 찾기
+		var table = document.getElementsByClassName('maketable')[0];
+		saveTest = document.getElementsByClassName('maketable')[0];
+		// 새 행(Row) 추가
+		var addmenu = table.insertRow(0);
+		addmenu.classList.add('insert_menu1');
+		var addmenu2 = table.insertRow(1);
+		addmenu2.classList.add('insert_menu1_desc');
 
-    // 새 행(Row)에 Cell 추가
-    var newCell1 = addmenu.insertCell(0);
-    newCell1.colSpan = 4;
-    var newCell2 = addmenu2.insertCell(0);
-    var newCell3 = addmenu2.insertCell(1);
-    var newCell4 = addmenu2.insertCell(2);
-    var newCell5 = addmenu2.insertCell(3);
-    newCell5.id = "menucount1";
-    
-    // Cell에 텍스트 추가
-    newCell1.innerText = document.getElementById("menu01").innerText;
-    newCell2.innerText = '가격';
-    newCell3.innerText = document.getElementById("price01").innerText;
-    newCell4.innerText = '개수';
-    newCell5.innerText = parseInt(document.querySelector(".spinner").value);
-  } else{
-    var k =document.getElementById("menucount1")
-    k.innerHTML = parseInt(k.innerHTML) + 1;
-  }
-    
-    var pop1 = document.querySelector(".bg");
-    var pop2 = document.querySelector(".menuwrap");
+		// 새 행(Row)에 Cell 추가
+		var newCell1 = addmenu.insertCell(0);
+		newCell1.colSpan = 5;
+		var newCell2 = addmenu2.insertCell(0);
+		var newCell3 = addmenu2.insertCell(1);
+		var newCell4 = addmenu2.insertCell(2);
+		var newCell5 = addmenu2.insertCell(3);
+		var newCell6 = addmenu2.insertCell(4);
+		newCell5.classList.add('menucount1');
 
-    pop1.style.display='none';
-    pop2.style.display='none';
+		// Cell에 텍스트 추가
+		newCell1.innerText = menuName;
+		newCell2.innerText = '가격';
+		newCell3.innerText = price;
+		newCell4.innerText = '개수';
+		newCell5.innerText = cnt;
+		newCell6.innerText = menuCode;
 
-  
+		newCell1.setAttribute('name', 'menuName');
+		newCell3.setAttribute('name',  'menuPrice');
+		newCell5.setAttribute('name',  'menuCnt');
+		newCell6.setAttribute('name', 'menuCode');
+		newCell6.setAttribute('style',  'display: none;');
 
+	} else {
 
+		var tdTest = document.getElementsByClassName('maketable')[0].getElementsByTagName('td');
 
+		for (var i = 0; i < tdTest.length - 1; i++)  {
+			if (tdTest[i].innerText == menuName) {
+				console.log(tdTest[i].innerText);
+				var cnt = Number(tdTest[i   + 4].innerText);
 
-  }
+				tdTest[i + 4].innerHTML = cnt + 1;
+				break;
+			}
 
+		}
+		var check1 = 0;
+		for  (var i = 0; i < tdTest.length - 1; i++) {
+			if  (tdTest[i].innerText != menuName) {
+				check1++;
 
-  function makeTable2() {
-    if(!document.getElementById("insert_menu2")){
+			}
+		}
+		console.log("check카운트 : " + check1);
 
-    // table element 찾기
-    var table = document.getElementById('maketable');
-    
-    // 새 행(Row) 추가
-    var addmenu = table.insertRow(0);
-    addmenu.id = "insert_menu2";
-    // addmenu.setAttribute("id","insert_menu2",0);
-    var addmenu2 = table.insertRow(1);
-    // addmenu2.setAttribute("id","insert_menu1_desc",0);
-    addmenu2.id="insert_menu2_desc";
+		if (check1 == tdTest.length - 1)  {
+			// table element 찾기
+			var table = document.getElementsByClassName('maketable')[0];
 
-    // 새 행(Row)에 Cell 추가
-    var newCell1 = addmenu.insertCell(0);
-    newCell1.colSpan = 4;
-    var newCell2 = addmenu2.insertCell(0);
-    var newCell3 = addmenu2.insertCell(1);
-    var newCell4 = addmenu2.insertCell(2);
-    var newCell5 = addmenu2.insertCell(3);
-    newCell5.id = "menucount2";
+			// 새 행(Row) 추가
+			var addmenu = table.insertRow(0);
+			addmenu.classList.add('insert_menu1');
+			var addmenu2 = table.insertRow(1);
+			addmenu2.classList.add('insert_menu1_desc');
 
-    // Cell에 텍스트 추가
-    newCell1.innerText = document.getElementById("menu02").innerText;
-    newCell2.innerText = '가격';
-    newCell3.innerText = document.getElementById("price02").innerText;
-    newCell4.innerText = '개수';
-    newCell5.innerText = parseInt(document.querySelector(".spinner2").value);
-  } else{
-    var k =document.getElementById("menucount2")
-    k.innerHTML = parseInt(k.innerHTML) + 1;
-  }
-    
-    var pop1 = document.querySelector(".bg2");
-    var pop2 = document.querySelector(".menuwrap2");
+			// 새 행(Row)에 Cell 추가
+			var newCell1 = addmenu.insertCell(0);
+			newCell1.colSpan = 5;
+			var newCell2 = addmenu2.insertCell(0);
+			var newCell3 = addmenu2.insertCell(1);
+			var newCell4 = addmenu2.insertCell(2);
+			var newCell5 = addmenu2.insertCell(3);
+			var newCell6 = addmenu2.insertCell(4);
+			newCell5.classList.add('menucount1');
 
-    pop1.style.display='none';
-    pop2.style.display='none';
+			// Cell에 텍스트 추가
+			newCell1.innerText = menuName;
+			newCell2.innerText = '가격';
+			newCell3.innerText = price;
+			newCell4.innerText = '개수';
+			newCell5.innerText = cnt;
+			newCell6.innerText = menuCode;
 
+			newCell1.setAttribute('name', 'menuName');
+			newCell3.setAttribute('name',  'menuPrice');
+			newCell5.setAttribute('name',  'menuCnt');
+			newCell6.setAttribute('name', 'menuCode');
+			newCell6.setAttribute('style',  'display: none;');
+		}
 
+	}
 
+	var pop1 = document.querySelector(".bg");
+	var pop2 = check.parentElement;
 
-  }
-
-  function makeTable3() {
-    if(!document.getElementById("insert_menu3")){
-    // table element 찾기
-    var table = document.getElementById('maketable');
-    
-    // 새 행(Row) 추가
-    var addmenu = table.insertRow(0);
-    addmenu.id = "insert_menu3";
-    // addmenu.setAttribute("id","insert_menu1",0);
-    var addmenu2 = table.insertRow(1);
-    // addmenu2.setAttribute("id","insert_menu1_desc",0);
-    addmenu2.id="insert_menu3_desc";
-
-    // 새 행(Row)에 Cell 추가
-    var newCell1 = addmenu.insertCell(0);
-    newCell1.colSpan = 4;
-    var newCell2 = addmenu2.insertCell(0);
-    var newCell3 = addmenu2.insertCell(1);
-    var newCell4 = addmenu2.insertCell(2);
-    var newCell5 = addmenu2.insertCell(3);
-    newCell5.id = "menucount3";
-    // Cell에 텍스트 추가
-    newCell1.innerText = document.getElementById("menu03").innerText;
-    newCell2.innerText = '가격';
-    newCell3.innerText = document.getElementById("price03").innerText;
-    newCell4.innerText = '개수';
-    newCell5.innerText = parseInt(document.querySelector(".spinner3").value);
-  } else{
-    var k =document.getElementById("menucount3")
-    k.innerHTML = parseInt(k.innerHTML) + 1;
-  }
-    
-    var pop1 = document.querySelector(".bg3");
-    var pop2 = document.querySelector(".menuwrap3");
-
-    pop1.style.display='none';
-    pop2.style.display='none';
-
-
-
-
-  }
-
-  function cancel1(){
-   
-       
-    var pop1 = document.querySelector(".bg");
-    var pop2 = document.querySelector(".menuwrap");
-
-    pop1.style.display='none';
-    pop2.style.display='none';
-  }
-    
-
-  function cancel2(){
-   
-
-    var pop1 = document.querySelector(".bg2");
-    var pop2 = document.querySelector(".menuwrap2");
-
-    pop1.style.display='none';
-    pop2.style.display='none';
-
-
-}
-  function cancel3(){
-    
-    var pop1 = document.querySelector(".bg3");
-    var pop2 = document.querySelector(".menuwrap3");
-
-    pop1.style.display='none';
-    pop2.style.display='none';
+	pop1.style.display = 'none';
+	pop2.style.display = 'none';
 
 }
 
-function del1(){
-  var k = document.getElementById("menucount1")
-  if(k.innerHTML=="1"){
-  // var tableRef = document.getElementById("insert_menu1");
-  // var tableRef2 = document.getElementById("insert_menu1_desc");
-  // tableRef.deleteRow(0);
-  // tableRef2.deleteRow(0);
-  document.getElementById("insert_menu1").remove();
-  document.getElementById("insert_menu1_desc").remove();
-} else { k.innerHTML = parseInt(k.innerHTML)-1;}
+// 메뉴담기 모달 끄기
+function cancel1(check) {
+
+	var pop1 = document.querySelector(".bg");
+	var pop2 = check.parentElement;
+
+	pop1.style.display = 'none';
+	pop2.style.display = 'none';
+}
+
+// 메뉴 빼기
+function del1(check) {
+
+	var makeTableArea = document.getElementsByClassName('maketable')[0];
+
+	if (makeTableArea.innerHTML != "") {
+
+		var tdCnt = makeTableArea.getElementsByTagName('td');
+		var menuListLength = document.getElementsByClassName('menu01').length;
+
+		for (var i = 0; i < tdCnt.length - 1; i++) {
+			if (tdCnt[i].innerText == check.parentElement.parentElement.getElementsByClassName("menu1")[0].innerText) {
+				console.log(tdCnt[i].innerText);
+				console.log(tdCnt[i].parentElement.nextElementSibling);
+				console.log('가격 : ' + tdCnt[i].parentElement.nextElementSibling.childNodes[1].innerText);
+				console.log('개수 : ' + tdCnt[i].parentElement.nextElementSibling.childNodes[3].innerText);
+
+				var menuName = tdCnt[i].innerText;
+				var savePrice = tdCnt[i].parentElement.nextElementSibling.childNodes[1].innerText;
+				var saveCount = tdCnt[i].parentElement.nextElementSibling.childNodes[3].innerText;
+				if (saveCount > 0)  {
+
+					tdCnt[i].parentElement.remove();
+					tdCnt[i].parentElement.remove();
+					if (saveCount > 1) {
+
+						// 새 행(Row) 추가
+						var addmenu = document.getElementsByClassName('maketable')[0].insertRow(0);
+						addmenu.classList.add('insert_menu1');
+						var addmenu2 = document.getElementsByClassName('maketable')[0].insertRow(1);
+						addmenu2.classList.add('insert_menu1_desc');
+
+						// 새 행(Row)에 Cell 추가
+						var newCell1 = addmenu.insertCell(0);
+						newCell1.colSpan = 5;
+						var newCell2 = addmenu2.insertCell(0);
+						var newCell3 = addmenu2.insertCell(1);
+						var newCell4 = addmenu2.insertCell(2);
+						var newCell5 = addmenu2.insertCell(3);
+						var newCell6 = addmenu2.insertCell(4);
+						newCell5.classList.add('menucount1');
+
+
+						// Cell에 텍스트 추가
+						newCell1.innerText = menuName;
+						newCell2.innerText = '가격';
+						newCell3.innerText = savePrice;
+						newCell4.innerText = '개수';
+						newCell5.innerText = saveCount - 1;
+						newCell6.innerText = menuCode;
+
+
+						newCell1.setAttribute('name', 'menuName');
+						newCell3.setAttribute('name', 'menuPrice');
+						newCell5.setAttribute('name', 'menuCnt');
+						newCell6.setAttribute('name', 'menuCode');
+						newCell6.setAttribute('style', 'display: none;');
+					}
+				} else {
+					tdCnt[i].parentElement.remove();
+					tdCnt[i].parentElement.remove();
+				}
+
+			}
+
+		}
+
+	}
 
 }
-function del2(){
-  var k = document.getElementById("menucount2")
-if(k.innerHTML=="1"){
-  // var tableRef = document.getElementById("insert_menu1");
-  // var tableRef2 = document.getElementById("insert_menu1_desc");
-  // tableRef.deleteRow(0);
-  // tableRef2.deleteRow(0);
-  document.getElementById("insert_menu2").remove();
-  document.getElementById("insert_menu2_desc").remove();
-} else { k.innerHTML = parseInt(k.innerHTML)-1;}
 
-}
-function del3(){
-  var k = document.getElementById("menucount3")
-    if(k.innerHTML=="1"){
-  // var tableRef = document.getElementById("insert_menu1");
-  // var tableRef2 = document.getElementById("insert_menu1_desc");
-  // tableRef.deleteRow(0);
-  // tableRef2.deleteRow(0);
-  document.getElementById("insert_menu3").remove();
-  document.getElementById("insert_menu3_desc").remove();
-} else { k.innerHTML = parseInt(k.innerHTML)-1;}
 
+// 시간 선택하는 모달 띄우기
+function reservePopUp(check) {
+	var pop1 = document.querySelector(".bg");
+	var pop2 = document.querySelector(".medal");
+
+	pop1.style.display = 'block';
+	pop2.style.display = 'block';
 }

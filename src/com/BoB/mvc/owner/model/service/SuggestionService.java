@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import com.BoB.mvc.owner.model.dao.SuggestionDAO;
+import com.BoB.mvc.owner.model.dto.PageInfoDTO;
 import com.BoB.mvc.owner.model.dto.SuggestionDTO;
 
 public class SuggestionService {
@@ -18,11 +19,12 @@ public class SuggestionService {
 	public SuggestionService(){
 		suggestionDAO = new SuggestionDAO();
 	}
-	public List<SuggestionDTO> selectAllSuggestion(int ownerCode) {
+	
+	public List<SuggestionDTO> selectAllSuggestion(PageInfoDTO pageInfo, int ownerCode) {
 
 		Connection con = getConnection();
 		
-		List<SuggestionDTO> suggestionList = suggestionDAO.selectAllList(con, ownerCode);
+		List<SuggestionDTO> suggestionList = suggestionDAO.selectAllList(con, pageInfo,ownerCode);
 		
 		close(con);
 		
@@ -54,4 +56,14 @@ public class SuggestionService {
 		return suggestionDetail;
 	}
 
+	public int selectSuggestionTotalCount(int ownerCode) {
+		
+		Connection con = getConnection();
+		
+		int totalCount = suggestionDAO.selectSuggestionTotalCount(con,ownerCode);
+		
+		close(con);
+		
+		return totalCount;
+	}
 }

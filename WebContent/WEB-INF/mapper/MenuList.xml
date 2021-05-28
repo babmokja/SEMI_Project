@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<entry key="selectMenuById">
+   	SELECT A.STORE_CODE AS CODE, A.MENU_NAME AS NAME, A.PRICE AS PRICE, B.ROUTE AS PICTURE, A.MENU_EXP AS EXP, A.MENU_CODE AS MENUCODE
+   	FROM MENU A
+   	JOIN PICTURE B 
+   	ON A.PICTURE_CODE = B.PICTURE_CODE
+   	WHERE A.STORE_CODE = ?
+    AND A.SALES_YN = 'Y'
+	</entry>
+	
+</properties>

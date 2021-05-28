@@ -21,6 +21,7 @@ import com.BoB.mvc.owner.model.dto.PictureDTO;
 import com.BoB.mvc.owner.model.dto.ReviewBoardListDTO;
 import com.BoB.mvc.owner.model.dto.SelectBeforeModifyDTO;
 import com.BoB.mvc.owner.model.dto.StoreInfoDTO;
+import com.BoB.mvc.owner.model.dto.SuggestionDTO;
 
 public class OwnerService {
 	
@@ -156,11 +157,11 @@ public class OwnerService {
 
 
 
-	public int selectReviewReplyTotalCount() {
+	public int selectReviewReplyTotalCount(StoreInfoDTO storeDTO) {
 		
 		Connection con = getConnection();
 		
-		int totalCount = ownerDAO.selectReviewReplyTotalCount(con);
+		int totalCount = ownerDAO.selectReviewReplyTotalCount(con,storeDTO);
 		
 		close(con);
 		
@@ -169,11 +170,11 @@ public class OwnerService {
 
 
 
-	public List<ReviewBoardListDTO> selectReviewList(PageInfoDTO pageInfo) {
+	public List<ReviewBoardListDTO> selectReviewList(PageInfoDTO pageInfo, StoreInfoDTO storeDTO) {
 		
 		Connection con = getConnection();
 		
-		List<ReviewBoardListDTO> ReviewList = ownerDAO.selectReviewList(con,pageInfo);
+		List<ReviewBoardListDTO> ReviewList = ownerDAO.selectReviewList(con,pageInfo,storeDTO);
 		
 		close(con);
 		
@@ -195,17 +196,38 @@ public class OwnerService {
 
 
 
-	public List<ReviewBoardListDTO> selectReviewList(String condition, String value, PageInfoDTO pageInfo) {
+	public List<ReviewBoardListDTO> selectSearchReviewList(String condition, String value, PageInfoDTO pageInfo, OwnerDTO ownerDTO, StoreInfoDTO storeDTO, LicenseManagerDTO lmDTO) {
 		
 		Connection con = getConnection();
 		
-		List<ReviewBoardListDTO> ReviewSearchList = ownerDAO.selectReviewList(con,condition, value, pageInfo);
+		List<ReviewBoardListDTO> ReviewSearchList = ownerDAO.selectSearchReviewList(con,condition, value, pageInfo,storeDTO);
 		
 		close(con);
 		
 		return ReviewSearchList;
 		
 	}
+
+
+
+	public ReviewBoardListDTO selectCommentDetail(String boardNo) {
+		
+		Connection con = getConnection();
+		
+		ReviewBoardListDTO commentDetail = ownerDAO.selectCommentDetail(con,boardNo);
+		
+		close(con);
+		
+		return commentDetail;
+	}
+
+
+
+
+
+
+
+	
 
 
 

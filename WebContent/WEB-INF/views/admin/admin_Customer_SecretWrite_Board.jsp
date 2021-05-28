@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+       <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,38 +42,60 @@
         <div class="wrap">
           <div class="gap">
             <div class="content">
-              <div class="title">
-                <h2>글제목 예시입니다.</h2>
-              </div>
+            
+             <c:forEach var="comment" items="${  requestScope.customerList}">
+               	                <h2><c:out value="${ comment.boardTitle }"/></h2>
+              	
+               
+               </c:forEach>
+              <!-- <div class="title">
+              
+              
+              </div> -->
 
               <div class="small-title">
-                <p>글쓴이 <span>| 2021.04.21 11:11:11</span></p>
+              <c:forEach var="comment" items="${  requestScope.customerList}">
+                <p><c:out value="${ comment.userName }"/> <span>| <c:out value="${ comment.boardDate }"/></span></p>
+                </c:forEach>
               </div>
 
               <div class="under-line"></div>
-
-              <p class="container">안녕하세요 ooo입니다. 이런이런 사연이 있었는데 건의를 할려고 글을 남깁니다.</p>
-
+      		<c:forEach var="comment" items="${requestScope.customerList}">
+              <p class="container"><c:out value="${ comment.boardContent }"/></p>
+			</c:forEach>
+			
               <div class="coment-count">
-                <p>댓글 1개</p>
+                <p></p>
               </div>
 
               <div class="under-line"></div>
 
               <div class="coment clearfix">
-                <div class="name">관리자</div>
-                <div class="text-wrap">답변 댓글 예시입니다.</div>
-                <div class="date-wrap">2021.04.21 11:11:11</div>
+              
+             
+              
+              <div class="name">관리자
+              <c:forEach var="admincomment" items="${  requestScope.replyList}">
+                <div class="text-wrap"><c:out value="${ admincomment.replyContent }"/></div>
+               
+                <div class="date-wrap"><c:out value="${ admincomment.replyDate }"/></div>
+               </c:forEach>
               </div>
-
+			 
+			
               <div class="under-line line-gap"></div>
 
               <div class="under-line"></div>
 
-              <form action="#" name="asd" method="get" class="clearfix">
+              
+              <form action="${pageContext.servletContext.contextPath}/admin/customer/insertReply" method="post">
                 <div class="name">관리자</div>
-                <textarea name="" id="" cols="30" rows="10"></textarea>
-                <button><a href="${pageContext.servletContext.contextPath}/admin/customer/board">댓글 작성</a></button>
+                <textarea id="content" name="content" cols="30" rows="10"></textarea>
+
+                <input type="hidden" name="boardCode" value="${ requestScope.intBoardCode }">
+                <div id="admincomment" class="comment_button"><button type="submit">댓글 작성</button></div>
+                
+               
               </form>
 
               <div class="under-line"></div>

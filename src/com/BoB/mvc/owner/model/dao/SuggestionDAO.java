@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.BoB.mvc.common.config.ConfigLocation;
+import com.BoB.mvc.owner.model.dto.PageInfoDTO;
 import com.BoB.mvc.owner.model.dto.SuggestionDTO;
 
 public class SuggestionDAO {
@@ -29,7 +30,7 @@ public class SuggestionDAO {
 		}
 	}
 
-	public List<SuggestionDTO> selectAllList(Connection con, int ownerCode) { 
+ public List<SuggestionDTO> selectAllList(Connection con, PageInfoDTO pageInfo, int ownerCode) { 
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -42,6 +43,9 @@ public class SuggestionDAO {
 			suggestionList = new ArrayList<>();
 			pstmt= con.prepareStatement(query);
 			pstmt.setInt(1, ownerCode);
+			pstmt.setInt(2, pageInfo.getStartRow());
+			pstmt.setInt(3, pageInfo.getEndRow());
+			
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
@@ -128,4 +132,31 @@ public class SuggestionDAO {
 		return suggestionDTO;
 	}
 
+	public int selectSuggestionTotalCount(Connection con, int ownerCode) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int totalCount = 0;
+		
+		String query = prop.getProperty("countAllSuggestion");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, ownerCode);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				totalCount = rset.getInt("COUNT(*)");
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return totalCount;
+	}
 }

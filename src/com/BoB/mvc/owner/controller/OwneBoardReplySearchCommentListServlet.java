@@ -8,9 +8,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.BoB.mvc.owner.model.dto.LicenseManagerDTO;
+import com.BoB.mvc.owner.model.dto.OwnerDTO;
 import com.BoB.mvc.owner.model.dto.PageInfoDTO;
 import com.BoB.mvc.owner.model.dto.ReviewBoardListDTO;
+import com.BoB.mvc.owner.model.dto.StoreInfoDTO;
 import com.BoB.mvc.owner.model.service.OwnerService;
 import com.BoB.mvc.owner.paging.OwnerPaging;
 
@@ -21,6 +25,13 @@ import com.BoB.mvc.owner.paging.OwnerPaging;
 public class OwneBoardReplySearchCommentListServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		OwnerDTO ownerDTO = (OwnerDTO) session.getAttribute("ownerDTO");
+		LicenseManagerDTO lmDTO = (LicenseManagerDTO) session.getAttribute("lmDTO");
+		StoreInfoDTO storeDTO = (StoreInfoDTO) session.getAttribute("storeInfoDTO");
+		
+		
 		
 		String condition = request.getParameter("searchCondition");
 		String value = request.getParameter("searchValue");
@@ -58,7 +69,7 @@ public class OwneBoardReplySearchCommentListServlet extends HttpServlet {
 		System.out.println(pageInfo);
 		
 		/* 조회 해온다. */
-		List<ReviewBoardListDTO> reviewList = ownerService.selectReviewList(condition, value, pageInfo);
+		List<ReviewBoardListDTO> reviewList = ownerService.selectSearchReviewList(condition, value, pageInfo,ownerDTO,storeDTO,lmDTO);
 		
 		System.out.println("reviewList : " + reviewList);
 		
