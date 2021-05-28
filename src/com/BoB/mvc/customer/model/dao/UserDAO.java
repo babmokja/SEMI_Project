@@ -313,7 +313,7 @@ public class UserDAO {
 
 		   List<UserOrderDTO> result = null;
 		   
-		  UserOrderDTO order = new UserOrderDTO();
+		  
 		
 		   String query = prop.getProperty("latestOrder");
 		  
@@ -327,7 +327,7 @@ public class UserDAO {
 			result = new ArrayList<>();
 			while(rset.next()) {
 				
-				
+				UserOrderDTO order = new UserOrderDTO();
 				order.setOrderDate(rset.getDate("ORDER_TIME"));
 				order.setOrderType(rset.getString("TYPE_YN"));
 				order.setStoreName(rset.getString("STORE_NAME"));
@@ -377,7 +377,7 @@ public class UserDAO {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println( "중복 아이쿼리에서 잘가져왔나??????" +checkId);
+		System.out.println( "중복 쿼리에서 잘가져왔나??????" +checkId);
 		return checkId;
 	}
 	

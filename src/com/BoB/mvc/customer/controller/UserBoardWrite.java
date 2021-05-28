@@ -18,7 +18,7 @@ import com.BoB.mvc.customer.model.service.UserBoardService;
 public class UserBoardWrite extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String path = "/WEB-INF/views/customer/User_Board_Write.jsp.jsp";
+		String path = "/WEB-INF/views/customer/User_Board_Write.jsp";
 
 		request.getRequestDispatcher(path).forward(request, response);
 	}

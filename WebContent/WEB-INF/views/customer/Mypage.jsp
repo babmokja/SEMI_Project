@@ -92,8 +92,9 @@
         <img src="${ pageContext.servletContext.contextPath }/resources/image/customer/user.png" width="150px" height="150px" style="margin-top: 10px;">
 
          <br>
-             <button class="smallbtn" onclick="location.href='${ pageContext.servletContext.contextPath }/user/modify">정보수정</button>
-<%--          <input type="button" value="수정하기" class="smallbtn" ><a href="${ pageContext.servletContext.contextPath }/user/modify"></a></input> --%>
+           <div ><a href="${ pageContext.servletContext.contextPath }/user/modify"><button class='smallbtn'>정보수정</button></a></div>
+             
+
       
           
          </div>
@@ -112,8 +113,7 @@
 <!--        <input type="button"id="modal_open_btn"  style="margin-left: 163px;" value="상세보기" class="smallbtn" > -->
        
        </div>  
-             <button class='question' onclick="location.href='${ pageContext.servletContext.contextPath }/board/list">1대1문의하기</button>                                         
-<%--       <input type="button" value="1대1 문의하기" class='question' ><a href="${ pageContext.servletContext.contextPath }/board/list"/></input> --%>
+             <div ><a href="${ pageContext.servletContext.contextPath }/board/list"><button class='question'>1대1문의하기</button></a></div>
      </section> 
     
   

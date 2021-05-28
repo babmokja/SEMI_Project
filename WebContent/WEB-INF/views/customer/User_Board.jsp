@@ -18,30 +18,8 @@
         <div class="aside_top">건의 게시판 </div>
     </aside>
     
-  <form action="${ pageContext.servletContext.contextPath }/board/list" method="GET">
+  
     <section class="section" >
-<%-- <div>
-            <table > 
-                <thead>
-                    <tr class="contest_top">  
-                        <th class="section_contest section_contest_1"  >제목</th>
-                        <th class="section_contest section_contest_2" >작성일</th>
-                    </tr>
-                </thead>
-
-                 <tbody>
-                    <c:forEach var="board" items="${ requestScope.boardList }">
-                    <tr>
-				        <td><c:out value="${ board.title }" style="width:50px"/></td>
-				        <td><c:out value="${ board.createdDate }"/></td>
-				    </tr>  
-                    </c:forEach>
-
-                   </tbody>
-                </table>
-         </section>
-</div>
-           --%>
 
 
             <table> 
@@ -54,12 +32,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                	<c:forEach items="${ requestScope.boardList }" var="board" >
+                	<c:forEach items="${ requestScope.boardList }" var="board" varStatus="status"  > 
                 	
                     <tr>
-                        <td class="section_contest_first section_contest_1"><c:out value="${ board.no }"/></td>
-                        <td class="section_contest_first section_contest_3"><a href="${ pageContext.servletContext.contextPath }/board/read"><c:out value="${ board.title }"/></a></td>
-				        <td class="section_contest_first section_contest_5"><c:out value="${ board.createdDate }"/></td>
+                        <td class="section_contest_first section_contest_1">${ board.no}</td>
+                        <td class="section_contest_first section_contest_3"><a href="${ pageContext.servletContext.contextPath }/board/read?no=${ board.no }">${ board.title }</a></td>
+				        <td class="section_contest_first section_contest_5">${ board.createdDate }</td>
                         
                     </tr>
                           
@@ -73,6 +51,7 @@
 			<c:choose>
 			    <c:when test="${ empty requestScope.searchValue }">
 				    <button class="btn btn-warning" id="startPage"><<</button>
+				    
 	
 					<c:if test="${ requestScope.pageInfo.pageNo <= 1 }">
 						<button class="btn btn-warning" disabled><</button>
@@ -103,11 +82,11 @@
 		</div>
 		
 		<div style="margin:10px 0 0 1500px ">
-<%-- 		<button onclick="location.href='${ pageContext.servletContext.contextPath }/user/board/write'">글작성</button> --%>
-				       
+	
+		<div ><a href="${ pageContext.servletContext.contextPath }/user/board/write"><button >글작성</button></a></div>		       
          </div>
-         </form>
-         
+ 
+         s
          		
 		<script>
 		

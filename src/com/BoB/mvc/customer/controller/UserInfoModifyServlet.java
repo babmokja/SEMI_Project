@@ -72,17 +72,21 @@ public class UserInfoModifyServlet extends HttpServlet {
 		
 		int result = new UserService().modifyUser(requestUser);
 		
-		String page = "";
-         if(result > 0) {
-			
-			page = "/WEB-INF/views/common/success.jsp";
-			request.setAttribute("successCode", "insertMember");
+
+		
+        String path="";
+         
+ 		if(result > 0) {
+			path = "/WEB-INF/views/customer/CustomerMain.jsp";
+			request.setAttribute("successCode", "signin");
 			
 		} else {
-			page = "/WEB-INF/views/common/failed.jsp";
-			request.setAttribute("message", "정보수정실패!!!!!!");
+			request.setAttribute("message", "로그인 실패!");
+			request.getRequestDispatcher("/WEB-INF/views/customer/Login.jsp").forward(request, response);
+            
 		}
 		
+		request.getRequestDispatcher(path).forward(request, response);
 	}
 
 }

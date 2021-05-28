@@ -41,7 +41,7 @@ public class UserBoardDAO {
 		
 		
 		String query = prop.getProperty("selectBoardList");
-		BoardDTO board = new BoardDTO();
+		
 	    
 		
 		try {
@@ -57,7 +57,7 @@ public class UserBoardDAO {
 			boardList = new ArrayList<>();
 			
 			while(rset.next()) {
-				
+				BoardDTO board = new BoardDTO();
 				board.setTitle(rset.getString("BOARD_TITLE"));
 				board.setBody(rset.getString("BOARD_CONTENT"));
 				board.setCreatedDate(rset.getDate("BOARD_DATE"));
