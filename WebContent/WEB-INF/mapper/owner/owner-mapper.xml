@@ -285,7 +285,7 @@
 	(
 	  ?
 	, ?
-	, ?
+	, '3,4'
 	, ?
 	, SEQ_USER.CURRVAL
 	, SEQ_LMANAGER.CURRVAL

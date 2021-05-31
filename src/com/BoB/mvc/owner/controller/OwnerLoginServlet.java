@@ -63,7 +63,6 @@ public class OwnerLoginServlet extends HttpServlet {
 			System.out.println("request.getContextPath() : " + request.getContextPath());
 			request.getRequestDispatcher("/WEB-INF/views/owner/main_store.jsp").forward(request, response);			
 		} else {
-			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter writer = response.getWriter();
 			writer.println("<script> alert('아이디와 패스워드를 확인하세요'); location.href ='"+ request.getContextPath() +"/main';</script>");
 			writer.close();

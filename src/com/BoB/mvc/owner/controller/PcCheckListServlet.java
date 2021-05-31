@@ -13,11 +13,10 @@ import javax.servlet.http.HttpSession;
 
 import com.BoB.mvc.owner.model.dto.CartListDTO;
 import com.BoB.mvc.owner.model.dto.DeliveryDTO;
+import com.BoB.mvc.owner.model.dto.LicenseManagerDTO;
 import com.BoB.mvc.owner.model.dto.OwnerDTO;
 import com.BoB.mvc.owner.model.dto.StoreInfoDTO;
-import com.BoB.mvc.owner.model.dto.SuggestionDTO;
 import com.BoB.mvc.owner.model.service.PCProcessService;
-import com.BoB.mvc.owner.model.service.SuggestionService;
 
 /**
  * Servlet implementation class PcCheckListServlet
@@ -29,6 +28,19 @@ public class PcCheckListServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		OwnerDTO ownerDTO = (OwnerDTO) session.getAttribute("ownerDTO");
+		LicenseManagerDTO lmDTO = (LicenseManagerDTO) session.getAttribute("lmDTO");
+		StoreInfoDTO storeDTO = (StoreInfoDTO) session.getAttribute("storeInfoDTO");
+		
+		if(ownerDTO==null) {
+			
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter writer = response.getWriter();
+			writer.println("<script> alert('로그인 후 사용 바랍니다'); location.href ='"+ request.getContextPath() +"/main';</script>");
+			writer.close();
+
+
+		} else {
+		
 
 		int ownerCode = ownerDTO.getUserCode();
 
@@ -68,6 +80,6 @@ public class PcCheckListServlet extends HttpServlet {
 			request.getRequestDispatcher(path).forward(request, response);
 			}
 		}
-	}
+	}}
 
 

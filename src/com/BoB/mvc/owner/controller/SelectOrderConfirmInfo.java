@@ -1,6 +1,7 @@
 package com.BoB.mvc.owner.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,7 +15,9 @@ import com.BoB.mvc.admin.dto.PageInfoDTO;
 import com.BoB.mvc.admin.dto.orderDTO2;
 import com.BoB.mvc.admin.paging.OrderPaging;
 import com.BoB.mvc.admin.service.AdminService;
+import com.BoB.mvc.owner.model.dto.LicenseManagerDTO;
 import com.BoB.mvc.owner.model.dto.OwnerDTO;
+import com.BoB.mvc.owner.model.dto.StoreInfoDTO;
 
 /**
  * Servlet implementation class SelectOrderConfirmInfo
@@ -26,6 +29,18 @@ public class SelectOrderConfirmInfo extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		OwnerDTO ownerDTO = (OwnerDTO) session.getAttribute("ownerDTO");
+		LicenseManagerDTO lmDTO = (LicenseManagerDTO) session.getAttribute("lmDTO");
+		StoreInfoDTO storeDTO = (StoreInfoDTO) session.getAttribute("storeInfoDTO");
+		
+		if(ownerDTO==null) {
+			
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter writer = response.getWriter();
+			writer.println("<script> alert('로그인 후 사용 바랍니다'); location.href ='"+ request.getContextPath() +"/main';</script>");
+			writer.close();
+
+
+		} else {
 		int ownerNum = ownerDTO.getUserCode();
 		
 		System.out.println(ownerDTO.getUserCode());
@@ -67,6 +82,6 @@ public class SelectOrderConfirmInfo extends HttpServlet {
 		
 		
 		
-	}
+	}}
 
 }

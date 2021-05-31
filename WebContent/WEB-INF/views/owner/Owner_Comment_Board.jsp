@@ -15,7 +15,8 @@
 </head>
 <body>
     <aside class="aside">
-        <div class="aside_top2">BABMOKJA </div>
+        <div class="aside_top2"><a href="${ pageContext.servletContext.contextPath }/main" 
+        style="text-decoration: none; color: black; font-style: normal; font-weight: bolder;}"> babmokja </a></div>
         <div class="aside_top">고객 댓글관리 </div>
     </aside>
   
