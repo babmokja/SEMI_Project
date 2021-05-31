@@ -523,12 +523,31 @@
 	      , ?
 	      , SYSDATE
 	      , ?
-	      , 'N'
+	      , 'Y'
 	      , ?
 	     )
 	     
 	       
 	</entry>
+	
+	<entry key ="SuggestionReplyDetail">
+        SELECT
+                    B.BOARD_CODE as "boardCode"
+                  , M.REPLY_CODE as "replyCode"
+                  , M.REPLY_CONTENT as "replyContent"
+                  , M.REPLY_DATE  as "replyDate"
+                  , U.USER_NAME as "userName"
+            FROM OWNER_REPLY_MANAGE M
+            JOIN STORE_REPLY_BOARD A ON(A.REPLY_CODE =M.REPLY_CODE)
+            JOIN OWNER_INQUIRY B ON(B.BOARD_CODE = A.BOARD_CODE)
+            JOIN USER_TABLE U ON(B.OWNER_CODE = U.USER_CODE)
+           WHERE B.BOARD_CODE=?
+         
+   
+   </entry>
+   
+	
+	
 	
 	<entry key="SuggestionDetail">
 	        SELECT
