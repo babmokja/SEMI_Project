@@ -69,15 +69,14 @@
             <div class="row bg-white">
                 <span class="col-2 menu-item menu-item-selected">
                 <img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/item1.png" />
-                &nbsp;&nbsp;&nbsp;<a href="order.html">주문확인</a>
+                &nbsp;&nbsp;&nbsp;<a href="${ pageContext.servletContext.contextPath }/order/confirm">주문확인</a>
               </span>
               <span class="col-2 menu-item  ">
                 <img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/item2.png" />
-                &nbsp;&nbsp;&nbsp; 내 정보관리
+                &nbsp;&nbsp;&nbsp;<a href="${ pageContext.servletContext.contextPath }/owner/modify"> 내 정보관리</a>
               </span>
               <span class="col-2 menu-item">
                 <img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/item3.png" />
-                
                 &nbsp;&nbsp;&nbsp; <a class="text-dark" href="${ pageContext.servletContext.contextPath }/menu/all">내 업소 관리</a>
               </span>
               <span class="col-2 menu-item">
@@ -87,7 +86,7 @@
   
               <span class="col-2 menu-item">
                   <span class="imagesize"><img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/item4.png" /></span>
-                  &nbsp;&nbsp;&nbsp; <a class="text-dark" href="../../semi_board (업체용 게시판)/company/Owner_Comment_Board.html">리뷰관리</a>
+                  &nbsp;&nbsp;&nbsp; <a class="text-dark" href="${ pageContext.servletContext.contextPath }/owner/replycomment">리뷰관리</a>
                </span>
   
                 <span class="col-2 menu-item">

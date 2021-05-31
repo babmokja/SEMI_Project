@@ -48,32 +48,31 @@
         
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
           
-          <div class="row">
+         <div class="row">
             <span class="col-2 menu-item menu-item-selected">
-                <img src="${ pageContext.servletContext.contextPath }/resources/image/admin/item1.png" />
-                &nbsp;&nbsp;&nbsp;<a href="order.html">주문확인</a>
+                <img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/item1.png" />
+                &nbsp;&nbsp;&nbsp;<a href="${ pageContext.servletContext.contextPath }/order/confirm">주문확인</a>
               </span>
               <span class="col-2 menu-item  ">
                 <img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/item2.png" />
-                &nbsp;&nbsp;&nbsp; 내 정보관리
+                &nbsp;&nbsp;&nbsp;<a href="${ pageContext.servletContext.contextPath }/owner/modify">내 정보관리</a>
               </span>
               <span class="col-2 menu-item">
-                <img src="${ pageContext.servletContext.contextPath }/resources/image/admin/item3.png" />
-                
+                <img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/item3.png" />
                 &nbsp;&nbsp;&nbsp; <a class="text-dark" href="${ pageContext.servletContext.contextPath }/menu/all">내 업소 관리</a>
               </span>
               <span class="col-2 menu-item">
-                <img class="img-fluid" src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/computer.png" />
+                <img class="img-fluid" src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_board/computer.png" />
                 &nbsp;&nbsp;&nbsp;<a class="text-dark" href="${ pageContext.servletContext.contextPath }/owner/delivery">PC주문현황</a>
               </span>
   
               <span class="col-2 menu-item">
-                  <span class="imagesize"><img src="${ pageContext.servletContext.contextPath }/resources/image/admin/item4.png" /></span>
-                  &nbsp;&nbsp;&nbsp; <a class="text-dark" href="../../semi_board (업체용 게시판)/company/Owner_Comment_Board.html">리뷰관리</a>
-                </span>
+                  <span class="imagesize"><img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/item4.png" /></span>
+                  &nbsp;&nbsp;&nbsp; <a class="text-dark" href="${ pageContext.servletContext.contextPath }/owner/replycomment">리뷰관리</a>
+                  </span>
   
                 <span class="col-2 menu-item">
-                  <img src="${ pageContext.servletContext.contextPath }/resources/image/admin/item4.png" />
+                  <img src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_store/item4.png" />
                   &nbsp;&nbsp;&nbsp; <a class="text-dark" href="${ pageContext.servletContext.contextPath }/suggestion/list">1:1 문의하기</a>
                 </span>
         </div>
