@@ -5,6 +5,7 @@ import static com.BoB.mvc.common.jdbc.JDBCTemplate.close;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -52,12 +53,11 @@ public class OwnerCommentBoardDAO {
 			if(rset.next()) {
 				
 				
+				ownerComment.setBoardCode(rset.getInt("BOARD_CODE"));
 				ownerComment.setBoardTitle(rset.getString("BOARD_TITLE"));
 				ownerComment.setBoardDate(rset.getDate("BOARD_DATE"));
-				ownerComment.setUserName(rset.getString("USER_NAME"));
 				ownerComment.setBoardContent(rset.getString("BOARD_CONTENT"));
-				ownerComment.setBoardCode(rset.getInt("BOARD_CODE"));
-				
+				ownerComment.setUserName(rset.getString("USER_NAME"));
 				
 			}
 			

@@ -19,27 +19,33 @@ import com.BoB.mvc.customer.model.service.OrderPayService;
 public class OrderPaySelectServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		// select
+		
 		int userCodeSelect = Integer.parseInt(request.getParameter("code")); // 사용자 코드
 		// int userCodeInsert = ((UserDTO)request.getSession().getAttribute("loginUser")).getUserCode();
-		
+
 		OrderPayService orderpayService = new OrderPayService();
 		
 		OrderPayDTO selectPoint = orderpayService.selectPoint(userCodeSelect);
 		List<OrderPayDTO> selectBasket = orderpayService.selectBasket(userCodeSelect);
+		int basketSize = selectBasket.size();
+		OrderPayDTO orderPerson = orderpayService.selectOrderPerson(userCodeSelect);
 		
-		System.out.println("selectPoint : " + selectPoint);
-		System.out.println("selectBasket : " + selectBasket);
+		int totalPay = 0;
+		
+		for(OrderPayDTO tmp: selectBasket) {
+		    totalPay += tmp.getPrice();
+		}
 		
 		String path = ""; 
-		if((selectBasket != null) && (selectPoint != null)) {
+		if((selectBasket != null) && (selectPoint != null) && (orderPerson != null)) {
 			path = "/WEB-INF/views/customer/Pay.jsp";
 			request.setAttribute("selectPoint", selectPoint);
-			request.setAttribute("selectBasket", selectBasket); 
+			request.setAttribute("selectBasket", selectBasket);
+			request.setAttribute("totalPay", totalPay);
+			request.setAttribute("orderPerson", orderPerson);
 		} else {
 			path = "/WEB-INF/views/common/customer/failed.jsp";
-			request.setAttribute("message", "주문 내역 확인 페이지를 담을 수 없습니다.");
+			request.setAttribute("message", "주문 확인 페이지를 호출 할 수 없습니다.");
 		}
 		
 		request.getRequestDispatcher(path).forward(request, response);

@@ -1,6 +1,7 @@
 package com.BoB.mvc.owner.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -8,8 +9,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.BoB.mvc.owner.model.dto.LicenseManagerDTO;
 import com.BoB.mvc.owner.model.dto.MenuListDTO;
+import com.BoB.mvc.owner.model.dto.OwnerDTO;
+import com.BoB.mvc.owner.model.dto.StoreInfoDTO;
 import com.BoB.mvc.owner.model.service.MenuListService;
 
 /**
@@ -20,15 +25,26 @@ public class SelectAllMenuManageServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String path ="/WEB-INF/views/owner/MenuManage.jsp";
+//		String path ="/WEB-INF/views/owner/MenuManage.jsp";
+//		
+//		request.getRequestDispatcher(path).forward(request, response);
 		
-		request.getRequestDispatcher(path).forward(request, response);
 		
-	}
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		OwnerDTO dto = (OwnerDTO) session.getAttribute("ownerDTO");
+		LicenseManagerDTO lmDTO = (LicenseManagerDTO) session.getAttribute("lmDTO");
+		StoreInfoDTO storeInfoDTO = (StoreInfoDTO) session.getAttribute("storeInfoDTO");
 		
-		List<MenuListDTO> menuList = new MenuListService().selectAllMenuList();
+		if(dto==null) {
+			
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter writer = response.getWriter();
+			writer.println("<script> alert('로그인 후 사용 바랍니다'); location.href ='"+ request.getContextPath() +"/main';</script>");
+			writer.close();
+
+
+		} else {
+		List<MenuListDTO> menuList = new MenuListService().selectAllMenuList(storeInfoDTO);
 		System.out.println(menuList);
 		
 		String path = "";
@@ -43,4 +59,4 @@ public class SelectAllMenuManageServlet extends HttpServlet {
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 
-}
+}}

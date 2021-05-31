@@ -31,18 +31,54 @@ public class CustomerCommentBoardDAO {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/*1*/
-	public List<CustomerCommentBoardDTO> selectCostomerComment(Connection con, int intBoardCode) {
+	public CustomerCommentBoardDTO selectCustomerComment(Connection con, int intBoardCode) {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		List<CustomerCommentBoardDTO> customerList = null;
 		String query = prop.getProperty("customerComment");
 		
+		CustomerCommentBoardDTO customerComment = new CustomerCommentBoardDTO();
 		
-		customerList = new ArrayList<>();
+		try {
+			pstmt=con.prepareStatement(query);
+			pstmt.setInt(1, intBoardCode);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				customerComment.setBoardTitle(rset.getString("BOARD_TITLE"));
+				customerComment.setBoardDate(rset.getDate("BOARD_DATE"));
+				customerComment.setUserName(rset.getString("USER_NAME"));
+				customerComment.setBoardContent(rset.getString("BOARD_CONTENT"));
+				customerComment.setBoardCode(rset.getInt("BOARD_CODE"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return customerComment;
+	}
+
+	
+	/*2*/
+	public List<CustomerReplyDTO> selectCustomerReply(Connection con, int intBoardCode) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("adminComment");
+		
+		List<CustomerReplyDTO> replyList = new ArrayList<>();
+		
+		CustomerReplyDTO customerReply = new CustomerReplyDTO();
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -50,19 +86,16 @@ public class CustomerCommentBoardDAO {
 			
 			rset = pstmt.executeQuery();
 			
-			if(rset.next()) {
+			while(rset.next()) {
 				
-				CustomerCommentBoardDTO comment = new CustomerCommentBoardDTO();
+				customerReply.setUserName(rset.getString("USER_NAME"));
+				customerReply.setReplyContent(rset.getString("REPLY_CONTENT"));
+				customerReply.setReplyDate(rset.getDate("REPLY_DATE"));
+				customerReply.setReplyCode(rset.getInt("REPLY_CODE"));
 				
-				comment.setBoardTitle(rset.getString("BOARD_TITLE"));
-				comment.setBoardDate(rset.getDate("BOARD_DATE"));
-				comment.setBoardContent(rset.getString("BOARD_CONTENT"));
-				comment.setUserName(rset.getString("USER_NAME"));
-				comment.setBoardCode(rset.getInt("BOARD_CODE"));
+				replyList.add(customerReply);
 				
-				customerList.add(comment);
 			}
-
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -71,23 +104,24 @@ public class CustomerCommentBoardDAO {
 			close(pstmt);
 		}
 		
-		return customerList;
+		return replyList;
 	}
 	
+	
 	/*2*/
-//	public List<CustomerReplyDTO> selectAdminComment(Connection con, int intBoardCode) {
+//	public List<CustomerReplyDTO> selectCustomerReply(Connection con, int boardCode) {
 //		
 //		PreparedStatement pstmt = null;
 //		ResultSet rset = null;
 //		
-//		List<CustomerReplyDTO> adminList = null;
 //		String query = prop.getProperty("adminComment");
+//		List<CustomerReplyDTO> adminList = new ArrayList<>();
 //		
-//		adminList = new ArrayList<>();
+//		CustomerReplyDTO customerReplyManage = new CustomerReplyDTO();
 //		
 //		try {
 //			pstmt = con.prepareStatement(query);
-//			pstmt.setInt(1, intBoardCode);
+//			pstmt.setInt(1, boardCode);
 //			
 //			rset = pstmt.executeQuery();
 //			
@@ -111,47 +145,8 @@ public class CustomerCommentBoardDAO {
 //		}
 //
 //		return adminList;
+//	
 //	}
-
-	/*2*/
-	public List<CustomerReplyDTO> selectCustomerReply(Connection con, int boardCode) {
-		
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		String query = prop.getProperty("adminComment");
-		List<CustomerReplyDTO> adminList = new ArrayList<>();
-		
-		CustomerReplyDTO customerReplyManage = new CustomerReplyDTO();
-		
-		try {
-			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, boardCode);
-			
-			rset = pstmt.executeQuery();
-			
-			while(rset.next()) {
-				
-				CustomerReplyDTO admincomment = new CustomerReplyDTO();
-				
-				admincomment.setUserName(rset.getString("USER_NAME"));
-				admincomment.setReplyContent(rset.getString("REPLY_CONTENT"));
-				admincomment.setReplyDate(rset.getDate("REPLY_DATE"));
-				admincomment.setReplyCode(rset.getInt("REPLY_CODE"));
-				
-				adminList.add(admincomment);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(rset);
-			close(pstmt);
-		}
-
-		return adminList;
-	
-	}
 
 	public int insertStoreReply(Connection con, int boardCode) {
 		
@@ -194,6 +189,8 @@ public class CustomerCommentBoardDAO {
 		
 		return result;
 	}
+
+
 	
 	
 		

@@ -283,7 +283,7 @@ public class OwnerRegistServlet extends HttpServlet {
 				
 				store.setStoreName(parameter.get("storeName"));
 				store.setBusinessNum(Integer.parseInt(parameter.get("businessNum").replace("-","")));
-				store.setStoreXY(parameter.get("storeXY"));
+//				store.setStoreXY(parameter.get("storeXY"));
 				store.setCategory(parameter.get("category"));
 				store.setAddress(parameter.get("zip")  + "@" + parameter.get("addr1") + "@" + parameter.get("addr2"));
 				store.setTypeCode(Integer.parseInt(parameter.get("service")));

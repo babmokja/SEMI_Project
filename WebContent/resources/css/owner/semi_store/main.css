@@ -56,6 +56,20 @@
     
      color: #000AFF;
    } 
+.aside{width: 300px; height: 1080px; background: #FFCC00;float: left;}
+.aside_top{width: 300px; height: 90px; background: #EF9309; text-align: center; line-height: 90px; font-size: 40px; font-weight: 700;}
+.aside_top2{width: 300px; height: 80px; text-align: center; line-height: 90px; font-size: 35px; font-weight: 800;}
+.aside_top3{width: 300px; height: 90px; background: #FFCC00; text-align: center; line-height: 90px; font-size: 40px; font-weight: 700;}
+.aside_top3:hover{background: greenyellow; border : 1px solid greenyellow;}
+.aside_top3 a{text-decoration-line: none; color: black;}
+
+.aside_top4{width: 300px; height: 90px; background: #FFCC00; text-align: center; line-height: 90px; font-size: 40px; font-weight: 700;}
+.aside_top4:hover{background: greenyellow; border : 1px solid greenyellow;}
+.aside_top4 a{text-decoration-line: none; color: black;}
+
+.aside_top5{width: 300px; height: 90px; background: #FFCC00; text-align: center; line-height: 90px; font-size: 40px; font-weight: 700;}
+.aside_top5:hover{background: greenyellow; border : 1px solid greenyellow;}
+.aside_top5 a{text-decoration-line: none; color: black;}
 
    html, body {
     width :100%;
@@ -76,7 +90,7 @@
      text-align: right;
    }
    .sidebar-bapmakja {
-     padding: 0
+     padding: 0;
    }
    .footer-text {
      

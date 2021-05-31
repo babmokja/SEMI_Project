@@ -28,20 +28,18 @@ public class OwnerBoardReplyCommentListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		OwnerDTO ownerDTO = (OwnerDTO) session.getAttribute("ownerDTO");
+		OwnerDTO dto = (OwnerDTO) session.getAttribute("ownerDTO");
 		LicenseManagerDTO lmDTO = (LicenseManagerDTO) session.getAttribute("lmDTO");
 		StoreInfoDTO storeDTO = (StoreInfoDTO) session.getAttribute("storeInfoDTO");
 		
-		
-		if(ownerDTO==null) {
+		if(dto==null) {
 			
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter writer = response.getWriter();
-			writer.println("<script> location.href='${ pageContext.servletContext.contextPath }/main_store.jsp'; </script>");
-			
+			writer.println("<script> alert('로그인 후 사용 바랍니다'); location.href ='"+ request.getContextPath() +"/main';</script>");
 			writer.close();
 
-			
+
 		} else {
 		
 		/* 프론트에서 넘어져오는 값 */

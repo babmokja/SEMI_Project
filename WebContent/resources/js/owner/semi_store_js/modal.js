@@ -3,6 +3,9 @@ $(document).ready(function(){
     $('.content-info .content-btn a:first-child').click(function(){
         $('.modal_wrap').show();
         $('#sc_modal').show();
+        
+        var orderCode = $(this).parent().siblings('#orderCode').val();
+        
     });
 
     $('.content-info .content-btn a:last-child').click(function(){
@@ -10,7 +13,6 @@ $(document).ready(function(){
         $('#sc_modal2').show();
     });
 
-   
 
     $('.modal_closebtn').click(function(){
         $(this).parent().hide();
@@ -43,11 +45,27 @@ $(document).ready(function(){
             // e.preventDefault();
         $('.tab>#tab2').show();
     });
+        
     $('.content-info .content-btn1 a').click(function(){
         $('.modal_wrap').show();
         $('.sc_modal_process2').show();
-        
+       var orderCode2 = $(this).parent().parent().parent().children().find('#orderCode').val();
+       
+      	$("#code2").val(orderCode2);
     });
+
+    
+    $('.content-info .content-btn2 #btn_non').click(function(){
+    	$('.modal_wrap').show();
+    	$('.sc_modal_process3').show();
+    	var orderCode3 =  $(this).parent().parent().parent().children().find('#orderCode').val();
+    	var userId = $(this).parent().parent().parent().children().find('#userId').val();
+    	
+    	$('#code3').val(orderCode3);
+    	$('#userId').val(userId);
+    });
+   
+
 
     $('.nobtn1').click(function(){
         $(this).parent().parent().hide();

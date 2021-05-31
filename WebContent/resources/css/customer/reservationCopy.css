@@ -9,19 +9,19 @@
     right:0;
     bottom:0; display: none;}
 
-.medal { display: none; position: fixed; width: 800px; height: auto; z-index: 2; top: 50%; left: 50%; transform:translate(-50%, -50%); background-color: white;}
+.medal { display: none; position: fixed; width: 650px; height: 630px; z-index: 2; top: 50%; left: 50%; transform:translate(-50%, -50%); background-color: white;}
 
-.reservewrap {width: 800px; height: auto; margin: 0 auto; transform:scale(0.85,0.85);}
+.reservewrap {width: 800px; height: 800px; margin: 0 auto; transform:scale(0.85,0.85);}
 
 .reservewrap .top {width: 800px; height: 80px; font-size: 50px; text-align: center; margin-top: 10px;}
 
-.reservewrap .pict {width: 800px;height: 300px;}
+.reservewrap .pict {width: 630px; height: 200px;}
 
 /* ---------------------------------- */
  
-.reservewrap .section1 {width: 400px; height: auto; float: left; margin-top: 30px;}
+.reservewrap .section1 {width: 500px; height: auto; float: left; margin-top: -20px; margin-left: 55px; background: lightyellow;}
  
-.reservewrap .part1 {width: 330px; height: 50px; /* background-color: beige; */ margin: 8px auto 0 auto; display: flex; align-items: center; }
+.reservewrap .part1 {width: 390px; height: 50px; margin: 8px auto 0 auto; display: flex; align-items: center; font-size: 26px;}
 .reservewrap .time {float: left; width: auto; height: auto;}
  
 .reservewrap .db1 {float: left; width: auto; height: auto; margin-left: 20px; /* border: 1px solid black; */}
@@ -29,16 +29,16 @@
 .reservewrap .dbTime {float: left; width: auto; height: auto; margin-left: 20px; /* border: 1px solid black; */}
 .reservewrap .dbt {width:130px; height: auto; background-color: gray; text-align: center; line-height: 2.5; font-size: 16px;font-weight: bold; margin-left: 20px;} 
  
-.reservewrap .line {clear: both; margin: 0px auto 0 auto; width: 330px; height: 1px; background: black; opacity: 90%; }
+.reservewrap .line {clear: both; margin: 10px auto 0 auto; width: 470px; height: 1px; background: black; opacity: 90%; }
  
-.reservewrap .part4 {width: 330px; margin: 20px auto 0 auto;}
+.reservewrap .part4 {width: 330px; margin: 20px auto 0 auto; font-size: 26px; margin-left: 55px;}
  
 .reservewrap .part4 table {float: left; width: auto; margin-left: 15px; }
  
 .reservewrap .part4 table td {width:80px; height: 14px; background-color: gray; text-align: center; line-height: 2.5; font-size: 16px;font-weight: bold; border: 3px solid white; }
  
  /* --------------------------- */
-.reservewrap .section2 {width: 400px; height: auto; float: right; background: #fff; }
+.reservewrap .section2 {width: 380px; height: auto; float: right; background: #fff; margin-top: -40px; margin-right: 115px;}
  
 .reservewrap .reservation-part1 {width: 330px; height: 30px; /* background-color: beige; */ margin: 10px auto 0 auto; display: flex; align-items: center;}
  
@@ -60,25 +60,25 @@
 .reservewrap .db3 {clear: both; width:330px; height: 90px; background-color:gray; opacity: 50%; margin-top: 10px;}
 .reservewrap .db88 {clear: both; width:330px; height: 90px; background-color:pink; opacity: 100%; margin-top: 10px; color: black; font-weight: bold;text-align: left; font-size: 20px;}
  
-.reservewrap .menuTablecall_td { display: block; background-color: cyan; color: black;}
+.reservewrap .menuTablecall_td { display: block; background-color: orange; color: black; font-size: 20px; width: 150px;}
 .reservewrap .menuTablecall_td:hover {background-color:orangered ;color: white;}
 
-.reservewrap .menuTable_td {display: block;  background-color: cyan; color: black;}
+.reservewrap .menuTable_td {display: block;  background-color: orange; color: black; font-size: 20px;}
 .reservewrap .menuTable_td:hover {background-color:orangered ;color: white;}
  
  /* ------------------------------------ */
  
- .reservewrap .section3 {clear: both; width: 800px; height: 240px; text-align: center; /* background-color: violet; */ padding-top: 30px; font-size: 16px; background: #fff;}
+ .reservewrap .section3 {clear: both; width: 615px; height: 200px; text-align: center; padding-top: 33px; font-size: 16px; background: #fff;}
  
 .reservewrap .section3 span {font-size: 20px; color: red; font-weight: bold;}
  
  /* .alert {display: block; margin: 0 auto;} */
  /* ---------------------- */
  
-.reservewrap .section4 {width: 800px; height: 80px; background-color: tomato;}
+.reservewrap .section4 {height: 80px; margin-left: -70.5px; margin-top: -10px;}
  
-.reservewrap .section4 .bt1 {width: 400px; height: 80px; background-color:  turquoise; float: left; text-align: center; font-size: 30px; line-height: 2.5; font-weight: 400; color: white;}
-.reservewrap .section4 .bt2 {width: 400px; height: 80px; background-color: red; float: left;text-align: center; font-size: 30px; line-height: 2.5; font-weight: 500;  color: white;}
+.reservewrap .section4 .bt1 {width: 382.5px; height: 80px; background-color:  red; float: left; text-align: center; font-size: 30px; line-height: 2.5; font-weight: 400; color: white;}
+.reservewrap .section4 .bt2 {width: 382.5px; height: 80px; background-color: green; float: left; text-align: center; font-size: 30px; line-height: 2.5; font-weight: 500;  color: white;}
 
 
 

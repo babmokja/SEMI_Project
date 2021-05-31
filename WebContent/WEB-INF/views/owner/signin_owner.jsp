@@ -9,13 +9,17 @@
     <script type="text/javascript" src="resources/js/owner/semi_store/join_check.js?v=<%=new java.util.Date().getTime()%>"></script>
     <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script type="text/javascript">
-            $(document).ready(function() {
-            $("#footer").load("${pageContext.request.contextPath}/WEB-INF/views/owner/footer.jsp");
-            });
+     <script type="text/javascript">   
+            $(document).ready(function() {	
+            $("#footer").load("footer.html");
+            }); 
     </script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owner/semi_board/signin_owner.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owner/semi_board/main.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/semi_board/signin_owner.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/semi_board/main.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/semi_board/main_hl.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/owner/semi_board/modifyInfo_owner.css">
+        
+    
 
 <title>Insert title here</title>
 </head>
@@ -40,27 +44,27 @@
                      }
                 	 }
                	   
-                     function mempwd() {
-                      
-       
-                         //****** .은 아무문자 들어와도 되는 위치 잡는 역할 .개수 그 이상도 가능하다. 이하는 불가능 
-       
-                         var regExp = /^[A-Z\da-z]{6,16}$/;
-                         var regExp2 = /^[0-9]{6,16}$/;
-    
-                         var pno = document.getElementById("pw").value;
-       
+                  	function mempwd() {
+                        
+                        
+                        //****** .은 아무문자 들어와도 되는 위치 잡는 역할 .개수 그 이상도 가능하다. 이하는 불가능 
+      
+                        var regExp = /^[A-Z\da-z]{6,16}$/;
+                        var regExp2 = /^[0-9]{6,16}$/;
+   
+                        var pno = document.getElementById("pw").value;
+      
 					         
 					          
-                         if (regExp.test(pno)||regExp2.test(pno)) {
-                           alert("정상입력");
-                         } else {
-                           alert("6자리이상 16자리이하로 입력하세요.(특수문자 사용불가)");
-                         }
-                     }
-                     
-                     function check_pw(){
-                    	 if(document.getElementById("pw").value === document.getElementById("pw2").value){
+                        if(regExp.test(pno)||regExp2.test(pno)) {
+                          alert("정상입력");
+                        } else {
+                          alert("6자리이상 16자리이하로 입력하세요.(특수문자 사용불가)");
+                        }
+                    }
+                    
+                    function check_pw(){
+                   	 if(document.getElementById("pw").value === document.getElementById("pw2").value){
 				              document.getElementById("check").innerHTML="비밀번호가 일치";
 				              document.getElementById("check").style.color='blue';
 				             
@@ -70,7 +74,7 @@
 				              document.getElementById("check").style.color="red";
 				             
 				          }
-                     }
+                    }
                     
                   function namecheck() {
                   
@@ -151,38 +155,38 @@
              </td>
              
             <td>비밀번호 </td>
-            <td><input type="password" id="pw" onchange="mempwd();" name="pw"  class="chk" size="25" placeholder="영문자와 숫자만 사용 가능" style="padding:4px;font-size:13px;border-radius: 10px;" > </td>
+            <td><input type="password" id="pw" onchange="mempwd();" name="pw"  class="chk" size="25" placeholder="영문자와 숫자만 사용 가능" style="padding:4px;font-size:13px;border-radius: 10px;" required> </td>
           </tr>
           
           
           <tr> 
               <td>비밀번호확인 </td>
-              <td><input type="password" id="pw2"  onchange="check_pw();" name ="pw_ck" class= "chk" size="25" style="padding:4px;font-size:13px;border-radius: 10px;" >
+              <td><input type="password" id="pw2"  onchange="check_pw();" name ="pw_ck" class= "chk" size="25" style="padding:4px;font-size:13px;border-radius: 10px;" required>
                 <span id="check"></span>
 
           
             </td>
             <td>이 름</td>
-            <td><input type="text"size="25" style="padding:4px;font-size:13px;border-radius: 10px;" name="named" onchange="namecheck();"> </td>
+            <td><input type="text"size="25" style="padding:4px;font-size:13px;border-radius: 10px;" name="named" onchange="namecheck();" required> </td>
           </tr>
           
           
           <tr> 
             <td>가게전화번호</td>
-            <td><input type="text" size="25" maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" name="phone" ></td>
+            <td><input type="text" size="25" maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" name="phone" required></td>
             <td>가게이름</td>
             <td><input type="text" size="25"
-                       maxlength="13" style="padding:4px;font-size:13px;border-radius: 10px;" name="storeName"  ></td>
+                       maxlength="13" style="padding:4px;font-size:13px;border-radius: 10px;" name="storeName" required ></td>
           </tr> 
           
           
           <tr> 
           <td>개업일자</td>
-            <td><input type="date"size="25" name="openDate" style="padding:4px;font-size:13px;border-radius: 10px;"   /></td>
+            <td><input type="date"size="25" name="openDate" style="padding:4px;font-size:13px;border-radius: 10px;"  required /></td>
           
             <td>우편번호</td>
-            <td><input type="text" name="zip" size="25" style="padding:4px;font-size:13px;border-radius: 10px;"> 
-            <button type="button"  style="width:60px; background-color: #ffcc00; border: 1px solid #d9e1e8; height:32px; border-radius: 20px; font-weight: 600; font-size: 15px; cursor: pointer;" onclick="openZipSearch()">검색</button></td>
+            <td><input type="text" name="zip" size="25" style="padding:4px;font-size:13px;border-radius: 10px; " required> 
+            <button type="button"  style="width:60px; background-color: #ffcc00; border: 1px solid #d9e1e8; height:32px; border-radius: 20px; font-weight: 600; font-size: 15px; cursor: pointer;" onclick="openZipSearch()" >검색</button></td>
           </tr> 
           
           
@@ -195,7 +199,7 @@
           </tr>
           <tr>
             <td>본점소재지</td>
-            <td><input type="text"size="25" name="mainAddress" style="padding:4px;font-size:13px;border-radius: 10px;"/> </td>
+            <td><input type="text"size="25" name="mainAddress" style="padding:4px;font-size:13px;border-radius: 10px;"/ required> </td>
           
             <td></td>
             <td></td>
@@ -217,47 +221,34 @@
             
             <tr>
             <td>상호명</td>
-            <td><input type="text"size="25" name="sbName" style="padding:4px;font-size:13px;border-radius: 10px;" /> </td>
+            <td><input type="text"size="25" name="sbName" style="padding:4px;font-size:13px;border-radius: 10px;" required/> </td>
          	
             <td>주민등록번호</td>
-            <td><input type="text"size="25" name="residentNum" id="residentNum" style="padding:4px;font-size:13px;border-radius: 10px;" onchange="resi();" /></td>
+            <td><input type="text"size="25" name="residentNum" id="residentNum" style="padding:4px;font-size:13px;border-radius: 10px;" onchange="resi();" required/></td>
           	</tr>
           	
           	
           	<tr>
             <td>업태</td>
-            <td><input type="text"size="25" name="condition" style="padding:4px;font-size:13px;border-radius: 10px;"  /> </td>
+            <td><input type="text"size="25" name="condition" style="padding:4px;font-size:13px;border-radius: 10px;"  required/> </td>
          	
             <td>종목</td>
-            <td><input type="text"size="25" name="major" style="padding:4px;font-size:13px;border-radius: 10px;"/> </td>
+            <td><input type="text"size="25" name="major" style="padding:4px;font-size:13px;border-radius: 10px;"required/> </td>
           	</tr>
           	
           	<tr>
             <td>사업자등록증 발급일자</td>
-            <td><input type="date"size="25" name="issueDate" style="padding:4px;font-size:13px;border-radius: 10px;"   /> </td>
+            <td><input type="date"size="25" name="issueDate" style="padding:4px;font-size:13px;border-radius: 10px;"  required /> </td>
          	
             <td>이메일</td>
-            <td><input type="text"size="25" name="email" style="padding:4px;font-size:13px;border-radius: 10px;"/> </td>
+            <td><input type="text"size="25" name="email" style="padding:4px;font-size:13px;border-radius: 10px;"required/> </td>
           	</tr>
           	
-          	<tr>
-            <td>식당좌표</td>
-            <td><input type="text"size="25" name="storeXY" style="padding:4px;font-size:13px;border-radius: 10px;" /> </td>
-         	
-            <td>식당소개</td>
-            <td><input type="text"size="25" name="storeIntro" style="padding:4px;font-size:13px;border-radius: 10px;"/> </td>
-          	</tr>
-            
-            
-            
-            
-            
             <!-- ----------------------------------------------------------------------- -->
-            
             
          <tr>
          <td>업종카테고리</td>
-         <td><select style="font-size: larger; border-radius: 8px;" name="category">
+         <td><select style="font-size: larger; border-radius: 8px;" name="category" required>
                <option value="한식">한식</option>
                <option value="프랜차이즈">프랜차이즈</option>
                <option value="중식">중식</option>
@@ -270,7 +261,7 @@
           <tr> -->
             <td>사업자번호</td>
             <td><input type="text" size="25"
-                       maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" name="businessNum" / >
+                       maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;" name="businessNum" required/ >
                     
                        <!-- <input type="file" name="filebox" id="filebox" onchange="javascript:document.getElementById('upload-name').value=this.value">
                        <label for = "filebox" class="upload-hidden" >파일 </label>
@@ -285,21 +276,27 @@
                      
             </td>
           </tr>
+          <tr>
+         	
+            <tr>
+               <td>식당소개</td>
+            <td colspan="3"><textarea name="storeIntro" style="width:87.5%; height:200px; padding:4px;font-size:13px;border-radius: 10px;" required/></textarea></td>
+          </tr>
           
           
           <tr>
             <td>서비스유형</td>
-            <td><input type="radio" name="service" value="1" onclick="div_OnOff(this.value,'con');" >  배달만
-                <input type="radio" name="service" value="2" onclick="div_OnOff(this.value,'con');">   픽업만
-                <input type="radio" name="service" value="3" onclick="div_OnOff(this.value,'con'); ">  배달+픽업</td>
+            <td><input type="radio" name="service" value="1" onclick="div_OnOff(this.value,'con');required" >  배달만
+                <input type="radio" name="service" value="2" onclick="div_OnOff(this.value,'con');required">   픽업만
+                <input type="radio" name="service" value="3" onclick="div_OnOff(this.value,'con'); required">  배달+픽업</td>
             <td></td>
             <td></td>
           </tr>
           
           <tr>
             <td>사업자구분</td>
-            <td><input type="radio" name="BISI" value="개인" onclick="div_OnOff(this.value,'con');" >  개인
-                <input type="radio" name="BISI" value="사업자" onclick="div_OnOff(this.value,'con');">   사업자
+            <td><input type="radio" name="BISI" value="개인" onclick="div_OnOff(this.value,'con');required" >  개인
+                <input type="radio" name="BISI" value="사업자" onclick="div_OnOff(this.value,'con');required">   사업자
             <td></td>
             <td></td>
           </tr>
@@ -327,8 +324,8 @@
 				</table>
 				
 				<div class="thumbnail-file-area">
-					<input type="file" id="thumbnailImg1" name="thumbnailImg1" onchange="loadImg(this,1)">
-					<input type="file" id="thumbnailImg2" name="thumbnailImg2" onchange="loadImg(this,2)">
+					<input type="file" id="thumbnailImg1" name="thumbnailImg1" onchange="loadImg(this,1)" required>
+					<input type="file" id="thumbnailImg2" name="thumbnailImg2" onchange="loadImg(this,2)" required>
 				</div>
 			</div>
 			<br>
@@ -371,16 +368,17 @@
 
         
          </table><br>
-           <div class="thumbnail-btn-area">
+           <div class="thumbnail-btn-area" style="width:500px; margin-left: 200px;">
 				<input type="submit" class="btn" value="가입하기">
-			</div>
 		</form>
+		        <button style="float:left;" class="btn" onclick="location.href='${ pageContext.servletContext.contextPath }/main'">뒤로 가기</button>
+			</div>
        
        </div>
        </center>
         
                  
-       <footer>
+       <footer  style="margin-top:350px;">
         <div id="footlim">
             <small>
                 <br>㈜ 지금 배고프조<br><br>

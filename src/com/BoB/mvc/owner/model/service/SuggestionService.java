@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.BoB.mvc.owner.model.dao.SuggestionDAO;
 import com.BoB.mvc.owner.model.dto.PageInfoDTO;
+import com.BoB.mvc.owner.model.dto.ReplyDTO;
 import com.BoB.mvc.owner.model.dto.SuggestionDTO;
 
 public class SuggestionService {
@@ -66,4 +67,17 @@ public class SuggestionService {
 		
 		return totalCount;
 	}
+
+	public ReplyDTO selectDetailReply(String boardNo) {
+
+		Connection con = getConnection();
+		
+		ReplyDTO replyDetail = suggestionDAO.selectReplyDetail(con, boardNo);
+		
+		close(con);
+		
+		return replyDetail;
+	}
+
+
 }

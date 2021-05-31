@@ -11,6 +11,7 @@ public class DeliveryDTO {
 	private String typeYN;
 	private Date orderTime;
 	private int storeCode;
+	private Date reserveTime;
 	private String orderProceed;
 	private String ownerComment;
 	private int orderCode;
@@ -22,7 +23,7 @@ public class DeliveryDTO {
 
 
 	public DeliveryDTO(String userId, String userName, int totalPrice, String requestCus, String typeYN, Date orderTime,
-			int storeCode, String orderProceed, String ownerComment, int orderCode) {
+			int storeCode, Date reserveTime, String orderProceed, String ownerComment, int orderCode) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
@@ -31,6 +32,7 @@ public class DeliveryDTO {
 		this.typeYN = typeYN;
 		this.orderTime = orderTime;
 		this.storeCode = storeCode;
+		this.reserveTime = reserveTime;
 		this.orderProceed = orderProceed;
 		this.ownerComment = ownerComment;
 		this.orderCode = orderCode;
@@ -107,6 +109,16 @@ public class DeliveryDTO {
 	}
 
 
+	public Date getReserveTime() {
+		return reserveTime;
+	}
+
+
+	public void setReserveTime(Date reserveTime) {
+		this.reserveTime = reserveTime;
+	}
+
+
 	public String getOrderProceed() {
 		return orderProceed;
 	}
@@ -141,9 +153,10 @@ public class DeliveryDTO {
 	public String toString() {
 		return "DeliveryDTO [userId=" + userId + ", userName=" + userName + ", totalPrice=" + totalPrice
 				+ ", requestCus=" + requestCus + ", typeYN=" + typeYN + ", orderTime=" + orderTime + ", storeCode="
-				+ storeCode + ", orderProceed=" + orderProceed + ", ownerComment=" + ownerComment + ", orderCode="
-				+ orderCode + "]";
+				+ storeCode + ", reserveTime=" + reserveTime + ", orderProceed=" + orderProceed + ", ownerComment="
+				+ ownerComment + ", orderCode=" + orderCode + "]";
 	}
+
 
 	
 	

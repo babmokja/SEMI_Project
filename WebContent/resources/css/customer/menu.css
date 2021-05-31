@@ -1,49 +1,7 @@
-/* * {margin: 0; padding: 0;} */
-
 body {min-width: 1650px;}
 body,html {margin: 0 auto;}
-
-/* header{ width: 1920px; height: 300px; background-color: #FFCC00;
-display: flex; justify-content: center; position: relative; margin: 0 auto;}
-
-button {border: none;}
-
-a {list-style: none; text-decoration: none; color: #fff;}
-a:hover {color: black;} */
-
-/* .head { width: 1440px; margin: 0 auto;
-    }
-
-    
-.right{width: 1440px; height: 100px;}
-
-.logo {float: left; margin-left: 50px; margin-top: 15px; font-size: 30px; font-weight: bold;}
-
-.sq { float: right; }
-
-.logout {float: left; margin-top: 15px; margin-right: 50px; line-height: 30px;
-    font-size: 18px;}
-    
-.sq img {width: 30px; height: 30px; margin-top: 15px; margin-right: 50px;} */
-    
-    /* ----------------------------------- */
-    
-/* .title {clear: both; width : 1440px; font-size: 25px; font-weight: 550; text-align: center;}
-    
-.searchbox { width:600px; height: 50px; background-color: white; border-radius: 30px;
-        margin: 0 auto; margin-top: 20px;} */
         
         /* ----------------------------------- */
-        
-/* .nav {width: 1440px; display: flex; justify-content: center;
-font-size: 20px; font-weight: 900; position: absolute;bottom: 0; margin-bottom: 30px;}
-            
-.a {width: 200px; height: 20px; text-align: center;} */
-            
-/* ----------------------------------- */
-/* body,html {margin-left: 7px !important;} */
-/* header, footer {margin-left: 7px !important;} */
-
 
 #main button:hover{background-color: orange; color: black; font-weight: bolder;}
 
@@ -60,7 +18,7 @@ font-size: 20px; font-weight: 900; position: absolute;bottom: 0; margin-bottom: 
     margin-left: 10px; float: left;}
 
 .menupan { text-align: center; margin: 0 auto;
-    font-size: 50px; font-weight: 700; position : absolute; left: 0; right: 0; margin-top: 20px; margin-right: 200px;}
+    font-size: 50px; font-weight: 700; position : absolute; left: 0; right: 0; margin-top: 20px; margin-right: 520px;}
 
 /* ----------------------------------- */
 .section {float: right; width: 400px; height: 100%; margin-right: 50px;}
@@ -82,29 +40,21 @@ font-weight: 500;}
 
 /* ----------------------------------- */
 
-.allsection {position: relative; width: 1440px; height: 900px;
-    top: 150px; left : 50px;}  
+.allsection {position: relative; width: 1440px; height: 240px; top: 150px; left : 50px;}  
 
 .section1 { width: 1000px; height: 250px;  margin-top: 20px;}
 
-.pic {width: 200px; height: 200px; background-color: indigo; float: left;}
+.pic {width: 200px; height: 200px; background-color: indigo; float: left; margin-left: 60px;}
 
-.menu1 {float: left; margin-top: 70px; margin-left: 100px; font-size: 30px; font-weight: 400;}
-.menu2 {float: left; margin-top: 70px; margin-left: 100px; font-size: 30px; font-weight: 400;}
-.menu3 {float: left; margin-top: 70px; margin-left: 100px; font-size: 30px; font-weight: 400;}
+.pic img {width: 200px; height: 200px;} 
 
-.price1 {float: left; margin-top: 70px; margin-left: 10px; font-size: 30px; font-weight: 400;}
-.price2 {float: left; margin-top: 70px; margin-left: 10px; font-size: 30px; font-weight: 400;}
-.price3 {float: left; margin-top: 70px; margin-left: 10px; font-size: 30px; font-weight: 400;}
+.menu1 {float: left; margin-top: 90px; margin-left: 40px; font-size: 30px; font-weight: 400;}
 
-.damgi {float: right; width: 150px; height: 60px; background-color: red;text-align: center; font-size: 22px; color: white; line-height: 2.6;
-    margin-top: 140px; border: none;
-}
+.price1 {float: left; margin-top: 90px; margin-left: 10px; font-size: 30px; font-weight: 400;}
 
-.cancel {float: right; width: 150px; height: 60px; background-color:gray;text-align: center; font-size: 22px; color: white; line-height: 2.6;
-    margin-top: 140px; margin-left: 20px;
-}
+.damgi {float: right; width: 150px; height: 60px; background-color: red;text-align: center; font-size: 22px; color: white; line-height: 2.6; margin-top: 70px; border: none; }
 
+.cancel {float: right; width: 150px; height: 60px; background-color:gray;text-align: center; font-size: 22px; color: white; line-height: 2.6; margin-top: 70px; margin-left: 20px; }
 
 .section1 .menuTablecall_td { background-color: cyan; color: black;}
 
@@ -113,25 +63,6 @@ font-weight: 500;}
 
 .section2 { width: 1000px; height: 250px; background-color: grey; margin-top: 20px;}
 
-/* .section_allprice { width: 800px; height: 70px; background-color: grey; margin-top:20px;} */
-
-
-
-
-
-
-/* footer {clear: both; margin: 200px auto 0 auto ;width: 100%; height: 300px;  text-align: left; background-color: #FFCC00;
-    display: flex; justify-content: center;}
-
-.foot {margin-top: 30px; margin: 0 auto;} */
-
-/* .section3 {font-size: 10px;background: #000;} */
-
-/* /* footer {width: 1650px; height: 200px;  text-align: left; background-color: #FFCC00; display: flex; justify-content: center; margin: 0 auto;} */
-    
-/* .foot {width: 1650px; margin-top: 30px;} */ 
-
-
 /* -------------모달창----------- */
 
 .bg {background-color: black; opacity: 70%; position: fixed; width: 100%; height: 100%; z-index: 1;  top:0;
@@ -139,40 +70,38 @@ font-weight: 500;}
     right:0;
     bottom:0; display: none;}
 
-.menuwrap {display: none; position: fixed; width: 800px; height: auto; z-index: 2; top: 50%; left: 50%; transform:translate(-50%, -50%); background-color: white;}
+.menuwrap {display:none; position: fixed; width: 650px; z-index: 2; top: 50%; left: 50%; transform:translate(-50%, -50%); background-color: white;}
 
 .menuwrap a {list-style: none; text-decoration: none; color: #fff;}
 
 .menuwrap a:hover,.menuwrap a:active {text-decoration: none; color:black;}
 
-/* .menuwrap {width: 800px; height: 1300px;margin: 0 auto;} */
+.menuwrap .top {width: 650px; height: 80px; font-size: 50px; text-align: center; line-height: 1.5;}
 
-.menuwrap .top {width: 800px; height: 80px; font-size: 50px; text-align: center;}
+.menuwrap .pict {width: 650px;height: 300px; background-color: crimson;}
 
-.menuwrap .pict {width: 800px;height: 300px; background-color: crimson;}
-
-.menuwrap .menuname { width: 800px; height: 60px; margin: 0 auto; text-align: center;
+.menuwrap .menuname { width: 650px; height: 60px; margin-top: 15px; text-align: center;
 font-size: 30px;}
 
-.menuwrap .section1 {width: 800px; height: 70px; line-height: 2.5; font-size: 30px;}
+.menuwrap .section1 {margin-top: -25px; width: 650px; height: 50px; line-height: 2.5; font-size: 30px;}
 
-.menuwrap .price { float: right; width: 200px; height: 70px; /* background-color: darkseagreen */}
+.menuwrap .price { float: right; width: 210px; height: 70px;}
 
-.menuwrap .about {width: 800px; height: 100px; text-align: center; line-height: 10; background-color: white;/* background-color: darkgreen; */}
+.menuwrap .about {height: 70px; text-align: center; line-height: 6; background-color: white; margin-top: 0px; margin-left: 205px;}
 
-.menuwrap .section2 {width: 800px; height: 70px; line-height: 2.5; font-size: 30px; background: #fff; }
+.menuwrap .section2 {width: 650px; height: 65px; line-height: 2.5; font-size: 30px; background: #fff; }
 
-/* .menuwrap .spinner { float: right; width: 200px; height: 70px; background-color: darkblue;} */
+.menuwrap .section2 .spinner { margin-top: 10px;}
 
-.menuwrap .section3 {width: 800px; height: 70px; line-height: 2.5; font-size: 30px; background: #fff;}
-
-/* .menuwrap .allprice { float: right; width: 200px; height: 70px; background-color:darkkhaki;} */
+.menuwrap .section3 {width: 650px; height: 70px; line-height: 2.5; font-size: 30px; background: #fff;}
 
 .menuwrap .add {float: left; text-align: center; font-size: 30px;
-   width: 400px; height: 70px; background-color: deeppink; color: #fff; line-height: 2.5; margin-top: 20px;}
+   width: 325px; height: 60px; background-color: red; color: #fff; line-height: 2; margin-top: 5px;}
 
-.menuwrap .order {float: right;font-size: 30px;
-    text-align: center; width: 400px; height: 70px; background-color:red; color: #fff; line-height: 2.5; margin-top: 20px;}
+.menuwrap .order {float: right; font-size: 30px;
+    text-align: center; width: 325px; height: 60px; background-color: green; color: #fff; line-height: 2; margin-top: 5px;}
+
+#maketable { line-height: 3;}
 
   /* ------------------------------------------------   */
 
@@ -187,7 +116,6 @@ font-size: 30px;}
 
 .menuwrap2 a:hover,.menuwrap a:active {text-decoration: none; color:black;}
 
-/* .menuwrap {width: 800px; height: 1300px;margin: 0 auto;} */
 
 .menuwrap2 .top {width: 800px; height: 80px; font-size: 50px; text-align: center;}
 
@@ -198,17 +126,13 @@ font-size: 30px;}
 
 .menuwrap2 .section1 {width: 800px; height: 70px; line-height: 2.5; font-size: 30px;}
 
-.menuwrap2 .price { float: right; width: 200px; height: 70px; /* background-color: darkseagreen */}
+.menuwrap2 .price { float: right; width: 200px; height: 70px;}
 
-.menuwrap2 .about {width: 800px; height: 100px; text-align: center; line-height: 10; background-color: white;/* background-color: darkgreen; */}
+.menuwrap2 .about {width: 800px; height: 100px; text-align: center; line-height: 10; background-color: white;}
 
 .menuwrap2 .section2 {width: 800px; height: 70px; line-height: 2.5; font-size: 30px; background: #fff; }
 
-/* .menuwrap2 .spinner { float: right; width: 200px; height: 70px; line-height: 2.5; font-size: 30px;} */
-
 .menuwrap2 .section3 {width: 800px; height: 70px; line-height: 2.5; font-size: 30px; background: #fff;}
-
-/* .menuwrap2 #allprice { float: right; width: 200px; height: 70px; background-color:darkkhaki;} */
 
 .menuwrap2 .add {float: left; text-align: center; font-size: 30px;
    width: 400px; height: 70px; background-color: deeppink; color: #fff; line-height: 2.5; margin-top: 20px;}
@@ -229,8 +153,6 @@ font-size: 30px;}
 
 .menuwrap3 a:hover,.menuwrap a:active {text-decoration: none; color:black;}
 
-/* .menuwrap {width: 800px; height: 1300px;margin: 0 auto;} */
-
 .menuwrap3 .top {width: 800px; height: 80px; font-size: 50px; text-align: center;}
 
 .menuwrap3 .pict {width: 800px;height: 300px; background-color: crimson;}
@@ -240,9 +162,9 @@ font-size: 30px;}
 
 .menuwrap3 .section1 {width: 800px; height: 70px; line-height: 2.5; font-size: 30px;}
 
-.menuwrap3 .price { float: right; width: 200px; height: 70px; /* background-color: darkseagreen */}
+.menuwrap3 .price { float: right; width: 200px; height: 70px;}
 
-.menuwrap3 .about {width: 800px; height: 100px; text-align: center; line-height: 10; background-color: white;/* background-color: darkgreen; */}
+.menuwrap3 .about {width: 800px; height: 100px; text-align: center; line-height: 10; background-color: white;}
 
 .menuwrap3 .section2 {width: 800px; height: 70px; line-height: 2.5; font-size: 30px; background: #fff; }
 
@@ -252,7 +174,7 @@ font-size: 30px;}
 
 .menuwrap3 .section3 {width: 800px; height: 70px; line-height: 2.5; font-size: 30px ; background: #fff;}
 
-.allprice { float: right; width: 200px; height: 70px;}
+.allprice { float: right; width: 200px; height: 70px; margin-right: 15px;}
 
 .menuwrap3 .add {float: left; text-align: center; font-size: 30px;
    width: 400px; height: 70px; background-color: deeppink; color: #fff; line-height: 2.5; margin-top: 20px;}

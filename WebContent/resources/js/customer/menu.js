@@ -172,6 +172,11 @@ function del1(check) {
 						var addmenu2 = document.getElementsByClassName('maketable')[0].insertRow(1);
 						addmenu2.classList.add('insert_menu1_desc');
 
+
+
+
+
+
 						// 새 행(Row)에 Cell 추가
 						var newCell1 = addmenu.insertCell(0);
 						newCell1.colSpan = 5;

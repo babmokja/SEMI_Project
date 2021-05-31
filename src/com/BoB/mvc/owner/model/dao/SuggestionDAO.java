@@ -5,6 +5,7 @@ import static com.BoB.mvc.common.jdbc.JDBCTemplate.close;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,6 +15,7 @@ import java.util.Properties;
 
 import com.BoB.mvc.common.config.ConfigLocation;
 import com.BoB.mvc.owner.model.dto.PageInfoDTO;
+import com.BoB.mvc.owner.model.dto.ReplyDTO;
 import com.BoB.mvc.owner.model.dto.SuggestionDTO;
 
 public class SuggestionDAO {
@@ -158,5 +160,41 @@ public class SuggestionDAO {
 		
 		
 		return totalCount;
+	}
+
+	public ReplyDTO selectReplyDetail(Connection con, String boardNo) {
+
+		PreparedStatement pstmt = null;
+		
+		ReplyDTO replyDTO = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("SuggestionReplyDetail");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, Integer.parseInt(boardNo));
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				replyDTO = new ReplyDTO();
+				
+				replyDTO.setBoardCode(rset.getInt("boardCode"));
+				replyDTO.setReplyCode(Integer.parseInt(rset.getString("replyCode")));
+				replyDTO.setReplyContent(rset.getString("replyContent"));
+				replyDTO.setReplyDate(rset.getDate("replyDate"));
+
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+	
+		
+		return replyDTO;
 	}
 }

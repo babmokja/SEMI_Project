@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	
+<!-- 주문코드, 총액, 주문시간, 요청사항, 주문진행여부, 사장님코멘트, 가게코드, 예약시간, 배달,포장여부, 사용자코드 -->
+<!-- 시퀀스                        결제완료                             배달   포장          -->	
+	<entry key="insertOrderTable">
+	INSERT INTO ORDER_TABLE
+	VALUES 
+	(
+	  ORDER_SEQ.NEXTVAL
+	, ?
+	, SYSDATE
+	, ?
+	, "결제완료"
+	, "아직 업주의 승인이 떨어지지 않았습니다."
+	, ?
+	, ?
+	, ?
+	, ?
+	)
+	</entry>
+	
+<!-- 주문코드, 가게코드, 장바구니코드 -->	
+	<entry key="insertOrderDetailTable">
+	INSERT INTO ORDER_DETAIL
+	VALUES 
+	(
+	  ?
+	, ?
+	, ?
+	)
+	</entry>
+	
+<!-- 사용포인트, 실제결제금액, 결제수단, 내역코드 -->
+<!--                   현금 카카오페이  시퀀스 -->
+	<entry key="insertPayment">
+	INSERT INTO PAYMENT
+	VALUES 
+	(
+	  ?
+	, ?
+	, ?
+	, PAYMENT_SEQ.NEXTVAL
+	);
+	</entry>
+	
+<!-- 갱신일자, 변경액수, 사유, 사용자코드, 리뷰코드, 내역코드 -->
+<!--                사용            NULL         -->
+	<entry key="insertPoint">
+    INSERT INTO POINT
+	VALUES 
+	(
+	  SYSDATE
+	, ?
+	, "사용"
+	, ?
+	, NULL
+	, ?
+	);
+	</entry>
+	
+<!-- 주문코드, 가게코드, 내역코드 -->
+	<entry key="insertTotalPaymentList">
+	INSERT INTO TOTAL_PAYMENT_LIST
+	VALUES 
+	(
+	  ?
+	, ?
+	, ?
+	)
+	</entry>
+	
+</properties>

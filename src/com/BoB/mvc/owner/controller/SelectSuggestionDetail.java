@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.PageContext;
 
+import com.BoB.mvc.owner.model.dto.ReplyDTO;
 import com.BoB.mvc.owner.model.dto.SuggestionDTO;
 import com.BoB.mvc.owner.model.service.SuggestionService;
 
@@ -27,9 +28,15 @@ public class SelectSuggestionDetail extends HttpServlet {
 		System.out.println("boardCode in servlet: "+boardNo);
 		
 		SuggestionDTO suggestionDetail = new SuggestionService().selectDetailSuggestion(boardNo);
+		ReplyDTO replyDetail = new SuggestionService().selectDetailReply(boardNo);
+		
+		System.out.println("suggestionDetail"+suggestionDetail);
+		System.out.println("replyDetail"+replyDetail);
 		
 		if(suggestionDetail != null) {
 			request.setAttribute("suggestionDetail", suggestionDetail);
+			request.setAttribute("replyDetail", replyDetail);
+			
 			path="/WEB-INF/views/owner/Owner_Suggestion_Board_Detail.jsp";
 		}else {
 			request.setAttribute("message", "문의 상세글을 불러오는데 실패하셨습니다. 다시 페이지를 시작해주세요!");

@@ -26,35 +26,31 @@ public class InsertCustomerBoardCommentServlet extends HttpServlet {
 		
 		System.out.println("boardCode : "+boardCode);
 		
+		
 		/* 게시글 조회 */
 		
-		List<CustomerCommentBoardDTO> customerList = new ArrayList<>();
-		
-		System.out.println("customerList : " + customerList);
+		CustomerCommentBoardDTO customercomment = new CustomerCommentBoardDTO();
 		
 		CustomerCommentBoardService customerCommentBoardService = new CustomerCommentBoardService();
 		
-		customerList = customerCommentBoardService.selectCostomerComment(intBoardCode);
+		customercomment = customerCommentBoardService.selectOwnerComment(intBoardCode);
 		
+		
+		System.out.println("customercomment : " + customercomment);
+
 		/* 관리자 댓글 조회 */
 		
-
-		List<CustomerReplyDTO> adminList = new ArrayList<>();
+		List<CustomerReplyDTO> replyList = new ArrayList<>();
+		replyList = customerCommentBoardService.selectCustomerReply(intBoardCode);
 		
-		adminList = customerCommentBoardService.selectAdminComment(intBoardCode);
-		System.out.println(adminList);
+		System.out.println("replyList : " + replyList);
 		
-		
-		
-		
-		
-		System.out.println(customerList);
-		System.out.println(adminList);
 		String path="";
 		path = "/WEB-INF/views/admin/admin_Customer_SecretWrite_Board.jsp";
 		
-		request.setAttribute("customerList", customerList);
-		request.setAttribute("adminList", adminList);
+		request.setAttribute("customercomment", customercomment);
+		request.setAttribute("replyList", replyList);
+		
 		request.setAttribute("intBoardCode", intBoardCode);
 		
 		request.getRequestDispatcher(path).forward(request, response);

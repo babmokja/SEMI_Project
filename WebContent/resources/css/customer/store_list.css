@@ -1,5 +1,12 @@
 @charset "utf-8";
 
+img {
+	height: 200px;
+    margin-right: 50px;
+    float: left;
+    width: 245px;
+}
+
 .body {
     margin-right: 33%;
     margin-bottom: 3%;
@@ -84,6 +91,7 @@ iframe {
     height: 200px;
     margin-right: 50px;
     float: left;
+    width: 245px;
 }
 
 #store_photo_choice:hover {

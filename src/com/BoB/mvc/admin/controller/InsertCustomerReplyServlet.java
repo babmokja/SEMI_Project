@@ -21,29 +21,32 @@ public class InsertCustomerReplyServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String content = request.getParameter("content");
-		String StrboardCode = request.getParameter("boardCode");
+		int boardCode = Integer.valueOf(request.getParameter("boardCode"));
 		
-		System.out.println("StrboardCode = "+StrboardCode);
-    	int boardCode = 0;
-    	boardCode = Integer.parseInt(StrboardCode);
     	
-		
     	CustomerCommentBoardService customerCommentBoardService = new CustomerCommentBoardService();
     	
+    	
+    	/*1*/
+    	CustomerCommentBoardDTO customerComment = new CustomerCommentBoardDTO();
+    	customerComment = customerCommentBoardService.selectOwnerComment(boardCode);
+    	
+    	/*2*/
+    	List<CustomerReplyDTO> replyList = new ArrayList<>();
+    	replyList = customerCommentBoardService.selectCustomerReply(boardCode);
+    	System.out.println("replyList : " + replyList);
+    	
+    	/*3*/
     	int result= customerCommentBoardService.insertCustomerReply(content, boardCode);
     	
-    	List<CustomerCommentBoardDTO> customerComment = new ArrayList<>();
-    	
-    	customerComment = customerCommentBoardService.selectCostomerComment(boardCode);
-    	
-    	List<CustomerReplyDTO> replyList = new ArrayList<>();
-    	replyList = customerCommentBoardService.selectAdminComment(boardCode);
-    	System.out.println(replyList);
+    	System.out.println("result" + result);
     	
     	String path="";
     	path = "/WEB-INF/views/admin/admin_Customer_SecretWrite_Board.jsp";
-    	request.setAttribute("customerComment", customerComment);
-    	request.setAttribute("replyList", replyList);
+		
+		  request.setAttribute("customerComment", customerComment);
+		  request.setAttribute("replyList", replyList);
+		
     	request.getRequestDispatcher(path).forward(request, response);
     	
     	

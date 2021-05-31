@@ -61,7 +61,7 @@ public class AdminDAO {
 		ResultSet rset = null;
 		
 		String encPwd = null;
-		String query = prop.getProperty("searchId");
+		String query = prop.getProperty("selectEncryptedPwd");
 		
 		try {
 			pstmt = con.prepareStatement(query);

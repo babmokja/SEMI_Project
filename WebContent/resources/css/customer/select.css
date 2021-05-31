@@ -26,6 +26,8 @@ body,html {margin: 0 auto;}
  
 #selectwrap .pic { width: 320px; height: 250px; background-color: burlywood; }
 
+#selectwrap .pic img { width: 320px; height: 250px; margin-left: 0px; }
+
 /* ================================     */
  
 #selectwrap .section2 {width: 1440px; height: auto;  margin:0 auto; margin-top: 50px;}
@@ -55,7 +57,7 @@ body,html {margin: 0 auto;}
 #selectwrap .emot {clear: both; position: relative; width: 1440px; height: 50px; margin: 0 auto; clear: both;}
 #selectwrap .emoticon { display: flex; align-items: center; justify-content: center; margin-left: 20px; }
 
-#selectwrap img:nth-child(1) {margin-left: -10px;}
+/* #selectwrap img:nth-child(1) {margin-left: -10px;} */
 #selectwrap img:nth-child(2) {margin-left: 45px;}
 #selectwrap img:nth-child(3) {margin-left: 45px;padding-bottom: 5px;}
 
@@ -67,17 +69,21 @@ body,html {margin: 0 auto;}
 
 #selectwrap .section4 {clear: both; width: 1440px; height: auto; margin: 0px auto 0 auto; padding-top: 100px;}
  
-#selectwrap .review {width : 1200px; height: 300px; background-color: white; margin: 0px auto 0 auto;}
+#selectwrap .review {width : 1200px; height: 230px; background-color: white; margin: 0px auto 0 auto;}
      
-#selectwrap .profile {float: left; width: 200px; height: auto;  margin-top: 50px;}
+#selectwrap .profile {float: left; width: 200px; height: auto;  margin-top: 30px;}
  
-#selectwrap .user {width: 100px; height: 100px; border: 1px solid black; margin: 30px auto 0 auto; }
+#selectwrap .user {width: 100px; height: 100px; margin: 30px auto 0 auto; }
+
+#selectwrap .user img {width: 100px;}
  
 #selectwrap .uname { width: 100px; height: 30px; /* background: #000; */ margin: 5px auto 0 auto; text-align: center;}
  
 #selectwrap .desc {/* float: left; */ width: 600px; height: auto; margin: 80px auto 0 auto; font-size: 22px; padding-right: 50px;}
  
-#selectwrap .preview {width: 200px; height: 200px; float: right; background:seagreen; margin-top: -90px;}
+#selectwrap .preview {width: 200px; height: 200px; float: right; margin-top: -90px; margin-right: 50px;}
 
-#selectwrap .line {margin: 0 auto; width: 1200px ; height: 1px; background-color: black; opacity: 50%;}
+#selectwrap .preview img {width: 200px; height: 200px;}
+
+#selectwrap .line {margin: 0 auto; width: 1200px ; height: 1px; background-color: black;}
     

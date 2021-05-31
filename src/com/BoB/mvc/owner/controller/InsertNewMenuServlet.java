@@ -2,12 +2,9 @@ package com.BoB.mvc.owner.controller;
 
 import java.io.File;
 import java.io.IOException;
-
-import java.lang.ref.PhantomReference;
-import java.net.FileNameMap;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -16,19 +13,22 @@ import java.util.Set;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import com.BoB.mvc.owner.model.dto.LicenseManagerDTO;
 import com.BoB.mvc.owner.model.dto.MenuListDTO;
+import com.BoB.mvc.owner.model.dto.OwnerDTO;
 import com.BoB.mvc.owner.model.dto.PictureDTO;
+import com.BoB.mvc.owner.model.dto.StoreInfoDTO;
 import com.BoB.mvc.owner.model.service.MenuListService;
 
 /**
@@ -52,23 +52,60 @@ public class InsertNewMenuServlet extends HttpServlet {
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		OwnerDTO ownerDTO= (OwnerDTO) session.getAttribute("ownerDTO");
+		LicenseManagerDTO lmDTO = (LicenseManagerDTO) session.getAttribute("lmDTO");
+		StoreInfoDTO storeDTO = (StoreInfoDTO) session.getAttribute("storeInfoDTO");
+		
+		if(ownerDTO==null) {
+			
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter writer = response.getWriter();
+			writer.println("<script> alert('로그인 후 사용 바랍니다'); location.href ='"+ request.getContextPath() +"/main';</script>");
+			writer.close();
 
+
+		} else {
 		String path ="/WEB-INF/views/owner/MenuManage.jsp";
 		
 		request.getRequestDispatcher(path).forward(request, response);
+		}
 		
 	}	
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String menuName = request.getParameter("menuName");
-		int price = Integer.parseInt(request.getParameter("price"));
-		String salesYN = request.getParameter("salesYN");
-		String menuExplain = request.getParameter("menuExplain");
+		Map<String,String[]> requestMap = request.getParameterMap();
+		Set<String> keySet = requestMap.keySet();
+		Iterator<String> keyIter = keySet.iterator();
+		System.out.println("keySet을 출력합니다 " + keySet);
+//		while(keyIter.hasNext()) {
+//			String key = keyIter.next();
+//			String[] value = requestMap.get(key);
+//			
+//			System.out.println("key : " + key);
+//			for(int i =0; i < value.length; i++) {
+//				System.out.println("value[" + i + "] = " + value[i]);
+//			}
+//		}
+		
+		/* 파라미터로 전달된 키 목록만도 확인할 수 있따.
+		 * -> request.getParameterNames()를 이용
+		 * Enumeration : 목록화 시킨다. 즉 rset느낌
+		 */
+//		Enumeration<String> names = request.getParameterNames();
+//		while(names.hasMoreElements()) {
+//			System.out.println(names.nextElement());
+//		}
+//		String menuName = request.getParameter("menuName");
+//		int price = Integer.parseInt(request.getParameter("price"));
+//		String salesYN = request.getParameter("salesYN");
+//		String menuExplain = request.getParameter("menuExplain");
 
-		if(ServletFileUpload.isMultipartContent(request)) {
-			
+		
+		
 			System.out.println("파일 저장 ROOT 경로: "+ rootLocation);
 			System.out.println("최대 업로드 파일 용량: "+ maxFileSize);
 			System.out.println("인코딩 방식: "+ encodingType);
@@ -88,16 +125,11 @@ public class InsertNewMenuServlet extends HttpServlet {
 		 * 최종적으로 request를 parsing 하고 파일을 저장한뒤 필요한 내용을 담을 리스트와 맵이다.
 		 * 파일에 대한 정보는 리스트 (fileList)에 다른 파라미터의 정보를 모두 맵에 답을것ㄱ이다.
 		 */
-//		Map<String,String> parameter = new HashMap<>();
 //		Map<String,String> fileList = new HashMap<>();
 	
-			List<Map<String,String>> parameter = new ArrayList<>();
-
 			List<Map<String,String>> fileList = new ArrayList<>();
-			Map<String, String> fileMap = new HashMap<>();
-			Map<String, String> aMap = new HashMap<>();
-			
-			
+			Map<String,String> parameter = new HashMap<>();
+
 			/* 파일을 업로드할 시 최대 크기나 임시 저장할 폴더의 경로 등을 포함하기 위한 인스턴스 */
 			DiskFileItemFactory fileItemFactory = new DiskFileItemFactory();
 			fileItemFactory.setRepository(new File(fileUploadDirectory));
@@ -109,35 +141,35 @@ public class InsertNewMenuServlet extends HttpServlet {
 			try {
 			
 			/* request를 파싱하여 데이터 하나 한를 FileItem 인스턴스로 반환한다. */
-				List<FileItem> fileItem = fileUpload.parseRequest(request);
-				int num = 0;
-				for(FileItem item: fileItem) {
-					
-					System.out.println("JAMES JJANG" + item);
-					
-					if(item.getSize() == 0 && item.isFormField() == true) {
-						// 새로운 메뉴 등록할 분기문 
-						System.out.println("size == 0" + item.getSize());
-						num = 1;
+				List<FileItem> fileItems = fileUpload.parseRequest(request);
+//				int num = 0;
+				for(FileItem itim: fileItems) {
+//					
+//					System.out.println("JAMES JJANG" + item);
+//					
+//					if(item.getSize() == 0 && item.isFormField() == true) {
+//						// 새로운 메뉴 등록할 분기문 
+//						System.out.println("size == 0" + item.getSize());
+//						num = 1;
+					System.out.println(itim);
 					} 
-					
-					if(num == 1) {
-					System.out.println(item);
+//					
+//					if(num == 1) {
+//					System.out.println(item);
 					// 새로 등록할 메뉴 
 					
-//					for(int i=0; i<fileItem.size();i++) {
-						FileItem itm = item;
-						if(!itm.isFormField()) { 
+					for(int i=0; i<fileItems.size();i++) {
+						FileItem item = fileItems.get(i);
+						
+						
+						if(!item.isFormField()) { 
 					
-								if(itm.getSize()>0) {
+								if(item.getSize()>0) {
 								
 								
-								String filedName = itm.getFieldName();
-								String originFileName = itm.getName();
-								java.sql.Date UploadDate = new java.sql.Date(System.currentTimeMillis());
-								SimpleDateFormat dateFormat = new SimpleDateFormat("yy/MM/dd");
+								String filedName = item.getFieldName();
+								String originFileName = item.getName();
 								
-								String upload = dateFormat.format(UploadDate);
 							
 								
 								int dot= originFileName.lastIndexOf(".");
@@ -153,41 +185,30 @@ public class InsertNewMenuServlet extends HttpServlet {
 								// String str="";
 		//						System.out.println(str.charAt(1));
 								
-								itm.write(storeFile);
+								item.write(storeFile);
 								
 								/* 필요한 정보를 Map에 담는다 -> 디비에 저장하기위해 */
-								
-		//						fileMap.put("fileName", filedName);
+								Map<String, String> fileMap = new HashMap<>();
+								fileMap.put("fileName", filedName);
 								fileMap.put("originFileName", originFileName);
 								fileMap.put("saveFileName", randomFileName);
 								fileMap.put("savePath", fileUploadDirectory);
-								fileMap.put("uploadDate", upload);
+//								fileMap.put("uploadDate", upload);
 								
-								// where those are 
-//								PictureDTO pictureDTO = new PictureDTO();
-//								pictureDTO.setOriginName(fileMap.get("originFileName"));
-//								pictureDTO.setRevisedName(fileMap.get("saveFileName"));
-//								pictureDTO.setRoute(fileMap.get("savePath"));
-//								System.out.println(fileMap.get("uploadDate"));
-								//						pictureDTO.setUploadDate(Date.valueOf(fileMap.get("uploadDate")));
+								fileList.add(fileMap);
+
 								}
-								
-		
 							}else {
 							// isFormField - true
 								
 								
-//							for(int i=0;i<6;i++) {
-							
-								System.out.println("모뉘: "+itm.getFieldName()+new String(itm.getString().getBytes("ISO-8859-1"),"UTF-8"));
-							
-//							for()
-								aMap.put(itm.getFieldName(), new String(itm.getString().getBytes("ISO-8859-1"),"UTF-8"));	
+								parameter.put(item.getFieldName(), new String(item.getString().getBytes("ISO-8859-1"),"UTF-8") ); // form 태그의 value값을 넣어준다.
+
+//								System.out.println("모뉘: "+itm.getFieldName()+new String(itm.getString().getBytes("ISO-8859-1"),"UTF-8"));
+//							
+//								parameter.put(itm.getFieldName(), new String(itm.getString().getBytes("ISO-8859-1"),"UTF-8"));	
 					
 							}
-//					}
-						
-//				}
 					
 						
 					
@@ -196,23 +217,26 @@ public class InsertNewMenuServlet extends HttpServlet {
 					
 					}
 					
-//					}
-				}
-				System.out.println("aMap: "+ aMap);
-				System.out.println("fileMap: "+ fileMap);
+				System.out.println("parameter : "+ parameter);
+				System.out.println("fileMap : "+ fileList);
 				
 				PictureDTO pictureDTO = new PictureDTO();
-				pictureDTO.setOriginName(fileMap.get("originFileName"));
-				pictureDTO.setRevisedName(fileMap.get("saveFileName"));
-				pictureDTO.setRoute(fileMap.get("savePath"));
-				System.out.println(fileMap.get("uploadDate"));
+				pictureDTO.setOriginName(fileList.get(0).get("originFileName"));
+				pictureDTO.setRevisedName(fileList.get(0).get("saveFileName"));
+				pictureDTO.setRoute(fileList.get(0).get("savePath"));
+//				pictureDTO.setUploadDate(Date.valueOf(fileList.get(0).get("uploadDate")));
+
+//				java.sql.Date UploadDate = new java.sql.Date(System.currentTimeMillis());
+//				SimpleDateFormat dateFormat = new SimpleDateFormat("yy/MM/dd");
+//				String upload = dateFormat.format(UploadDate);
 				
 				MenuListDTO menuList = new MenuListDTO();
-				menuList.setMenuName(aMap.get("menuName"));
-				menuList.setPrice(Integer.parseInt(aMap.get("price")));
-				menuList.setSalesYN(aMap.get("salesYN"));
-				menuList.setMenuExplain(aMap.get("menuExplain"));
-				
+				menuList.setMenuCode(parameter.get("menuCode"));
+				menuList.setMenuName(parameter.get("menuName"));
+				menuList.setPrice(Integer.parseInt(parameter.get("price")));
+				menuList.setSalesYN(parameter.get("salesYN"));
+				menuList.setMenuExplain(parameter.get("menuExplain"));
+				System.out.println(menuList);
 					/* 폼 데이터 isFormField 속성이 true이고, 파일은 isFormField 속성이 false이다. */
 //				System.out.println("fileItem:  "+fileItem);
 //				Map<String, String> fileMap =null;
@@ -281,7 +305,7 @@ public class InsertNewMenuServlet extends HttpServlet {
 		
 				
 	//			newMenu.setPicture());
-				MenuListDTO newMenu = new MenuListDTO();
+//				MenuListDTO newMenu = new MenuListDTO();
 //				newMenu.setMenuName(parameter.get("menuName"));
 //				newMenu.setPrice(Integer.parseInt(parameter.get("price")));
 //				newMenu.setSalesYN(parameter.get("salesYN"));
@@ -289,10 +313,31 @@ public class InsertNewMenuServlet extends HttpServlet {
 				
 				
 	//				System.out.println(newMenu);
-					MenuListService menuService = new MenuListService();
-					int result = menuService.insertBoard(newMenu,pictureDTO);
+					int result =0;
+				HttpSession session = request.getSession();
+				OwnerDTO ownerDTO = (OwnerDTO) session.getAttribute("ownerDTO");
+				LicenseManagerDTO lmDTO = (LicenseManagerDTO) session.getAttribute("lmDTO");
+				StoreInfoDTO storeInfoDTO = (StoreInfoDTO) session.getAttribute("storeInfoDTO");
 					
-//					int result =1;
+				MenuListService menuService = new MenuListService();
+//				String menuN = menuService.getMenuname(menuList);
+//				
+//				if(parameter.get("menuName")==menuN) {
+//					
+//					result = menuService.updateBoard(menuList,pictureDTO,storeInfoDTO);
+//					System.out.println("업데이트는 정말 잘 되었을까요" + result);
+//					new MenuListService().selectAllMenuList(storeInfoDTO);
+//					
+//				} else {
+					result = menuService.insertBoard(menuList,pictureDTO, storeInfoDTO);
+					new MenuListService().selectAllMenuList(storeInfoDTO);
+//				}
+				
+				/* 삭제 처리 */
+//				if(parameter.get(keyIter))
+				
+					/* 성공 실패 페이지를 구분하여 연결한다. */
+
 					String path ="";
 					if(result>0) {
 						path="/WEB-INF/views/owner/MenuManage.jsp";
@@ -304,21 +349,25 @@ public class InsertNewMenuServlet extends HttpServlet {
 					request.getRequestDispatcher(path).forward(request, response);
 								
 				
+					
+					
+					
+					
 			}catch(Exception e) {
-				System.out.println("inside catch");
-				e.printStackTrace();
+//				System.out.println("inside catch");
+//				e.printStackTrace();
 				/* 어떤 종류의 exception이 발생해서 실패를 하더라도 파일을 삭제해야한다. */
 				int cnt = 0;
-	//			for(int i=0;i<fileList.size();i++) {
-	//				Map<String,String> file = fileList.get(i)
-	//;
-	//				File deleteFile = new File(fileUploadDirectory +"/"+fileList.get("savedFileName"));
-	//				boolean isDeleted = deleteFile.delete();
-	//				
-	//				if(isDeleted) {
-	//					cnt++;
-	//				}
-	//			}
+			for(int i=0;i<fileList.size();i++) {
+				Map<String,String> file = fileList.get(i);
+	
+				File deleteFile = new File(fileUploadDirectory +"/"+file.get("savedFileName"));
+				boolean isDeleted = deleteFile.delete();
+				
+				if(isDeleted) {
+					cnt++;
+				}
+			}
 				if(cnt == fileList.size()) {
 					System.out.println("없로드에 실패");
 					
@@ -329,5 +378,5 @@ public class InsertNewMenuServlet extends HttpServlet {
 			
 			}
 		
-	}
+	
 }

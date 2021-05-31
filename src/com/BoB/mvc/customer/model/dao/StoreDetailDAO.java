@@ -26,7 +26,7 @@ public class StoreDetailDAO {
 	public StoreDetailDAO() {
 		
 		try {
-			prop.loadFromXML(new FileInputStream(ConfigLocation.MAPPER_LOCATION+"storedetail.xml"));
+			prop.loadFromXML(new FileInputStream(ConfigLocation.MAPPER_LOCATION+"store/storedetail.xml"));
 			
 		}catch(IOException e) {
 			e.printStackTrace();

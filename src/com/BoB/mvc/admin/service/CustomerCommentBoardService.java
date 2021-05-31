@@ -19,26 +19,29 @@ public class CustomerCommentBoardService {
 	
 	
 	/*1*/
-	public List<CustomerCommentBoardDTO> selectCostomerComment(int intBoardCode) {
+	public CustomerCommentBoardDTO selectOwnerComment(int intBoardCode) {
 		
 		Connection con = getConnection();
 		
-		List<CustomerCommentBoardDTO> customerList = customerCommentBoardDAO.selectCostomerComment(con, intBoardCode);
+		CustomerCommentBoardDTO customercomment = customerCommentBoardDAO.selectCustomerComment(con, intBoardCode);
 		
 		close(con);
 		
-		return customerList;
+		return customercomment;
 	}
 	
+	
+
 	/*2*/
-	public List<CustomerReplyDTO> selectAdminComment(int boardCode) {
+	public List<CustomerReplyDTO> selectCustomerReply(int intBoardCode) {
 		
 		Connection con = getConnection();
 		
-		List<CustomerReplyDTO> customerReply = customerCommentBoardDAO.selectCustomerReply(con, boardCode);
+		List<CustomerReplyDTO> replyList = customerCommentBoardDAO.selectCustomerReply(con, intBoardCode);
 		
-		return customerReply;
+		return replyList;
 	}
+	
 	
 	/*3*/
 	public int insertCustomerReply(String content, int boardCode) {
@@ -61,6 +64,13 @@ public class CustomerCommentBoardService {
 		
 		return result;
 	}
+
+
+
+
+
+
+
 	
 	
 }

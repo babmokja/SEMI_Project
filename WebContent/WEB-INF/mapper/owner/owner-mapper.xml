@@ -25,6 +25,7 @@
 					       JOIN REVIEW_REPLY Y ON(T.REPLY_CODE = Y.REPLY_CODE)
 					       JOIN ORDER_TABLE OT ON(R.ORDER_CODE = OT.ORDER_CODE)
 					       JOIN USER_TABLE UT ON(OT.USER_CODE = UT.USER_CODE)
+					       WHERE R.STORE_CODE = ?
 				       ) B
 		       ) A
 		 WHERE A.RNUM BETWEEN ? AND ? 
@@ -32,6 +33,7 @@
 	<entry key="selectReviewReplyTotalCount">
 		SELECT COUNT(*)
 		  FROM REVIEW
+		 WHERE STORE_CODE = ?
 	</entry>
 	<entry key="searchsatisfiedBoardCount">
 		SELECT A.RNUM
@@ -57,6 +59,7 @@
 					       JOIN REVIEW_REPLY Y ON(T.REPLY_CODE = Y.REPLY_CODE)
 					       JOIN ORDER_TABLE OT ON(R.ORDER_CODE = OT.ORDER_CODE)
 					       JOIN USER_TABLE UT ON(OT.USER_CODE = UT.USER_CODE)
+					       WHERE R.STORE_CODE = ?
 				       ) B
 		 WHERE B.SATISFIED LIKE '%' || ? || '%'
 		       ) A
@@ -86,6 +89,7 @@
 					       JOIN REVIEW_REPLY Y ON(T.REPLY_CODE = Y.REPLY_CODE)
 					       JOIN ORDER_TABLE OT ON(R.ORDER_CODE = OT.ORDER_CODE)
 					       JOIN USER_TABLE UT ON(OT.USER_CODE = UT.USER_CODE)
+					       WHERE R.STORE_CODE = ?
 				       ) B
 		 WHERE B.REVIEW_CONTENT LIKE '%' || ? || '%'
 		       ) A
@@ -115,6 +119,7 @@
 					       JOIN REVIEW_REPLY Y ON(T.REPLY_CODE = Y.REPLY_CODE)
 					       JOIN ORDER_TABLE OT ON(R.ORDER_CODE = OT.ORDER_CODE)
 					       JOIN USER_TABLE UT ON(OT.USER_CODE = UT.USER_CODE)
+					       WHERE R.STORE_CODE = ?
 				       ) B
 		 WHERE B.USER_ID LIKE '%' || ? || '%'
 		       ) A
@@ -335,6 +340,7 @@
 		  FROM USER_TABLE U
 		 WHERE U.WITHDRAW_YN = 'N'
 	 	   AND U.USER_ID = ?
+	 	   AND U.ROLE_CODE = 3
 	</entry>
 	<entry key="selectLoginStore">
 		SELECT
@@ -381,8 +387,18 @@
 	</entry>
 	<entry key="selectAllMenuList">
 	SELECT
-	       *
-	  FROM MENU
+	       M.MENU_CODE
+	     , M.MENU_NAME
+	     , M.MENU_EXP
+	     , M.PRICE
+	     , M.SALES_YN
+	     , M.STORE_CODE
+	     , P.ORIGIN_NAME
+	     , P.ROUTE
+	     , P.PICTURE_CODE
+	  FROM MENU M
+	  JOIN PICTURE P ON (M.PICTURE_CODE = P.PICTURE_CODE)
+	 WHERE STORE_CODE = ?
 	</entry>
 		<entry key="insertNewMenu">
 		INSERT
@@ -420,11 +436,29 @@
 	</entry>
 	
 	<entry key="selectDailySales">
-	    SELECT * 
-	      FROM ORDER_TABLE   
-	     WHERE EXTRACT(MONTH FROM (ORDER_TIME))=?
-	    ORDER BY ORDER_TIME
-
+	      SELECT A.RNUM
+	    	 , A.ORDER_CODE
+	    	 , A.ORDER_TIME
+	    	 , A.TOTAL_AMOUNT
+	    	 , A.STORE_CODE
+	    	 , A.TYPE_YN 
+	      FROM (SELECT ROWNUM.RNUM
+			    	 , B.ORDER_CODE
+			    	 , B.ORDER_TIME
+			    	 , B.TOTAL_AMOUNT
+			    	 , B.STORE_CODE
+			    	 , B.TYPE_YN 
+			      FROM (SELECT O.ORDER_CODE
+					    	 , O.ORDER_TIME
+					    	 , O.TOTAL_AMOUNT
+					    	 , O.STORE_CODE
+					    	 , O.TYPE_YN 
+			      		  FROM ORDER_TABLE O   
+			      		 WHERE EXTRACT(DAY FROM (ORDER_TIME))=?
+			    		   AND STORE_CODE = ?
+			    		 ORDER BY ORDER_TIME) B
+			    		 ) A
+		 WHERE A.RNUM BETWEEN ? AND ? 
 	</entry>
 	
 	<entry key="selectAllSales">
@@ -446,14 +480,31 @@
 	</entry>
 	
 	<entry key = "selectAllSuggestion">
+	SELECT A.RNUM
+			 , A.BOARD_CODE
+		     , A.BOARD_TITLE
+		     , A.BOARD_DATE
+		  FROM (SELECT ROWNUM RNUM
+					 , B.BOARD_CODE
+				     , B.BOARD_TITLE
+				     , B.BOARD_DATE
+				  FROM (SELECT
+						       O.BOARD_CODE
+						     , O.BOARD_TITLE
+						     , O.BOARD_DATE
+						  FROM OWNER_INQUIRY O
+						 WHERE OWNER_CODE = ?
+						 ) B
+						 ) A
+		  WHERE A.RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key = "countAllSuggestion">
 	
 		SELECT
-		       *
-		  FROM OWNER_INQUIRY
+		       COUNT(*)
+		  FROM OWNER_INQUIRY O
 		 WHERE OWNER_CODE = ?
-	
 	</entry>
-	
 	<entry key="InsertSuggestion">
 	     INSERT
 	       INTO OWNER_INQUIRY
@@ -493,7 +544,40 @@
                     JOIN USER_TABLE U ON(B.OWNER_CODE = U.USER_CODE)
                     WHERE A.BOARD_CODE =?
 	</entry>
-	
+	<entry key="CommentDetail">
+	SELECT  R.REVIEW_CONTENT
+	      , UT.USER_ID
+	      , Y.REPLY_DATE
+       FROM REVIEW R
+       JOIN TOTAL_REVIEW T ON(R.REVIEW_CODE = T.REVIEW_CODE)
+       JOIN REVIEW_REPLY Y ON(T.REPLY_CODE = Y.REPLY_CODE)
+       JOIN ORDER_TABLE OT ON(R.ORDER_CODE = OT.ORDER_CODE)
+       JOIN USER_TABLE UT ON(OT.USER_CODE = UT.USER_CODE)
+      WHERE R.REVIEW_CODE = ?
+	</entry>
+	<entry key="getMenuname">
+		SELECT
+			   ?
+		  FROM MENU
+		 WHERE STORE_CODE = ?
+	</entry>
+	<entry key="updateMenuList">
+	UPDATE (SELECT * FROM MENU M,PICTURE P WHERE M.PICTURE_CODE = P.PICTURE_CODE)
+	   SET PRICE = ?
+	     , MENU_EXP =?
+	     , SALES_YN = ?
+	 WHERE STORE_CODE = ?
+	</entry>
+	<entry key="deleteMenu">
+		DELETE 
+		  FROM MENU
+     	 WHERE MENU_CODE = ?
+	</entry>
+	<entry key="SelectDailySalesTotalCount">
+		SELECT COUNT(*)
+		  FROM ORDER_TABLE
+	  	 WHERE STORE_CODE = ?
+	</entry>
 	<entry key="selectTotalCount">
 		    
 		select
@@ -537,21 +621,37 @@
 	
 	<entry key="DeliveryBasicInfo">
 	       SELECT
-			    A.ORDER_CODE,
-			    A.USER_CODE,
-			    B.USER_NAME,
-			    A.ORDER_PROCEED,
-			    A.OWNER_COMMENT,
-			    A.ORDER_TIME,
-			    A.TYPE_YN
-
+			     A.ORDER_CODE,
+			     A.USER_CODE,
+			     B.USER_NAME,
+			     A.ORDER_PROCEED,
+			     A.OWNER_COMMENT,
+			     A.ORDER_TIME,
+			     A.TYPE_YN
 		    FROM ORDER_TABLE A
 		    JOIN USER_TABLE B ON(A.USER_CODE = B.USER_CODE)
 		    JOIN STORE_TABLE C ON(A.STORE_CODE = C.STORE_CODE)
 		    JOIN USER_TABLE D ON(C.USER_CODE = D.USER_CODE)
-		    WHERE D.USER_CODE = ?
-		      AND A.TYPE_YN = '배달'
-	     
+		   WHERE D.USER_CODE = ?
+		     AND A.TYPE_YN = '배달'
+	</entry>
+	
+	<entry key="PickupBasicInfo">
+	       SELECT
+			     A.ORDER_CODE,
+			     A.USER_CODE,
+			     B.USER_NAME,
+			     A.ORDER_PROCEED,
+			     A.OWNER_COMMENT,
+			     A.ORDER_TIME,
+			     A.RESERVE_TIME,
+			     A.TYPE_YN
+		    FROM ORDER_TABLE A
+		    JOIN USER_TABLE B ON(A.USER_CODE = B.USER_CODE)
+		    JOIN STORE_TABLE C ON(A.STORE_CODE = C.STORE_CODE)
+		    JOIN USER_TABLE D ON(C.USER_CODE = D.USER_CODE)
+		   WHERE D.USER_CODE = ?
+		     AND A.TYPE_YN = '픽업'
 	</entry>
 	
 	<entry key="DeliveryOrderList">
@@ -567,5 +667,79 @@
 		      JOIN STORE_TABLE E ON (D.STORE_CODE = E.STORE_CODE)
 		      JOIN USER_TABLE F ON (E.USER_CODE = F.USER_CODE)
 		      WHERE F.USER_CODE = ?
+		        AND A.ORDER_CODE = D.ORDER_CODE
+	</entry>
+	
+	<entry key = "UpdateOwnerComment">
+	    UPDATE ORDER_TABLE
+           SET 
+               ORDER_PROCEED = '승인',
+               OWNER_COMMENT = ?
+         WHERE ORDER_CODE = ?
+	
+	</entry>
+	
+	<entry key = "DenyOwnerComment">
+	    UPDATE ORDER_TABLE
+           SET 
+               ORDER_PROCEED = '취소',
+               OWNER_COMMENT = ?
+         WHERE ORDER_CODE = ?
+	
+	</entry>
+	
+	<entry key="CompleteOrder">
+	     UPDATE ORDER_TABLE
+           SET 
+               ORDER_PROCEED = ?
+         WHERE ORDER_CODE = ?
+	</entry>
+	<entry key="oneselectfee">
+	
+	SELECT
+           A.OWNER_NO
+         , B.STORE_NAME
+         , B.STORE_ADDRESS
+         , B.COMPANY
+         , B.ITEM
+         , D.USER_NAME
+         , E.ORDER_TIME
+         , E.TOTAL_AMOUNT
+      FROM STORE_TABLE A
+      JOIN LICENSE_MANAGE B
+        ON(A.BUSINESS_REGIST_CODE = B.BISI_CODE)
+      JOIN TOTAL_PAYMENT_LIST C
+        ON(A.STORE_CODE = C.STORE_CODE)
+      JOIN USER_TABLE D
+        ON(A.USER_CODE = D.USER_CODE)
+      JOIN ORDER_TABLE E
+        ON(A.STORE_CODE  = E.STORE_CODE )
+     WHERE A.USER_CODE = ? AND ROWNUM=1
+</entry>
+	
+	<entry key="UpdateOwnerPickAccept">
+	UPDATE ORDER_TABLE
+           SET 
+               ORDER_PROCEED = '승인',
+               OWNER_COMMENT = ?
+         WHERE ORDER_CODE = ?
+	</entry>
+	
+	<entry key="selectNoshowinfo">
+	SELECT 
+       O.USER_CODE as "USER_CODE"
+     , O.ORDER_CODE as "ORDER_CODE"
+     , O.STORE_CODE as "STORE_CODE"
+    FROM ORDER_TABLE O 
+    JOIN TOTAL_PAYMENT_LIST M ON (O.ORDER_CODE = M.ORDER_CODE)
+    JOIN PAYMENT P ON (M.PAYMENT_CODE = P.PAYMENT_CODE) 
+    WHERE P.PAYMENT_METHOD = '현금'
+      AND O.TYPE_YN = '픽업'
+	</entry>
+	
+	<entry key= "InsertNoShowUser">
+	
+
+
 	</entry>
 </properties>

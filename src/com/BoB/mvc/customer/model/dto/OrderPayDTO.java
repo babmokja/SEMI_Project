@@ -20,6 +20,10 @@ public class OrderPayDTO {
 	private String reServeTime;         // 예약시간
 	private String orderType ;       	// 가게 유형
 	private String menuName;         	// 메뉴명
+	private int totalPrice;				// 합계
+	private String email;               // 사용자 이메일
+	private String name;                // 사용자 이름
+	private String phone;               // 전화번호
 	
 	public OrderPayDTO() {
 		super();
@@ -27,7 +31,8 @@ public class OrderPayDTO {
 
 	public OrderPayDTO(int userCode, String request, String payType, int point, String storeName, int price,
 			int menuCode, int amount, int storeCode, int cartCode, int orderCode, Date orderTime, String orderYN,
-			String reServeTime, String orderType, String menuName) {
+			String reServeTime, String orderType, String menuName, int totalPrice, String email, String name,
+			String phone) {
 		super();
 		this.userCode = userCode;
 		this.request = request;
@@ -45,6 +50,10 @@ public class OrderPayDTO {
 		this.reServeTime = reServeTime;
 		this.orderType = orderType;
 		this.menuName = menuName;
+		this.totalPrice = totalPrice;
+		this.email = email;
+		this.name = name;
+		this.phone = phone;
 	}
 
 	public int getUserCode() {
@@ -175,13 +184,46 @@ public class OrderPayDTO {
 		this.menuName = menuName;
 	}
 
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
 	@Override
 	public String toString() {
 		return "OrderPayDTO [userCode=" + userCode + ", request=" + request + ", payType=" + payType + ", point="
 				+ point + ", storeName=" + storeName + ", price=" + price + ", menuCode=" + menuCode + ", amount="
 				+ amount + ", storeCode=" + storeCode + ", cartCode=" + cartCode + ", orderCode=" + orderCode
 				+ ", orderTime=" + orderTime + ", orderYN=" + orderYN + ", reServeTime=" + reServeTime + ", orderType="
-				+ orderType + ", menuName=" + menuName + "]";
+				+ orderType + ", menuName=" + menuName + ", totalPrice=" + totalPrice + ", email=" + email + ", name="
+				+ name + ", phone=" + phone + "]";
 	}
-	
+
 }

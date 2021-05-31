@@ -83,4 +83,23 @@ public class OrderPayService {
 		return selectedBasket;
 	}
 
+	/**
+	 * 사용자 코드를 이용해 사용자 정보 조회
+	 * @param userCodeSelect
+	 * @return
+	 */
+	public OrderPayDTO selectOrderPerson(int userCodeSelect) {
+		
+		/* Connection 생성 */
+		Connection con = getConnection();
+		
+		/* Connection과 함께 정보를 전달하여 조회를 한다. */
+		OrderPayDTO selectOrderPerson = orderpayDAO.selectOrderPerson(con, userCodeSelect);
+		
+		/* Connection을 닫는다. */
+		close(con);
+		
+		return selectOrderPerson;
+	}
+
 }

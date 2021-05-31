@@ -24,16 +24,19 @@ public class InsertOwnerReplyServlet extends HttpServlet {
     	
     	OwnerCommentBoardService ownerCommentBoardService = new OwnerCommentBoardService();
     	
-    	int result = ownerCommentBoardService.insertOwnerReply(content, boardCode);
     	
+    	/*1*/
     	OwnerCommentBoardDTO ownerComment = new OwnerCommentBoardDTO();
-		
 		ownerComment = ownerCommentBoardService.selectOwnerComment(boardCode);
 		
+		
+		/*2*/
 		List<OwnerReplyManageDTO> replyList = new ArrayList<>();
 		replyList = ownerCommentBoardService.selectOwnerReply(boardCode);
 		System.out.println("replyList : " + replyList);
 		
+		/*3*/
+		int result = ownerCommentBoardService.insertOwnerReply(content, boardCode);
 		
 		String path="";
 		path = "/WEB-INF/views/admin/admin_Owner_SecretWrite_Board.jsp";

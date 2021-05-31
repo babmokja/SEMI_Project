@@ -26,4 +26,4 @@ input.pwd { font-weight: bolder; border: 1px solid black; font-size: 30px; width
 
 .owner_login:hover { opacity: 60%; }
 
-.manager_login { float: right; border: 1px solid black; padding: 5px; font-size: 20px; margin-right: 30px; }
+.manager_login {background:rgb(051, 255, 051);    color: white;    width: 356px;    font-size: 30px;    font-weight: bolder;    box-shadow: 2px 2px 1px grey;    padding: 10px; }

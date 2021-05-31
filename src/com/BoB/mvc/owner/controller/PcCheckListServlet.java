@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.BoB.mvc.owner.model.dto.CartListDTO;
 import com.BoB.mvc.owner.model.dto.DeliveryDTO;
 import com.BoB.mvc.owner.model.dto.OwnerDTO;
+import com.BoB.mvc.owner.model.dto.StoreInfoDTO;
 import com.BoB.mvc.owner.model.dto.SuggestionDTO;
 import com.BoB.mvc.owner.model.service.PCProcessService;
 import com.BoB.mvc.owner.model.service.SuggestionService;
@@ -28,7 +29,9 @@ public class PcCheckListServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		OwnerDTO ownerDTO = (OwnerDTO) session.getAttribute("ownerDTO");
+
 		int ownerCode = ownerDTO.getUserCode();
+
 		System.out.println("현재 로그인한 id는 " + ownerDTO.getMemberId());
 		
 		
@@ -48,12 +51,15 @@ public class PcCheckListServlet extends HttpServlet {
 			System.out.println("deliveryList: "+ deliveryList);
 			System.out.println("cartList: "+ cartList);
 			
+			
 			if(deliveryList !=null) {
+				
 				path="/WEB-INF/views/owner/delivery.jsp";
 				request.setAttribute("deliveryList", deliveryList);
-				request.setAttribute("cartList", cartList);
-				System.out.println("여기??? 오나???");
 				
+				
+				request.setAttribute("cartList", cartList);
+
 			}else {
 				path="/WEB-INF/views/common/faild.jsp";
 				request.setAttribute("message", "주문진행 목록을 불러오는데 실패하셨습니다. 다시 페이지를 시작해주세요!");

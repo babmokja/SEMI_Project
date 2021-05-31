@@ -16,6 +16,7 @@ import java.util.Properties;
 import com.BoB.mvc.common.config.ConfigLocation;
 import com.BoB.mvc.owner.model.dto.MenuListDTO;
 import com.BoB.mvc.owner.model.dto.PictureDTO;
+import com.BoB.mvc.owner.model.dto.StoreInfoDTO;
 
 public class MenuListDAO {
 	
@@ -31,55 +32,56 @@ public class MenuListDAO {
 		}
 	}
 
-	public List<MenuListDTO> selectAllMenuList(Connection con) {
+	public List<MenuListDTO> selectAllMenuList(Connection con, StoreInfoDTO storeInfoDTO) {
 
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		List<MenuListDTO> menuList = null;
-		
-		String query = prop.getProperty("selectAllMenuList");
-		
-		try {
-			pstmt = con.prepareStatement(query);
-			rset = pstmt.executeQuery();
-			
-			menuList = new ArrayList<>();
-			
-			while(rset.next()) {
-				
-				MenuListDTO menu = new MenuListDTO();
-				menu.setPictureCode(new PictureDTO());
-//				menu.setStoreCode(new Stor);
-				
+	      PreparedStatement pstmt = null;
+	      ResultSet rset = null;
+	      
+	      List<MenuListDTO> menuList = null;
+	      
+	      String query = prop.getProperty("selectAllMenuList");
+	      
+	      try {
+	         pstmt = con.prepareStatement(query);
+	         pstmt.setInt(1, storeInfoDTO.getStoreCode());
+	         rset = pstmt.executeQuery();
+	         
+	         menuList = new ArrayList<>();
+	         
+	         while(rset.next()) {
+	            
+	            MenuListDTO menu = new MenuListDTO();
+	            menu.setPictureCode(new PictureDTO());
+//	            menu.setStoreCode(new Stor);
+	            
 
-				menu.setMenuCode(rset.getString("MENU_CODE"));
-				menu.setMenuName(rset.getString("MENU_NAME"));
-				menu.setMenuExplain(rset.getString("MENU_EXP"));
-				menu.setPrice(rset.getInt("PRICE"));
-				menu.setSalesYN(rset.getString("SALES_YN"));
-				menu.setStoCode(rset.getInt("STORE_CODE"));
-//				menu.getStoreCode().setStoreNum(rset.getInt("STORE_CODE"));
+	            menu.setMenuCode(rset.getString("MENU_CODE"));
+	            menu.setMenuName(rset.getString("MENU_NAME"));
+	            menu.setPrice(rset.getInt("PRICE"));
+	            menu.setMenuExplain(rset.getString("MENU_EXP"));
+	            menu.setSalesYN(rset.getString("SALES_YN"));
+	            menu.setStoCode(rset.getInt("STORE_CODE"));
+//	            menu.getStoreCode().setStoreNum(rset.getInt("STORE_CODE"));
 
-				menu.getPictureCode().setRevisedName(rset.getString("REVISED_NAME"));
-				menu.getPictureCode().setRoute(rset.getString("ROUTE"));
-				menu.getPictureCode().setPictureCode(rset.getInt("PICTURE_CODE"));
-//				menu.setStoreCode(rset.getInt("STORE_CODE"));
-//				menu.setPictureCode(rset.getInt("PICTURE_CODE"));
+	            menu.getPictureCode().setOriginName(rset.getString("ORIGIN_NAME"));
+	            menu.getPictureCode().setRoute(rset.getString("ROUTE"));
+	            menu.getPictureCode().setPictureCode(rset.getInt("PICTURE_CODE"));
+//	            menu.setStoreCode(rset.getInt("STORE_CODE"));
+//	            menu.setPictureCode(rset.getInt("PICTURE_CODE"));
 
-				
-				menuList.add(menu);
-				
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		return menuList;
-	}
+	            
+	            menuList.add(menu);
+	            
+	         }
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         close(rset);
+	         close(pstmt);
+	      }
+	      
+	      return menuList;
+	   }
 
 
 	public int insertPicture(Connection con, PictureDTO pictureDTO) {
@@ -133,31 +135,109 @@ public class MenuListDAO {
 		return pictureNo;
 	}
 
-	public int insertNewMenu(Connection con, MenuListDTO newMenu) {
-		
-		PreparedStatement pstmt = null;
-		
-		int result = 0;
-		
-		String query = prop.getProperty("insertNewMenu");
-		
-		try {
-			pstmt =con.prepareStatement(query);
-			pstmt.setString(1, newMenu.getMenuName());
-			pstmt.setInt(2, newMenu.getPrice());
-			pstmt.setString(3, newMenu.getMenuExplain());
-			pstmt.setString(4, newMenu.getSalesYN());
-			pstmt.setInt(5,newMenu.getPicCode());
-			pstmt.setInt(6, newMenu.getStoCode());
-		
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
+	 public int insertNewMenu(Connection con, MenuListDTO newMenu, StoreInfoDTO storeInfoDTO) {
+	      
+	      PreparedStatement pstmt = null;
+	      
+	      int result = 0;
+	      
+	      String query = prop.getProperty("insertNewMenu");
+	      
+	      try {
+	         pstmt =con.prepareStatement(query);
+	         pstmt.setString(1, newMenu.getMenuName());
+	         pstmt.setInt(2, newMenu.getPrice());
+	         pstmt.setString(3, newMenu.getMenuExplain());
+	         pstmt.setString(4, newMenu.getSalesYN());
+	         pstmt.setInt(5,newMenu.getPicCode());
+	         pstmt.setInt(6, storeInfoDTO.getStoreCode());
+	      
+	         result = pstmt.executeUpdate();
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      }finally {
+	         close(pstmt);
+	      }
+	      
+	      return result;
+	   }
+	 public String getMenuname(Connection con, MenuListDTO menuList) {
+			
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			
+			String result = "";
+			
+			String query = prop.getProperty("getMenuname");
+			
+			try {
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, menuList.getMenuName());
+				pstmt.setInt(2, menuList.getStoCode());
+				
+				rset =  pstmt.executeQuery();
+				if(rset.next()) {
+					result = rset.getString("MENU_NAME");
+				}
+				
+				
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return result;
 		}
-		
-		return result;
-	}
+
+		public int updateBoard(Connection con, MenuListDTO menuList, StoreInfoDTO storeInfoDTO) {
+			
+				PreparedStatement pstmt = null;
+		      
+		      int result = 0;
+		      
+		      String query = prop.getProperty("updateMenuList");
+		      
+		      try {
+		         pstmt =con.prepareStatement(query);
+		         pstmt.setInt(1, menuList.getPrice());
+		         pstmt.setString(2, menuList.getMenuExplain());
+		         pstmt.setString(3, menuList.getSalesYN());
+		         pstmt.setInt(4, storeInfoDTO.getStoreCode());
+		      
+		         result = pstmt.executeUpdate();
+		      } catch (SQLException e) {
+		         e.printStackTrace();
+		      }finally {
+		         close(pstmt);
+		      }
+		      
+		      return result;
+		}
+
+		public int deleteMenu(String MENUCode, StoreInfoDTO storeInfoDTO, Connection con) {
+			
+			PreparedStatement pstmt = null;
+		    
+		    int result = 0;
+		    
+		    String query = prop.getProperty("deleteMenu");
+		    
+		    try {
+		       pstmt =con.prepareStatement(query);
+		       pstmt.setInt(1, Integer.parseInt(MENUCode));
+		    
+		       result = pstmt.executeUpdate();
+		    } catch (SQLException e) {
+		       e.printStackTrace();
+		    }finally {
+		       close(pstmt);
+		    }
+		    
+		    return result;
+		}
 
 }

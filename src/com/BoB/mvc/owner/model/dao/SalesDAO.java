@@ -17,6 +17,7 @@ import org.apache.commons.io.input.ClassLoaderObjectInputStream;
 
 import com.BoB.mvc.common.config.ConfigLocation;
 import com.BoB.mvc.owner.model.dto.MonthSalesDTO;
+import com.BoB.mvc.owner.model.dto.PageInfoDTO;
 import com.BoB.mvc.owner.model.dto.SalesDTO;
 import com.BoB.mvc.owner.model.dto.StoreInfoDTO;
 
@@ -33,7 +34,7 @@ public class SalesDAO {
 			e.printStackTrace();
 		}
 	}
-	public List<SalesDTO> selectDailySales(Connection con, String month) {
+	public List<SalesDTO> selectDailySales(Connection con, String month, PageInfoDTO pageInfo, StoreInfoDTO storeDTO) {
 
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -44,8 +45,16 @@ public class SalesDAO {
 		String query1 = prop.getProperty("selectAllSales");
 		
 		try {
-			if(month.equals("0")) {
+//			if(Integer.parseInt(month)<=12 && Integer.parseInt(month)>=1) {
+			if(month.equals(0)) {
 				pstmt=con.prepareStatement(query1);
+				pstmt.setInt(1, 28);
+				pstmt.setInt(2, storeDTO.getStoreCode());
+				pstmt.setInt(3, pageInfo.getStartRow());
+				pstmt.setInt(4, pageInfo.getEndRow());
+				
+				
+				
 				rset = pstmt.executeQuery();
 				salesList = new ArrayList<>();
 				while(rset.next()) {
@@ -69,6 +78,9 @@ public class SalesDAO {
 				
 				salesList = new ArrayList<>();
 				pstmt.setInt(1, Integer.parseInt(month));
+//				pstmt.setInt(2, storeDTO.getStoreCode());
+//				pstmt.setInt(3, pageInfo.getStartRow());
+//				pstmt.setInt(4, pageInfo.getEndRow());
 				
 				rset = pstmt.executeQuery();
 				while(rset.next()) {
@@ -133,4 +145,33 @@ public class SalesDAO {
 		return monthSales;
 	}
 
+	public int SelectDailySalesTotalCount(Connection con, StoreInfoDTO storeDTO) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int totalCount = 0;
+		
+		String query = prop.getProperty("SelectDailySalesTotalCount");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, storeDTO.getStoreCode());
+			
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				totalCount = rset.getInt("COUNT(*)");
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return totalCount;
+	}
 }

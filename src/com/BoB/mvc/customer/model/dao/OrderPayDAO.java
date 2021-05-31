@@ -29,7 +29,7 @@ public class OrderPayDAO {
 	public OrderPayDAO() {
 		
 		try {
-			prop.loadFromXML(new FileInputStream(ConfigLocation.MAPPER_LOCATION+"OrderPay.xml"));
+			prop.loadFromXML(new FileInputStream(ConfigLocation.MAPPER_LOCATION+"store/OrderPay.xml"));
 			
 		}catch(IOException e) {
 			e.printStackTrace();
@@ -142,6 +142,10 @@ public class OrderPayDAO {
 			
 			selectBasket = new ArrayList<>();
 			
+			int totalPrice = 0;
+			int amount = 0;
+			int price = 0;
+			
 			while(rset.next()) {
 				OrderPayDTO basket = new OrderPayDTO();
 				
@@ -149,6 +153,13 @@ public class OrderPayDAO {
 				basket.setMenuName(rset.getString("MENUNAME"));
 				basket.setAmount(rset.getInt("AMOUNT"));
 				basket.setPrice(rset.getInt("PRICE"));
+				basket.setStoreCode(rset.getInt("STOREID"));
+				
+				amount = rset.getInt("AMOUNT");
+				price = rset.getInt("PRICE");
+				totalPrice = amount * price;
+				
+				basket.setTotalPrice(totalPrice);
 				
 				selectBasket.add(basket);
 			}
@@ -160,6 +171,51 @@ public class OrderPayDAO {
 		}
 		
 		return selectBasket;
+	}
+
+	/**
+	 * 이용자 정보 select
+	 * @param con
+	 * @param userCodeSelect
+	 * @return
+	 */
+	public OrderPayDTO selectOrderPerson(Connection con, int userCodeSelect) {
+		
+		/* Statement를 사용할까? 아님 PreparedStatement를 사용할까 */
+		PreparedStatement pstmt = null;
+		/* 결과값을 뭘로 받을까??를 고민한다. 
+		 * 1. select를 요청헀을 떄 -> ResultSet
+		 * 2. insert,update,delete를 요청했을 때 -> int
+		 * */
+		ResultSet rset = null;
+		
+		OrderPayDTO selectOrderPerson = null;
+		
+		String query = prop.getProperty("selectOrderPersonById");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userCodeSelect); // <- 위치홀더의 시작인덱스값은 1부터 시작한다.
+			
+			rset = pstmt.executeQuery(); // 위에서 만든 쿼리문을 이용해서 데이터베이스에 질의하여 데이터 정보를 리턴받음
+			
+			if(rset.next()) {
+				selectOrderPerson = new OrderPayDTO();
+				
+				selectOrderPerson.setEmail(rset.getString("EMAIL"));
+				selectOrderPerson.setName(rset.getString("NAME"));
+				selectOrderPerson.setPhone(rset.getString("PHONE"));
+				selectOrderPerson.setUserCode(rset.getInt("USERID"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return selectOrderPerson;
 	}
 
 }

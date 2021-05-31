@@ -27,7 +27,7 @@ public class MenuListDAO {
 	public MenuListDAO() {
 		
 		try {
-			prop.loadFromXML(new FileInputStream(ConfigLocation.MAPPER_LOCATION+"MenuList.xml"));
+			prop.loadFromXML(new FileInputStream(ConfigLocation.MAPPER_LOCATION+"store/MenuList.xml"));
 			
 		}catch(IOException e) {
 			e.printStackTrace();
@@ -77,6 +77,7 @@ public class MenuListDAO {
 				selectedMenu.add(menu);
 				
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

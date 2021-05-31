@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-       <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/SEMI_Project/resources/css/admin/admin_Customer_SecretWrite_Board.css">
@@ -42,47 +42,30 @@
         <div class="wrap">
           <div class="gap">
             <div class="content">
-            
-             <c:forEach var="comment" items="${  requestScope.customerList}">
-               	                <h2><c:out value="${ comment.boardTitle }"/></h2>
-              	
-               
-               </c:forEach>
-              <!-- <div class="title">
-              
-              
-              </div> -->
-
+             <div class="title">
+            	<h2>${ requestScope.customercomment.boardTitle }</h2>
+			</div>
               <div class="small-title">
-              <c:forEach var="comment" items="${  requestScope.customerList}">
-                <p><c:out value="${ comment.userName }"/> <span>| <c:out value="${ comment.boardDate }"/></span></p>
-                </c:forEach>
+                <p>${ requestScope.customercomment.userName }<span>| ${ requestScope.customercomment.boardDate }</span></p>
               </div>
-
+              
               <div class="under-line"></div>
-      		<c:forEach var="comment" items="${requestScope.customerList}">
-              <p class="container"><c:out value="${ comment.boardContent }"/></p>
-			</c:forEach>
-			
-              <div class="coment-count">
-                <p></p>
-              </div>
+              
+              <p class="container">${ requestScope.customercomment.boardContent }</p>
+              
+              <div class="coment-count"></div>
 
               <div class="under-line"></div>
 
               <div class="coment clearfix">
-              
-             
-              
-              <div class="name">관리자
-              <c:forEach var="admincomment" items="${  requestScope.replyList}">
-                <div class="text-wrap"><c:out value="${ admincomment.replyContent }"/></div>
-               
-                <div class="date-wrap"><c:out value="${ admincomment.replyDate }"/></div>
-               </c:forEach>
+              <c:forEach var="customerReply" items="${ requestScope.replyList }">
+              <div class="name">관리자</div>
+                <div class="text-wrap">${ customerReply.replyContent }</div>
+                <div class="date-wrap">${ customerReply.replyDate }</div>
+			 </c:forEach>
               </div>
-			 
-			
+			<!-- ---------------------------------------------------------------------------------------------------------------------------->
+
               <div class="under-line line-gap"></div>
 
               <div class="under-line"></div>
@@ -91,9 +74,8 @@
               <form action="${pageContext.servletContext.contextPath}/admin/customer/insertReply" method="post">
                 <div class="name">관리자</div>
                 <textarea id="content" name="content" cols="30" rows="10"></textarea>
-
                 <input type="hidden" name="boardCode" value="${ requestScope.intBoardCode }">
-                <div id="admincomment" class="comment_button"><button type="submit">댓글 작성</button></div>
+                <div id="customerReply" class="comment_button"><button type="submit">댓글 작성</button></div>
                 
                
               </form>
@@ -103,7 +85,7 @@
             </div>
           </div>
         </div>
-
+	</div>
       </section>
 
     <footer>

@@ -160,11 +160,11 @@ public class OwnerDAO {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString( 1 , store.getStoreName());
 			pstmt.setInt( 2 , store.getBusinessNum());
-			pstmt.setString( 3 , store.getStoreXY());
-			pstmt.setString( 4 , store.getCategory());
-			pstmt.setInt(5, store.getTypeCode());
-			pstmt.setString( 6 , owner.getAddress());
-			pstmt.setString( 7 , store.getStoreIntro());
+//			pstmt.setString( 3 , store.getStoreXY());
+			pstmt.setString( 3, store.getCategory());
+			pstmt.setInt(4, store.getTypeCode());
+			pstmt.setString( 5 , owner.getAddress());
+			pstmt.setString( 6 , store.getStoreIntro());
 			
 			result4 = pstmt.executeUpdate();
 			
@@ -297,7 +297,7 @@ public class OwnerDAO {
 				
 				loginStore.setStoreName(rset2.getString("STORE_NAME"));
 				loginStore.setBusinessNum(rset2.getInt("OWNER_NO"));
-				loginStore.setStoreXY(rset2.getString("STORE_XY"));
+//				loginStore.setStoreXY(rset2.getString("STORE_XY"));
 				loginStore.setCategory(rset2.getString("CATEGORY"));
 				loginStore.setUserCode(rset2.getInt("USER_CODE"));
 				loginStore.setBusinessRegistCode(rset2.getInt("BUSINESS_REGIST_CODE"));
