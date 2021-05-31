@@ -100,7 +100,7 @@ function checkAndMove(value) {
 	</center>
 
 	<!-- body -->
-	<div id="main">
+	<div id="main" style="height: auto; margin-bottom: 170px;">
 
 		<div class="eatselect">
 			<p class="menupan">메뉴판</p>
