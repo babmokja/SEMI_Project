@@ -66,16 +66,34 @@ public class UserBoardService {
 		
 	}
 
-	public BoardDTO readUserBoard(String boardNo) {
+	public BoardDTO readUserBoard(String boardNo, int userCode) {
        Connection con = getConnection();
 		
-		BoardDTO readBoard = boardDAO.readBoard(con,boardNo);
+		BoardDTO readBoard = boardDAO.readBoard(con,boardNo,userCode);
 		
 		close(con);
 		
 		return readBoard;
 	}
 
+	public BoardDTO readComment(String boardNo) {
+		
+       Connection con = getConnection();
+		
+		BoardDTO readComment = boardDAO.readComment(con,boardNo);
+		
+		close(con);
+		
+		return readComment;
+		
+		
+	}
+
+	
+
+	
+
 
 
 }
+

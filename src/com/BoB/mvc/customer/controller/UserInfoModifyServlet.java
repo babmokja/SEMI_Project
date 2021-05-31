@@ -15,7 +15,7 @@ import com.BoB.mvc.customer.model.service.UserService;
 /**
  * Servlet implementation class UserInfoModifyServlet
  */
-@WebServlet("/user/modify")
+@WebServlet("/member/user/modify")
 public class UserInfoModifyServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,21 +28,26 @@ public class UserInfoModifyServlet extends HttpServlet {
 
 		UserService service = new UserService();
 		UserDTO loginUser = service.selectOneById(userCode);
+		
+		System.out.println("dsdfsf"+loginUser);
 	    String address = loginUser.getAddress();
-//	    String[] aDress = address.split("[$]");
-//	    String zip = aDress[0];
-//	    String addr = aDress[1];
-//	    String addrr = aDress[2];
 	    
-//	    System.out.println("번호!"+zip+"처음주"+addr+"두번째주소!"+addrr);
+	    System.out.println(address);
+	    String[] aDress = address.split("[$]");
+	    String zip = aDress[0];
+	    System.out.println(zip);
+	    String addr = aDress[1];
+	    String addrr = aDress[2];
 	    
+
+	    request.setAttribute("loginUser", loginUser);
 
 		String path = "/WEB-INF/views/customer/ModifyUserInfo.jsp";
 		session.setAttribute("loginUser", loginUser);
-//	   
-//	    request.setAttribute("zip", zip);
-//	    request.setAttribute("add1", addr);
-//	    request.setAttribute("add2", addrr);
+	   
+	    request.setAttribute("zip", zip);
+	    request.setAttribute("add1", addr);
+	    request.setAttribute("add2", addrr);
 		request.getRequestDispatcher(path).forward(request, response);
 		
 	
@@ -57,8 +62,8 @@ public class UserInfoModifyServlet extends HttpServlet {
 		String phone = request.getParameter("userPhone").replace("-", "");
 		String email = request.getParameter("email");
 		String address = request.getParameter("zip") + "$" + request.getParameter("addr1") + "$" +request.getParameter("addr2");
-		HttpSession session = request.getSession();
-		int userCode =((UserDTO) request.getSession().getAttribute("loginUser")).getUserCode();		
+		
+
 		
 		UserDTO requestUser = new UserDTO();
 		requestUser.setId(id);
@@ -67,22 +72,21 @@ public class UserInfoModifyServlet extends HttpServlet {
 		requestUser.setPhone(phone);
 		requestUser.setEmail(email);
 		requestUser.setAddress(address);
-		requestUser.setUserCode(userCode);
+
 		
-		
+	    System.out.println(requestUser);
 		int result = new UserService().modifyUser(requestUser);
 		
 
-		
         String path="";
          
  		if(result > 0) {
-			path = "/WEB-INF/views/customer/CustomerMain.jsp";
+			path = "/WEB-INF/views/customer/Mypage.jsp";
 			request.setAttribute("successCode", "signin");
 			
 		} else {
 			request.setAttribute("message", "로그인 실패!");
-			request.getRequestDispatcher("/WEB-INF/views/customer/Login.jsp").forward(request, response);
+			path= "/WEB-INF/views/customer/ModifyUserInfo.jsp";
             
 		}
 		
@@ -90,3 +94,4 @@ public class UserInfoModifyServlet extends HttpServlet {
 	}
 
 }
+

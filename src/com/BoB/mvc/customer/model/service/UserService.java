@@ -41,6 +41,7 @@ public class UserService {
 	        
 			loginUser = userDAO.selectLoginUser(con, requestUser);
 		}
+		loginUser = userDAO.selectLoginUser(con, requestUser);
 		System.out.println("loginUser : " + loginUser);
 		
 		return loginUser;
@@ -145,6 +146,17 @@ public class UserService {
 			return idCheck;
 		
 	}
+
+	public String blackCheck(UserDTO requestUser) {
+		 Connection con = getConnection();
+		 
+		 String blackid = userDAO.blackCheck(con,requestUser);
+	
+			close(con);
+		
+		return blackid;
+	}
+
 
 
 	

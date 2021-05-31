@@ -16,8 +16,10 @@
 	  </center>
       <center>
         <div class="section1">
-            <form class="reviewsec" action="${ pageContext.servletContext.contextPath }/review" method="post" encType="multipart/form-data">
+            <form class="reviewsec" action="${ pageContext.servletContext.contextPath }/review?order=${ requestScope.order }&store=${ requestScope.store}" method="post" encType="multipart/form-data">
                 <br>
+                
+                
                 <br>
                <label id=mainname style="height:50px;font-size:34px;font-weight: 800;">사진과 함께 리뷰 작성시 포인트 적립 혜택!!</label>
                 
@@ -75,7 +77,7 @@
                    });
                  </script>   
              
-              <div class="imagePreview" style="background:url('resources/image/customer/camera.png');background-repeat: no-repeat; margin-top: 20px;">
+              <div class="imagePreview" style="background:url('resources/image/customer/camera.png');background-repeat: no-repeat; margin-top: 20px; background-size:cover;">
               <div class = "file_input">
                 <label>
                    <input id="uploadFile" onchange="javascript:document.getElementById('file_route').value=this.value" type="file" name="image" class="img" />

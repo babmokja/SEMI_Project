@@ -104,7 +104,7 @@ public class UserBoardDAO {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println( "쿼리에서 잘가져왔나??????" +totalCount);
+		
 		return totalCount;
 		
 	
@@ -139,7 +139,7 @@ public class UserBoardDAO {
 		return result;
 	}
 
-	public BoardDTO readBoard(Connection con, String boardNo) {
+	public BoardDTO readBoard(Connection con, String boardNo, int userCode) {
         
 		PreparedStatement pstmt = null;
 		
@@ -151,16 +151,14 @@ public class UserBoardDAO {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, Integer.parseInt(boardNo));
+			pstmt.setInt(2, userCode);
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
 				BoardDTO = new BoardDTO();
-				BoardDTO.setTitle(rset.getString("boardTitle"));
-				BoardDTO.setBody(rset.getString("boardContent"));
-				BoardDTO.setCreatedDate(rset.getDate("boardDate"));
-				BoardDTO.setReply(rset.getString("replyContent"));
-				BoardDTO.setReplyDate(rset.getDate("replyDate"));
-				
+				BoardDTO.setTitle(rset.getString("BOARD_TITLE"));
+				BoardDTO.setBody(rset.getString("BOARD_CONTENT"));
+				BoardDTO.setCreatedDate(rset.getDate("BOARD_DATE"));
 
 			}
 			
@@ -171,10 +169,46 @@ public class UserBoardDAO {
 			close(pstmt);
 		}
 	
-		
 		return BoardDTO;
 		
 	}
+
+	public BoardDTO readComment(Connection con, String boardNo) {
+		PreparedStatement pstmt = null;
+		
+        BoardDTO commentDTO = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("ReadComment");
+		
+		System.out.println(boardNo +"보드넘버dao로 넘어왔는지 확인!!!!!!!!");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, Integer.parseInt(boardNo));
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				commentDTO = new BoardDTO();
+				commentDTO.setReply(rset.getString("REPLY_CONTENT"));
+				commentDTO.setReplyDate(rset.getString("REPLY_DATE"));
+		          
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+	
+		return commentDTO;
+	}
+
+
+
+
+	
 
 
 

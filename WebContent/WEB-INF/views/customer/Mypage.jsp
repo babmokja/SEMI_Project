@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -18,7 +17,7 @@
             <div class="head">
                 <div class="right">
                     <div>
-                        <a href="#;" class="logo">babmokja</a>
+                        <a href="${ pageContext.servletContext.contextPath }" class="logo">babmokja</a>
                     </div>
                     
                     <div class="sq">
@@ -92,7 +91,7 @@
         <img src="${ pageContext.servletContext.contextPath }/resources/image/customer/user.png" width="150px" height="150px" style="margin-top: 10px;">
 
          <br>
-           <div ><a href="${ pageContext.servletContext.contextPath }/user/modify"><button class='smallbtn'>정보수정</button></a></div>
+           <div ><a href="${ pageContext.servletContext.contextPath }/member/user/modify"><button class='smallbtn'>정보수정</button></a></div>
              
 
       
@@ -143,7 +142,7 @@
                 <td  >${ order.orderType }</td>
                 <td >${ order.storeName }</td>
                 <td style="text-align: right;" >${ order.proceed }</td>
-                <td><input type="button"  value="더보기" class="modal_open_btn2" /></td>
+                <td><input type="button"  value="더보기" class="modal_open_btn2"  /></td>
                 <td>
                 <button class="btn_review" onclick="location.href='${ pageContext.servletContext.contextPath }/review?order=${order.orderCode}&store=${order.storeCode}'">리뷰작성</button>  
                
@@ -159,15 +158,18 @@
 
     </section>
      
-
+    
     <div class="modal2">
+        <c:forEach var="order" items="${ requestScope.orderdto}" varStatus="vs">
         <div class="modal_content2">
-
-            <label align= "center">${ order.ownerComment } </label>
+            
+            <label align= "center" ><c:out value="${ order.ownerComment }" /></label>
             <button type="button" class="modal_close_btn2">확인</button>
         
         </div>
+      </c:forEach>
       <div class="modal_layer2"></div>
+      
          <script>
            $(document).ready(function(){
                $('.modal_open_btn2').click(function(){

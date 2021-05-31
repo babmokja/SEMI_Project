@@ -28,37 +28,6 @@ public class ReviewDAO {
 			e.printStackTrace();
 		}
 	}
-
-	public int insertReviewContent(Connection con, ReviewDTO review, PictureDTO picturedto) {
-       
-		PreparedStatement pstmt = null;
-		
-		int result = 0;
-		
-		String query =prop.getProperty("insertReviewContent");
-		System.out.println(review.getSatisfied());
-		System.out.println(review.getReviewContent());
-		System.out.println("픽처마지막 코드 : "+picturedto.getPictureCode());
-	
-		try {
-		pstmt = con.prepareStatement(query);
-		pstmt.setInt(1, review.getSatisfied());
-		pstmt.setString(2, review.getReviewContent());
-		pstmt.setInt(3, picturedto.getPictureCode());  //픽쳐코드	
-	    pstmt.setInt(4, review.getStoreCode());
-		pstmt.setInt(5, review.getOrderCode());
-		
-
-		result = pstmt.executeUpdate();
-		}catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		System.out.println(result);
-		return result;
-	}
-
 	public int selectReviewPic(Connection con) {
 		Statement stmt = null;
 		ResultSet rset = null;
@@ -113,7 +82,42 @@ public class ReviewDAO {
 		}
 
 		return result;
+	}	
+
+	
+	public int insertReviewContent(Connection con, ReviewDTO review, PictureDTO picturedto) {
+       
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		String query =prop.getProperty("insertReviewContent");
+		System.out.println(review.getSatisfied());
+		System.out.println(review.getReviewContent());
+		System.out.println("픽처마지막 코드 : "+picturedto.getPictureCode());
+		System.out.println("스토어코드!"+review.getStoreCode());
+		System.out.println("오더코드!"+review.getOrderCode());
+
+	
+		try {
+		pstmt = con.prepareStatement(query);
+		pstmt.setInt(1, review.getSatisfied());
+		pstmt.setString(2, review.getReviewContent());
+		pstmt.setInt(3, review.getOrderCode());  //픽쳐코드	
+	    pstmt.setInt(4, review.getStoreCode());
+		pstmt.setInt(5, picturedto.getPictureCode());
+		
+		result = pstmt.executeUpdate();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		System.out.println(result);
+		return result;
 	}
+
+
 
 	public int insertPoint(Connection con, int writerMemberNo) {
 		PreparedStatement pstmt = null;

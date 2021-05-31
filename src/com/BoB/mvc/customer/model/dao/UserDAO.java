@@ -17,10 +17,7 @@ import com.BoB.mvc.common.config.ConfigLocation;
 import com.BoB.mvc.customer.model.dto.UserDTO;
 import com.BoB.mvc.customer.model.dto.UserOrderDTO;
 
-/**
- * @author haelim
- *
- */
+
 /**
  * @author haelim
  *
@@ -113,6 +110,7 @@ public class UserDAO {
 				loginUser.setEmail(rset.getString("USER_EMAIL"));
 				loginUser.setRoleCode(rset.getInt("ROLE_CODE"));
 				loginUser.setUserNo(rset.getString("USER_NO"));
+				loginUser.setBlacklistYn(rset.getString("BLACKLIST_YN"));
 
 
 			}
@@ -266,7 +264,7 @@ public class UserDAO {
 			pstmt.setString(2, requestUser.getPhone());
 			pstmt.setString(3, requestUser.getAddress());
 			pstmt.setString(4, requestUser.getEmail());
-			pstmt.setInt(5, requestUser.getUserCode());
+			pstmt.setString(5, requestUser.getId());
 			
 			result = pstmt.executeUpdate();
 			
@@ -377,10 +375,44 @@ public class UserDAO {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println( "중복 쿼리에서 잘가져왔나??????" +checkId);
+		System.out.println( "중복 아이디????" +checkId);
 		return checkId;
+	}
+	public String blackCheck(Connection con, UserDTO requestUser) {
+		
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		
+		
+		String requestId = requestUser.getId();
+		String query = prop.getProperty("blackCheck");
+		String result = "";
+	   
+		
+		try {
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, requestId);
+
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+		
+				 result= rset.getString("BLACKLIST_YN");
+			}
+			
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println( " 블랙리스	트 yn?????" + result);
+		return result;
 	}
 	
 	
 
 }
+

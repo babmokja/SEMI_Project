@@ -39,15 +39,21 @@ public class UserLoginServlet extends HttpServlet {
 		UserService userService = new UserService();
 		
 		UserDTO loginUser = userService.loginCheck(requestUser);
-		String path = "";
-		if(loginUser != null) {
+		
+//	    String blackYn = userService.blackCheck(requestUser);
+//	    String y = "Y";
+//	    String n = "N";
+		
+	    String path = "";
+		if(loginUser != null ) {
 			path = "/WEB-INF/views/customer/CustomerMain.jsp";
 			request.setAttribute("successCode", "signin");
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", loginUser);
 			
-		} else {
-			request.setAttribute("message", "로그인 실패!");
+			
+		}else{
+			request.setAttribute("message", "");
 			request.getRequestDispatcher("/WEB-INF/views/customer/Login.jsp").forward(request, response);
             
 		}

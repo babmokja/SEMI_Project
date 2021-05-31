@@ -36,8 +36,19 @@ public class UserReviewServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("check");
-		String path = "/WEB-INF/views/customer/Review.jsp";
+		String order= request.getParameter("order");
+		String store= request.getParameter("store");
 		
+	   
+//		Object store= request.getAttribute("store");
+		
+		request.setAttribute("order",order);
+	    request.setAttribute("store",store);
+		
+		System.out.println(order);
+		System.out.println(store);
+      
+		String path = "/WEB-INF/views/customer/Review.jsp";
 		request.getRequestDispatcher(path).forward(request, response);
 				
 	}
@@ -45,6 +56,11 @@ public class UserReviewServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		
+		
+		
+	
 		if(ServletFileUpload.isMultipartContent(request)) {
 			
 			ServletContext context = request.getServletContext();
@@ -52,7 +68,7 @@ public class UserReviewServlet extends HttpServlet {
 			int maxFileSize = Integer.parseInt(context.getInitParameter("max-file-size"));
 			String encodingType = context.getInitParameter("encoding-type");
 			
-			String singleFileUploadDirectory = rootLocation + "/plz/insert";
+			String singleFileUploadDirectory = rootLocation;
 			
 			File directory = new File(singleFileUploadDirectory);
 			
@@ -84,22 +100,23 @@ public class UserReviewServlet extends HttpServlet {
 			multiRequest.getFile("image");
 			
 
-			int orderCode =  Integer.parseInt(request.getParameter("order"));
-			int storeCode =  Integer.parseInt(request.getParameter("store"));
-			
-			System.out.println(orderCode);
-
 			
 			int satisfied =  Integer.parseInt(multiRequest.getParameter("emoji"));
 			System.out.println(satisfied);
 			String reviewContent  = multiRequest.getParameter("reviewContent");
 			System.out.println(reviewContent);
 			
+			int orderCode =  Integer.parseInt(multiRequest.getParameter("order"));
+			int storeCode =  Integer.parseInt(multiRequest.getParameter("store"));
+			
+			System.out.println("storeCode"+storeCode);
+			System.out.println("orderCode"+orderCode);
 			ReviewDTO review = new ReviewDTO();
 			review.setSatisfied(satisfied);
 			review.setReviewContent(reviewContent);
 			review.setOrderCode(orderCode);
 			review.setStoreCode(storeCode);
+
 			
 			System.out.println("서블릿에서 리뷰정보"+review);
 
@@ -120,23 +137,20 @@ public class UserReviewServlet extends HttpServlet {
            int pointResult = new ReviewService().insertPoint(writerMemberNo);
 	
            String path="";
-   		   if(pointResult > 0) {
+   		   if(result  > 0 && pointResult >0 ) {
    			path = "/WEB-INF/views/customer/CustomerMain.jsp";
    			request.setAttribute("successCode", "insertBoard");
    		    } else {
    			path = "/WEB-INF/views/common/failed.jsp";
-   			request.setAttribute("message", "회원가입 실패하셨습니다.");
+   			request.setAttribute("message", "");
    		    }
 	   
    		   request.getRequestDispatcher(path).forward(request, response);
 		  }
 			
-		
 
-		
-	    
-		
 		
 	}
 
 }
+

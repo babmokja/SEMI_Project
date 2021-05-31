@@ -21,6 +21,7 @@
              , A.USER_EMAIL
              , A.ROLE_CODE
              , A.USER_NO
+             , A.BLACKLIST_YN
           FROM USER_TABLE A
          WHERE A.BLACKLIST_YN = 'N'
            AND A.WITHDRAW_YN = 'N'
@@ -77,11 +78,11 @@
 	    UPDATE
 	          USER_TABLE A
 	      SET 
-	           A.USER_PWD = ? 
+	           A.USER_PWD = ?
              , A.USER_PHONE = ?
              , A.USER_ADDRESS = ?
              , A.USER_EMAIL = ?
-          WHERE A.USER_CODE = ?   
+          WHERE A.USER_ID = ?   
 	</entry>
 	<entry key="insertReviewContent">
 	    INSERT
@@ -98,7 +99,7 @@
 	       (
 	        ?
 	       ,?
-	       ,?  
+	       ,? 
 	       ,?
 	       ,?
 	       ,SEQ_REVIEW_CODE.NEXTVAL
@@ -200,27 +201,40 @@
             , STORE_TABLE B
        WHERE A.STORE_CODE = B.STORE_CODE
         AND  A.USER_CODE = ?
+      ORDER BY A.ORDER_TIME DESC  
 	 </entry>
 	 <entry key="idCheck">
 	     SELECT 
                 A.USER_ID
           FROM  USER_table A
-          WHERE A.USER_ID = ?
-	 
+          WHERE A.USER_ID = ?	 
 	 </entry>
-	 <entry key="readBoard">
+	 <entry key="ReadBoard">
            SELECT
-              B.BOARD_TITLE 
-            , B.BOARD_CONTENT 
-            , B.BOARD_DATE 
-            , C.REPLY_CONTENT 
-            , C.REPLY_DATE  
-            , D.USER_NAME 
-            FROM USER_TOTAL_REPLY_BOARD A
-            JOIN USER_BOARD B ON (A.BOARD_CODE =B.BOARD_CODE)
-            JOIN USER_REPLY C ON(A.REPLY_CODE = C.REPLY_CODE)
-            JOIN USER_TABLE D ON(B.USER_CODE = D.USER_CODE)
-            WHERE A.BOARD_CODE =?	
+              A.BOARD_TITLE 
+            , A.BOARD_CONTENT 
+            , A.BOARD_DATE 
+            FROM USER_BOARD A
+            WHERE A.BOARD_CODE =?
+            AND  A.USER_CODE=?
      </entry>
+     <entry key="ReadComment">
+          SELECT
+             B.REPLY_CONTENT,
+             B.REPLY_DATE
+             FROM USER_TOTAL_REPLY_BOARD A
+        JOIN USER_REPLY B ON( A.REPLY_CODE = B.REPLY_CODE)
+        JOIN USER_BOARD C ON( A.BOARD_CODE = C.BOARD_CODE)
+       WHERE C.BOARD_CODE  = ?
+     </entry>
+     <entry key="blackCheck">
+	     SELECT 
+                A.BLACKLIST_YN
+          FROM  USER_table A
+          WHERE A.USER_ID =?
+           AND  BLACKLIST_YN='Y';
+	 </entry>	 
+	 
+	 
      
 </properties>

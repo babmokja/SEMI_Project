@@ -27,15 +27,15 @@
           <div class="gap">
             <div class="content">
               <div class="title">
-                <h2><c:out value="${ requestScope.BoardRead.title }"/></h2>
+                <h2>${ requestScope.boardRead.title }</h2>
               </div>
               <div class="small-title">
-                <p>${ requestScope.username } <span>| 2021.04.21 11:11:11</span></p>
+                <p>${ requestScope.username } <span>${ requestScope.boardRead.createdDate}</span></p>
               </div>
               <div class="under-line"></div>
               <p class="container">
               <textarea style="resize:none; width:90%; height:200px;" readonly>
-              <c:out value="${ requestScope.BoardRead.body }"/>
+              <c:out value="${ requestScope.boardRead.body }"/>
               </textarea>
               </p>
               <div class="coment-count">
@@ -44,8 +44,8 @@
               <div class="under-line"></div>
               <div class="coment clearfix">
                 <div class="name">관리자</div>
-                <div class="text-wrap">${ requestScope.BoardRead.reply }</div>
-                <div class="date-wrap">${ requestScope.BoardRead.replyDate }</div>
+                <div class="text-wrap">${ requestScope.commentRead.reply }</div>
+                <div class="date-wrap">${ requestScope.commentRead.replyDate }</div>
               </div>
               <div class="under-line line-gap"></div>
               <div class="under-line"></div>

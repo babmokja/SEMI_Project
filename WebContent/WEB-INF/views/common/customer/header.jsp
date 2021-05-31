@@ -29,7 +29,7 @@
 						<form id="loginForm" method="post">
 							<div class="btns" align="right">
 								<div class="join">
-									<a href="${ pageContext.servletContext.contextPath }/member/user/signin"class="join_icon">회원가입</a>
+									<a href="${ pageContext.servletContext.contextPath }/signin/common"class="join_icon">회원가입</a>
 								</div>
 								<div class="login">
 									<a href="${ pageContext.servletContext.contextPath }/user/login" class="login_icon">로그인</a>

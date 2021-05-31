@@ -86,7 +86,7 @@
 		<div ><a href="${ pageContext.servletContext.contextPath }/user/board/write"><button >글작성</button></a></div>		       
          </div>
  
-         s
+         
          		
 		<script>
 		
@@ -136,10 +136,7 @@
 					this.parentNode.style.backgroundColor = "white";
 				}
 				
-				$tds[i].onclick = function() {
-					
-					alert(this.parentNode.children[0].innerText);
-				}
+
 				
 			}
 			
@@ -152,22 +149,7 @@
 	</script>           
            
 
-            
-<%--                <div class="center clearfix">
-                <div class="button button_space">1</div>
-                <div class="button button_space">2</div>
-                <div class="button button_space">3</div>
-                <div class="button button_space">4</div>
-                <div class="button">5</div>
-                <div class="button3"><a href='${ pageContext.servletContext.contextPath }/board/list"><button>글작성</button></a></div>
-            </div> --%>
-            
-   
-
-   
-    
-    
-                        
+        
     
     <footer>
         <address class="footer"> Copyright &copy; BABMOKJA All Right Reserved.</address>

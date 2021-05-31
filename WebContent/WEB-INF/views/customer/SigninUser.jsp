@@ -6,78 +6,159 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-    <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/join_check.js?v=<%=new java.util.Date().getTime()%>"></script>
+    <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-latest.min.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/customer/main.css">
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/customer/signin_user.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/customer/main.css">
+<%--     <link href="${ pageContext.servletContext.contextPath }/resources/css/customer/reset.css" type="text/css"
+	rel="stylesheet"> --%>
+   <link href="${ pageContext.servletContext.contextPath }/resources/css/customer/common_ah.css" type="text/css"
+	rel="stylesheet">
 </head>
 <body>
    
       <center>
-        <jsp:include page="/WEB-INF/views/common/customer/header.jsp" />
+        <header>
+		<div class="head">
+			<div class="right">
+				<div>
+					<a href="${ pageContext.servletContext.contextPath }" class="logo">babmokja</a>
+				</div>
+				<div class="sq">
+
+					<!-- 로그인이 필요한 경우 -->
+					<c:if test="${ empty sessionScope.loginUser }">
+
+						<!-- 로그인 폼 -->
+						<form id="loginForm" method="post">
+							<div class="btns" align="right">
+								<div class="join">
+									<a href="${ pageContext.servletContext.contextPath }/member/user/signin"class="join_icon">회원가입</a>
+								</div>
+								<div class="login">
+									<a href="${ pageContext.servletContext.contextPath }/user/login" class="login_icon">로그인</a>
+								</div>
+							</div>
+						</form>
+
+					</c:if>
+
+					<c:if test="${ !empty sessionScope.loginUser }">
+						<!-- 로그인 되어 있는 경우 -->
+						<div class="btns">
+							<div class="mypage">
+								<a href="${ pageContext.servletContext.contextPath}/user/mypage" class="mypage_icon"> 
+									<img src="${ pageContext.servletContext.contextPath }/resources/image/customer/user.png" alt="이미지없음">
+								</a>
+							</div>
+							<div class="logout">
+								<a href="${ pageContext.servletContext.contextPath }/user/logout" class="logout_icon">로그아웃</a>
+							</div>
+						</div>
+					</c:if>
+					
+				</div>
+			</div>
+			
+			<div>
+				<a href="${ pageContext.servletContext.contextPath }" class="title">너의
+					밥먹는건 우리가 책임진다</a>
+			</div>
+			<div class="searchbox">
+				<a href="${ pageContext.servletContext.contextPath }/store/list">
+					<img src="${ pageContext.servletContext.contextPath }/resources/image/customer/magnifying.png" alt="이미지없음"
+					id="icon">
+				</a> <input type="text" class="searchpoint">
+			</div>
+			<div class="nav">
+				<span> <a
+					href="${ pageContext.servletContext.contextPath }/store/list?cate=kor&type=1&order=congestion&currentPage=1"
+					class="a" id="kor">한식</a>
+				</span> <span> <a
+					href="${ pageContext.servletContext.contextPath }/store/list?cate=fra&type=1&order=congestion&currentPage=1"
+					class="a" id="fra">프랜차이즈</a>
+				</span> <span> <a
+					href="${ pageContext.servletContext.contextPath }/store/list?cate=chi&type=1&order=congestion&currentPage=1"
+					class="a" id="chi">중식</a>
+				</span> <span> <a
+					href="${ pageContext.servletContext.contextPath }/store/list?cate=jap&type=1&order=congestion&currentPage=1"
+					class="a" id="jap">일식</a>
+				</span> <span> <a
+					href="${ pageContext.servletContext.contextPath }/store/list?cate=ame&type=1&order=congestion&currentPage=1"
+					class="a" id="ame">양식</a>
+				</span>
+			</div>
+		</div>
+	</header>
       </center>
 
         <center>
         <div id= 'signin1' style="margin-top: 80px;">
           <label class="bigbtn" value="밥묵자 회원가입" >밥묵자회원가입	</label>
            <form name="form" id = "form" method="post" action="${ pageContext.servletContext.contextPath }/member/user/signin">
-            <table style="margin-top: 70px;margin-left: 50px;" >
+            <table style="margin-top: 70px;margin-left: 50px; border-collapse: separate;
+               border-spacing: 17px 14px;"  >
              <tr>
-              <th><label id="font">아이디</label> </th>
-               <td><input type="text" id="userId" name ="userId" size = "25"style="font-size:13px;border-radius: 10px; ">
+              <th><label style="font-size: 25px">아이디</label> </th>
+               <td><input type="text" id="userId" name ="userId" size = "25"style="font-size:17px;border-radius: 26px; border: 1px solid black;">
                  <input type="button" id="overlap" style="display:none;">
                  <label for="overlap" id="checkId" >중복확인</label>
                </td>
              </tr>
            
              <tr>
-              <th>비밀번호 </th>
-               <td><input type="password" name="userPwd" id="pw" onchange="check_pw()"name="pw" class="chk" size="25" placeholder="영문소문자와숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;"> </td>
+              <th><label style="font-size: 25px">비밀번호 </label></th>
+               <td><input type="password" name="userPwd" id="pw" onchange="check_pw()"name="pw" class="chk" size="25" placeholder="영문소문자와숫자만입력하세요" style="font-size:17px;border-radius: 26px; border: 1px solid black;"> </td>
              </tr>
           
              <tr> 
-              <th>비밀번호확인 </th>
-               <td><input type="password"  name="userPwd" id="pw2"  onchange="check_pw()" name ="pw_ck" class= "chk" size="25" style="padding:4px;font-size:13px;border-radius: 10px;">
+              <th><label style="font-size: 25px">비밀번호 확인 </label></th>
+               <td><input type="password"  name="userPwd" id="pw2"  onchange="check_pw()" name ="pw_ck" class= "chk" size="25" style="font-size:17px;border-radius: 26px; border: 1px solid black;">
                 <span id="check" ></span>
                </td>
              </tr>
           
              <tr>
-              <th>이 름</th>
-                <td><input type="text" id="name"name ="userName" size="25" style="padding:4px;font-size:13px;border-radius: 10px;"> </td>
+              <th><label style="font-size: 25px">이 름 </label></th>
+                <td><input type="text" id="name"name ="userName" size="25" style="font-size:17px;border-radius: 26px; border: 1px solid black;"> </td>
              </tr>
           
              <tr> 
-              <th>주민번호</th>
-                <td><input type="text" id="userNo" name ="userNo" size="25"
-                       maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;"></td>
+              <th><label style="font-size: 25px">주민번호</label></th>
+                <td><input type="text" id="userNo" name ="userNo" size="10"
+                       maxlength="13"  style="font-size:17px;border-radius: 26px; border: 1px solid black;">
+                       __<input type="password" id="userNo2" name ="userNo2" size="13"
+                       maxlength="13"  style="font-size:17px;border-radius: 26px; border: 1px solid black;"></td>
              </tr>
 
              <tr> 
-               <th>휴대전화</th>
+               <th><label style="font-size: 25px">휴대전화 </label></th>
                 <td><input type="text" id= "userPhone"name="userPhone" size="25"
-                       maxlength="13" placeholder="숫자만입력하세요" style="padding:4px;font-size:13px;border-radius: 10px;"></td>
+                       maxlength="13" placeholder="숫자만입력하세요" style="font-size:17px;border-radius: 26px; border: 1px solid black;"></td>
              </tr>
          
              <tr>
-               <th>우편번호</th>
-                 <td><input type="text" name="zip" size="25" style="padding:4px;font-size:13px;border-radius: 10px;"> 
+               <th><label style="font-size: 25px">우편번호 </label></th>
+                 <td><input type="text" name="zip" size="25" style="font-size:17px;border-radius: 26px; border: 1px solid black;"> 
                  <button type="button"  style="width:60px; background-color: #ffcc00; border: 1px solid #d9e1e8; height:32px; border-radius: 20px; font-weight: 600; font-size: 15px; cursor: pointer;" id="searchZipCode">검색</button></td>
              </tr>
           
              <tr>
-               <th>주소</th>
-                <td><input type="text"size="25" name="addr1" style="padding:4px;font-size:13px;border-radius: 10px;" readonly /> </td>
+               <th><label style="font-size: 25px">주소 </label></th>
+                <td><input type="text"size="25" name="addr1" style="font-size:17px;border-radius: 26px; border: 1px solid black;" readonly /> </td>
              </tr> 
              <tr>
-               <th>상세주소</th>
-                 <td><input type="text"size="25" name="addr2" style="padding:4px;font-size:13px;border-radius: 10px;"/> </td>
+               <th><label style="font-size: 25px">상세주소 </label></th>
+                 <td><input type="text"size="25" name="addr2" style="font-size:17px;border-radius: 26px; border: 1px solid black;"/> </td>
              </tr>
 
              <tr>
-              <th>이메일</th>
-                <td><input type="text" id="mail" name="userEmail" size="25" style="padding:4px;font-size:13px;border-radius: 10px;"></td>   
+              <th><label style="font-size: 25px">이메일  </label></th>
+                <td><input type="text" id="mail" name="userEmail" size="25" style="font-size:17px;border-radius: 26px; border: 1px solid black;"></td>   
              </tr>
  
          </table>
@@ -92,26 +173,7 @@
 
    
                  
-        <footer>
-            <div id="footlim">
-                <small>
-                    <br>㈜ 지금 배고프조<br><br>
-                    서울특별시 강남구 강남동 000, 타워 5층 | 사업자 등록번호: 000-00-00000 [사업자정보확인]<br>
-                    통신판매업 신고번호: 2021-서울강남-04026 | 개인정보 담당자 : babmokja@babmokja.co.kr | 제휴문의 :
-                    babmokja@babmokja.co.kr | 고객 만족센터 : babmokja@babmokja.co.kr<br><br>
-
-                    (유)지금 배고프조는 통신판매중개자이며 통신판매의 당사자가 아닙니다. <br> 따라서 상품/ 거래정보 및 거래와 관련하여 밥먹자에 등록된 판매자의 고의
-                    또는 과실로 소비자에게 발생하는 손해에 대해 (유)지금 배고프조는 책임을 지지 않습니다.<br>
-                    상품 및 거래에 관하여 보다 정확한 정보는 해당 판매자에게 직접 확인하여 주시기 바랍니다. Copyright BABMOKJA. All
-                    Rights Reserved.<br><br>
-
-                    고객센터: 02-123-4567 (24시간, 연중무휴)
-                    <br>
-                    <address>
-                        Copyright &copy; BABMOKJA All Right Reserved.</address>
-                </small>
-            </div>
-        </footer>
+<jsp:include page="/WEB-INF/views/common/customer/footer.jsp" />
 <script>
   function check_pw(){
       var pw = document.getElementById('pw').value;
@@ -257,8 +319,7 @@ function joinform_check() {
 		console.log(error);	            }
 			         });
 			      });
-			      
-			      
+			      		      
 </script>   
 
 

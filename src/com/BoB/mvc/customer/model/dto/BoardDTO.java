@@ -11,14 +11,14 @@ public class BoardDTO implements java.io.Serializable {
 	private int writerUserCode;
 	private Date createdDate;
 	private String reply;
-	private Date replyDate;
+	private String replyDate;
 	
 	public BoardDTO() {
 
 	}
 
 	public BoardDTO(int no, String title, String body, String status, int writerUserCode, Date createdDate,
-			String reply, Date replyDate) {
+			String reply, String replyDate) {
 		super();
 		this.no = no;
 		this.title = title;
@@ -86,12 +86,12 @@ public class BoardDTO implements java.io.Serializable {
 		this.reply = reply;
 	}
 
-	public Date getReplyDate() {
+	public String getReplyDate() {
 		return replyDate;
 	}
 
-	public void setReplyDate(Date replyDate) {
-		this.replyDate = replyDate;
+	public void setReplyDate(String string) {
+		this.replyDate = string;
 	}
 
 	@Override
@@ -100,6 +100,8 @@ public class BoardDTO implements java.io.Serializable {
 				+ writerUserCode + ", createdDate=" + createdDate + ", reply=" + reply + ", replyDate=" + replyDate
 				+ "]";
 	}
+
+
 	
 	
 

@@ -227,12 +227,12 @@
                 </textarea>
                 
             </div>
-             <form name="join_form" method="post">
+             
              <center> 
                 <input type="checkbox" name="agree" value="1" style="font-weight: 800; font-size: 20px;" /> 약관에 모두 동의합니다.<br>
-              <input type="button" class="btn" value="회원가입" style="margin-bottom: 50px; margin-top: 30px;" onclick="signin_check();"  >
-
-             </form>
+             
+              <div style="margin-bottom: 30px; margin-top: 30px;" ><a href="${ pageContext.servletContext.contextPath }/member/user/signin"><button class="btn">회원가입</button></a></div>
+            
             </center>
             <script>
                 function signin_check(){

@@ -22,17 +22,23 @@ public class UserBoardReadServlet extends HttpServlet {
 		
 		String boardNo = request.getParameter("no");
 		HttpSession session = request.getSession();
+		int userCode =((UserDTO) request.getSession().getAttribute("loginUser")).getUserCode();
 		String userName=((UserDTO) request.getSession().getAttribute("loginUser")).getName();
-		BoardDTO BoardRead = new UserBoardService().readUserBoard(boardNo);
+		BoardDTO boardRead = new UserBoardService().readUserBoard(boardNo,userCode);
+		BoardDTO commentRead = new UserBoardService().readComment(boardNo);
 		System.out.println("보드넘버 받아 오는 "+boardNo);
+		
+		System.out.println(boardRead +"boardReadboardReadboardReadboardReadboardRead");
+		System.out.println(commentRead+"dsfsdfsdfasdfdsfsadf");
 		
 		
 		String path= "";
 		
-		if(BoardRead != null) {
+		if(boardRead != null) {
 			path="/WEB-INF/views/customer/User_Board_Read.jsp";
 			request.setAttribute("username", userName);
-			request.setAttribute("BoardRead", BoardRead);
+			request.setAttribute("boardRead", boardRead);
+			request.setAttribute("commentRead", commentRead);
 		}else {
 			path="/WEB-INF/views/common/faild.jsp";
 			request.setAttribute("message", "문의 상세글을 불러오는데 실패하셨습니다. 다시 페이지를 시작해주세요!");

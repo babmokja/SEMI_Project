@@ -31,7 +31,7 @@ public class UserRegistServlet extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
 		String userName = request.getParameter("userName");
-		String userNo = request.getParameter("userNo").replace("-", "");
+		String userNo = request.getParameter("userNo")+request.getParameter("userNo2");
 		String Phone = request.getParameter("userPhone").replace("-", "");
 		String Email = request.getParameter("userEmail");
 		String address = request.getParameter("zip") + "$" + request.getParameter("addr1") + "$" +request.getParameter("addr2");
@@ -64,3 +64,4 @@ public class UserRegistServlet extends HttpServlet {
 	}
 
 }
+
