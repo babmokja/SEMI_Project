@@ -52,7 +52,7 @@ public class SelectAllMenuManageServlet extends HttpServlet {
 			path="/WEB-INF/views/owner/MenuManage.jsp";
 			request.setAttribute("menuList", menuList);
 		}else {
-			path="/WEB-INF/views/common/faild.jsp";
+			path="/WEB-INF/views/common/failed.jsp";
 			request.setAttribute("message", "메뉴를 불러오는데 실패하셨습니다. 다시 페이지를 시작해주세요!");
 		}
 		

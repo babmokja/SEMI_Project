@@ -26,7 +26,7 @@ public class MenuListDAO {
 		prop = new Properties();
 		
 		try {
-			prop.loadFromXML(new FileInputStream(ConfigLocation.MAPPER_LOCATION+"owner-mapper.xml"));
+			prop.loadFromXML(new FileInputStream(ConfigLocation.MAPPER_LOCATION+"owner/owner-mapper.xml"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -73,6 +73,7 @@ public class MenuListDAO {
 	            menuList.add(menu);
 	            
 	         }
+	         System.out.println("ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ"+menuList);
 	      } catch (SQLException e) {
 	         e.printStackTrace();
 	      } finally {
