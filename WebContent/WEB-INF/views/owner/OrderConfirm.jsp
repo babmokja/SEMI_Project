@@ -62,7 +62,7 @@
                 &nbsp;&nbsp;&nbsp; <a class="text-dark" href="${ pageContext.servletContext.contextPath }/menu/all">내 업소 관리</a>
               </span>
               <span class="col-2 menu-item">
-                <img class="img-fluid" src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_board/computer.png" />
+                <img class="img-fluid" style ="width:40px; height:40px;"src="${ pageContext.servletContext.contextPath }/resources/image/owner/semi_board/computer.png" />
                 &nbsp;&nbsp;&nbsp;<a class="text-dark" href="${ pageContext.servletContext.contextPath }/owner/delivery">PC주문현황</a>
               </span>
   
