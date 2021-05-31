@@ -105,7 +105,7 @@
 					</c:if>
 					
 					<button class="btn btn-warning" id="maxPage">>></button> 
-				<span class="total">오늘 총 <c:out value="${ requestScope.totalPrice }원"/> 판매 하셨습니다.</span>
+				<span class="total"><br>오늘 총 <c:out value="${ requestScope.totalPrice }원"/> 판매 하셨습니다.</span>
 					
 			     </c:when>
 			</c:choose>   

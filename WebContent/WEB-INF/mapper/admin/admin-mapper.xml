@@ -1017,8 +1017,8 @@
 	
 	</entry>
 		<entry key="selectSalesTotalPrice">
-	        SELECT
-            TOTAL_AMOUNT
+	       	        SELECT
+       	       	TOTAL_AMOUNT
             FROM ORDER_TABLE A
             JOIN STORE_TABLE B ON(A.STORE_CODE = B.STORE_CODE)
             JOIN USER_TABLE C ON(B.USER_CODE = C.USER_CODE)

@@ -440,7 +440,7 @@ public class OwnerDAO {
 		
 		int totalCount = 0;
 		
-		String query = prop.getProperty("searchMonthSalesPrice");
+		String query = prop.getProperty("selectSalesTotalPrice");
 
 		try {
 			pstmt = con.prepareStatement(query);

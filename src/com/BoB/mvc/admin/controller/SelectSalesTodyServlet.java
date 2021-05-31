@@ -40,7 +40,7 @@ public class SelectSalesTodyServlet extends HttpServlet {
 		System.out.println(totalCount);
 		
 		/* 한 페이지에 보여 줄 게시물 수 */
-		int limit = 10;
+		int limit = 5;
 		/* 한 번에 보여질 페이징 버튼의 수*/
 		int buttonAmount = 5;
 		
