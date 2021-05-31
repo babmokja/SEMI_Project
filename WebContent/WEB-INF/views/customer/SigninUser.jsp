@@ -106,7 +106,7 @@
               <th><label style="font-size: 25px">아이디</label> </th>
                <td><input type="text" id="userId" name ="userId" size = "25"style="font-size:17px;border-radius: 26px; border: 1px solid black;">
                  <input type="button" id="overlap" style="display:none;">
-                 <label for="overlap" id="checkId" >중복확인</label>
+                 <label for="overlap" id="checkId" style="width: 60px;background-color: #ffcc00;border: 1px solid #d9e1e8;height: 32px; border-radius: 20px;font-weight: 600;font-size: 15px;cursor: pointer;padding: 10px 10px 10px 10px;" >중복확인</label>
                </td>
              </tr>
            
