@@ -283,9 +283,11 @@ public class OwnerDAO {
 				
 			
 				loginmap.put("loginMember", loginMember);
+			}else {
+				System.out.println("ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ");
 			}
 				
-				System.out.println(loginMember);
+				System.out.println("이게 범인인거같음 "+loginMember);
 			
 			pstmt2 = con.prepareStatement(query2);
 			pstmt2.setString(1, requestMember.getMemberId());

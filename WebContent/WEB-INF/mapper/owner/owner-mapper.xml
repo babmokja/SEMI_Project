@@ -340,7 +340,7 @@
 		  FROM USER_TABLE U
 		 WHERE U.WITHDRAW_YN = 'N'
 	 	   AND U.USER_ID = ?
-	 	   AND U.ROLE_CODE = 3
+	 	   AND U.ROLE_CODE = 2
 	</entry>
 	<entry key="selectLoginStore">
 		SELECT

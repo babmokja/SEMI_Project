@@ -46,13 +46,14 @@ public class SelectSalesTodyServlet extends HttpServlet {
 		
 		PageInfoDTO pageInfo = OrderPaging.getPageInfo(pageNo, totalCount, limit, buttonAmount);
 		List<ownerSalesDTO> salesList = adminService.selectSalesTodayList(pageInfo,ownerNum);
-		
+		int totalPrice = adminService.selectSalesTodayPrice(ownerNum);
 		
 		String path="";
 		path = "/WEB-INF/views/admin/admin_Sales_day_Board.jsp";
 		request.setAttribute("salesList", salesList);
 		request.setAttribute("pageInfo", pageInfo);
 		request.setAttribute("ownerNum", ownerNum);
+		request.setAttribute("totalPrice", totalPrice);
 		request.setAttribute("message", "성공");
 		request.getRequestDispatcher(path).forward(request, response);
 	}

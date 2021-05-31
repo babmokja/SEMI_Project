@@ -67,6 +67,7 @@ public class SelectSalesMonthServlet extends HttpServlet {
 		PageInfoDTO pageInfo = OrderPaging.getPageInfo(pageNo, totalCount, limit, buttonAmount);
 		
 		List<ownerSalesDTO> salesList = adminService.searchMonthSales(pageInfo,stringValue,ownerNum);
+		int totalPrice  = adminService.searchMonthSalesPrice(stringValue,ownerNum);
 		
 		String path="";
 		path = "/WEB-INF/views/admin/admin_Sales_month_Board.jsp";
@@ -74,6 +75,8 @@ public class SelectSalesMonthServlet extends HttpServlet {
 		request.setAttribute("searchValue", searchValue);
 		request.setAttribute("ownerNum", ownerNum);
 		request.setAttribute("salesList", salesList);
+		request.setAttribute("totalPrice", totalPrice);
+
 		request.setAttribute("pageInfo", pageInfo);
 		request.getRequestDispatcher(path).forward(request, response);
 		

@@ -404,4 +404,59 @@ public class OwnerDAO {
 		
 		return salesList;
 	}
+
+
+	public int searchMonthSalesPrice(Connection con, String stringValue, String ownerNum) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int totalCount = 0;
+		
+		String query = prop.getProperty("searchMonthSalesPrice");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, stringValue);
+			pstmt.setString(2, ownerNum);
+			rset = pstmt.executeQuery();
+			System.out.println(query);
+			while(rset.next()) {
+				totalCount += rset.getInt("TOTAL_AMOUNT");
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return totalCount;
+	}
+
+
+	public int selectSalesTodayPrice(Connection con, int ownerNum) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int totalCount = 0;
+		
+		String query = prop.getProperty("searchMonthSalesPrice");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, ownerNum);
+			rset = pstmt.executeQuery();
+			System.out.println(query);
+			while(rset.next()) {
+				totalCount += rset.getInt("TOTAL_AMOUNT");
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return totalCount;
+	}
 }

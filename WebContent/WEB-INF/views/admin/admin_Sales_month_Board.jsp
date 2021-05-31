@@ -153,7 +153,7 @@
 					</c:if>
 					
 					<button class="btn btn-warning" id="maxPage">>></button> 
-					<span class="total"><c:out value="${ requestScope.searchValue }"/>월달 총 <c:out value="${ intArray }원"/> 판매 하셨습니다.</span>
+					<span class="total"><c:out value="${ requestScope.searchValue }"/>월달 총 <c:out value="${ requestScope.totalPrice }원"/> 판매 하셨습니다.</span>
 			     </c:when>
 			    <c:otherwise>
    				    <button class="btn btn-warning" id="searchStartPage"><<</button>
@@ -182,7 +182,7 @@
 					</c:if>
 					
 					<button class="btn btn-warning" id="searchMaxPage">>></button> 
-					<span class="total"><c:out value="${ requestScope.searchValue }"/>월달 총 <c:out value="${ intArray }원"/> 판매 하셨습니다.</span>
+					<span class="total"><c:out value="${ requestScope.searchValue }"/>월달 총 <c:out value="${ requestScope.totalPrice }원"/> 판매 하셨습니다.</span>
 			    </c:otherwise>
 			    
 			</c:choose>   

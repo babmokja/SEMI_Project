@@ -1007,4 +1007,21 @@
                 )A
         WHERE A.RNUM BETWEEN ? AND ?
 	</entry>
+		<entry key="searchMonthSalesPrice">
+	                SELECT
+                   	TOTAL_AMOUNT
+                    FROM ORDER_TABLE A
+                    JOIN STORE_TABLE B ON(A.STORE_CODE = B.STORE_CODE)
+                    JOIN STORE_TABLE C ON(B.USER_CODE = C.USER_CODE)
+                    WHERE a.ORDER_TIME LIKE CONCAT(concat(SUBSTR(sysdate,1,3),?),'%') and c.user_code = ?
+	
+	</entry>
+		<entry key="selectSalesTotalPrice">
+	        SELECT
+            TOTAL_AMOUNT
+            FROM ORDER_TABLE A
+            JOIN STORE_TABLE B ON(A.STORE_CODE = B.STORE_CODE)
+            JOIN USER_TABLE C ON(B.USER_CODE = C.USER_CODE)
+            WHERE ORDER_TIME like concat(SUBSTR(sysdate,1,10),'%') and c.user_code =?
+	</entry>
 </properties>

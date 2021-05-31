@@ -315,4 +315,20 @@ public class AdminService {
 	      
 	      return orderList;
 	   }
+
+	public int searchMonthSalesPrice(String stringValue, String ownerNum) {
+		Connection con = getConnection();
+		int totalPrice = OwnerDAO.searchMonthSalesPrice(con,stringValue,ownerNum);
+		close(con);
+
+		return totalPrice;
+	}
+
+	public int selectSalesTodayPrice(int ownerNum) {
+		Connection con = getConnection();
+		int totalPrice = OwnerDAO.selectSalesTodayPrice(con,ownerNum);
+		close(con);
+
+		return totalPrice;
+	}
 }
