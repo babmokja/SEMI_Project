@@ -2,6 +2,8 @@ package com.BoB.mvc.owner.model.dao;
 
 import static com.BoB.mvc.common.jdbc.JDBCTemplate.close;
 
+import static com.BoB.mvc.common.jdbc.JDBCTemplate.close;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -15,6 +17,7 @@ import java.util.Properties;
 import com.BoB.mvc.common.config.ConfigLocation;
 import com.BoB.mvc.owner.model.dto.CartListDTO;
 import com.BoB.mvc.owner.model.dto.DeliveryDTO;
+import com.BoB.mvc.owner.model.dto.NoShowDTO;
 
 public class PCProcessDAO {
 	private final Properties prop;
@@ -257,7 +260,7 @@ public class PCProcessDAO {
 		return result;
 	}
 
-	public int insertUserBlackList(Connection con, int ownerCode, int orderCode,String userId, int storeCode) {
+public int insertUserBlackList(Connection con, int ownerCode, int orderCode1,int userId1, int storeCode1) {
 		
 		PreparedStatement pstmt = null;
 				
@@ -267,15 +270,99 @@ public class PCProcessDAO {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, "Y");
-			pstmt.setString(2,"SYSDATE");
-			pstmt.setInt(3, Integer.parseInt(userId));
+			
+			pstmt.setInt(1, userId1 );
+			pstmt.setInt(2, orderCode1);
+			pstmt.setInt(3, storeCode1);
 			
 			result = pstmt.executeUpdate();
 			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+		
+		System.out.println("insertResult: "+ result);
+		return result;
+	}
+
+	public NoShowDTO selectnoshowUser(Connection con, int ownerCode) {
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String query= prop.getProperty("selectNoshowinfo");
+		NoShowDTO noshowDTO = new NoShowDTO();
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, ownerCode);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+			 
+				noshowDTO.setOrderCode(rset.getInt("ORDER_CODE"));
+			    noshowDTO.setStoreCode(rset.getInt("STORE_CODE"));
+			    noshowDTO.setUserCode(rset.getInt("USER_CODE"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println("noshowDTO:"+noshowDTO);
+		return noshowDTO;
+	}
+
+	public int selectnoshowCount(Connection con, int userId1) {
+
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		int result = 0;
+		
+		String query = prop.getProperty("CountNoshowUser");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userId1);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				result = rset.getInt("COUNT(*)");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		System.out.println("countUser" +result);
+		
+		return result;
+	}
+
+	public int updateRealBlackList(Connection con, int userId1) {
+
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateBlockUser");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, userId1);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
 		}
 		
 		return result;

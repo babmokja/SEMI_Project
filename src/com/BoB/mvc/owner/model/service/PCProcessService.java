@@ -11,6 +11,7 @@ import java.util.List;
 import com.BoB.mvc.owner.model.dao.PCProcessDAO;
 import com.BoB.mvc.owner.model.dto.CartListDTO;
 import com.BoB.mvc.owner.model.dto.DeliveryDTO;
+import com.BoB.mvc.owner.model.dto.NoShowDTO;
 
 public class PCProcessService {
 	
@@ -123,7 +124,30 @@ Connection con = getConnection();
 		
 		Connection con =getConnection();
 		
-		int result = pcProcessDAO.insertUserBlackList(con,ownerCode, orderCode, userId, storeCode);
+		int result = 0;
+		int count = 0;
+		NoShowDTO noshowDTO = pcProcessDAO.selectnoshowUser(con, ownerCode);
+	
+		
+		int orderCode1 = noshowDTO.getOrderCode();
+		int userId1 = noshowDTO.getUserCode();
+		int storeCode1 = noshowDTO.getStoreCode();
+		
+		
+		
+		if(noshowDTO != null) {
+			//카운트 들어가고 if(3>
+			
+			count = pcProcessDAO.selectnoshowCount(con,userId1);
+			
+			if(count<3) {
+			
+				result = pcProcessDAO.insertUserBlackList(con,ownerCode, orderCode1, userId1, storeCode1);
+			}else {
+				result = pcProcessDAO.updateRealBlackList(con,userId1);
+			}
+		
+		}
 		
 		if(result>0) {
 			commit(con);
