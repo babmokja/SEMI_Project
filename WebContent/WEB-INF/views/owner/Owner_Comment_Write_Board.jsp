@@ -12,7 +12,11 @@
 </head>
 <body>
     <aside class="aside" style="width:340px;">
-        <div class="aside_top2">BABMOKJA </div>
+        <div class="aside_top2"><a href="${ pageContext.servletContext.contextPath }/main" 
+        style="text-decoration: none;
+         color: black;
+       font-style: normal;
+       font-weight: bolder;}"> babmokja </a> </div>
         <div class="aside_top" style="width:100%; font-size: 40px;">업체 댓글달기 </div>
     </aside>
   
@@ -76,8 +80,8 @@
                 <button><a href="Owner_Comment_Board.html">댓글작성</a></button>
               </form>
               <div class="under-line"></div> -->
-
-            </div>
+			<button style="float:left; font-weight:bold; border:1px solid black; margin-top :10px;" class="btn" onclick="location.href='${ pageContext.servletContext.contextPath }/owner/replycomment'">뒤로 가기</button>
+	            </div>
           </div>
         </div>
 
