@@ -735,11 +735,34 @@
     JOIN PAYMENT P ON (M.PAYMENT_CODE = P.PAYMENT_CODE) 
     WHERE P.PAYMENT_METHOD = '현금'
       AND O.TYPE_YN = '픽업'
+      AND O.STORE_CODE = ?
+	</entry>
+	
+	<entry key="CountNoshowUser">
+	    SELECT 
+               COUNT(*)
+          FROM NO_SHOW
+         WHERE USER_CODE = ?
 	</entry>
 	
 	<entry key= "InsertNoShowUser">
+	INSERT INTO NO_SHOW
+	VALUES
+	(
+	  ?
+	 ,?
+	 ,?
+	)
 	
 
 
+	</entry>
+	
+	<entry key="updateBlockUser">
+	UPDATE USER_TABLE
+	   SET 
+	   BLACKLIST_YN = 'Y',
+	   BLACKLIST_DATE= SYSDATE
+	 WHERE USER_CODE = ?
 	</entry>
 </properties>
