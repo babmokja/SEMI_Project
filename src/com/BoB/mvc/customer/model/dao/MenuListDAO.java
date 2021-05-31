@@ -73,7 +73,7 @@ public class MenuListDAO {
 				menu.setPhoto(rset.getString("PICTURE"));
 				menu.setContent(rset.getString("EXP"));
 				menu.setMenuCode(rset.getInt("MENUCODE"));
-				
+				System.out.println(rset.getString("PICTURE"));
 				selectedMenu.add(menu);
 				
 			}
